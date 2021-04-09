@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { skillUpload } from "../../../_actions/skill_action.js";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
+
 import SkillsList from "./SkillsList.jsx";
 
 const AdminPage = () => {
@@ -11,8 +11,8 @@ const AdminPage = () => {
       .then((response) => setSkillList(response.data.docs));
   }, []);
 
-  const [SkillName, setSkillName] = useState("");
   const [SkillList, setSkillList] = useState([]);
+  const [SkillName, setSkillName] = useState("");
 
   const onChangeValue = (e) => {
     setSkillName(e.currentTarget.value.toUpperCase());

@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { withRouter } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getSkillsDB } from "../../../_actions/skill_action.js";
+
+import Test from "../../../_reducers/Test.jsx";
 
 import Header from "./Header.jsx";
 import SkillSearchBar from "../../common/SkillSearchBar.jsx";
 import TagContainer from "../../common/TagContainer.jsx";
 
 function LandingPage(props) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getSkillsDB());
+  }, [dispatch]);
+
   return (
     <>
       <h2>Landing Page</h2>
       <Header />
       <SkillSearchBar />
       <TagContainer />
+      <Test />
     </>
   );
 }
@@ -19,21 +30,7 @@ function LandingPage(props) {
 export default withRouter(LandingPage);
 
 /*
-  기능구현
-
-  1. header section
-    - title
-    - sub title
-    - skill search bar
-    - skill tag
-  
-  2. Project preview
-    - project list => card section
-    - project main 바로가기 버튼
-    - project 4개 출력, more 버튼 클릭시 4개 추가 출력
-  
-  3. Study preview
-    - study list => card section
-    - study main 바로가기 버튼
-    - study 4개 출력, more 버튼 클릭시 4개 추가 출력
+  1. DB에서 skills data를 가져온다.
+  2. 가져온 데이터를 redux, unSelectedSkills 배열에 넣는다.
+  3. 
 */

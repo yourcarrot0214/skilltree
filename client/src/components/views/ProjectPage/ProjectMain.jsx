@@ -1,11 +1,13 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
+import DetailPage from "../../common/DetailPage.jsx";
+
 const ProjectMain = () => {
   return (
     <>
       <h3>Project Main Page</h3>
-      <p>Project List</p>
+      <DetailPage />
     </>
   );
 };

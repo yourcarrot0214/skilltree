@@ -20,7 +20,7 @@ const projectSchema = mongoose.Schema({
     type: Array,
   },
   status: {
-    typ: Boolean,
+    type: Boolean,
   },
 });
 

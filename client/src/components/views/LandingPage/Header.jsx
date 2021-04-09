@@ -9,8 +9,6 @@ const Header = () => {
     <>
       <h1>{HeaderTitle}</h1>
       <p>{SubTitle}</p>
-      <p>skill search bar component</p>
-      <p>skill tag component</p>
     </>
   );
 };

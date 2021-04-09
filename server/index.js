@@ -51,7 +51,7 @@ app.post("/api/skills/search", (req, res) => {
     if (err) res.json({ skillSearchSuccess: false, message: `Err : ${err}` });
     if (!skill) {
       return res.json({
-        skillSearchSuccss: false,
+        skillSearchSuccess: false,
         message: "Skill Not Found.",
       });
     }

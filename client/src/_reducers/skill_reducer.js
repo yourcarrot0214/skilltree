@@ -12,7 +12,6 @@ const payloadFilter = (state, action) => {
 };
 
 export default function skill(state = [], action) {
-  console.log(action);
   switch (action.type) {
     case SKILL_SEARCH:
       return payloadFilter(state, action);

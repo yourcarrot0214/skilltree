@@ -19,6 +19,9 @@ const projectSchema = mongoose.Schema({
   volunteer: {
     type: Array,
   },
+  status: {
+    typ: Boolean,
+  },
 });
 
 const Project = mongoose.model("Project", projectSchema);
@@ -36,5 +39,6 @@ module.exports = { Project };
     - members : 프로젝트에 참가중인 유저 목록. Array
     - leader : 프로젝트를 개설한 유저. Object
     - volunteer : 프로젝트에 지원한 유저 목록. Array
+    - status : 프로젝트 상태. true = 모집중, false = 진행중
 
 */

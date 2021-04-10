@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { getSkillsDB } from "../../../_actions/skill_action.js";
 
 import Test from "../../../_reducers/Test.jsx";
@@ -16,12 +16,15 @@ function LandingPage(props) {
     dispatch(getSkillsDB());
   }, [dispatch]);
 
+  const skills = useSelector((state) => state.skills, shallowEqual);
+  const location = "LandingPage";
+
   return (
     <>
       <h2>Landing Page</h2>
       <Header />
       <SkillSearchBar />
-      <TagContainer />
+      <TagContainer skills={skills} location={location} />
       <Test />
     </>
   );

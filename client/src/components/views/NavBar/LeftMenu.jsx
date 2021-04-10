@@ -8,7 +8,7 @@ const LeftMenuContainer = styled.div`
   flex-direction: row;
   align-items: center;
   padding: 12px;
-  flex: 7;
+  /* flex: 7; */
   font-weight: bold;
 `;
 

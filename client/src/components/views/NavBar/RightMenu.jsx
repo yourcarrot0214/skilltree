@@ -10,7 +10,7 @@ const RightMenuContainer = styled.div`
   flex-direction: row;
   align-items: center;
   padding: 12px;
-  flex: 3;
+  /* flex: 3; */
   font-weight: bold;
 `;
 

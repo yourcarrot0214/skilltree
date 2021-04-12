@@ -23,13 +23,21 @@ const TagStyled = Styled.button`
       
 `;
 
-const Tag = ({ selected, searchResult, location, id, tagname }) => {
+const Tag = ({
+  selected,
+  searchResult,
+  location,
+  id,
+  tagname,
+  setSkillName,
+}) => {
   const [Selected, setSelected] = useState(selected);
   const dispatch = useDispatch();
 
   const onClickFunction = () => {
     dispatch(selectedSkill(id));
     setSelected(!Selected);
+    setSkillName("");
   };
 
   return (
@@ -44,11 +52,3 @@ const Tag = ({ selected, searchResult, location, id, tagname }) => {
 };
 
 export default Tag;
-
-/*
-  1. Tag Button을 클릭하면 dispatch를 보낸다.
-    - unSelectedSkills에서 해당 스킬을 제외한 나머지 스킬 배열을 리턴한다.
-    - SelectedSkills에 해당 스킬을 추가한 배열을 리턴한다.
-  2. Tag searchResult === true
-    - display: none;
-*/

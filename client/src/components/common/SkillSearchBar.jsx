@@ -46,14 +46,20 @@ const SkillSearchBar = () => {
 export default SkillSearchBar;
 
 /*
-  Inflearn 기능 clone
-  1. 검색창
-    - 기술을 검색하면 결과 태그를 보여준다.
-    - 결과 태그를 선택하면 선택된 태그 목록에 추가된다.
-  2. 모든 기술 태그
-    - 선택된 태그
-    - 선택되지 않은 태그
-  
-  DB에 저장된 모든 스킬들을 선택되지 않은 태그 배열에 넣어 출력한다.
-  
+  기능구현목표설정
+  1. redux store skills state에서 검색창에 입력된 스킬을 검색한다.
+    - onChangeValue에서 value값이 변경될 때 마다 submit request를 보내는 방법?
+    - 현재 skillName value값을 출력
+      > 해당 출력영역 고정 width, height 설정.
+    - skillName을 requestBody로 검색한 결과를 출력
+      > 결과가 없으면 ErrorMessage
+      > 결과가 있으면 해당 스킬 태그.
+      > 스킬태그 선택시 selected값 토글.
+
+  2. useSelector
+    - state.skills에서 입력된 skillName에 해당하는 값을 가져오기.
+
+  3. Tag Component 출력
+    - useSelector에서 가져온 값을 통해 Tag component 출력
+      
 */

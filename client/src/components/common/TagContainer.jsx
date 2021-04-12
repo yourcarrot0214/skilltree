@@ -9,10 +9,21 @@ const TagContainerStyled = Styled.div`
 const TagContainer = (props) => {
   const skills = props.skills;
   const location = props.location;
+  const selectedSkills = skills.filter((skill) => skill.selected);
+  const unSelectedSkills = skills.filter((skill) => !skill.selected);
 
   return (
     <TagContainerStyled>
-      {skills.map((skill) => (
+      {selectedSkills.map((skill) => (
+        <Tag
+          tagname={skill.name}
+          key={skill._id}
+          location={location}
+          id={skill._id}
+          selected={skill.selected}
+        />
+      ))}
+      {unSelectedSkills.map((skill) => (
         <Tag
           tagname={skill.name}
           key={skill._id}

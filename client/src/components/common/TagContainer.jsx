@@ -11,28 +11,44 @@ const TagContainer = (props) => {
   const location = props.location;
   const selectedSkills = skills.filter((skill) => skill.selected);
   const unSelectedSkills = skills.filter((skill) => !skill.selected);
+  const skillSearchResult = props.skillSearchResult;
+  // console.log(skillSearchResult);
 
   return (
-    <TagContainerStyled>
-      {selectedSkills.map((skill) => (
-        <Tag
-          tagname={skill.name}
-          key={skill._id}
-          location={location}
-          id={skill._id}
-          selected={skill.selected}
-        />
-      ))}
-      {unSelectedSkills.map((skill) => (
-        <Tag
-          tagname={skill.name}
-          key={skill._id}
-          location={location}
-          id={skill._id}
-          selected={skill.selected}
-        />
-      ))}
-    </TagContainerStyled>
+    <>
+      <TagContainerStyled>
+        {skillSearchResult ? (
+          <Tag
+            searchResult
+            tagname={skillSearchResult.name}
+            key={skillSearchResult.key}
+            location={location}
+            id={skillSearchResult._id}
+            selected={skillSearchResult.selected}
+          />
+        ) : (
+          <div>검색 결과가 없습니다.</div>
+        )}
+        {selectedSkills.map((skill) => (
+          <Tag
+            tagname={skill.name}
+            key={skill._id}
+            location={location}
+            id={skill._id}
+            selected={skill.selected}
+          />
+        ))}
+        {unSelectedSkills.map((skill) => (
+          <Tag
+            tagname={skill.name}
+            key={skill._id}
+            location={location}
+            id={skill._id}
+            selected={skill.selected}
+          />
+        ))}
+      </TagContainerStyled>
+    </>
   );
 };
 
@@ -49,5 +65,54 @@ export default TagContainer;
   TagContiner의 역할은 부모 컴포넌트에서 props로 받은 skills 배열을 통해 Tag 컴포넌트를 랜더링 하는 것이다.
   onClickFunction은 LandingPage에서는 selected 토글하는 함수로 사용되고,
   ProjectDetailPage에서는 사용되지 않는다.
+
+  props.location에 따라 다른 jsx를 리턴하는 방법
+    - location === SkillSearchBar
+      > 모든 스킬
+      > SkillName과 같은 스킬
+      > 클릭하고 나면 selectedSkills, unSelectedSkills
+    
+    - location === LandingPage
+      > selectedSkills, unSelectedSkills
+
+    - location === DetailPage
+      > selectedSkills
+    - location === InfoPage
+      > selectedSkills
   
+*/
+
+/*
+  <>
+      {skillSearchResult ? (
+        <Tag
+          tagname={skillSearchResult.name}
+          key={skillSearchResult.key}
+          location={location}
+          id={skillSearchResult.id}
+          selected={skillSearchResult.selected}
+        />
+      ) : (
+        <TagContainerStyled>
+          {selectedSkills.map((skill) => (
+            <Tag
+              tagname={skill.name}
+              key={skill._id}
+              location={location}
+              id={skill._id}
+              selected={skill.selected}
+            />
+          ))}
+          {unSelectedSkills.map((skill) => (
+            <Tag
+              tagname={skill.name}
+              key={skill._id}
+              location={location}
+              id={skill._id}
+              selected={skill.selected}
+            />
+          ))}
+        </TagContainerStyled>
+      )}
+    </>
 */

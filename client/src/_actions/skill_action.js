@@ -1,15 +1,5 @@
 import axios from "axios";
-import { SKILL_SEARCH, SKILL_GET_LIST, SKILL_SELECTED } from "./skill_types.js";
-
-export function skillSearch(searchSkill) {
-  const request = axios
-    .post("/api/skills/search", searchSkill)
-    .then((response) => response.data);
-  return {
-    type: SKILL_SEARCH,
-    payload: request,
-  };
-}
+import { SKILL_GET_LIST, SKILL_SELECTED } from "./skill_types.js";
 
 export function getSkillsDB() {
   console.log("get skills DB action");

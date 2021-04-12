@@ -1,11 +1,16 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-// import { skillSearch } from "../../_actions/skill_action.js";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import TagContainer from "./TagContainer.jsx";
+import { selectedSkill } from "../../_actions/skill_action.js";
+import Tag from "./Tag.jsx";
 
 const SkillSearchBar = () => {
   const dispatch = useDispatch();
   const [SkillName, setSkillName] = useState("");
   const [ErrorMessage, setErrorMessage] = useState("");
+
+  const skills = useSelector((state) => state.skills, shallowEqual);
+  const location = "SkillSearchBar";
 
   const onChangeValue = (event) => {
     setSkillName(event.currentTarget.value);
@@ -13,18 +18,18 @@ const SkillSearchBar = () => {
 
   const onSkillSearch = (event) => {
     event.preventDefault();
-    // if (SkillName === "") return;
+    if (SkillName === "") return;
     console.log("Skill Search Request.");
-    // const requestBody = { name: SkillName.toUpperCase() };
-    // dispatch(skillSearch(requestBody)).then((response) => {
-    //   if (!response.payload.skillSearchSuccess) {
-    //     setErrorMessage("해당 스킬이 DB에 없습니다.");
-    //   } else {
-    //     setErrorMessage("");
-    //   }
-    // });
+    dispatch(selectedSkill(skillSearchResult._id));
     setSkillName("");
   };
+
+  const skillSearchResult = useSelector(
+    (state) =>
+      state.skills.find((skill) => skill.name === SkillName.toUpperCase()),
+    shallowEqual
+  );
+  // console.log(skillSearchResult);
 
   return (
     <>
@@ -36,9 +41,13 @@ const SkillSearchBar = () => {
           onChange={onChangeValue}
         />
         <button type='submit'>Skill Search</button>
+        {ErrorMessage !== "" && <p>{ErrorMessage}</p>}
+        <TagContainer
+          skills={skills}
+          location={location}
+          skillSearchResult={skillSearchResult}
+        />
       </form>
-      {ErrorMessage !== "" && <p>{ErrorMessage}</p>}
-      <p>{SkillName}</p>
     </>
   );
 };

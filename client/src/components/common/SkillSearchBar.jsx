@@ -18,6 +18,7 @@ const SkillSearchBar = () => {
   const onSkillSearch = (event) => {
     event.preventDefault();
     if (SkillName === "") return;
+    if (skillSearchResult === undefined) return;
     console.log("Skill Search Request.");
     dispatch(selectedSkill(skillSearchResult._id));
     setSkillName("");
@@ -28,7 +29,7 @@ const SkillSearchBar = () => {
       state.skills.find((skill) => skill.name === SkillName.toUpperCase()),
     shallowEqual
   );
-  // console.log(skillSearchResult);
+  console.log(skillSearchResult);
 
   return (
     <>

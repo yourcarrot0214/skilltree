@@ -30,9 +30,11 @@ const userSchema = mongoose.Schema({
   },
   tech: {
     type: Array,
+    default: [],
   },
   learn: {
     type: Array,
+    default: [],
   },
 });
 

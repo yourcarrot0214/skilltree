@@ -33,7 +33,6 @@ function RegisterPage(props) {
       email: Email,
       password: Password,
       name: Name,
-      tech: ["HTML", "CSS", "JAVSCRIPT"], // test code
     };
 
     dispatch(registerUser(requestBody)).then((response) => {

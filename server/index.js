@@ -94,6 +94,8 @@ app.get("/api/users/auth", auth, (req, res) => {
     name: req.user.name,
     role: req.user.role,
     image: req.user.image,
+    tech: req.user.tech,
+    learn: req.user.learn,
   });
 });
 

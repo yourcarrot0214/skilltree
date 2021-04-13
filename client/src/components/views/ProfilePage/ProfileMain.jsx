@@ -1,11 +1,13 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import SkillSearchBar from "../../common/SkillSearchBar.jsx";
 
 const ProfileMain = () => {
   return (
     <>
       <h3>Profile Main Page</h3>
       <p>Profile section</p>
+      <SkillSearchBar />
     </>
   );
 };
@@ -29,4 +31,11 @@ export default withRouter(ProfileMain);
   5. 참가중인 스터디 리스트
     - 현재 참가중인 스터디 리스트 출력
     - 리스트의 각 스터디 항목은 StudyMain에서 제공하는 프로젝트 상세 페이지와 연결
+*/
+
+/*
+  스킬 등록 기능
+    - 스킬 등록은 DB에, 이후 redux state
+      > server/index.js router
+      > user_action, user_reducer
 */

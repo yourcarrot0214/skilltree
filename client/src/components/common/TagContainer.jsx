@@ -41,3 +41,8 @@ const TagContainer = (props) => {
 };
 
 export default TagContainer;
+
+/*
+  TagContainer에 props로 전달되는 값에 따라 styled-components 적용
+    - ${(props) => props.previewPage && css``}
+*/

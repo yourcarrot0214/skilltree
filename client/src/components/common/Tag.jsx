@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Styled, { css } from "styled-components";
 import { useDispatch } from "react-redux";
 import { selectedSkill } from "../../_actions/skill_action.js";
@@ -17,22 +17,16 @@ const TagStyled = Styled.button`
     `}
 `;
 
-const Tag = ({ selected, searchResult, id, tagname, setSkillName }) => {
-  const [Selected, setSelected] = useState(selected);
+const Tag = ({ selected, id, tagname, setSkillName }) => {
   const dispatch = useDispatch();
 
   const onClickFunction = () => {
     dispatch(selectedSkill(id));
-    setSelected(!Selected);
     setSkillName("");
   };
 
   return (
-    <TagStyled
-      searchResult={searchResult}
-      selected={Selected}
-      onClick={onClickFunction}
-    >
+    <TagStyled selected={selected} onClick={onClickFunction}>
       {tagname}
     </TagStyled>
   );

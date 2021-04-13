@@ -9,7 +9,8 @@ const SkillSearchBar = () => {
   const [SkillName, setSkillName] = useState("");
 
   const skills = useSelector((state) => state.skills, shallowEqual);
-  const location = "SkillSearchBar";
+  const selectedSkills = skills.filter((skill) => skill.selected);
+  const unSelectedSkills = skills.filter((skill) => !skill.selected);
 
   const onChangeValue = (event) => {
     setSkillName(event.currentTarget.value);
@@ -29,7 +30,6 @@ const SkillSearchBar = () => {
       state.skills.find((skill) => skill.name === SkillName.toUpperCase()),
     shallowEqual
   );
-  console.log(skillSearchResult);
 
   return (
     <>
@@ -43,18 +43,20 @@ const SkillSearchBar = () => {
         <button type='submit'>Skill Search</button>
       </form>
       {SkillName === "" ? (
-        <TagContainer
-          skills={skills}
-          location={location}
-          skillSearchResult={skillSearchResult}
-          setSkillName={setSkillName}
-        />
+        <>
+          <TagContainer
+            skillsList={unSelectedSkills}
+            setSkillName={setSkillName}
+          />
+          <TagContainer
+            skillsList={selectedSkills}
+            setSkillName={setSkillName}
+          />
+        </>
       ) : skillSearchResult ? (
         <Tag
-          searchResult
           tagname={skillSearchResult.name}
           key={skillSearchResult.key}
-          location={location}
           id={skillSearchResult._id}
           selected={skillSearchResult.selected}
           setSkillName={setSkillName}

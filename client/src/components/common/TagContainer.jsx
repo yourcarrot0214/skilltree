@@ -6,33 +6,17 @@ const TagContainerStyled = Styled.div`
   border: 1px solid black;
 `;
 
-const TagContainer = (props) => {
-  const skills = props.skills;
-  const location = props.location;
-  const selectedSkills = skills.filter((skill) => skill.selected);
-  const unSelectedSkills = skills.filter((skill) => !skill.selected);
-
+const TagContainer = ({ skillsList, setSkillName }) => {
   return (
     <>
       <TagContainerStyled>
-        {selectedSkills.map((skill) => (
+        {skillsList.map((skill) => (
           <Tag
             tagname={skill.name}
             key={skill._id}
-            location={location}
             id={skill._id}
             selected={skill.selected}
-            setSkillName={props.setSkillName}
-          />
-        ))}
-        {unSelectedSkills.map((skill) => (
-          <Tag
-            tagname={skill.name}
-            key={skill._id}
-            location={location}
-            id={skill._id}
-            selected={skill.selected}
-            setSkillName={props.setSkillName}
+            setSkillName={setSkillName}
           />
         ))}
       </TagContainerStyled>

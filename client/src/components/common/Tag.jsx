@@ -15,22 +15,9 @@ const TagStyled = Styled.button`
     css`
       background-color: #51cf66;
     `}
-  ${(props) =>
-    props.searchResult &&
-    css`
-      display: block;
-    `}
-      
 `;
 
-const Tag = ({
-  selected,
-  searchResult,
-  location,
-  id,
-  tagname,
-  setSkillName,
-}) => {
+const Tag = ({ selected, searchResult, id, tagname, setSkillName }) => {
   const [Selected, setSelected] = useState(selected);
   const dispatch = useDispatch();
 
@@ -44,7 +31,7 @@ const Tag = ({
     <TagStyled
       searchResult={searchResult}
       selected={Selected}
-      onClick={location === "SkillSearchBar" ? onClickFunction : null}
+      onClick={onClickFunction}
     >
       {tagname}
     </TagStyled>

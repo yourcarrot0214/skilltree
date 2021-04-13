@@ -57,13 +57,20 @@ function RegisterPage(props) {
     <SubmitContainer>
       <SubmitForm onSubmit={onSignUpSubmit}>
         <label>Name</label>
-        <input type='text' name='name' value={Name} onChange={onChangeValue} />
+        <input
+          type='text'
+          name='name'
+          value={Name}
+          onChange={onChangeValue}
+          required
+        />
         <label>Email</label>
         <input
           type='email'
           name='email'
           value={Email}
           onChange={onChangeValue}
+          required
         />
         <label>Password</label>
         <input
@@ -71,6 +78,7 @@ function RegisterPage(props) {
           name='password'
           value={Password}
           onChange={onChangeValue}
+          required
         />
         <label>Password</label>
         <input
@@ -78,6 +86,7 @@ function RegisterPage(props) {
           name='confirm-password'
           value={ConfirmPassword}
           onChange={onChangeValue}
+          required
         />
         <button type='submit'>SIGN UP</button>
       </SubmitForm>

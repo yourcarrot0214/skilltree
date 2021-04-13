@@ -8,7 +8,7 @@ import Test from "../../../_reducers/Test.jsx";
 import Header from "./Header.jsx";
 import SkillSearchBar from "../../common/SkillSearchBar.jsx";
 
-function LandingPage(props) {
+function LandingPage() {
   const dispatch = useDispatch();
   const [SkillName, setSkillName] = useState("");
   const location = "LandingPage";

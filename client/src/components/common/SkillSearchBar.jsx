@@ -9,6 +9,7 @@ const SkillSearchBar = ({
   setSkillName,
   SkillName,
   skillDispatch,
+  location,
 }) => {
   const onChangeValue = (event) => {
     setSkillName(event.currentTarget.value);
@@ -40,11 +41,13 @@ const SkillSearchBar = ({
             skillsList={unSelectedSkills}
             setSkillName={setSkillName}
             skillDispatch={skillDispatch}
+            location={location}
           />
           <TagContainer
             skillsList={selectedSkills}
             setSkillName={setSkillName}
             skillDispatch={skillDispatch}
+            location={location}
           />
         </>
       ) : skillSearchResult ? (
@@ -55,6 +58,7 @@ const SkillSearchBar = ({
           selected={skillSearchResult.selected}
           setSkillName={setSkillName}
           skillDispatch={skillDispatch}
+          location={location}
         />
       ) : (
         <div>검색 결과가 없습니다.</div>

@@ -6,7 +6,12 @@ const TagContainerStyled = Styled.div`
   border: 1px solid black;
 `;
 
-const TagContainer = ({ skillsList, setSkillName, skillDispatch }) => {
+const TagContainer = ({
+  skillsList,
+  setSkillName,
+  skillDispatch,
+  location,
+}) => {
   return (
     <>
       <TagContainerStyled>
@@ -18,6 +23,7 @@ const TagContainer = ({ skillsList, setSkillName, skillDispatch }) => {
             selected={skill.selected}
             setSkillName={setSkillName}
             skillDispatch={skillDispatch}
+            location={location}
           />
         ))}
       </TagContainerStyled>

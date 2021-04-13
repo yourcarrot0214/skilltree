@@ -15,10 +15,21 @@ const TagStyled = Styled.button`
     `}
 `;
 
-const Tag = ({ selected, id, tagname, setSkillName, skillDispatch }) => {
+const Tag = ({
+  selected,
+  id,
+  tagname,
+  setSkillName,
+  skillDispatch,
+  location,
+}) => {
   const onClickFunction = () => {
-    skillDispatch(id);
-    setSkillName("");
+    if (location === "LandingPage") {
+      skillDispatch(id);
+      setSkillName("");
+    } else {
+      return null;
+    }
   };
 
   return (

@@ -11,6 +11,7 @@ import SkillSearchBar from "../../common/SkillSearchBar.jsx";
 function LandingPage(props) {
   const dispatch = useDispatch();
   const [SkillName, setSkillName] = useState("");
+  const location = "LandingPage";
 
   useEffect(() => {
     dispatch(getSkillsDB());
@@ -36,6 +37,7 @@ function LandingPage(props) {
         setSkillName={setSkillName}
         SkillName={SkillName}
         skillDispatch={skillDispatch}
+        location={location}
       />
 
       <Test />

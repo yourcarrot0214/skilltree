@@ -1,17 +1,15 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import React from "react";
 import TagContainer from "./TagContainer.jsx";
-import { selectedSkill } from "../../_actions/skill_action.js";
 import Tag from "./Tag.jsx";
 
-const SkillSearchBar = () => {
-  const dispatch = useDispatch();
-  const [SkillName, setSkillName] = useState("");
-
-  const skills = useSelector((state) => state.skills, shallowEqual);
-  const selectedSkills = skills.filter((skill) => skill.selected);
-  const unSelectedSkills = skills.filter((skill) => !skill.selected);
-
+const SkillSearchBar = ({
+  selectedSkills,
+  unSelectedSkills,
+  skillSearchResult,
+  setSkillName,
+  SkillName,
+  skillDispatch,
+}) => {
   const onChangeValue = (event) => {
     setSkillName(event.currentTarget.value);
   };
@@ -21,15 +19,9 @@ const SkillSearchBar = () => {
     if (SkillName === "") return;
     if (skillSearchResult === undefined) return;
     console.log("Skill Search Request.");
-    dispatch(selectedSkill(skillSearchResult._id));
+    skillDispatch(skillSearchResult._id);
     setSkillName("");
   };
-
-  const skillSearchResult = useSelector(
-    (state) =>
-      state.skills.find((skill) => skill.name === SkillName.toUpperCase()),
-    shallowEqual
-  );
 
   return (
     <>
@@ -47,10 +39,12 @@ const SkillSearchBar = () => {
           <TagContainer
             skillsList={unSelectedSkills}
             setSkillName={setSkillName}
+            skillDispatch={skillDispatch}
           />
           <TagContainer
             skillsList={selectedSkills}
             setSkillName={setSkillName}
+            skillDispatch={skillDispatch}
           />
         </>
       ) : skillSearchResult ? (
@@ -60,6 +54,7 @@ const SkillSearchBar = () => {
           id={skillSearchResult._id}
           selected={skillSearchResult.selected}
           setSkillName={setSkillName}
+          skillDispatch={skillDispatch}
         />
       ) : (
         <div>검색 결과가 없습니다.</div>

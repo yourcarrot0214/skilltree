@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { getSkillsDB } from "../../../_actions/skill_action.js";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { getSkillsDB, selectedSkill } from "../../../_actions/skill_action.js";
 
 import Test from "../../../_reducers/Test.jsx";
 
@@ -10,16 +10,33 @@ import SkillSearchBar from "../../common/SkillSearchBar.jsx";
 
 function LandingPage(props) {
   const dispatch = useDispatch();
+  const [SkillName, setSkillName] = useState("");
 
   useEffect(() => {
     dispatch(getSkillsDB());
   }, [dispatch]);
 
+  const skills = useSelector((state) => state.skills, shallowEqual);
+  const selectedSkills = skills.filter((skill) => skill.selected);
+  const unSelectedSkills = skills.filter((skill) => !skill.selected);
+  const skillSearchResult = skills.find(
+    (skill) => skill.name === SkillName.toUpperCase()
+  );
+  const skillDispatch = (id) => dispatch(selectedSkill(id));
+
   return (
     <>
       <h2>Landing Page</h2>
       <Header />
-      <SkillSearchBar />
+      <SkillSearchBar
+        skills={skills}
+        selectedSkills={selectedSkills}
+        unSelectedSkills={unSelectedSkills}
+        skillSearchResult={skillSearchResult}
+        setSkillName={setSkillName}
+        SkillName={SkillName}
+        skillDispatch={skillDispatch}
+      />
 
       <Test />
     </>

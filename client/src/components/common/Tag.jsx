@@ -1,7 +1,5 @@
 import React from "react";
 import Styled, { css } from "styled-components";
-import { useDispatch } from "react-redux";
-import { selectedSkill } from "../../_actions/skill_action.js";
 
 const TagStyled = Styled.button`
   height: 32px;
@@ -17,11 +15,9 @@ const TagStyled = Styled.button`
     `}
 `;
 
-const Tag = ({ selected, id, tagname, setSkillName }) => {
-  const dispatch = useDispatch();
-
+const Tag = ({ selected, id, tagname, setSkillName, skillDispatch }) => {
   const onClickFunction = () => {
-    dispatch(selectedSkill(id));
+    skillDispatch(id);
     setSkillName("");
   };
 

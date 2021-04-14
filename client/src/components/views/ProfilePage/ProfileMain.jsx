@@ -1,13 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import SkillSearchBar from "../../common/SkillSearchBar.jsx";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { getSkillsDB, selectedSkill } from "../../../_actions/skill_action.js";
 
 const ProfileMain = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getSkillsDB());
+  }, [dispatch]);
+  const [SkillName, setSkillName] = useState("");
+  const location = "ProfileMain";
+
+  const skills = useSelector((state) => state.skills, shallowEqual);
+  const selectedSkills = skills.filter((skill) => skill.selected);
+  const unSelectedSkills = skills.filter((skill) => !skill.selected);
+  const skillSearchResult = skills.find(
+    (skill) => skill.name === SkillName.toUpperCase()
+  );
+  const skillDispatch = (id) => dispatch(selectedSkill(id));
   return (
     <>
       <h3>Profile Main Page</h3>
-      <p>Profile section</p>
-      <SkillSearchBar />
+      <SkillSearchBar
+        skills={skills}
+        selectedSkills={selectedSkills}
+        unSelectedSkills={unSelectedSkills}
+        skillSearchResult={skillSearchResult}
+        setSkillName={setSkillName}
+        SkillName={SkillName}
+        skillDispatch={skillDispatch}
+        location={location}
+      />
     </>
   );
 };

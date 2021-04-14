@@ -24,7 +24,11 @@ const Tag = ({
   location,
 }) => {
   const onClickFunction = () => {
+    console.log(location);
     if (location === "LandingPage") {
+      skillDispatch(id);
+      setSkillName("");
+    } else if (location === "ProfileMain") {
       skillDispatch(id);
       setSkillName("");
     } else {

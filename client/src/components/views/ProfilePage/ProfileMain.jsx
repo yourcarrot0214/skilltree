@@ -1,27 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { useSelector, shallowEqual } from "react-redux";
+import UserProfileCard from "./accont/UserProfileCard";
 
 const ProfileMain = () => {
-  const userData = useSelector((state) => {
-    const data = state.user.userData;
-    return {
-      name: data.name,
-      email: data.email,
-      isAuth: data.isAuth,
-      learn: data.learn,
-      tech: data.tech,
-    };
-  });
-  console.log(userData);
+  const userData = useSelector((state) => state.user.userData, shallowEqual);
+  const name = userData.name;
+  const email = userData.email;
+  const isAuth = userData.isAuth;
+  const tech = userData.tech;
+  const learn = userData.learn;
 
   return (
     <>
       <h3>Profile Main Page</h3>
-      <div>{userData.name}</div>
-      <div>{userData.email}</div>
-      <div>{userData.isAuth}</div>
+      <UserProfileCard name={name} email={email} />
     </>
   );
 };

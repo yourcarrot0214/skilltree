@@ -9,6 +9,15 @@ const UserNameStyled = Styled.div`
     border: 1px solid black;
     padding: 6px 6px;
     margin: 6px 0;
+    span {
+      font-weight: bold;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+    p {
+      margin-top: 0;
+      margin-bottom: 6px;
+    }
 `;
 
 const UserName = ({ name }) => {
@@ -18,7 +27,7 @@ const UserName = ({ name }) => {
   return (
     <UserNameStyled>
       <div>
-        <h3>사용자명</h3>
+        <span>사용자명</span>
         <p>{name}</p>
       </div>
       <Button buttonName='수정' onClickFunction={onClickFunction} />

@@ -11,10 +11,9 @@ const UserProfileCardStyled = Styled.div`
 `;
 
 const UserProfileCard = ({ userData }) => {
-  console.log(userData);
   return (
     <UserProfileCardStyled>
-      <h3>UserProfileCard</h3>
+      <h3>{userData.name}</h3>
       <Email email={userData.email} />
       <UserName name={userData.name} />
       <Password />

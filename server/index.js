@@ -60,6 +60,7 @@ app.post("/api/skills/search", (req, res) => {
 });
 
 app.post("/api/users/login", (req, res) => {
+  console.log("login response");
   User.findOne({ email: req.body.email }, (err, user) => {
     if (!user) {
       return res.json({
@@ -86,6 +87,7 @@ app.post("/api/users/login", (req, res) => {
 });
 
 app.get("/api/users/auth", auth, (req, res) => {
+  console.log("auth response");
   res.status(200).json({
     _id: req.user._id,
     isAdmin: req.user.role === 0 ? false : true,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { withRouter } from "react-router-dom";
 
 import { useSelector, shallowEqual } from "react-redux";
@@ -6,16 +6,15 @@ import UserProfileCard from "./accont/UserProfileCard";
 
 const ProfileMain = () => {
   const userData = useSelector((state) => state.user.userData, shallowEqual);
-  const name = userData.name;
-  const email = userData.email;
-  const isAuth = userData.isAuth;
-  const tech = userData.tech;
-  const learn = userData.learn;
 
   return (
     <>
-      <h3>Profile Main Page</h3>
-      <UserProfileCard name={name} email={email} />
+      {userData && (
+        <>
+          <h3>Profile Main Page</h3>
+          <UserProfileCard userData={userData} />
+        </>
+      )}
     </>
   );
 };

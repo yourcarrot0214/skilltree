@@ -1,21 +1,28 @@
 import React from "react";
+import Styled from "styled-components";
 import { withRouter } from "react-router-dom";
 
 import { useSelector, shallowEqual } from "react-redux";
 import UserProfileCard from "./accont/UserProfileCard";
 
+const ProfileMainStyled = Styled.div`
+  background-color: #343a40;
+  color: white;
+  padding-bottom: 2rem;
+`;
+
 const ProfileMain = () => {
   const userData = useSelector((state) => state.user.userData, shallowEqual);
 
   return (
-    <>
+    <ProfileMainStyled>
       {userData && (
         <>
           <h3>Profile Main Page</h3>
           <UserProfileCard userData={userData} />
         </>
       )}
-    </>
+    </ProfileMainStyled>
   );
 };
 

@@ -5,18 +5,30 @@ import Email from "./Email.jsx";
 import Password from "./Password.jsx";
 
 const UserProfileCardStyled = Styled.div`
-    border: 1px solid black;
-    padding: 6px 6px;
-    
+  padding-top: 6px;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  padding-bottom: 2rem;
+  background-color: #212529;
+  margin: 1rem 1rem;
+  border-radius: 6px;
+`;
+
+const ContentsContainer = Styled.div`
+  background-color: #343a40;
+  border-radius: 6px;
+  padding: 6px 6px;
 `;
 
 const UserProfileCard = ({ userData }) => {
   return (
     <UserProfileCardStyled>
       <h3>{userData.name}</h3>
-      <Email email={userData.email} />
-      <UserName name={userData.name} />
-      <Password />
+      <ContentsContainer>
+        <Email email={userData.email} />
+        <UserName name={userData.name} />
+        <Password />
+      </ContentsContainer>
     </UserProfileCardStyled>
   );
 };

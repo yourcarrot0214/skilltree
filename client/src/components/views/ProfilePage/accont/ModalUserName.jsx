@@ -39,7 +39,7 @@ const ModalSection = Styled.section`
     max-width: 450px;
     margin: 0 auto;
     border-radius: 6px;
-    background-color: #f1f1f1;
+    background-color: #495057;
     animation: modal-show .3s;
     overflow: hidden;
 `;
@@ -49,7 +49,7 @@ const ModalHeader = Styled.header`
   padding: 16px 64px 16px 16px;
   width: 90%;
   font-weight: 700;
-  color: black;
+  font-size: 1.5rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -58,15 +58,13 @@ const ModalHeader = Styled.header`
 const ModalMain = Styled.main`
   width: 90%;
   max-width: 450px;
-  height: 300px;
+  min-height: 200px;
   padding-left: 1rem;
   padding-right: 1rem;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 1rem;
-  background-color: tomato;
   color: black;
-  border: 1px solid black;
 `;
 
 const ModalUserName = (props) => {
@@ -78,7 +76,7 @@ const ModalUserName = (props) => {
           <ModalHeader>
             {header}
             <ModalHeaderButton onClick={onClickFunction}>
-              닫기
+              return
             </ModalHeaderButton>
           </ModalHeader>
           <ModalMain>{props.children}</ModalMain>

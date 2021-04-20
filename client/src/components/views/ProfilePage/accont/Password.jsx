@@ -77,6 +77,8 @@ const Password = () => {
   const onUpdatePassword = (event) => {
     event.preventDefault();
     console.log("update password request");
+    if (CurrentPassword === "" || NewPassword === "" || CheckNewPassword === "")
+      return;
     if (CurrentPassword === NewPassword) {
       return alert("기존 비밀번호와 동일한 비밀번호 입니다.");
     } else if (NewPassword !== CheckNewPassword) {
@@ -89,7 +91,17 @@ const Password = () => {
     };
 
     axios.post("/api/users/update/password", requestBody).then((response) => {
-      console.log(response);
+      if (response.data.passwordUpdate) {
+        setCurrentPassword("");
+        setNewPassword("");
+        setCheckNewPassword("");
+        setModalOpen(!ModalOpen);
+      } else {
+        alert(response.data.message);
+        setCurrentPassword("");
+        setNewPassword("");
+        setCheckNewPassword("");
+      }
     });
   };
 

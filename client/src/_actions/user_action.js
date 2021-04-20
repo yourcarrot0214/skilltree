@@ -1,5 +1,11 @@
 import axios from "axios";
-import { LOGIN_USER, REGISTER_USER, AUTH_USER, LOGOUT_USER } from "./types.js";
+import {
+  LOGIN_USER,
+  REGISTER_USER,
+  AUTH_USER,
+  LOGOUT_USER,
+  UPDATE_NAME,
+} from "./types.js";
 
 export function loginUser(loginData) {
   const request = axios
@@ -39,6 +45,16 @@ export function auth() {
     .then((response) => response.data);
   return {
     type: AUTH_USER,
+    payload: request,
+  };
+}
+
+export function updateUserName(currentName, newName) {
+  const request = axios
+    .post("/api/users/update/name", currentName, newName)
+    .then((response) => response.dat);
+  return {
+    type: UPDATE_NAME,
     payload: request,
   };
 }

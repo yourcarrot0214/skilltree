@@ -49,10 +49,10 @@ export function auth() {
   };
 }
 
-export function updateUserName(currentName, newName) {
+export function updateUserName(newName) {
   const request = axios
-    .post("/api/users/update/name", currentName, newName)
-    .then((response) => response.dat);
+    .post("/api/users/update/name", newName)
+    .then((response) => response.data);
   return {
     type: UPDATE_NAME,
     payload: request,

@@ -110,6 +110,32 @@ app.get("/api/users/logout", auth, (req, res) => {
   });
 });
 
+app.post("/api/users/update/name", auth, (req, res) => {
+  User.findOneAndUpdate(
+    { _id: req.user._id },
+    { name: req.body.newName },
+    (err, user) => {
+      console.log(user);
+      if (err)
+        return res.json({
+          updateSuccess: false,
+          message: "user name update failed.",
+          err,
+        });
+      // return res.status(200).send(user);
+      User.findOne({ _id: user._id }, (err, user) => {
+        if (err) return res.json({ updateSuccess: false, message: err });
+        if (!user)
+          return res.json({
+            updateSuccess: false,
+            message: "update user not found.",
+          });
+        res.status(200).json(user);
+      });
+    }
+  );
+});
+
 app.get("/api/hello", (req, res) => {
   res.send("client - server");
 });

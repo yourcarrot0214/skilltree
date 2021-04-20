@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Button from "./Button.jsx";
 import Styled from "styled-components";
 import ModalUserName from "./ModalUserName.jsx";
+import { useDispatch } from "react-redux";
+import { updateUserName } from "../../../../_actions/user_action.js";
 
 const UserNameStyled = Styled.div`
   display: flex;
@@ -53,8 +55,10 @@ const Form = Styled.form`
 `;
 
 const UserName = ({ name }) => {
+  const dispatch = useDispatch();
   const [ModalOpen, setModalOpen] = useState(false);
   const [Name, setName] = useState(name);
+  const [NewName, setNewName] = useState(name);
   const onClickFunction = () => {
     console.log("Change Name Function.");
     setModalOpen(!ModalOpen);
@@ -62,17 +66,20 @@ const UserName = ({ name }) => {
 
   const onChangeUserName = (event) => {
     event.preventDefault();
-    console.log("Change Name Submit");
+    const requestBody = { newName: NewName };
+    dispatch(updateUserName(requestBody));
+    setName(NewName);
+    setModalOpen(!ModalOpen);
   };
 
   const onChangeValue = (event) => {
-    setName(event.currentTarget.value);
+    setNewName(event.currentTarget.value);
   };
   return (
     <UserNameStyled>
       <div>
         <span>사용자명</span>
-        <p>{name}</p>
+        <p>{Name}</p>
       </div>
       <Button buttonName='수정' onClickFunction={onClickFunction} />
       <ModalUserName
@@ -82,7 +89,12 @@ const UserName = ({ name }) => {
       >
         <Form submit={onChangeUserName}>
           <label>사용자명</label>
-          <input type='text' value={Name} onChange={onChangeValue} autoFocus />
+          <input
+            type='text'
+            value={NewName}
+            onChange={onChangeValue}
+            autoFocus
+          />
           <button type='submit' onClick={onChangeUserName}>
             변경하기
           </button>

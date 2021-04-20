@@ -60,7 +60,6 @@ app.post("/api/skills/search", (req, res) => {
 });
 
 app.post("/api/users/login", (req, res) => {
-  console.log("login response");
   User.findOne({ email: req.body.email }, (err, user) => {
     if (!user) {
       return res.json({
@@ -115,14 +114,12 @@ app.post("/api/users/update/name", auth, (req, res) => {
     { _id: req.user._id },
     { name: req.body.newName },
     (err, user) => {
-      console.log(user);
       if (err)
         return res.json({
           updateSuccess: false,
           message: "user name update failed.",
           err,
         });
-      // return res.status(200).send(user);
       User.findOne({ _id: user._id }, (err, user) => {
         if (err) return res.json({ updateSuccess: false, message: err });
         if (!user)
@@ -134,6 +131,62 @@ app.post("/api/users/update/name", auth, (req, res) => {
       });
     }
   );
+});
+
+app.post("/api/users/update/password", auth, (req, res) => {
+  User.findOne({ _id: req.user._id }, (err, user) => {
+    if (err)
+      return res.json({
+        passwordUpdate: false,
+        message: "비밀번호 업데이트 중 에러 발생",
+        err,
+      });
+    if (!user)
+      return res.json({
+        passwordUpdate: false,
+        message: "비밀번호를 업데이트할 유저를 찾을 수 없습니다.",
+      });
+
+    user.comparePassword(req.body.currentPassword, (err, isMatch) => {
+      if (!isMatch) {
+        return res.json({
+          loginSuccess: false,
+          message: "passwords don't match.",
+        });
+      }
+
+      user.encryption(req.body.newPassword, (err, newPassword) => {
+        if (err)
+          return res.json({
+            passwordEncryption: false,
+            message: "비밀번호 암호화 중 에러 발생",
+            err,
+          });
+
+        User.findOneAndUpdate(
+          { _id: user._id },
+          { password: newPassword },
+          (err, user) => {
+            if (err)
+              return res.json({
+                passwordUpdate: false,
+                message: "비밀번호 업데이트 중 에러발생",
+                err,
+              });
+            if (!user)
+              return res.json({
+                passwordUpdate: false,
+                message: "비밀번호를 업데이트할 유저를 찾을 수 없습니다.",
+              });
+            res.status(200).json({
+              passwordUpdate: true,
+              message: "비밀번호가 업데이트 되었습니다.",
+            });
+          }
+        );
+      });
+    });
+  });
 });
 
 app.get("/api/hello", (req, res) => {

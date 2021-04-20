@@ -55,6 +55,17 @@ userSchema.pre("save", function (next) {
   }
 });
 
+userSchema.methods.encryption = function (newPassword, cb) {
+  bcrypt.genSalt(saltRounds, function (err, salt) {
+    if (err) return cb(err);
+    bcrypt.hash(newPassword, salt, function (err, hash) {
+      if (err) return cb(err);
+      newPassword = hash;
+      cb(null, newPassword);
+    });
+  });
+};
+
 userSchema.methods.comparePassword = function (plainPassword, cb) {
   bcrypt.compare(plainPassword, this.password, function (err, isMatch) {
     if (err) return cb(err);

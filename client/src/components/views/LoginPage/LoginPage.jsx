@@ -50,6 +50,7 @@ function LoginPage(props) {
           name='email'
           value={Email}
           onChange={onChangeValue}
+          required
         />
         <label>Password</label>
         <input
@@ -57,6 +58,7 @@ function LoginPage(props) {
           name='password'
           value={Password}
           onChange={onChangeValue}
+          required
         />
         <button type='submit'>LOGIN</button>
       </SubmitForm>

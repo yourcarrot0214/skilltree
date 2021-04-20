@@ -20,12 +20,6 @@ const ModalStyled = Styled.div`
       `}
 `;
 
-const ModalButton = Styled.button`
-    outline: none;
-    cursor: pointer;
-    border: 0;
-`;
-
 const ModalHeaderButton = Styled.button`
     padding: 6px 12px;
     color: #fff;
@@ -67,7 +61,7 @@ const ModalMain = Styled.main`
   color: black;
 `;
 
-const ModalUserName = (props) => {
+const Modal = (props) => {
   const { onClickFunction, header, openModal } = props;
   return (
     <ModalStyled openModal={openModal}>
@@ -86,4 +80,4 @@ const ModalUserName = (props) => {
   );
 };
 
-export default ModalUserName;
+export default Modal;

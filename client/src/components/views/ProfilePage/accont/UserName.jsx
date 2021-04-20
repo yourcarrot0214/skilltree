@@ -48,6 +48,7 @@ const Form = Styled.form`
     min-width: 60px;
     margin: 0 auto;
     font-weight: bold;
+    border: none;
   }
 `;
 

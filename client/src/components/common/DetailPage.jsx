@@ -7,9 +7,9 @@ const DetailPage = () => {
   return (
     <>
       <h3>Detail Page</h3>
-      <SkillSearchBar />
-      <TagContainer />
-      <CreateClassForm />
+      {/* <SkillSearchBar /> */}
+      {/* <TagContainer /> */}
+      {/* <CreateClassForm /> */}
     </>
   );
 };

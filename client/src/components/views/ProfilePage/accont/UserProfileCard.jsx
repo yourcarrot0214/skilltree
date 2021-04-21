@@ -6,6 +6,11 @@ import Password from "./Password.jsx";
 import Tech from "./Tech.jsx";
 import Learn from "./Learn.jsx";
 import SkillSearchBar from "../../../common/SkillSearchBar.jsx";
+import { useDispatch } from "react-redux";
+import { updateUserTech } from "../../../../_actions/user_action.js";
+import { addTechnitian } from "../../../../_actions/skill_action.js";
+
+import axios from "axios";
 
 const UserProfileCardStyled = Styled.div`
   padding-top: 6px;
@@ -34,10 +39,26 @@ const UserProfileCard = ({
   skillDispatch,
   location,
 }) => {
+  const dispatch = useDispatch();
+
   const onUpdateUserSkill = (event) => {
     event.preventDefault();
-    console.log(selectedSkills);
+    const buttonName = event.currentTarget.name;
+    if (selectedSkills.length === 0)
+      return console.log("선택된 스킬이 없습니다.");
+
+    const requestBody = selectedSkills;
+    if (buttonName === "tech") {
+      // update tech
+      console.log("tech update");
+      dispatch(updateUserTech(requestBody));
+      requestBody.map((skill) => dispatch(addTechnitian(skill)));
+    } else if (buttonName === "learn") {
+      // update learn
+      console.log("learn update");
+    }
   };
+
   return (
     <UserProfileCardStyled>
       <h3>{userData.name}</h3>
@@ -58,8 +79,12 @@ const UserProfileCard = ({
           setSkillName={setSkillName}
         />
         <div>선택된 스킬을</div>
-        <button onClick={onUpdateUserSkill}>Tech에 추가하기</button>
-        <button onClick={onUpdateUserSkill}>Learn에 추가하기</button>
+        <button onClick={onUpdateUserSkill} name='tech'>
+          Tech에 추가하기
+        </button>
+        <button onClick={onUpdateUserSkill} name='learn'>
+          Learn에 추가하기
+        </button>
 
         <Tech />
         <Learn />

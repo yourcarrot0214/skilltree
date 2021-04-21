@@ -1,8 +1,11 @@
 import axios from "axios";
-import { SKILL_GET_LIST, SKILL_SELECTED } from "./skill_types.js";
+import {
+  SKILL_GET_LIST,
+  SKILL_SELECTED,
+  SKILLS_TECHNITIAN_ADD,
+} from "./skill_types.js";
 
 export function getSkillsDB() {
-  console.log("get skills DB action");
   const request = axios
     .get("/api/skills/list")
     .then((response) => response.data.docs)
@@ -17,5 +20,15 @@ export function selectedSkill(id) {
   return {
     type: SKILL_SELECTED,
     id: id,
+  };
+}
+
+export function addTechnitian(requestBody) {
+  const request = axios
+    .post("/api/skills/update/technitianUsers", requestBody)
+    .then((response) => response.data);
+  return {
+    type: SKILLS_TECHNITIAN_ADD,
+    payload: request,
   };
 }

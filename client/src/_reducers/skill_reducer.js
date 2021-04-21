@@ -1,4 +1,8 @@
-import { SKILL_ADD, SKILL_SELECTED } from "../_actions/skill_types.js";
+import {
+  SKILL_ADD,
+  SKILL_SELECTED,
+  SKILLS_TECHNITIAN_ADD,
+} from "../_actions/skill_types.js";
 
 export default function skill(state = {}, action) {
   switch (action.type) {
@@ -14,7 +18,16 @@ export default function skill(state = {}, action) {
       return state._id === action.id
         ? { ...state, selected: !state.selected }
         : state;
-
+    case SKILLS_TECHNITIAN_ADD:
+      return state._id === action.payload._id
+        ? {
+            ...state,
+            technitianUsers: [
+              ...state.technitianUsers,
+              action.payload.technitianUsers,
+            ],
+          }
+        : state;
     default:
       return state;
   }

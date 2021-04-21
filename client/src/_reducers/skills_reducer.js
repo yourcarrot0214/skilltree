@@ -1,4 +1,8 @@
-import { SKILL_GET_LIST, SKILL_SELECTED } from "../_actions/skill_types.js";
+import {
+  SKILL_GET_LIST,
+  SKILL_SELECTED,
+  SKILLS_TECHNITIAN_ADD,
+} from "../_actions/skill_types.js";
 import skill from "./skill_reducer.js";
 
 export default function skills(state = [], action) {
@@ -6,6 +10,8 @@ export default function skills(state = [], action) {
     case SKILL_GET_LIST:
       return action.payload;
     case SKILL_SELECTED:
+      return state.map((doc) => skill(doc, action));
+    case SKILLS_TECHNITIAN_ADD:
       return state.map((doc) => skill(doc, action));
     default:
       return state;

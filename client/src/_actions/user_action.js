@@ -5,6 +5,7 @@ import {
   AUTH_USER,
   LOGOUT_USER,
   UPDATE_NAME,
+  UPDATE_TECH,
 } from "./types.js";
 
 export function loginUser(loginData) {
@@ -55,6 +56,16 @@ export function updateUserName(newName) {
     .then((response) => response.data);
   return {
     type: UPDATE_NAME,
+    payload: request,
+  };
+}
+
+export function updateUserTech(newTech) {
+  const request = axios
+    .post("/api/users/update/tech", newTech)
+    .then((response) => response.data);
+  return {
+    type: UPDATE_TECH,
     payload: request,
   };
 }

@@ -2,17 +2,18 @@ import React from "react";
 import Styled, { css } from "styled-components";
 
 const TagStyled = Styled.button`
-  height: 32px;
+  height: 24px;
   margin: 6px 6px;
   border: none;
+  border-radius: 4px;
   background-color: #868e96;
   color: #f8f9fa;
-  display: inline-block;
   ${(props) =>
     props.selected &&
     css`
       background-color: #51cf66;
     `}
+  
 `;
 
 const Tag = ({

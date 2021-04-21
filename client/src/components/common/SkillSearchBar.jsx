@@ -1,6 +1,14 @@
 import React from "react";
+import Styled from "styled-components";
 import TagContainer from "./TagContainer.jsx";
 import Tag from "./Tag.jsx";
+
+const SkillSearchBarStyled = Styled.div`
+  padding: 1rem 1rem;
+  min-height: 350px;
+  width: 90%;
+  margin: 0 auto;
+`;
 
 const SkillSearchBar = ({
   selectedSkills,
@@ -25,7 +33,7 @@ const SkillSearchBar = ({
   };
 
   return (
-    <>
+    <SkillSearchBarStyled>
       <form onSubmit={onSkillSearch}>
         <input
           type='text'
@@ -63,7 +71,7 @@ const SkillSearchBar = ({
       ) : (
         <div>검색 결과가 없습니다.</div>
       )}
-    </>
+    </SkillSearchBarStyled>
   );
 };
 

@@ -113,6 +113,7 @@ app.post("/api/users/update/name", auth, (req, res) => {
   User.findOneAndUpdate(
     { _id: req.user._id },
     { name: req.body.newName },
+    { new: true },
     (err, user) => {
       if (err)
         return res.json({
@@ -120,15 +121,7 @@ app.post("/api/users/update/name", auth, (req, res) => {
           message: "user name update failed.",
           err,
         });
-      User.findOne({ _id: user._id }, (err, user) => {
-        if (err) return res.json({ updateSuccess: false, message: err });
-        if (!user)
-          return res.json({
-            updateSuccess: false,
-            message: "update user not found.",
-          });
-        res.status(200).json(user);
-      });
+      res.status(200).json(user);
     }
   );
 });

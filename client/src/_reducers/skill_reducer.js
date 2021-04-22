@@ -22,10 +22,9 @@ export default function skill(state = {}, action) {
       return state._id === action.payload._id
         ? {
             ...state,
-            technitianUsers: [
-              ...state.technitianUsers,
-              action.payload.technitianUsers,
-            ],
+            technitianUsers: state.technitianUsers.concat(
+              action.payload.technitianUsers
+            ),
           }
         : state;
     default:

@@ -121,7 +121,17 @@ app.post("/api/users/update/name", auth, (req, res) => {
           message: "user name update failed.",
           err,
         });
-      res.status(200).json(user);
+      res.status(200).json({
+        _id: user._id,
+        isAdmin: user.role === 0 ? false : true,
+        isAuth: true,
+        email: user.email,
+        name: user.name,
+        role: user.role,
+        image: user.image,
+        tech: user.tech,
+        learn: user.learn,
+      });
     }
   );
 });
@@ -132,6 +142,7 @@ app.post("/api/users/update/tech", auth, (req, res) => {
   User.findOneAndUpdate(
     { _id: req.user._id },
     { tech: req.user.tech.concat(requestSkills) },
+    { new: true },
     (err, user) => {
       if (err)
         return res.json({
@@ -144,14 +155,16 @@ app.post("/api/users/update/tech", auth, (req, res) => {
           updateSuccess: false,
           message: "유저 정보가 없습니다.",
         });
-      User.findOne({ _id: user._id }, (err, user) => {
-        if (err) return res.json({ updateSuccess: false, message: err });
-        if (!user)
-          return res.json({
-            updateSuccess: false,
-            message: "update user not found.",
-          });
-        res.status(200).json(user);
+      res.status(200).json({
+        _id: user._id,
+        isAdmin: user.role === 0 ? false : true,
+        isAuth: true,
+        email: user.email,
+        name: user.name,
+        role: user.role,
+        image: user.image,
+        tech: user.tech,
+        learn: user.learn,
       });
     }
   );

@@ -47,12 +47,18 @@ const UserProfileCard = ({
     if (selectedSkills.length === 0)
       return console.log("선택된 스킬이 없습니다.");
 
-    const requestBody = selectedSkills;
+    console.log(userData.tech);
+    console.log(selectedSkills);
+    // set을 통한 중복 정보 제거
+    const set = new Set(selectedSkills, userData.tech);
+    const requestBody = [...set];
+    console.log(requestBody);
+
     if (buttonName === "tech") {
       // update tech
       console.log("tech update");
       dispatch(updateUserTech(requestBody));
-      requestBody.map((skill) => dispatch(addTechnitian(skill)));
+      // requestBody.map((skill) => dispatch(addTechnitian(skill)));
     } else if (buttonName === "learn") {
       // update learn
       console.log("learn update");
@@ -96,12 +102,13 @@ const UserProfileCard = ({
 export default UserProfileCard;
 
 /*
-  props
-    - name, email, tech, learn
-  children
-    - <UserName name={name} />
-    - <UserEmail email={email} />
-    - <ChangePassword />
-    - <Tech tech={tech} />
-    - <Learn learn={learn} />
+  issue A. 중복 체크
+    - case 1. user tech에 저장된 스킬과 등록하려는 스킬이 같은 경우(중복)
+      > 중복 체크 타이밍은 request 요청 전
+      > 로그인시 DB에서 받아온 user state 정보와 selectedSkills 정보를 비교
+    
+  answer A. 중복된 정보 제거
+    - SkillSearchBar에 props로 전달되는 unSelectedSkills 정보 수정
+      > props 전달 전 userData.tech, userData.learn에 등록된 스킬정보 제거
+      > selectedSkills로 선택된 스킬을 넣기 전 tech, learn에 있는지 검증
 */

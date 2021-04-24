@@ -8,10 +8,25 @@ const TagStyled = Styled.button`
   border-radius: 4px;
   background-color: #868e96;
   color: #f8f9fa;
+  
+  ${(props) => {
+    props.tech &&
+      css`
+        background-color: #51cf66;
+      `;
+  }}
+
+  ${(props) => {
+    props.learn &&
+      css`
+        background-color: #fcc419;
+      `;
+  }}
+
   ${(props) =>
-    props.selected &&
+    props.dual &&
     css`
-      background-color: #51cf66;
+      background-color: #e8590c;
     `}
   
 `;

@@ -46,14 +46,12 @@ const SkillSearchBar = ({
       {SkillName === "" ? (
         <>
           <TagContainer
-            key='unSelectedSkills'
             skillsList={unSelectedSkills}
             setSkillName={setSkillName}
             skillDispatch={skillDispatch}
             location={location}
           />
           <TagContainer
-            key='selectedSkills'
             skillsList={selectedSkills}
             setSkillName={setSkillName}
             skillDispatch={skillDispatch}

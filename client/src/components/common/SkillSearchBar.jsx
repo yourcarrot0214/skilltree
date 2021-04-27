@@ -1,35 +1,15 @@
 import React from "react";
 import Styled from "styled-components";
-import TagContainer from "./TagContainer.jsx";
-import Tag from "./Tag.jsx";
 
 const SkillSearchBarStyled = Styled.div`
   padding: 1rem 1rem;
-  min-height: 350px;
   width: 90%;
   margin: 0 auto;
 `;
 
-const SkillSearchBar = ({
-  selectedSkills,
-  unSelectedSkills,
-  skillSearchResult,
-  setSkillName,
-  SkillName,
-  skillDispatch,
-  location,
-}) => {
+const SkillSearchBar = ({ setSkillName, SkillName, onSkillSearch }) => {
   const onChangeValue = (event) => {
     setSkillName(event.currentTarget.value);
-  };
-
-  const onSkillSearch = (event) => {
-    event.preventDefault();
-    if (SkillName === "") return;
-    if (skillSearchResult === undefined) return;
-    console.log("Skill Search Request.");
-    skillDispatch(skillSearchResult._id);
-    setSkillName("");
   };
 
   return (
@@ -43,36 +23,14 @@ const SkillSearchBar = ({
         />
         <button type='submit'>Skill Search</button>
       </form>
-      {SkillName === "" ? (
-        <>
-          <TagContainer
-            skillsList={unSelectedSkills}
-            setSkillName={setSkillName}
-            skillDispatch={skillDispatch}
-            location={location}
-          />
-          <TagContainer
-            skillsList={selectedSkills}
-            setSkillName={setSkillName}
-            skillDispatch={skillDispatch}
-            location={location}
-          />
-        </>
-      ) : skillSearchResult ? (
-        <Tag
-          tagname={skillSearchResult.name}
-          key={skillSearchResult.key}
-          id={skillSearchResult._id}
-          selected={skillSearchResult.selected}
-          setSkillName={setSkillName}
-          skillDispatch={skillDispatch}
-          location={location}
-        />
-      ) : (
-        <div>검색 결과가 없습니다.</div>
-      )}
     </SkillSearchBarStyled>
   );
 };
 
 export default SkillSearchBar;
+
+/*
+  1. TagContainer, Tag 출력 부분 분리
+  2. props 정리
+    - SkillName, setSkillName 외 제거
+*/

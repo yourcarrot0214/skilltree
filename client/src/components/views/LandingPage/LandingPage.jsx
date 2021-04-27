@@ -7,6 +7,8 @@ import Test from "../../../_reducers/Test.jsx";
 
 import Header from "./Header.jsx";
 import SkillSearchBar from "../../common/SkillSearchBar.jsx";
+import TagContainer from "../../common/TagContainer.jsx";
+import Tag from "../../common/Tag.jsx";
 
 function LandingPage() {
   const dispatch = useDispatch();
@@ -25,21 +27,52 @@ function LandingPage() {
   );
   const skillDispatch = (id) => dispatch(selectedSkill(id));
 
+  const onSkillSearch = (event) => {
+    event.preventDefault();
+    if (SkillName === "") return;
+    if (skillSearchResult === undefined) return;
+    console.log("Skill Search Request.");
+    skillDispatch(skillSearchResult._id);
+    setSkillName("");
+  };
+
   return (
     <>
       <h2>Landing Page</h2>
       <Header />
       <SkillSearchBar
-        skills={skills}
-        selectedSkills={selectedSkills}
-        unSelectedSkills={unSelectedSkills}
-        skillSearchResult={skillSearchResult}
         setSkillName={setSkillName}
         SkillName={SkillName}
-        skillDispatch={skillDispatch}
-        location={location}
+        onSkillSearch={onSkillSearch}
       />
-
+      {SkillName === "" ? (
+        <>
+          <TagContainer
+            skillsList={unSelectedSkills}
+            setSkillName={setSkillName}
+            skillDispatch={skillDispatch}
+            location={location}
+          />
+          <TagContainer
+            skillsList={selectedSkills}
+            setSkillName={setSkillName}
+            skillDispatch={skillDispatch}
+            location={location}
+          />
+        </>
+      ) : skillSearchResult ? (
+        <Tag
+          tagname={skillSearchResult.name}
+          key={skillSearchResult.key}
+          id={skillSearchResult._id}
+          selected={skillSearchResult.selected}
+          setSkillName={setSkillName}
+          skillDispatch={skillDispatch}
+          location={location}
+        />
+      ) : (
+        <div>검색 결과가 없습니다.</div>
+      )}
       <Test />
     </>
   );

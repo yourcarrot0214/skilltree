@@ -30,6 +30,15 @@ const ProfileMain = () => {
   );
   const skillDispatch = (id) => dispatch(selectedSkill(id));
 
+  const onSkillSearch = (event) => {
+    event.preventDefault();
+    if (SkillName === "") return;
+    if (skillSearchResult === undefined) return;
+    console.log("Skill Search Request.");
+    skillDispatch(skillSearchResult._id);
+    setSkillName("");
+  };
+
   return (
     <ProfileMainStyled>
       {userData && (
@@ -45,6 +54,7 @@ const ProfileMain = () => {
             skillDispatch={skillDispatch}
             SkillName={SkillName}
             setSkillName={setSkillName}
+            onSkillSearch={onSkillSearch}
           />
         </>
       )}

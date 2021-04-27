@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Styled from "styled-components";
 import UserName from "./UserName.jsx";
 import Email from "./Email.jsx";
 import Password from "./Password.jsx";
 import Tech from "./Tech.jsx";
 import Learn from "./Learn.jsx";
+import Modal from "./Modal.jsx";
 import SkillSearchBar from "../../../common/SkillSearchBar.jsx";
 import { useDispatch } from "react-redux";
 import { updateUserTech } from "../../../../_actions/user_action.js";
 import { addTechnitian } from "../../../../_actions/skill_action.js";
-
-import axios from "axios";
 
 const UserProfileCardStyled = Styled.div`
   padding-top: 6px;
@@ -41,6 +40,8 @@ const UserProfileCard = ({
 }) => {
   const dispatch = useDispatch();
 
+  const [ModalOpen, setModalOpen] = useState(false);
+
   const onUpdateUserSkill = (event) => {
     event.preventDefault();
     const buttonName = event.currentTarget.name;
@@ -65,6 +66,10 @@ const UserProfileCard = ({
     }
   };
 
+  const onClickFunction = () => {
+    setModalOpen(!ModalOpen);
+  };
+
   return (
     <UserProfileCardStyled>
       <h3>{userData.name}</h3>
@@ -84,15 +89,21 @@ const UserProfileCard = ({
           SkillName={SkillName}
           setSkillName={setSkillName}
         />
-        <div>선택된 스킬을</div>
-        <button onClick={onUpdateUserSkill} name='tech'>
-          Tech에 추가하기
-        </button>
-        <button onClick={onUpdateUserSkill} name='learn'>
-          Learn에 추가하기
-        </button>
+        <Modal
+          openModal={ModalOpen}
+          onClickFunction={onClickFunction}
+          header='스킬 등록하기'
+        >
+          <div>선택된 스킬을</div>
+          <button onClick={onUpdateUserSkill} name='tech'>
+            Tech에 추가하기
+          </button>
+          <button onClick={onUpdateUserSkill} name='learn'>
+            Learn에 추가하기
+          </button>
+        </Modal>
 
-        <Tech />
+        <Tech userData={userData} />
         <Learn />
       </ContentsContainer>
     </UserProfileCardStyled>

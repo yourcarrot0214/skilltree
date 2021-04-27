@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "./Button.jsx";
 import Styled from "styled-components";
 import { useDispatch } from "react-redux";
+import TagContainer from "../../../common/TagContainer.jsx";
 
 const TechStyled = Styled.div`
   display: flex;
@@ -21,38 +22,7 @@ const TechStyled = Styled.div`
   }
 `;
 
-const Form = Styled.form`
-  display: flex;
-  flex-direction: column;
-  label {
-    font-weight: bold;
-    font-size: 12px;
-    margin-bottom: 4px;
-    color: #adb5bd;
-  }
-  input {
-    background-color : #212529;
-    border: 1px solid black;
-    border-radius: 6px;
-    outline: none;
-    padding: 6px 6px;
-    color: white;
-    margin-bottom: 2rem;
-  }
-  button {
-    padding: 6px 12px;
-    color: #fff;
-    background-color: #6c757d;
-    border-radius: 5px;
-    font-size: 13px;
-    min-width: 60px;
-    margin: 0 auto;
-    font-weight: bold;
-    border: none;
-  }
-`;
-
-const Tech = () => {
+const Tech = ({ userData }) => {
   const dispatch = useDispatch();
   const [ModalOpen, setModalOpen] = useState(false);
 
@@ -70,13 +40,21 @@ const Tech = () => {
   };
 
   return (
-    <TechStyled>
-      <div>
-        <span>Tech</span>
-        <p>다룰 수 있는 스킬들을 관리합니다.</p>
-      </div>
-      <Button buttonName='수정' onClickFunction={onClickFunction} />
-    </TechStyled>
+    <>
+      <TechStyled>
+        <div>
+          <span>Tech</span>
+          <p>다룰 수 있는 스킬들을 관리합니다.</p>
+        </div>
+        <Button buttonName='수정' onClickFunction={onClickFunction} />
+      </TechStyled>
+      <TagContainer
+        skillsList={userData.tech}
+        setSkillName={null}
+        skillDispatch={null}
+        location='Tech'
+      />
+    </>
   );
 };
 

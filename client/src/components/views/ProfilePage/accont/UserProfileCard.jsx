@@ -72,8 +72,8 @@ const UserProfileCard = () => {
       return alert("이미 Tech에 등록된 스킬입니다.");
     } else {
       const requestBody = skills.find((skill) => skill._id === skillId);
-      addTechnitian(requestBody);
-      updateUserTech(requestBody);
+      dispatch(addTechnitian(requestBody));
+      dispatch(updateUserTech(requestBody));
       alert("스킬이 등록되었습니다.");
     }
   };
@@ -84,8 +84,8 @@ const UserProfileCard = () => {
       return alert("이미 learn에 등록된 스킬입니다.");
     } else {
       const requestBody = skills.find((skill) => skill._id === skillId);
-      addLearningUser(requestBody);
-      updateUserLearn(requestBody);
+      dispatch(addLearningUser(requestBody));
+      dispatch(updateUserLearn(requestBody));
       alert("스킬이 등록되었습니다.");
     }
   };

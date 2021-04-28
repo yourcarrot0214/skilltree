@@ -58,6 +58,18 @@ const Tag = ({
     setModalOpen(!ModalOpen);
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (e.currentTarget.name === "tech") {
+      console.log("tech update");
+      updateTechSkill();
+    } else if (e.currentTarget.name === "learn") {
+      console.log("learn update");
+      updateLearnSkill();
+    }
+  };
+
   return (
     <>
       <TagStyled onClick={onClickFunction}>{tagname}</TagStyled>
@@ -67,8 +79,12 @@ const Tag = ({
         openModal={ModalOpen}
       >
         <ButtonBox>
-          <Button onClick={updateTechSkill}>Tech에 추가하기</Button>
-          <Button onClick={updateLearnSkill}>Learn에 추가하기</Button>
+          <Button type='submit' name='tech' onClick={onSubmit}>
+            Tech에 추가하기
+          </Button>
+          <Button type='submit' name='learn' onClick={onSubmit}>
+            Learn에 추가하기
+          </Button>
         </ButtonBox>
       </Modal>
     </>

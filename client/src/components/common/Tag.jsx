@@ -37,21 +37,8 @@ const Tag = ({
   tagname,
   setSkillName,
   skillDispatch,
-  location,
+  onClickFunction,
 }) => {
-  const onClickFunction = () => {
-    console.log(location);
-    if (location === "LandingPage") {
-      skillDispatch(id);
-      setSkillName("");
-    } else if (location === "ProfileMain") {
-      skillDispatch(id);
-      setSkillName("");
-    } else {
-      return null;
-    }
-  };
-
   return (
     <TagStyled selected={selected} onClick={onClickFunction}>
       {tagname}
@@ -60,3 +47,12 @@ const Tag = ({
 };
 
 export default Tag;
+
+/*
+  issue 1. onClickFunction
+    - LandingPage, UserProfileCard에서 다른 동작을 실행해야 함.
+    - 공통 컴포넌트가 아닌 다른 컴포넌트로 분리해서 사용하는 해결방안.
+      > Modal에서 Tech, learn에 등록하기 버튼 제공
+      > submit시 해당 Tag id값이 일치하는 스킬의 technitianUsers 배열에서 userData._id가 있는지 검증
+      > 있으면 return, 없으면 dispatch
+*/

@@ -6,6 +6,7 @@ import {
   LOGOUT_USER,
   UPDATE_NAME,
   UPDATE_TECH,
+  UPDATE_LEARN,
 } from "./types.js";
 
 export function loginUser(loginData) {
@@ -66,6 +67,16 @@ export function updateUserTech(newTech) {
     .then((response) => response.data);
   return {
     type: UPDATE_TECH,
+    payload: request,
+  };
+}
+
+export function updateUserLearn(newTech) {
+  const request = axios
+    .post("/api/users/update/learn", newTech)
+    .then((response) => response.data);
+  return {
+    type: UPDATE_LEARN,
     payload: request,
   };
 }

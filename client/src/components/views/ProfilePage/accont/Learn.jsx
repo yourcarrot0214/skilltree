@@ -3,7 +3,7 @@ import Button from "./Button.jsx";
 import Styled from "styled-components";
 import Modal from "./Modal.jsx";
 import { useDispatch } from "react-redux";
-// import { updateUserName } from "../../../../_actions/user_action.js";
+import TagContainer from "./TagContainer.jsx";
 
 const LearnStyled = Styled.div`
   display: flex;
@@ -54,7 +54,7 @@ const Form = Styled.form`
   }
 `;
 
-const Learn = () => {
+const Learn = ({ userData }) => {
   const dispatch = useDispatch();
   const [ModalOpen, setModalOpen] = useState(false);
 
@@ -71,31 +71,27 @@ const Learn = () => {
     // setNewName(event.currentTarget.value);
   };
   return (
-    <LearnStyled>
-      <div>
-        <span>Learn</span>
-        <p>배우고 싶은 스킬들을 관리합니다.</p>
-      </div>
-      <Button buttonName='수정' onClickFunction={onClickFunction} />
-      <Modal
-        openModal={ModalOpen}
-        onClickFunction={onClickFunction}
-        header='사용자명 변경하기'
-      >
-        <Form submit={onUpdateUserLearn}>
-          <label>사용자명</label>
-          <input
-            type='text'
-            // value={NewName}
-            onChange={onChangeValue}
-            autoFocus
-          />
-          <button type='submit' onClick={onUpdateUserLearn}>
-            변경하기
-          </button>
-        </Form>
-      </Modal>
-    </LearnStyled>
+    <>
+      <LearnStyled>
+        <div>
+          <span>Learn</span>
+          <p>배우고 싶은 스킬들을 관리합니다.</p>
+        </div>
+        <Button buttonName='수정' onClickFunction={onClickFunction} />
+        <Modal
+          openModal={ModalOpen}
+          onClickFunction={onClickFunction}
+          header='Learn 스킬을 관리합니다.'
+        ></Modal>
+      </LearnStyled>
+      <TagContainer
+        skillsList={userData.learn}
+        setSkillName={null}
+        setSelectedSkillId={null}
+        addTech={null}
+        addLearn={null}
+      />
+    </>
   );
 };
 

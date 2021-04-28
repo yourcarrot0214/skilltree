@@ -5,6 +5,7 @@ import {
   LOGOUT_USER,
   UPDATE_NAME,
   UPDATE_TECH,
+  UPDATE_LEARN,
 } from "../_actions/types.js";
 
 export default function user(state = {}, action) {
@@ -20,6 +21,8 @@ export default function user(state = {}, action) {
     case UPDATE_NAME:
       return { ...state, userData: action.payload };
     case UPDATE_TECH:
+      return { ...state, userData: action.payload };
+    case UPDATE_LEARN:
       return { ...state, userData: action.payload };
     default:
       return state;

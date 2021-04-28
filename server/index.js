@@ -170,6 +170,40 @@ app.post("/api/users/update/tech", auth, (req, res) => {
   );
 });
 
+app.post("/api/users/update/learn", auth, (req, res) => {
+  const requestSkills = req.body;
+
+  User.findOneAndUpdate(
+    { _id: req.user._id },
+    { learn: req.user.learn.concat(requestSkills) },
+    { new: true },
+    (err, user) => {
+      if (err)
+        return res.json({
+          updateSuccess: false,
+          message: "tech 업데이트 중 에러가 발생",
+          err,
+        });
+      if (!user)
+        return res.json({
+          updateSuccess: false,
+          message: "유저 정보가 없습니다.",
+        });
+      res.status(200).json({
+        _id: user._id,
+        isAdmin: user.role === 0 ? false : true,
+        isAuth: true,
+        email: user.email,
+        name: user.name,
+        role: user.role,
+        image: user.image,
+        tech: user.tech,
+        learn: user.learn,
+      });
+    }
+  );
+});
+
 app.post("/api/skills/update/technitianUsers", auth, (req, res) => {
   Skills.findOne({ _id: req.body._id }, (err, skill) => {
     if (err)
@@ -188,6 +222,52 @@ app.post("/api/skills/update/technitianUsers", auth, (req, res) => {
       {
         technitianUsers: [
           ...skill.technitianUsers,
+          {
+            role: req.user.role,
+            _id: req.user._id,
+            email: req.user.email,
+            name: req.user.name,
+          },
+        ],
+      },
+      { new: true },
+      (err, skill) => {
+        console.log("update skill : ", skill);
+        if (err)
+          return res.json({
+            updateSuccess: false,
+            message: "업데이트한 스킬을 찾는 중 에러가 발생했습니다.",
+            err,
+          });
+        if (!skill)
+          return res.json({
+            updateSuccess: false,
+            message: "업데이트한 스킬을 찾을 수 없습니다.",
+          });
+        return res.status(200).json(skill);
+      }
+    );
+  });
+});
+
+app.post("/api/skills/update/learningUsers", auth, (req, res) => {
+  Skills.findOne({ _id: req.body._id }, (err, skill) => {
+    if (err)
+      return res.json({
+        updateSuccess: false,
+        message: "스킬 DB에서 요청된 스킬을 찾는 중 에러가 발생했습니다.",
+        err,
+      });
+    if (!skill)
+      return res.json({
+        updateSuccess: false,
+        message: "업데이트할 스킬을 찾을 수 없습니다.",
+      });
+    Skills.findOneAndUpdate(
+      { _id: skill._id },
+      {
+        learningUsers: [
+          ...skill.learningUsers,
           {
             role: req.user.role,
             _id: req.user._id,

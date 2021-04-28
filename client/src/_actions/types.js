@@ -4,3 +4,4 @@ export const REGISTER_USER = "REGISTER_USER";
 export const AUTH_USER = "AUTH_USER";
 export const UPDATE_NAME = "UPDATE_NAME";
 export const UPDATE_TECH = "UPDATE_TECH";
+export const UPDATE_LEARN = "UPDATE_LEARN";

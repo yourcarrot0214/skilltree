@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "./Button.jsx";
 import Styled from "styled-components";
 import { useDispatch } from "react-redux";
-import TagContainer from "../../../common/TagContainer.jsx";
+import TagContainer from "./TagContainer.jsx";
 
 const TechStyled = Styled.div`
   display: flex;
@@ -51,8 +51,9 @@ const Tech = ({ userData }) => {
       <TagContainer
         skillsList={userData.tech}
         setSkillName={null}
-        skillDispatch={null}
-        location='Tech'
+        setSelectedSkillId={null}
+        addTech={null}
+        addLearn={null}
       />
     </>
   );

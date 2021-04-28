@@ -13,7 +13,7 @@ import Tag from "../../common/Tag.jsx";
 function LandingPage() {
   const dispatch = useDispatch();
   const [SkillName, setSkillName] = useState("");
-  const location = "LandingPage";
+  const [SkillId, setSkillId] = useState("");
 
   useEffect(() => {
     dispatch(getSkillsDB());
@@ -36,6 +36,10 @@ function LandingPage() {
     setSkillName("");
   };
 
+  const onClickFunction = () => {
+    console.log("on Click this component");
+  };
+
   return (
     <>
       <h2>Landing Page</h2>
@@ -51,13 +55,13 @@ function LandingPage() {
             skillsList={unSelectedSkills}
             setSkillName={setSkillName}
             skillDispatch={skillDispatch}
-            location={location}
+            onClickFunction={onClickFunction}
           />
           <TagContainer
             skillsList={selectedSkills}
             setSkillName={setSkillName}
             skillDispatch={skillDispatch}
-            location={location}
+            onClickFunction={onClickFunction}
           />
         </>
       ) : skillSearchResult ? (
@@ -68,7 +72,7 @@ function LandingPage() {
           selected={skillSearchResult.selected}
           setSkillName={setSkillName}
           skillDispatch={skillDispatch}
-          location={location}
+          onClickFunction={onClickFunction}
         />
       ) : (
         <div>검색 결과가 없습니다.</div>

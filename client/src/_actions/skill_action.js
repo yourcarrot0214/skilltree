@@ -3,6 +3,7 @@ import {
   SKILL_GET_LIST,
   SKILL_SELECTED,
   SKILLS_TECHNITIAN_ADD,
+  SKILLS_LEARNING_ADD,
 } from "./skill_types.js";
 
 export function getSkillsDB() {
@@ -29,6 +30,16 @@ export function addTechnitian(requestBody) {
     .then((response) => response.data);
   return {
     type: SKILLS_TECHNITIAN_ADD,
+    payload: request,
+  };
+}
+
+export function addLearningUser(requestBody) {
+  const request = axios
+    .post("/api/skills/update/learningUsers", requestBody)
+    .then((response) => response.data);
+  return {
+    type: SKILLS_LEARNING_ADD,
     payload: request,
   };
 }

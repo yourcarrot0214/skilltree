@@ -2,6 +2,7 @@ import {
   SKILL_ADD,
   SKILL_SELECTED,
   SKILLS_TECHNITIAN_ADD,
+  SKILLS_LEARNING_ADD,
 } from "../_actions/skill_types.js";
 
 export default function skill(state = {}, action) {
@@ -24,6 +25,15 @@ export default function skill(state = {}, action) {
             ...state,
             technitianUsers: state.technitianUsers.concat(
               action.payload.technitianUsers
+            ),
+          }
+        : state;
+    case SKILLS_LEARNING_ADD:
+      return state._id === action.id
+        ? {
+            ...state,
+            learningUsers: state.learningUsers.concat(
+              action.payload.learningUsers
             ),
           }
         : state;

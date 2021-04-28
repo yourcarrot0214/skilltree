@@ -10,7 +10,7 @@ const TagContainer = ({
   skillsList,
   setSkillName,
   skillDispatch,
-  location,
+  onClickFunction,
 }) => {
   return (
     <>
@@ -23,7 +23,7 @@ const TagContainer = ({
             selected={skill.selected}
             setSkillName={setSkillName}
             skillDispatch={skillDispatch}
-            location={location}
+            onClickFunction={onClickFunction}
           />
         ))}
       </TagContainerStyled>

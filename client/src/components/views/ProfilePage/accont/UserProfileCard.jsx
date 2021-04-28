@@ -1,18 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Styled from "styled-components";
 import UserName from "./UserName.jsx";
 import Email from "./Email.jsx";
 import Password from "./Password.jsx";
 import Tech from "./Tech.jsx";
 import Learn from "./Learn.jsx";
-import Modal from "./Modal.jsx";
 import SkillSearchBar from "../../../common/SkillSearchBar.jsx";
-import TagContainer from "../../../common/TagContainer.jsx";
-import Tag from "../../../common/Tag.jsx";
+import TagContainer from "./TagContainer.jsx";
+import Tag from "./Tag.jsx";
 
-import { useDispatch } from "react-redux";
-import { updateUserTech } from "../../../../_actions/user_action.js";
-import { addTechnitian } from "../../../../_actions/skill_action.js";
+import {
+  updateUserTech,
+  updateUserLearn,
+} from "../../../../_actions/user_action.js";
+
+import {
+  getSkillsDB,
+  selectedSkill,
+  addTechnitian,
+  addLearningUser,
+} from "../../../../_actions/skill_action.js";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
 const UserProfileCardStyled = Styled.div`
   padding-top: 6px;
@@ -31,57 +39,69 @@ const ContentsContainer = Styled.div`
   margin-bottom: 2rem;
 `;
 
-const UserProfileCard = ({
-  userData,
-  selectedSkills,
-  unSelectedSkills,
-  skillSearchResult,
-  setSkillName,
-  SkillName,
-  skillDispatch,
-  location,
-  onSkillSearch,
-}) => {
+const UserProfileCard = () => {
   const dispatch = useDispatch();
 
-  const [ModalOpen, setModalOpen] = useState(false);
+  const [SkillName, setSkillName] = useState("");
+  const [SelectedSkillId, setSelectedSkillId] = useState("");
 
-  const onUpdateUserSkill = (event) => {
+  useEffect(() => {
+    dispatch(getSkillsDB());
+  }, [dispatch]);
+
+  const userData = useSelector((state) => state.user.userData, shallowEqual);
+  const skills = useSelector((state) => state.skills, shallowEqual);
+
+  const skillSearchResult = skills.find(
+    (skill) => skill.name === SkillName.toUpperCase()
+  );
+  const skillDispatch = (id) => dispatch(selectedSkill(id));
+
+  const onSkillSearch = (event) => {
     event.preventDefault();
-    const buttonName = event.currentTarget.name;
-    if (selectedSkills.length === 0)
-      return console.log("선택된 스킬이 없습니다.");
+    if (SkillName === "") return;
+    if (skillSearchResult === undefined) return;
+    console.log("Skill Search Request.");
+    skillDispatch(skillSearchResult._id);
+    setSkillName("");
+  };
 
-    console.log(userData.tech);
-    console.log(selectedSkills);
-    // set을 통한 중복 정보 제거
-    const set = new Set(selectedSkills, userData.tech);
-    const requestBody = [...set];
-    console.log(requestBody);
-
-    if (buttonName === "tech") {
-      // update tech
-      console.log("tech update");
-      dispatch(updateUserTech(requestBody));
-      // requestBody.map((skill) => dispatch(addTechnitian(skill)));
-    } else if (buttonName === "learn") {
-      // update learn
-      console.log("learn update");
+  const addTech = (skillId) => {
+    const check = userData.tech.find((skill) => skill._id === skillId);
+    if (check !== undefined) {
+      return alert("이미 Tech에 등록된 스킬입니다.");
+    } else {
+      const requestBody = skills.find((skill) => skill._id === skillId);
+      addTechnitian(requestBody);
+      updateUserTech(requestBody);
+      alert("스킬이 등록되었습니다.");
     }
   };
 
-  const onClickFunction = () => {
-    setModalOpen(!ModalOpen);
+  const addLearn = (skillId) => {
+    const check = userData.learn.find((skill) => skill._id === skillId);
+    if (check !== undefined) {
+      return alert("이미 learn에 등록된 스킬입니다.");
+    } else {
+      const requestBody = skills.find((skill) => skill._id === skillId);
+      addLearningUser(requestBody);
+      updateUserLearn(requestBody);
+      alert("스킬이 등록되었습니다.");
+    }
   };
 
   return (
     <UserProfileCardStyled>
-      <h3>{userData.name}</h3>
-      <ContentsContainer>
-        <Email email={userData.email} />
-        <UserName name={userData.name} />
-        <Password />
-      </ContentsContainer>
+      {userData && (
+        <>
+          <h3>계정관리</h3>
+          <ContentsContainer>
+            <Email email={userData.email} />
+            <UserName name={userData.name} />
+            <Password />
+          </ContentsContainer>
+        </>
+      )}
       <h3>스킬관리</h3>
       <ContentsContainer>
         <SkillSearchBar
@@ -92,16 +112,11 @@ const UserProfileCard = ({
         {SkillName === "" ? (
           <>
             <TagContainer
-              skillsList={unSelectedSkills}
+              skillsList={skills}
               setSkillName={setSkillName}
-              skillDispatch={skillDispatch}
-              location={location}
-            />
-            <TagContainer
-              skillsList={selectedSkills}
-              setSkillName={setSkillName}
-              skillDispatch={skillDispatch}
-              location={location}
+              setSelectedSkillId={setSelectedSkillId}
+              addTech={addTech}
+              addLearn={addLearn}
             />
           </>
         ) : skillSearchResult ? (
@@ -109,17 +124,21 @@ const UserProfileCard = ({
             tagname={skillSearchResult.name}
             key={skillSearchResult.key}
             id={skillSearchResult._id}
-            selected={skillSearchResult.selected}
             setSkillName={setSkillName}
-            skillDispatch={skillDispatch}
-            location={location}
+            setSelectedSkillId={setSelectedSkillId}
+            addTech={addTech}
+            addLearn={addLearn}
           />
         ) : (
           <div>검색 결과가 없습니다.</div>
         )}
 
-        <Tech userData={userData} />
-        <Learn />
+        {userData && (
+          <>
+            <Tech userData={userData} />
+            <Learn userData={userData} />
+          </>
+        )}
       </ContentsContainer>
     </UserProfileCardStyled>
   );
@@ -137,20 +156,4 @@ export default UserProfileCard;
     - SkillSearchBar에 props로 전달되는 unSelectedSkills 정보 수정
       > props 전달 전 userData.tech, userData.learn에 등록된 스킬정보 제거
       > selectedSkills로 선택된 스킬을 넣기 전 tech, learn에 있는지 검증
-*/
-
-/*
-        <Modal
-          openModal={ModalOpen}
-          onClickFunction={onClickFunction}
-          header='스킬 등록하기'
-        >
-          <div>선택된 스킬을</div>
-          <button onClick={onUpdateUserSkill} name='tech'>
-            Tech에 추가하기
-          </button>
-          <button onClick={onUpdateUserSkill} name='learn'>
-            Learn에 추가하기
-          </button>
-        </Modal>
 */

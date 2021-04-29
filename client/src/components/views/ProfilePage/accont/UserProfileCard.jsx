@@ -8,6 +8,7 @@ import Learn from "./Learn.jsx";
 import SkillSearchBar from "../../../common/SkillSearchBar.jsx";
 import TagContainer from "./TagContainer.jsx";
 import Tag from "./Tag.jsx";
+import Modal from "./Modal.jsx";
 
 import {
   updateUserTech,
@@ -39,11 +40,30 @@ const ContentsContainer = Styled.div`
   margin-bottom: 2rem;
 `;
 
+const ButtonBox = Styled.div`
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+`;
+
+const Button = Styled.button`
+    padding: 6px 12px;
+    color: #fff;
+    background-color: #6c757d;
+    border-radius: 5px;
+    font-size: 13px;
+    min-width: 60px;
+    margin: 0 auto;
+    font-weight: bold;
+    border: none;
+`;
+
 const UserProfileCard = () => {
   const dispatch = useDispatch();
 
   const [SkillName, setSkillName] = useState("");
   const [SelectedSkillId, setSelectedSkillId] = useState("");
+  const [ModalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     dispatch(getSkillsDB());
@@ -62,7 +82,9 @@ const UserProfileCard = () => {
     if (SkillName === "") return;
     if (skillSearchResult === undefined) return;
     console.log("Skill Search Request.");
-    skillDispatch(skillSearchResult._id);
+    console.log(skillSearchResult._id);
+    setSelectedSkillId(skillSearchResult._id);
+    setModalOpen(!ModalOpen);
     setSkillName("");
   };
 
@@ -87,6 +109,25 @@ const UserProfileCard = () => {
       dispatch(addLearningUser(requestBody));
       dispatch(updateUserLearn(requestBody));
       alert("스킬이 등록되었습니다.");
+    }
+  };
+
+  const onClickFunction = () => {
+    setModalOpen(!ModalOpen);
+  };
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    console.log(SelectedSkillId);
+
+    if (event.currentTarget.name === "tech") {
+      console.log("tech update");
+      addTech(SelectedSkillId);
+      setSkillName("");
+    } else if (event.currentTarget.name === "learn") {
+      console.log("learn update");
+      addLearn(SelectedSkillId);
+      setSkillName("");
     }
   };
 
@@ -140,6 +181,20 @@ const UserProfileCard = () => {
           </>
         )}
       </ContentsContainer>
+      <Modal
+        onClickFunction={onClickFunction}
+        header='스킬등록하기'
+        openModal={ModalOpen}
+      >
+        <ButtonBox>
+          <Button type='submit' name='tech' onClick={onSubmit}>
+            Tech에 추가하기
+          </Button>
+          <Button type='submit' name='tech' onClick={onSubmit}>
+            Learn에 추가하기
+          </Button>
+        </ButtonBox>
+      </Modal>
     </UserProfileCardStyled>
   );
 };

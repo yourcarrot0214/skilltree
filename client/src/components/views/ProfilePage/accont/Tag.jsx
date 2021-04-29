@@ -94,7 +94,7 @@ const Tag = ({
 export default Tag;
 
 /*
-  Modal에서 사용할 함수
-    props로 받아온 setState 함수를 통해 skill id를 부모 컴포넌트로 올려보내기.
-
+  Tech, Learn 하단에 출력되는 버튼에 클릭기능 제거
+    - 1. 새로운 태그를 만든다.
+    - 2. location props
 */

@@ -1,10 +1,6 @@
 import React from "react";
-import Styled from "styled-components";
+import { TagContainerStyled } from "../styles/styled.js";
 import Tag from "./Tag.jsx";
-
-const TagContainerStyled = Styled.div`
-    border: 1px solid black;
-`;
 
 const TagContainer = ({
   skillsList,

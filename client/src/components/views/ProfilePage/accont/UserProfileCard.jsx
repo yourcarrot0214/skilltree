@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Styled from "styled-components";
 import UserName from "./UserName.jsx";
 import Email from "./Email.jsx";
 import Password from "./Password.jsx";
@@ -23,40 +22,12 @@ import {
 } from "../../../../_actions/skill_action.js";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
-const UserProfileCardStyled = Styled.div`
-  padding-top: 6px;
-  padding-right: 2rem;
-  padding-left: 2rem;
-  padding-bottom: 2rem;
-  background-color: #212529;
-  margin: 1rem 1rem;
-  border-radius: 6px;
-`;
-
-const ContentsContainer = Styled.div`
-  background-color: #343a40;
-  border-radius: 6px;
-  padding: 6px 6px;
-  margin-bottom: 2rem;
-`;
-
-const ButtonBox = Styled.div`
-  display: flex;
-  flex-direction: row;
-  border: 1px solid black;
-`;
-
-const Button = Styled.button`
-    padding: 6px 12px;
-    color: #fff;
-    background-color: #6c757d;
-    border-radius: 5px;
-    font-size: 13px;
-    min-width: 60px;
-    margin: 0 auto;
-    font-weight: bold;
-    border: none;
-`;
+import {
+  UserProfileCardStyled,
+  ContentsContainer,
+  ButtonBox,
+  Button,
+} from "../styles/styled.js";
 
 const UserProfileCard = () => {
   const dispatch = useDispatch();

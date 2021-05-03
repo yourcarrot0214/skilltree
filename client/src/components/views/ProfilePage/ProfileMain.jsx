@@ -1,14 +1,8 @@
 import React from "react";
-import Styled from "styled-components";
 import { withRouter } from "react-router-dom";
 
 import UserProfileCard from "./accont/UserProfileCard";
-
-const ProfileMainStyled = Styled.div`
-  background-color: #343a40;
-  color: white;
-  padding-bottom: 2rem;
-`;
+import { ProfileMainStyled } from "./styles/styled.js";
 
 const ProfileMain = () => {
   return (

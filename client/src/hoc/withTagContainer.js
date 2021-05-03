@@ -3,7 +3,7 @@ import React from "react";
 export default function withTagHOC(Component) {
   function composed(props) {
     console.log(props);
-    return <Component hoc={true} />;
+    return <Component hoc={true} {...props} />;
   }
 
   return composed;
@@ -20,4 +20,12 @@ export default function withTagHOC(Component) {
     - 본래의 기능에 hoc 내부에서 출력 위치에 따라 각기 다른 메서드를 추가한 컴포넌트를 반환한다.
     - TagContainer가 rendering 되는 LandingPage, ProfileMain에서 동일한 출력기능과
       다른 버튼 기능을 갖도록 구현한다.
+*/
+
+/*
+  HOC의 원리
+    - 파라미터로 컴포넌트를 받아오고, 함수 내부에서 새 컴포넌트를 만든 다음에 해당 컴포넌트 안에서
+      파라미터로 받아온 컴포넌트를 렌더링하는 것.
+    - 자신이 받아온 props들은 그대로 파라미터로 받아온 컴포넌트에게 다시 주입해주고, 필요에 따라
+      추가 props도 넣어준다.
 */

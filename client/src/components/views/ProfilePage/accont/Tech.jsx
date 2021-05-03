@@ -1,26 +1,8 @@
 import React, { useState } from "react";
 import Button from "./Button.jsx";
-import Styled from "styled-components";
+import { TechStyled } from "../styles/styled.js";
 import { useDispatch } from "react-redux";
 import TagContainer from "./TagContainer.jsx";
-
-const TechStyled = Styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 1rem 1rem;
-  margin: 6px 0;
-  span {
-    font-weight: bold;
-    font-size: 12px;
-    margin-bottom: 4px;
-    color: #adb5bd;
-  }
-  p {
-    margin-top: 0;
-    margin-bottom: 6px;
-  }
-`;
 
 const Tech = ({ userData }) => {
   const dispatch = useDispatch();

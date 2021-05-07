@@ -1,7 +1,7 @@
 import React from "react";
-import SkillSearchBar from "../common/SkillSearchBar.jsx";
-import TagContainer from "../common/TagContainer.jsx";
-import CreateClassForm from "./CreateClassForm.jsx";
+// import SkillSearchBar from "../common/SkillSearchBar.jsx";
+// import TagContainer from "../common/TagContainer.jsx";
+// import CreateClassForm from "./CreateClassForm.jsx";
 
 const DetailPage = () => {
   return (

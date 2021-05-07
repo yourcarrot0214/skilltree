@@ -1,24 +1,13 @@
 import React, { useState } from "react";
 import Button from "./Button.jsx";
 import { TechStyled } from "../styles/styled.js";
-import { useDispatch } from "react-redux";
 import TagContainer from "./TagContainer.jsx";
 
 const Tech = ({ userData }) => {
-  const dispatch = useDispatch();
   const [ModalOpen, setModalOpen] = useState(false);
 
   const onClickFunction = () => {
     setModalOpen(!ModalOpen);
-  };
-
-  const onUpdateUserTech = (event) => {
-    event.preventDefault();
-    console.log("update tech");
-  };
-
-  const onChangeValue = (event) => {
-    // setNewName(event.currentTarget.value);
   };
 
   return (
@@ -31,7 +20,7 @@ const Tech = ({ userData }) => {
         <Button buttonName='수정' onClickFunction={onClickFunction} />
       </TechStyled>
       <TagContainer
-        skillsList={userData.tech}
+        skills={userData.tech}
         setSkillName={null}
         setSelectedSkillId={null}
         addTech={null}

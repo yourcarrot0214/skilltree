@@ -2,16 +2,11 @@ import React from "react";
 import { TagContainerStyled } from "../styles/styled.js";
 import Tag from "./Tag.jsx";
 
-const TagContainer = ({
-  skillsList,
-  setSkillName,
-  setSelectedSkillId,
-  addTech,
-  addLearn,
-}) => {
+const TagContainer = (props) => {
+  const { skills, setSkillName, setSelectedSkillId, addTech, addLearn } = props;
   return (
     <TagContainerStyled>
-      {skillsList.map((skill) => (
+      {skills.map((skill) => (
         <Tag
           tagname={skill.name}
           key={skill._id}
@@ -29,6 +24,8 @@ const TagContainer = ({
 export default TagContainer;
 
 /*
-  props 검증
-    - Tag 스킬등록 기능구현에 필요한 데이터 검증.
+  1. 기능
+    props로 전달받은 skills 배열 정보를 통해 Tag 컴포넌트 출력
+  2. props
+    - skills : 스킬 정보를 담고 있는 배열
 */

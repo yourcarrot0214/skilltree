@@ -23,3 +23,10 @@ export const injectionProps = (props) => (Component) => {
       > 객체 정보로 넘기고 내부에서 구조분해로 출력, 함수 기능을 설정
       > Modal
 */
+
+/*
+  TagContainer, Tag 컴포넌트를 hoc를 통해 기능을 확장하기 위해서는
+  props에 대한 정의가 필요.
+  skills
+  onClickFunction
+*/

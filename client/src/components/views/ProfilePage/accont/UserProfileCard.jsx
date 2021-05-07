@@ -8,6 +8,8 @@ import SkillSearchBar from "../../../common/SkillSearchBar.jsx";
 import TagContainer from "./TagContainer.jsx";
 import Tag from "./Tag.jsx";
 import Modal from "./Modal.jsx";
+import { injectionProps } from "../../../../hoc/withTagContainer.js";
+import TestComponent from "../../../../hoc/TestComponent.jsx";
 
 import {
   updateUserTech,
@@ -16,7 +18,6 @@ import {
 
 import {
   getSkillsDB,
-  selectedSkill,
   addTechnitian,
   addLearningUser,
 } from "../../../../_actions/skill_action.js";
@@ -46,14 +47,13 @@ const UserProfileCard = () => {
   const skillSearchResult = skills.find(
     (skill) => skill.name === SkillName.toUpperCase()
   );
-  const skillDispatch = (id) => dispatch(selectedSkill(id));
 
   const onSkillSearch = (event) => {
     event.preventDefault();
     if (SkillName === "") return;
     if (skillSearchResult === undefined) return;
     console.log("Skill Search Request.");
-    console.log(skillSearchResult._id);
+
     setSelectedSkillId(skillSearchResult._id);
     setModalOpen(!ModalOpen);
     setSkillName("");
@@ -102,6 +102,14 @@ const UserProfileCard = () => {
     }
   };
 
+  const withTest = injectionProps({
+    skills,
+    setSkillName,
+    setSelectedSkillId,
+    addTech,
+    addLearn,
+  });
+
   return (
     <UserProfileCardStyled>
       {userData && (
@@ -124,7 +132,7 @@ const UserProfileCard = () => {
         {SkillName === "" ? (
           <>
             <TagContainer
-              skillsList={skills}
+              skills={skills}
               setSkillName={setSkillName}
               setSelectedSkillId={setSelectedSkillId}
               addTech={addTech}

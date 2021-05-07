@@ -2,24 +2,13 @@ import React, { useState } from "react";
 import Button from "./Button.jsx";
 import { LearnStyled } from "../styles/styled.js";
 import Modal from "./Modal.jsx";
-import { useDispatch } from "react-redux";
 import TagContainer from "./TagContainer.jsx";
 
 const Learn = ({ userData }) => {
-  const dispatch = useDispatch();
   const [ModalOpen, setModalOpen] = useState(false);
 
   const onClickFunction = () => {
     setModalOpen(!ModalOpen);
-  };
-
-  const onUpdateUserLearn = (event) => {
-    event.preventDefault();
-    console.log("update tech");
-  };
-
-  const onChangeValue = (event) => {
-    // setNewName(event.currentTarget.value);
   };
   return (
     <>
@@ -36,7 +25,7 @@ const Learn = ({ userData }) => {
         ></Modal>
       </LearnStyled>
       <TagContainer
-        skillsList={userData.learn}
+        skills={userData.learn}
         setSkillName={null}
         setSelectedSkillId={null}
         addTech={null}

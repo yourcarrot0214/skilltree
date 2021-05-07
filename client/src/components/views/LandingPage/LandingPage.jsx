@@ -13,7 +13,6 @@ import Tag from "../../common/Tag.jsx";
 function LandingPage() {
   const dispatch = useDispatch();
   const [SkillName, setSkillName] = useState("");
-  const [SkillId, setSkillId] = useState("");
 
   useEffect(() => {
     dispatch(getSkillsDB());

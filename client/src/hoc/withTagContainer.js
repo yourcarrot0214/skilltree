@@ -1,31 +1,25 @@
 import React from "react";
 
-export default function withTagHOC(Component) {
-  function composed(props) {
-    console.log(props);
-    return <Component hoc={true} {...props} />;
-  }
-
-  return composed;
-}
+export const injectionProps = (props) => (Component) => {
+  return <Component hoc={true} {...props} />;
+};
 
 /*
-  TagContainer를 인자로 받아 추가 기능을 갖춘 컴포넌트를 반환한다.
-  
-  본래의 기능
-    - props로 받은 skills 배열을 통해 Tag 컴포넌트를 출력한다.
-
-  수정해야될 부분
-    - props로 받는 메서드.
-    - 본래의 기능에 hoc 내부에서 출력 위치에 따라 각기 다른 메서드를 추가한 컴포넌트를 반환한다.
-    - TagContainer가 rendering 되는 LandingPage, ProfileMain에서 동일한 출력기능과
-      다른 버튼 기능을 갖도록 구현한다.
+  1. currying
+    - 함수
+    - 인자 : TagContainer가 Tag 컴포넌트를 호출할 때 필요한 props 정보를 담은 객체
+    - 역할 : component에 해당 인자값 전달
+    - 목적 : currying 함수에 전달되는 값에 따라 다른 역할을 수행하는 Tag 컴포넌트 반복 출력
 */
 
 /*
-  HOC의 원리
-    - 파라미터로 컴포넌트를 받아오고, 함수 내부에서 새 컴포넌트를 만든 다음에 해당 컴포넌트 안에서
-      파라미터로 받아온 컴포넌트를 렌더링하는 것.
-    - 자신이 받아온 props들은 그대로 파라미터로 받아온 컴포넌트에게 다시 주입해주고, 필요에 따라
-      추가 props도 넣어준다.
+  2. TagContainer, Tag 컴포넌트 props 수정
+    - TagContainer
+      > Tag 컴포넌트를 출력하기 위한 skills 정보만 필요.
+      > skills 정보는 currying 함수를 호출하는 컴포넌트에서 정의되어 전달됨으로
+        Tag 컴포넌트를 출력하고, props로 전달받은 정보, 기능들을 Tag에 전달하는 기능만 수행
+    - Tag
+      > skill 개별 정보들을 필요로 함.
+      > 객체 정보로 넘기고 내부에서 구조분해로 출력, 함수 기능을 설정
+      > Modal
 */

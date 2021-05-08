@@ -6,17 +6,7 @@ const Tag = ({ id, tagname, addTech, addLearn }) => {
   const [ModalOpen, setModalOpen] = useState(false);
   const [SkillId, setSkillId] = useState(id);
 
-  const onClickFunction = () => {
-    setModalOpen(!ModalOpen);
-  };
-
-  const updateTechSkill = () => {
-    addTech(SkillId);
-    setModalOpen(!ModalOpen);
-  };
-
-  const updateLearnSkill = () => {
-    addLearn(SkillId);
+  const onModalPopup = () => {
     setModalOpen(!ModalOpen);
   };
 
@@ -25,18 +15,18 @@ const Tag = ({ id, tagname, addTech, addLearn }) => {
 
     if (e.currentTarget.name === "tech") {
       console.log("tech update");
-      updateTechSkill();
+      addTech(SkillId);
     } else if (e.currentTarget.name === "learn") {
       console.log("learn update");
-      updateLearnSkill();
+      addLearn(SkillId);
     }
   };
 
   return (
     <>
-      <TagStyled onClick={onClickFunction}>{tagname}</TagStyled>
+      <TagStyled onClick={onModalPopup}>{tagname}</TagStyled>
       <Modal
-        onClickFunction={onClickFunction}
+        onClickFunction={onModalPopup}
         header='스킬등록하기'
         openModal={ModalOpen}
       >

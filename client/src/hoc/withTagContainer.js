@@ -25,8 +25,27 @@ export const injectionProps = (props) => (Component) => {
 */
 
 /*
-  TagContainer, Tag 컴포넌트를 hoc를 통해 기능을 확장하기 위해서는
-  props에 대한 정의가 필요.
-  skills
-  onClickFunction
+  TagContainer
+    - props로 전달받은 skills 배열을 통해 Tag 컴포넌트 출력
+    - Tag 컴포넌트로 전달할 method props가 많음
+      > setSkillsName, setSelectedSkillId, addTech, addLearn
+      > hoc를 방해하는 중..
+  
+  Tag
+    - skill 정보를 button 형식으로 출력하는 컴포넌트
+    - Modal, onSubmit 등 부가적인 기능을 너무많이 포함하고 있음.
+      > hoc를 방해하는 중..
+    - onClickFunction을 한개로 통일.
+      > onClick 이벤트시 Modal 팝업에 모달에서 또 onClick 이벤트를 두개나 선택해야됨.
+      > button onClick => Modal pop-up
+      > Modal onClick => props.onClick
+      > Modal header => props.header
+      > Modal children => props.children
+
+  hoc
+    - TagContainer에 부가적인 기능을 부여하려고 하는데 그게 무엇인가?
+      > 생각해보니 없음.
+      > TagContainer는 단순히 Tag 컴포넌트를 출력하는 프레임에 불과함.
+      > 부가적인 기능을 부여해야 하는건 Tag 컴포넌트.
+      > Tag 컴포넌트 기능 덜어내기.
 */

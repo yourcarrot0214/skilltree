@@ -59,6 +59,7 @@ const UserProfileCard = () => {
       const requestBody = skills.find((skill) => skill._id === skillId);
       dispatch(addTechnitian(requestBody));
       dispatch(updateUserTech(requestBody));
+      setSkillName("");
       alert("스킬이 등록되었습니다.");
     }
   };
@@ -71,6 +72,7 @@ const UserProfileCard = () => {
       const requestBody = skills.find((skill) => skill._id === skillId);
       dispatch(addLearningUser(requestBody));
       dispatch(updateUserLearn(requestBody));
+      setSkillName("");
       alert("스킬이 등록되었습니다.");
     }
   };
@@ -105,7 +107,6 @@ const UserProfileCard = () => {
           <>
             <TagContainer
               skills={skills}
-              setSkillName={setSkillName}
               addTech={addTech}
               addLearn={addLearn}
             />
@@ -115,7 +116,6 @@ const UserProfileCard = () => {
             tagname={skillSearchResult.name}
             key={skillSearchResult.key}
             id={skillSearchResult._id}
-            setSkillName={setSkillName}
             addTech={addTech}
             addLearn={addLearn}
           />

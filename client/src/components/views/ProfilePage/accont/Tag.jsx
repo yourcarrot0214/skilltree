@@ -2,14 +2,7 @@ import React, { useState } from "react";
 import { TagStyled, ButtonBox, Button } from "../styles/styled.js";
 import Modal from "./Modal.jsx";
 
-const Tag = ({
-  id,
-  tagname,
-  setSkillName,
-  setSelectedSkillId,
-  addTech,
-  addLearn,
-}) => {
+const Tag = ({ id, tagname, setSkillName, addTech, addLearn }) => {
   const [ModalOpen, setModalOpen] = useState(false);
   const [SkillId, setSkillId] = useState(id);
 
@@ -18,14 +11,12 @@ const Tag = ({
   };
 
   const updateTechSkill = () => {
-    setSelectedSkillId(SkillId);
     addTech(SkillId);
     setSkillName("");
     setModalOpen(!ModalOpen);
   };
 
   const updateLearnSkill = () => {
-    setSelectedSkillId(SkillId);
     addLearn(SkillId);
     setSkillName("");
     setModalOpen(!ModalOpen);

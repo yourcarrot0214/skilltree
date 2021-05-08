@@ -7,7 +7,6 @@ import Learn from "./Learn.jsx";
 import SkillSearchBar from "../../../common/SkillSearchBar.jsx";
 import TagContainer from "./TagContainer.jsx";
 import Tag from "./Tag.jsx";
-import Modal from "./Modal.jsx";
 import { injectionProps } from "../../../../hoc/withTagContainer.js";
 import TestComponent from "../../../../hoc/TestComponent.jsx";
 
@@ -23,18 +22,12 @@ import {
 } from "../../../../_actions/skill_action.js";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
-import {
-  UserProfileCardStyled,
-  ContentsContainer,
-  ButtonBox,
-  Button,
-} from "../styles/styled.js";
+import { UserProfileCardStyled, ContentsContainer } from "../styles/styled.js";
 
 const UserProfileCard = () => {
   const dispatch = useDispatch();
 
   const [SkillName, setSkillName] = useState("");
-  const [SelectedSkillId, setSelectedSkillId] = useState("");
   const [ModalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
@@ -54,7 +47,6 @@ const UserProfileCard = () => {
     if (skillSearchResult === undefined) return;
     console.log("Skill Search Request.");
 
-    setSelectedSkillId(skillSearchResult._id);
     setModalOpen(!ModalOpen);
     setSkillName("");
   };
@@ -83,29 +75,9 @@ const UserProfileCard = () => {
     }
   };
 
-  const onClickFunction = () => {
-    setModalOpen(!ModalOpen);
-  };
-
-  const onSubmit = (event) => {
-    event.preventDefault();
-    console.log(SelectedSkillId);
-
-    if (event.currentTarget.name === "tech") {
-      console.log("tech update");
-      addTech(SelectedSkillId);
-      setSkillName("");
-    } else if (event.currentTarget.name === "learn") {
-      console.log("learn update");
-      addLearn(SelectedSkillId);
-      setSkillName("");
-    }
-  };
-
   const withTest = injectionProps({
     skills,
     setSkillName,
-    setSelectedSkillId,
     addTech,
     addLearn,
   });
@@ -134,7 +106,6 @@ const UserProfileCard = () => {
             <TagContainer
               skills={skills}
               setSkillName={setSkillName}
-              setSelectedSkillId={setSelectedSkillId}
               addTech={addTech}
               addLearn={addLearn}
             />
@@ -145,7 +116,6 @@ const UserProfileCard = () => {
             key={skillSearchResult.key}
             id={skillSearchResult._id}
             setSkillName={setSkillName}
-            setSelectedSkillId={setSelectedSkillId}
             addTech={addTech}
             addLearn={addLearn}
           />
@@ -160,20 +130,6 @@ const UserProfileCard = () => {
           </>
         )}
       </ContentsContainer>
-      <Modal
-        onClickFunction={onClickFunction}
-        header='스킬등록하기'
-        openModal={ModalOpen}
-      >
-        <ButtonBox>
-          <Button type='submit' name='tech' onClick={onSubmit}>
-            Tech에 추가하기
-          </Button>
-          <Button type='submit' name='tech' onClick={onSubmit}>
-            Learn에 추가하기
-          </Button>
-        </ButtonBox>
-      </Modal>
     </UserProfileCardStyled>
   );
 };

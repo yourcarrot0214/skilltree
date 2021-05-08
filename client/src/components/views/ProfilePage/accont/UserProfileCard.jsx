@@ -9,6 +9,8 @@ import TagContainer from "./TagContainer.jsx";
 import Tag from "./Tag.jsx";
 import { injectionProps } from "../../../../hoc/withTagContainer.js";
 import TestComponent from "../../../../hoc/TestComponent.jsx";
+import Modal from "./Modal.jsx";
+import { ButtonBox, Button } from "../styles/styled.js";
 
 import {
   updateUserTech,
@@ -29,6 +31,7 @@ const UserProfileCard = () => {
 
   const [SkillName, setSkillName] = useState("");
   const [ModalOpen, setModalOpen] = useState(false);
+  const [SkillId, setSkillId] = useState("");
 
   useEffect(() => {
     dispatch(getSkillsDB());
@@ -84,6 +87,27 @@ const UserProfileCard = () => {
     addLearn,
   });
 
+  const onModalPopup = () => {
+    setModalOpen(!ModalOpen);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (e.currentTarget.name === "tech") {
+      console.log("tech update");
+      addTech(SkillId);
+    } else if (e.currentTarget.name === "learn") {
+      console.log("learn update");
+      addLearn(SkillId);
+    }
+  };
+
+  const onClickFunction = (e) => {
+    setSkillId(e.target.id);
+    setModalOpen(!ModalOpen);
+  };
+
   return (
     <UserProfileCardStyled>
       {userData && (
@@ -105,19 +129,14 @@ const UserProfileCard = () => {
         />
         {SkillName === "" ? (
           <>
-            <TagContainer
-              skills={skills}
-              addTech={addTech}
-              addLearn={addLearn}
-            />
+            <TagContainer skills={skills} onClickFunction={onClickFunction} />
           </>
         ) : skillSearchResult ? (
           <Tag
             tagname={skillSearchResult.name}
             key={skillSearchResult.key}
             id={skillSearchResult._id}
-            addTech={addTech}
-            addLearn={addLearn}
+            onClickFunction={onClickFunction}
           />
         ) : (
           <div>검색 결과가 없습니다.</div>
@@ -129,6 +148,20 @@ const UserProfileCard = () => {
             <Learn userData={userData} />
           </>
         )}
+        <Modal
+          onClickFunction={onModalPopup}
+          header='스킬등록하기'
+          openModal={ModalOpen}
+        >
+          <ButtonBox>
+            <Button type='submit' name='tech' onClick={onSubmit}>
+              Tech에 추가하기
+            </Button>
+            <Button type='submit' name='learn' onClick={onSubmit}>
+              Learn에 추가하기
+            </Button>
+          </ButtonBox>
+        </Modal>
       </ContentsContainer>
     </UserProfileCardStyled>
   );

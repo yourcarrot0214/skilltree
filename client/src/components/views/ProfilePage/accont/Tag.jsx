@@ -1,44 +1,12 @@
-import React, { useState } from "react";
-import { TagStyled, ButtonBox, Button } from "../styles/styled.js";
-import Modal from "./Modal.jsx";
+import React from "react";
+import { TagStyled } from "../styles/styled.js";
 
-const Tag = ({ id, tagname, addTech, addLearn }) => {
-  const [ModalOpen, setModalOpen] = useState(false);
-  const [SkillId, setSkillId] = useState(id);
-
-  const onModalPopup = () => {
-    setModalOpen(!ModalOpen);
-  };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    if (e.currentTarget.name === "tech") {
-      console.log("tech update");
-      addTech(SkillId);
-    } else if (e.currentTarget.name === "learn") {
-      console.log("learn update");
-      addLearn(SkillId);
-    }
-  };
-
+const Tag = ({ id, tagname, onClickFunction }) => {
   return (
     <>
-      <TagStyled onClick={onModalPopup}>{tagname}</TagStyled>
-      <Modal
-        onClickFunction={onModalPopup}
-        header='스킬등록하기'
-        openModal={ModalOpen}
-      >
-        <ButtonBox>
-          <Button type='submit' name='tech' onClick={onSubmit}>
-            Tech에 추가하기
-          </Button>
-          <Button type='submit' name='learn' onClick={onSubmit}>
-            Learn에 추가하기
-          </Button>
-        </ButtonBox>
-      </Modal>
+      <TagStyled id={id} onClick={onClickFunction}>
+        {tagname}
+      </TagStyled>
     </>
   );
 };

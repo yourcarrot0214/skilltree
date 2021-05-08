@@ -3,7 +3,7 @@ import { TagContainerStyled } from "../styles/styled.js";
 import Tag from "./Tag.jsx";
 
 const TagContainer = (props) => {
-  const { skills, addTech, addLearn } = props;
+  const { skills, onClickFunction } = props;
   return (
     <TagContainerStyled>
       {skills.map((skill) => (
@@ -11,8 +11,7 @@ const TagContainer = (props) => {
           tagname={skill.name}
           key={skill._id}
           id={skill._id}
-          addTech={addTech}
-          addLearn={addLearn}
+          onClickFunction={onClickFunction}
         />
       ))}
     </TagContainerStyled>

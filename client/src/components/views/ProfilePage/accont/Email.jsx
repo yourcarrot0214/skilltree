@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { EmailStyled } from "../styles/styled.js";
 
+const getEmail = (email) => email;
+
 const Email = ({ email }) => {
+  const userEmail = useMemo(() => getEmail(email), [email]);
+
   return (
     <EmailStyled>
       <div>
         <span>계정 이메일</span>
-        <p>{email}</p>
+        <p>{userEmail}</p>
       </div>
     </EmailStyled>
   );

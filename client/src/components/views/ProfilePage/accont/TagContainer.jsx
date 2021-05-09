@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { TagContainerStyled } from "../styles/styled.js";
 import Tag from "./Tag.jsx";
 
+const getSkills = (skills) => skills;
+
 const TagContainer = (props) => {
   const { skills, onClickFunction } = props;
+  const skillsList = useMemo(() => getSkills(skills), [skills]);
   return (
     <TagContainerStyled>
-      {skills.map((skill) => (
+      {skillsList.map((skill) => (
         <Tag
           tagname={skill.name}
           key={skill._id}

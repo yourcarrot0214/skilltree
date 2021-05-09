@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { TagStyled } from "../styles/styled.js";
 
+const getId = (id) => id;
+
+const getTagname = (tagname) => tagname;
+
+const getFunction = (onClickFunction) => onClickFunction;
+
 const Tag = ({ id, tagname, onClickFunction }) => {
+  const memorizedId = useMemo(() => getId(id), [id]);
+  const memorizedTagname = useMemo(() => getTagname(tagname), [tagname]);
+  const memorizedFunction = useMemo(() => getFunction(onClickFunction), [
+    onClickFunction,
+  ]);
   return (
     <>
-      <TagStyled id={id} onClick={onClickFunction}>
-        {tagname}
+      <TagStyled id={memorizedId} onClick={memorizedFunction}>
+        {memorizedTagname}
       </TagStyled>
     </>
   );

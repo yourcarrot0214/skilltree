@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Button from "./Button.jsx";
 import { UserNameStyled, Form } from "../styles/styled.js";
 import Modal from "./Modal.jsx";
 import { useDispatch } from "react-redux";
 import { updateUserName } from "../../../../_actions/user_action.js";
 
+const getName = (name) => name;
+
 const UserName = ({ name }) => {
+  const memorizedName = useMemo(() => getName(name), [name]);
   const dispatch = useDispatch();
   const [ModalOpen, setModalOpen] = useState(false);
-  const [Name, setName] = useState(name);
-  const [NewName, setNewName] = useState(name);
+  const [Name, setName] = useState(memorizedName);
+  const [NewName, setNewName] = useState(memorizedName);
 
   const onClickFunction = () => {
     setModalOpen(!ModalOpen);

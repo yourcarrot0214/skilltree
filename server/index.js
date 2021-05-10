@@ -136,7 +136,7 @@ app.post("/api/users/update/name", auth, (req, res) => {
   );
 });
 
-app.post("/api/users/update/tech", auth, (req, res) => {
+app.post("/api/users/add/tech", auth, (req, res) => {
   const requestSkills = req.body;
 
   User.findOneAndUpdate(
@@ -170,7 +170,40 @@ app.post("/api/users/update/tech", auth, (req, res) => {
   );
 });
 
-app.post("/api/users/update/learn", auth, (req, res) => {
+app.post("/api/users/delete/tech", auth, (req, res) => {
+  const requestSkillId = req.body.id;
+
+  User.findOneAndUpdate(
+    { _id: req.user._id },
+    { tech: req.user.tech.filter((skill) => skill._id !== requestSkillId) },
+    { new: true },
+    (err, user) => {
+      if (err)
+        return res.json(
+          { deleteTech: false, message: "Tech 스킬 삭제 중 에러 발생" },
+          err
+        );
+      if (!user)
+        return res.json({
+          deleteTech: false,
+          message: "유저 정보가 없습니다.",
+        });
+      res.status(200).json({
+        _id: user._id,
+        isAdmin: user.role === 0 ? false : true,
+        isAuth: true,
+        email: user.email,
+        name: user.name,
+        role: user.role,
+        image: user.image,
+        tech: user.tech,
+        learn: user.learn,
+      });
+    }
+  );
+});
+
+app.post("/api/users/add/learn", auth, (req, res) => {
   const requestSkills = req.body;
 
   User.findOneAndUpdate(
@@ -204,7 +237,41 @@ app.post("/api/users/update/learn", auth, (req, res) => {
   );
 });
 
-app.post("/api/skills/update/technitianUsers", auth, (req, res) => {
+app.post("/api/users/delete/learn", auth, (req, res) => {
+  const requestSkillId = req.body.id;
+
+  User.findOneAndUpdate(
+    { _id: req.user._id },
+    { learn: req.user.learn.filter((skill) => skill._id !== requestSkillId) },
+    { new: true },
+    (err, user) => {
+      if (err)
+        return res.json({
+          updateSuccess: false,
+          message: "learn 스킬 삭제 중 에러가 발생",
+          err,
+        });
+      if (!user)
+        return res.json({
+          updateSuccess: false,
+          message: "유저 정보가 없습니다.",
+        });
+      res.status(200).json({
+        _id: user._id,
+        isAdmin: user.role === 0 ? false : true,
+        isAuth: true,
+        email: user.email,
+        name: user.name,
+        role: user.role,
+        image: user.image,
+        tech: user.tech,
+        learn: user.learn,
+      });
+    }
+  );
+});
+
+app.post("/api/skills/add/technitianUsers", auth, (req, res) => {
   Skills.findOne({ _id: req.body._id }, (err, skill) => {
     if (err)
       return res.json({
@@ -232,7 +299,6 @@ app.post("/api/skills/update/technitianUsers", auth, (req, res) => {
       },
       { new: true },
       (err, skill) => {
-        console.log("update skill : ", skill);
         if (err)
           return res.json({
             updateSuccess: false,
@@ -244,13 +310,55 @@ app.post("/api/skills/update/technitianUsers", auth, (req, res) => {
             updateSuccess: false,
             message: "업데이트한 스킬을 찾을 수 없습니다.",
           });
+        console.log("update skill : ", skill);
         return res.status(200).json(skill);
       }
     );
   });
 });
 
-app.post("/api/skills/update/learningUsers", auth, (req, res) => {
+app.post("/api/skills/delete/technitianUsers", auth, (req, res) => {
+  const requestSkillId = req.body.id;
+
+  Skills.findOne({ _id: requestSkillId }, (err, skill) => {
+    if (err)
+      return res.json({
+        deleteTechnitianUser: false,
+        message: "TechnitianUser 삭제 중 에러가 발생",
+        err,
+      });
+    if (!skill)
+      return res.json({
+        deleteTechnitianUser: false,
+        message: "삭제할 스킬을 찾을 수 없습니다.",
+      });
+    Skills.findOneAndUpdate(
+      { _id: skill._id },
+      {
+        technitianUsers: skill.technitianUsers.filter(
+          (user) => user._id !== req.user._id
+        ),
+      },
+      { new: true },
+      (err, skill) => {
+        if (err)
+          return res.json({
+            deleteTechnitianUser: false,
+            message: "TechnitianUser 삭제 중 에러가 밸생",
+            err,
+          });
+        if (!skill)
+          return res.json({
+            deleteTechnitianUser: false,
+            message: "삭제할 스킬을 찾을 수 없습니다.",
+          });
+        return res.status(200).json(skill);
+      }
+    );
+  });
+});
+
+app.post("/api/skills/add/learningUsers", auth, (req, res) => {
   Skills.findOne({ _id: req.body._id }, (err, skill) => {
     if (err)
       return res.json({
@@ -289,6 +397,47 @@ app.post("/api/skills/update/learningUsers", auth, (req, res) => {
           return res.json({
             updateSuccess: false,
             message: "업데이트한 스킬을 찾을 수 없습니다.",
+          });
+        return res.status(200).json(skill);
+      }
+    );
+  });
+});
+
+app.post("/api/skills/delete/learningUsers", auth, (req, res) => {
+  const requestSkillId = req.body.id;
+
+  Skills.findOne({ _id: requestSkillId }, (err, skill) => {
+    if (err)
+      return res.json({
+        deleteLearningUser: false,
+        message: "LearningUser 삭제 중 에러 발생",
+        err,
+      });
+    if (!skill)
+      return res.json({
+        deleteLearningUser: false,
+        message: "해당 스킬을 찾지 못했습니다.",
+      });
+    Skills.findOneAndUpdate(
+      { _id: skill._id },
+      {
+        learningUsers: skill.learningUsers.filter(
+          (user) => user._id !== req.user._id
+        ),
+      },
+      { new: true },
+      (err, skill) => {
+        if (err)
+          return res.json({
+            deleteLearningUser: false,
+            message: "LearningUser 삭제 중 에러 발생",
+            err,
+          });
+        if (!skill)
+          return res.json({
+            deleteLearningUser: false,
+            message: "해당 스킬을 찾지 못했습니다.",
           });
         return res.status(200).json(skill);
       }

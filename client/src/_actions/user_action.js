@@ -5,8 +5,10 @@ import {
   AUTH_USER,
   LOGOUT_USER,
   UPDATE_NAME,
-  UPDATE_TECH,
-  UPDATE_LEARN,
+  ADD_TECH,
+  DELETE_TECH,
+  ADD_LEARN,
+  DELETE_LEARN,
 } from "./types.js";
 
 export function loginUser(loginData) {
@@ -61,22 +63,42 @@ export function updateUserName(newName) {
   };
 }
 
-export function updateUserTech(newTech) {
+export function addUserTech(newTech) {
   const request = axios
-    .post("/api/users/update/tech", newTech)
+    .post("/api/users/add/tech", newTech)
     .then((response) => response.data);
   return {
-    type: UPDATE_TECH,
+    type: ADD_TECH,
     payload: request,
   };
 }
 
-export function updateUserLearn(newTech) {
+export function deleteUserTech(techId) {
   const request = axios
-    .post("/api/users/update/learn", newTech)
+    .post("/api/users/delete/tech", techId)
     .then((response) => response.data);
   return {
-    type: UPDATE_LEARN,
+    type: DELETE_TECH,
+    payload: request,
+  };
+}
+
+export function addUserLearn(newTech) {
+  const request = axios
+    .post("/api/users/add/learn", newTech)
+    .then((response) => response.data);
+  return {
+    type: ADD_LEARN,
+    payload: request,
+  };
+}
+
+export function deleteUserLearn(techId) {
+  const request = axios
+    .post("/api/users/delete/learn", techId)
+    .then((response) => response.data);
+  return {
+    type: DELETE_LEARN,
     payload: request,
   };
 }

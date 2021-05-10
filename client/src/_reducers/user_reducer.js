@@ -4,8 +4,10 @@ import {
   AUTH_USER,
   LOGOUT_USER,
   UPDATE_NAME,
-  UPDATE_TECH,
-  UPDATE_LEARN,
+  ADD_TECH,
+  ADD_LEARN,
+  DELETE_TECH,
+  DELETE_LEARN,
 } from "../_actions/types.js";
 
 export default function user(state = {}, action) {
@@ -20,9 +22,13 @@ export default function user(state = {}, action) {
       return { ...state, userData: action.payload };
     case UPDATE_NAME:
       return { ...state, userData: action.payload };
-    case UPDATE_TECH:
+    case ADD_TECH:
       return { ...state, userData: action.payload };
-    case UPDATE_LEARN:
+    case ADD_LEARN:
+      return { ...state, userData: action.payload };
+    case DELETE_TECH:
+      return { ...state, userData: action.payload };
+    case DELETE_LEARN:
       return { ...state, userData: action.payload };
     default:
       return state;

@@ -1,12 +1,26 @@
 import React, { useState } from "react";
-import Button from "./Button.jsx";
-import { TechStyled } from "../styles/styled.js";
+import { TechStyled, ButtonBox, Button } from "../styles/styled.js";
 import TagContainer from "./TagContainer.jsx";
+import Modal from "./Modal.jsx";
+import { useDispatch } from "react-redux";
+import { deleteTechnitian } from "../../../../_actions/skill_action.js";
+import { deleteUserTech } from "../../../../_actions/user_action.js";
 
 const Tech = ({ userData }) => {
+  const dispatch = useDispatch();
   const [ModalOpen, setModalOpen] = useState(false);
+  const [SkillId, setSkillId] = useState("");
 
-  const onClickFunction = () => {
+  const onClickFunction = (e) => {
+    setSkillId(e.target.id);
+    setModalOpen(!ModalOpen);
+  };
+
+  const onDeleteSkill = (e) => {
+    e.preventDefault();
+    dispatch(deleteTechnitian({ id: SkillId }));
+    dispatch(deleteUserTech({ id: SkillId }));
+    alert("해당 스킬이 Tech 목록에서 삭제되었습니다.");
     setModalOpen(!ModalOpen);
   };
 
@@ -17,15 +31,20 @@ const Tech = ({ userData }) => {
           <span>Tech</span>
           <p>다룰 수 있는 스킬들을 관리합니다.</p>
         </div>
-        <Button buttonName='수정' onClickFunction={onClickFunction} />
       </TechStyled>
-      <TagContainer
-        skills={userData.tech}
-        setSkillName={null}
-        setSelectedSkillId={null}
-        addTech={null}
-        addLearn={null}
-      />
+      <TagContainer skills={userData.tech} onClickFunction={onClickFunction} />
+      <Modal
+        onClickFunction={onClickFunction}
+        header='스킬수정하기'
+        openModal={ModalOpen}
+      >
+        <h3>다룰 수 있는 스킬에서 삭제할까요?</h3>
+        <ButtonBox>
+          <Button type='submit' name='tech' onClick={onDeleteSkill}>
+            삭제하기
+          </Button>
+        </ButtonBox>
+      </Modal>
     </>
   );
 };
@@ -33,22 +52,7 @@ const Tech = ({ userData }) => {
 export default Tech;
 
 /*
-  Tech 기능구현목표설정
-    - userData.tech 배열에 있는 정보를 출력한다.
-    - userData.tech 배열에 스킬을 등록, 삭제할 수 있어야 한다.
-    - 스킬 등록 기능
-      > axios.post("/api/users/update/tech", {tech data})
-      > skills & user reducer, skills & skill & user action
-      > db user tech update : tech name, _id
-      > db skills technitianUser update : user object
-    
-    - Modal main
-      > 스킬검색창
-      > 모든 스킬 출력창
-      > 선택된 스킬 출력창
-      > 선택된 스킬을 테크에 등록 버튼
-      > tech 스킬 출력창
-        - 등록된 스킬을 클릭시 tech에서 삭제
-      > 변경내용 저장하기 버튼
-
+  Tech Component
+    1. user.Tech에 있는 스킬들을 출력한다.
+    2. DB user.Tech, skills.technitianUsers에서 각각 스킬, 유저 정보를 삭제한다.
 */

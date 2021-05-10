@@ -4,6 +4,8 @@ import {
   SKILL_SELECTED,
   SKILLS_TECHNITIAN_ADD,
   SKILLS_LEARNING_ADD,
+  SKILLS_TECHNITIAN_DELETE,
+  SKILLS_LEARNING_DELETE,
 } from "./skill_types.js";
 
 export function getSkillsDB() {
@@ -26,7 +28,7 @@ export function selectedSkill(id) {
 
 export function addTechnitian(requestBody) {
   const request = axios
-    .post("/api/skills/update/technitianUsers", requestBody)
+    .post("/api/skills/add/technitianUsers", requestBody)
     .then((response) => response.data);
   return {
     type: SKILLS_TECHNITIAN_ADD,
@@ -36,10 +38,30 @@ export function addTechnitian(requestBody) {
 
 export function addLearningUser(requestBody) {
   const request = axios
-    .post("/api/skills/update/learningUsers", requestBody)
+    .post("/api/skills/add/learningUsers", requestBody)
     .then((response) => response.data);
   return {
     type: SKILLS_LEARNING_ADD,
+    payload: request,
+  };
+}
+
+export function deleteTechnitian(requestBody) {
+  const request = axios
+    .post("/api/skills/delete/technitianUsers", requestBody)
+    .then((response) => response.data);
+  return {
+    type: SKILLS_TECHNITIAN_DELETE,
+    payload: request,
+  };
+}
+
+export function deleteLearningUser(requestBody) {
+  const request = axios
+    .post("/api/skills/delete/learningUsers", requestBody)
+    .then((response) => response.data);
+  return {
+    type: SKILLS_LEARNING_DELETE,
     payload: request,
   };
 }

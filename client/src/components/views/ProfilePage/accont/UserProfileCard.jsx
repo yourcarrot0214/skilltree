@@ -12,10 +12,7 @@ import TestComponent from "../../../../hoc/TestComponent.jsx";
 import Modal from "./Modal.jsx";
 import { ButtonBox, Button } from "../styles/styled.js";
 
-import {
-  updateUserTech,
-  updateUserLearn,
-} from "../../../../_actions/user_action.js";
+import { addUserTech, addUserLearn } from "../../../../_actions/user_action.js";
 
 import {
   getSkillsDB,
@@ -61,7 +58,7 @@ const UserProfileCard = () => {
     } else {
       const requestBody = skills.find((skill) => skill._id === skillId);
       dispatch(addTechnitian(requestBody));
-      dispatch(updateUserTech(requestBody));
+      dispatch(addUserTech(requestBody));
       setSkillName("");
       alert("스킬이 등록되었습니다.");
     }
@@ -74,7 +71,7 @@ const UserProfileCard = () => {
     } else {
       const requestBody = skills.find((skill) => skill._id === skillId);
       dispatch(addLearningUser(requestBody));
-      dispatch(updateUserLearn(requestBody));
+      dispatch(addUserLearn(requestBody));
       setSkillName("");
       alert("스킬이 등록되었습니다.");
     }

@@ -26,11 +26,12 @@ function LoginPage(props) {
     event.preventDefault();
     let requestBody = { email: Email, password: Password };
     dispatch(loginUser(requestBody)).then((response) => {
-      if (response.payload.loginSuccess) {
+      if (response.payload.success) {
         console.log(response);
         props.history.push("/");
       } else {
         alert(response.payload.message);
+        console.log(response.payload.err);
       }
     });
   };

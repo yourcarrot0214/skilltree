@@ -7,8 +7,23 @@ const CONFIG = require("./config/key.js");
 const { User } = require("./models/User.js");
 const { Skills } = require("./models/Skills");
 const { auth } = require("./middleware/auth.js");
+const { SKILLS_MODEL, USER_MODEL } = require("./config/types.js");
 
-const { saveError, saveSuccess } = require("./function/registerResponse.js");
+const {
+  saveError,
+  signupSuccess,
+  userFindOneError,
+  userNotFound,
+  comparePasswordError,
+  isMatchError,
+  generateTokenError,
+  loginSuccess,
+  authSuccess,
+  logoutSuccess,
+  encryptionError,
+  passwordUpdateSuccess,
+} = require("./function/userResponse.js");
+
 const {
   skillSaveError,
   skillSaveSuccess,
@@ -20,7 +35,7 @@ const {
   findOneError,
   findOneAndUpdateError,
   skillNotFoundAfterUpdate,
-  addTechnitianUsersSuccess,
+  skillUserUpdateSuccess,
 } = require("./function/skillsResponse.js");
 
 app.use(express.json());
@@ -40,8 +55,8 @@ mongoose
 app.post("/api/users/register", (req, res) => {
   const user = new User(req.body);
   user.save((err, userInfo) => {
-    if (err) return res.json(saveError(false, err));
-    return res.status(200).json(saveSuccess(userInfo));
+    if (err) return res.json(saveError(USER_MODEL, err));
+    return res.status(200).json(signupSuccess(userInfo));
   });
 });
 
@@ -74,50 +89,32 @@ app.post("/api/skills/search", (req, res) => {
 app.post("/api/users/login", (req, res) => {
   User.findOne({ email: req.body.email }, (err, user) => {
     if (!user) {
-      return res.json({
-        loginSuccess: false,
-        message: "User Not Found.",
-      });
+      return res.json(userFindOneError(USER_MODEL, err));
     }
     user.comparePassword(req.body.password, (err, isMatch) => {
+      if (err) return res.json(comparePasswordError(err));
       if (!isMatch) {
-        return res.json({
-          loginSuccess: false,
-          message: "passwords don't match.",
-        });
+        return res.json(isMatchError(err));
       }
       user.generateToken((err, user) => {
-        if (err) return res.status(400).send(err);
-        res.cookie("X_auth", user.token).status(200).json({
-          loginSuccess: true,
-          userId: user._id,
-        });
+        if (err) return res.json(generateTokenError(err));
+        res
+          .cookie("X_auth", user.token)
+          .status(200)
+          .json(loginSuccess(user._id));
       });
     });
   });
 });
 
 app.get("/api/users/auth", auth, (req, res) => {
-  console.log("auth response");
-  res.status(200).json({
-    _id: req.user._id,
-    isAdmin: req.user.role === 0 ? false : true,
-    isAuth: true,
-    email: req.user.email,
-    name: req.user.name,
-    role: req.user.role,
-    image: req.user.image,
-    tech: req.user.tech,
-    learn: req.user.learn,
-  });
+  res.status(200).json(authSuccess(req.user));
 });
 
 app.get("/api/users/logout", auth, (req, res) => {
   User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, user) => {
-    if (err) return res.json({ logout: false, message: "Logout Failed." });
-    return res
-      .status(200)
-      .send({ logout: true, userId: user._id, message: "Logout Success." });
+    if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+    return res.status(200).send(logoutSuccess(user._id));
   });
 });
 
@@ -127,23 +124,8 @@ app.post("/api/users/update/name", auth, (req, res) => {
     { name: req.body.newName },
     { new: true },
     (err, user) => {
-      if (err)
-        return res.json({
-          updateSuccess: false,
-          message: "user name update failed.",
-          err,
-        });
-      res.status(200).json({
-        _id: user._id,
-        isAdmin: user.role === 0 ? false : true,
-        isAuth: true,
-        email: user.email,
-        name: user.name,
-        role: user.role,
-        image: user.image,
-        tech: user.tech,
-        learn: user.learn,
-      });
+      if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+      res.status(200).json(authSuccess(user));
     }
   );
 });
@@ -156,28 +138,9 @@ app.post("/api/users/add/tech", auth, (req, res) => {
     { tech: req.user.tech.concat(requestSkills) },
     { new: true },
     (err, user) => {
-      if (err)
-        return res.json({
-          updateSuccess: false,
-          message: "tech 업데이트 중 에러가 발생",
-          err,
-        });
-      if (!user)
-        return res.json({
-          updateSuccess: false,
-          message: "유저 정보가 없습니다.",
-        });
-      res.status(200).json({
-        _id: user._id,
-        isAdmin: user.role === 0 ? false : true,
-        isAuth: true,
-        email: user.email,
-        name: user.name,
-        role: user.role,
-        image: user.image,
-        tech: user.tech,
-        learn: user.learn,
-      });
+      if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+      if (!user) return res.json(userNotFound());
+      res.status(200).json(authSuccess(user));
     }
   );
 });
@@ -190,27 +153,9 @@ app.post("/api/users/delete/tech", auth, (req, res) => {
     { tech: req.user.tech.filter((skill) => skill._id !== requestSkillId) },
     { new: true },
     (err, user) => {
-      if (err)
-        return res.json(
-          { deleteTech: false, message: "Tech 스킬 삭제 중 에러 발생" },
-          err
-        );
-      if (!user)
-        return res.json({
-          deleteTech: false,
-          message: "유저 정보가 없습니다.",
-        });
-      res.status(200).json({
-        _id: user._id,
-        isAdmin: user.role === 0 ? false : true,
-        isAuth: true,
-        email: user.email,
-        name: user.name,
-        role: user.role,
-        image: user.image,
-        tech: user.tech,
-        learn: user.learn,
-      });
+      if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+      if (!user) return res.json(userNotFound());
+      res.status(200).json(authSuccess(user));
     }
   );
 });
@@ -223,28 +168,9 @@ app.post("/api/users/add/learn", auth, (req, res) => {
     { learn: req.user.learn.concat(requestSkills) },
     { new: true },
     (err, user) => {
-      if (err)
-        return res.json({
-          updateSuccess: false,
-          message: "tech 업데이트 중 에러가 발생",
-          err,
-        });
-      if (!user)
-        return res.json({
-          updateSuccess: false,
-          message: "유저 정보가 없습니다.",
-        });
-      res.status(200).json({
-        _id: user._id,
-        isAdmin: user.role === 0 ? false : true,
-        isAuth: true,
-        email: user.email,
-        name: user.name,
-        role: user.role,
-        image: user.image,
-        tech: user.tech,
-        learn: user.learn,
-      });
+      if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+      if (!user) return res.json(userNotFound());
+      res.status(200).json(authSuccess(user));
     }
   );
 });
@@ -257,35 +183,16 @@ app.post("/api/users/delete/learn", auth, (req, res) => {
     { learn: req.user.learn.filter((skill) => skill._id !== requestSkillId) },
     { new: true },
     (err, user) => {
-      if (err)
-        return res.json({
-          updateSuccess: false,
-          message: "learn 스킬 삭제 중 에러가 발생",
-          err,
-        });
-      if (!user)
-        return res.json({
-          updateSuccess: false,
-          message: "유저 정보가 없습니다.",
-        });
-      res.status(200).json({
-        _id: user._id,
-        isAdmin: user.role === 0 ? false : true,
-        isAuth: true,
-        email: user.email,
-        name: user.name,
-        role: user.role,
-        image: user.image,
-        tech: user.tech,
-        learn: user.learn,
-      });
+      if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+      if (!user) return res.json(userNotFound());
+      res.status(200).json(authSuccess(user));
     }
   );
 });
 
 app.post("/api/skills/add/technitianUsers", auth, (req, res) => {
   Skills.findOne({ _id: req.body._id }, (err, skill) => {
-    if (err) return res.json(findOneError("Skills", err));
+    if (err) return res.json(findOneError(SKILLS_MODEL, err));
     if (!skill) return res.json(skillNotFound());
 
     Skills.findOneAndUpdate(
@@ -303,10 +210,10 @@ app.post("/api/skills/add/technitianUsers", auth, (req, res) => {
       },
       { new: true },
       (err, skill) => {
-        if (err) return res.json(findOneAndUpdateError("Skills", err));
+        if (err) return res.json(findOneAndUpdateError(SKILLS_MODEL, err));
         if (!skill) return res.json(skillNotFoundAfterUpdate());
 
-        return res.status(200).json(addTechnitianUsersSuccess(skill));
+        return res.status(200).json(skillUserUpdateSuccess(skill));
       }
     );
   });
@@ -316,7 +223,7 @@ app.post("/api/skills/delete/technitianUsers", auth, (req, res) => {
   const requestSkillId = req.body.id;
 
   Skills.findOne({ _id: requestSkillId }, (err, skill) => {
-    if (err) return res.json(findOneError("Skills", err));
+    if (err) return res.json(findOneError(SKILLS_MODEL, err));
     if (!skill) return res.json(skillNotFound());
 
     Skills.findOneAndUpdate(
@@ -328,11 +235,10 @@ app.post("/api/skills/delete/technitianUsers", auth, (req, res) => {
       },
       { new: true },
       (err, skill) => {
-        if (err) return res.json(findOneAndUpdateError("Skills", err));
+        if (err) return res.json(findOneAndUpdateError(SKILLS_MODEL, err));
         if (!skill) return res.json(skillNotFoundAfterUpdate());
 
-        // 수정
-        return res.status(200).json(skill);
+        return res.status(200).json(skillUserUpdateSuccess(skill));
       }
     );
   });
@@ -340,7 +246,7 @@ app.post("/api/skills/delete/technitianUsers", auth, (req, res) => {
 
 app.post("/api/skills/add/learningUsers", auth, (req, res) => {
   Skills.findOne({ _id: req.body._id }, (err, skill) => {
-    if (err) return res.json(findOneError("Skills", err));
+    if (err) return res.json(findOneError(SKILLS_MODEL, err));
     if (!skill) return res.json(skillNotFound());
 
     Skills.findOneAndUpdate(
@@ -358,11 +264,10 @@ app.post("/api/skills/add/learningUsers", auth, (req, res) => {
       },
       { new: true },
       (err, skill) => {
-        if (err) return res.json(findOneAndUpdateError("Skills", err));
+        if (err) return res.json(findOneAndUpdateError(SKILLS_MODEL, err));
         if (!skill) return res.json(skillNotFoundAfterUpdate());
 
-        // 수정
-        return res.status(200).json(skill);
+        return res.status(200).json(skillUserUpdateSuccess(skill));
       }
     );
   });
@@ -372,7 +277,7 @@ app.post("/api/skills/delete/learningUsers", auth, (req, res) => {
   const requestSkillId = req.body.id;
 
   Skills.findOne({ _id: requestSkillId }, (err, skill) => {
-    if (err) return res.json(findOneError("Skills", err));
+    if (err) return res.json(findOneError(SKILLS_MODEL, err));
     if (!skill) return res.json(skillNotFound());
 
     Skills.findOneAndUpdate(
@@ -384,11 +289,10 @@ app.post("/api/skills/delete/learningUsers", auth, (req, res) => {
       },
       { new: true },
       (err, skill) => {
-        if (err) return res.json(findOneAndUpdateError("Skills", err));
+        if (err) return res.json(findOneAndUpdateError(SKILLS_MODEL, err));
         if (!skill) return res.json(skillNotFoundAfterUpdate());
 
-        // 수정
-        return res.status(200).json(skill);
+        return res.status(200).json(skillUserUpdateSuccess(skill));
       }
     );
   });
@@ -396,53 +300,24 @@ app.post("/api/skills/delete/learningUsers", auth, (req, res) => {
 
 app.post("/api/users/update/password", auth, (req, res) => {
   User.findOne({ _id: req.user._id }, (err, user) => {
-    if (err)
-      return res.json({
-        passwordUpdate: false,
-        message: "비밀번호 업데이트 중 에러 발생",
-        err,
-      });
-    if (!user)
-      return res.json({
-        passwordUpdate: false,
-        message: "비밀번호를 업데이트할 유저를 찾을 수 없습니다.",
-      });
+    if (err) return res.json(findOneError(USER_MODEL, err));
+    if (!user) return res.json(userNotFound());
 
     user.comparePassword(req.body.currentPassword, (err, isMatch) => {
-      if (!isMatch) {
-        return res.json({
-          loginSuccess: false,
-          message: "passwords don't match.",
-        });
-      }
+      if (err) return comparePasswordError(err);
+      if (!isMatch) return res.json(isMatchError(err));
 
       user.encryption(req.body.newPassword, (err, newPassword) => {
-        if (err)
-          return res.json({
-            passwordEncryption: false,
-            message: "비밀번호 암호화 중 에러 발생",
-            err,
-          });
+        if (err) return res.json(encryptionError(err));
 
         User.findOneAndUpdate(
           { _id: user._id },
           { password: newPassword },
           (err, user) => {
-            if (err)
-              return res.json({
-                passwordUpdate: false,
-                message: "비밀번호 업데이트 중 에러발생",
-                err,
-              });
-            if (!user)
-              return res.json({
-                passwordUpdate: false,
-                message: "비밀번호를 업데이트할 유저를 찾을 수 없습니다.",
-              });
-            res.status(200).json({
-              passwordUpdate: true,
-              message: "비밀번호가 업데이트 되었습니다.",
-            });
+            if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+            if (!user) return res.json(userNotFound());
+
+            res.status(200).json(passwordUpdateSuccess());
           }
         );
       });

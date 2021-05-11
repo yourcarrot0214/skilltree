@@ -58,7 +58,7 @@ const skillNotFoundAfterUpdate = () => ({
   message: "업데이트한 스킬을 찾을 수 없습니다.",
 });
 
-const addTechnitianUsersSuccess = (responseData) => ({
+const skillUserUpdateSuccess = (responseData) => ({
   success: true,
   message: "스킬 정보 업데이트에 성공했습니다.",
   responseData,
@@ -75,5 +75,5 @@ module.exports = {
   findOneError,
   findOneAndUpdateError,
   skillNotFoundAfterUpdate,
-  addTechnitianUsersSuccess,
+  skillUserUpdateSuccess,
 };

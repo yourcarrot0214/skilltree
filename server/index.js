@@ -8,6 +8,21 @@ const { User } = require("./models/User.js");
 const { Skills } = require("./models/Skills");
 const { auth } = require("./middleware/auth.js");
 
+const { saveError, saveSuccess } = require("./function/registerResponse.js");
+const {
+  skillSaveError,
+  skillSaveSuccess,
+  skillListError,
+  skillListSuccess,
+  skillSearchError,
+  skillNotFound,
+  skillSearchSuccess,
+  findOneError,
+  findOneAndUpdateError,
+  skillNotFoundAfterUpdate,
+  addTechnitianUsersSuccess,
+} = require("./function/skillsResponse.js");
+
 app.use(express.json());
 app.use(cookieParser());
 
@@ -25,37 +40,34 @@ mongoose
 app.post("/api/users/register", (req, res) => {
   const user = new User(req.body);
   user.save((err, userInfo) => {
-    if (err) return res.json({ signupSuccess: false, err });
-    return res.status(200).json({ signupSuccess: true, userInfo });
+    if (err) return res.json(saveError(false, err));
+    return res.status(200).json(saveSuccess(userInfo));
   });
 });
 
 app.post("/api/skills/upload", (req, res) => {
   const skills = new Skills(req.body);
   skills.save((err, skillInfo) => {
-    if (err) return res.json({ skillUploadSuccess: false, err });
-    return res.status(200).json({ skillUploadSuccess: true, skillInfo });
+    if (err) return res.json(skillSaveError(err));
+    return res.status(200).json(skillSaveSuccess(skillInfo));
   });
 });
 
 app.get("/api/skills/list", (req, res) => {
   Skills.find({}, (err, docs) => {
-    if (err) return res.json({ listLoadSuccess: false, err });
-    return res.status(200).json({ listLoadSuccess: true, docs });
+    if (err) return res.json(skillListError(err));
+    return res.status(200).json(skillListSuccess(docs));
   });
 });
 
 // "POST", "/api/skills/search"
 app.post("/api/skills/search", (req, res) => {
   Skills.findOne({ name: req.body.name }, (err, skill) => {
-    if (err) res.json({ skillSearchSuccess: false, message: `Err : ${err}` });
+    if (err) res.json(skillSearchError(err));
     if (!skill) {
-      return res.json({
-        skillSearchSuccess: false,
-        message: "Skill Not Found.",
-      });
+      return res.json(skillNotFound());
     }
-    return res.status(200).json({ skillSearchSuccess: true, skill });
+    return res.status(200).json(skillSearchSuccess(skill));
   });
 });
 
@@ -273,17 +285,9 @@ app.post("/api/users/delete/learn", auth, (req, res) => {
 
 app.post("/api/skills/add/technitianUsers", auth, (req, res) => {
   Skills.findOne({ _id: req.body._id }, (err, skill) => {
-    if (err)
-      return res.json({
-        updateSuccess: false,
-        message: "스킬 DB에서 요청된 스킬을 찾는 중 에러가 발생했습니다.",
-        err,
-      });
-    if (!skill)
-      return res.json({
-        updateSuccess: false,
-        message: "업데이트할 스킬을 찾을 수 없습니다.",
-      });
+    if (err) return res.json(findOneError("Skills", err));
+    if (!skill) return res.json(skillNotFound());
+
     Skills.findOneAndUpdate(
       { _id: skill._id },
       {
@@ -299,19 +303,10 @@ app.post("/api/skills/add/technitianUsers", auth, (req, res) => {
       },
       { new: true },
       (err, skill) => {
-        if (err)
-          return res.json({
-            updateSuccess: false,
-            message: "업데이트한 스킬을 찾는 중 에러가 발생했습니다.",
-            err,
-          });
-        if (!skill)
-          return res.json({
-            updateSuccess: false,
-            message: "업데이트한 스킬을 찾을 수 없습니다.",
-          });
-        console.log("update skill : ", skill);
-        return res.status(200).json(skill);
+        if (err) return res.json(findOneAndUpdateError("Skills", err));
+        if (!skill) return res.json(skillNotFoundAfterUpdate());
+
+        return res.status(200).json(addTechnitianUsersSuccess(skill));
       }
     );
   });
@@ -321,17 +316,9 @@ app.post("/api/skills/delete/technitianUsers", auth, (req, res) => {
   const requestSkillId = req.body.id;
 
   Skills.findOne({ _id: requestSkillId }, (err, skill) => {
-    if (err)
-      return res.json({
-        deleteTechnitianUser: false,
-        message: "TechnitianUser 삭제 중 에러가 발생",
-        err,
-      });
-    if (!skill)
-      return res.json({
-        deleteTechnitianUser: false,
-        message: "삭제할 스킬을 찾을 수 없습니다.",
-      });
+    if (err) return res.json(findOneError("Skills", err));
+    if (!skill) return res.json(skillNotFound());
+
     Skills.findOneAndUpdate(
       { _id: skill._id },
       {
@@ -341,17 +328,10 @@ app.post("/api/skills/delete/technitianUsers", auth, (req, res) => {
       },
       { new: true },
       (err, skill) => {
-        if (err)
-          return res.json({
-            deleteTechnitianUser: false,
-            message: "TechnitianUser 삭제 중 에러가 밸생",
-            err,
-          });
-        if (!skill)
-          return res.json({
-            deleteTechnitianUser: false,
-            message: "삭제할 스킬을 찾을 수 없습니다.",
-          });
+        if (err) return res.json(findOneAndUpdateError("Skills", err));
+        if (!skill) return res.json(skillNotFoundAfterUpdate());
+
+        // 수정
         return res.status(200).json(skill);
       }
     );
@@ -360,17 +340,9 @@ app.post("/api/skills/delete/technitianUsers", auth, (req, res) => {
 
 app.post("/api/skills/add/learningUsers", auth, (req, res) => {
   Skills.findOne({ _id: req.body._id }, (err, skill) => {
-    if (err)
-      return res.json({
-        updateSuccess: false,
-        message: "스킬 DB에서 요청된 스킬을 찾는 중 에러가 발생했습니다.",
-        err,
-      });
-    if (!skill)
-      return res.json({
-        updateSuccess: false,
-        message: "업데이트할 스킬을 찾을 수 없습니다.",
-      });
+    if (err) return res.json(findOneError("Skills", err));
+    if (!skill) return res.json(skillNotFound());
+
     Skills.findOneAndUpdate(
       { _id: skill._id },
       {
@@ -386,18 +358,10 @@ app.post("/api/skills/add/learningUsers", auth, (req, res) => {
       },
       { new: true },
       (err, skill) => {
-        console.log("update skill : ", skill);
-        if (err)
-          return res.json({
-            updateSuccess: false,
-            message: "업데이트한 스킬을 찾는 중 에러가 발생했습니다.",
-            err,
-          });
-        if (!skill)
-          return res.json({
-            updateSuccess: false,
-            message: "업데이트한 스킬을 찾을 수 없습니다.",
-          });
+        if (err) return res.json(findOneAndUpdateError("Skills", err));
+        if (!skill) return res.json(skillNotFoundAfterUpdate());
+
+        // 수정
         return res.status(200).json(skill);
       }
     );
@@ -408,17 +372,9 @@ app.post("/api/skills/delete/learningUsers", auth, (req, res) => {
   const requestSkillId = req.body.id;
 
   Skills.findOne({ _id: requestSkillId }, (err, skill) => {
-    if (err)
-      return res.json({
-        deleteLearningUser: false,
-        message: "LearningUser 삭제 중 에러 발생",
-        err,
-      });
-    if (!skill)
-      return res.json({
-        deleteLearningUser: false,
-        message: "해당 스킬을 찾지 못했습니다.",
-      });
+    if (err) return res.json(findOneError("Skills", err));
+    if (!skill) return res.json(skillNotFound());
+
     Skills.findOneAndUpdate(
       { _id: skill._id },
       {
@@ -428,17 +384,10 @@ app.post("/api/skills/delete/learningUsers", auth, (req, res) => {
       },
       { new: true },
       (err, skill) => {
-        if (err)
-          return res.json({
-            deleteLearningUser: false,
-            message: "LearningUser 삭제 중 에러 발생",
-            err,
-          });
-        if (!skill)
-          return res.json({
-            deleteLearningUser: false,
-            message: "해당 스킬을 찾지 못했습니다.",
-          });
+        if (err) return res.json(findOneAndUpdateError("Skills", err));
+        if (!skill) return res.json(skillNotFoundAfterUpdate());
+
+        // 수정
         return res.status(200).json(skill);
       }
     );

@@ -36,7 +36,7 @@ function RegisterPage(props) {
     };
 
     dispatch(registerUser(requestBody)).then((response) => {
-      if (response.payload.signupSuccess) {
+      if (response.payload.success) {
         props.history.push("/login");
       } else {
         console.log("Sign Up Filed :: ", response.payload.err);

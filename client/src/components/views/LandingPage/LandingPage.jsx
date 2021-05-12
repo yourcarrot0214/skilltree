@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { getSkillsDB, selectedSkill } from "../../../_actions/skill_action.js";
+import { selectedSkill } from "../../../_actions/skill_action.js";
 
 import Test from "../../../_reducers/Test.jsx";
 
@@ -13,10 +13,6 @@ import Tag from "../../common/Tag.jsx";
 function LandingPage() {
   const dispatch = useDispatch();
   const [SkillName, setSkillName] = useState("");
-
-  useEffect(() => {
-    dispatch(getSkillsDB());
-  }, [dispatch]);
 
   const skills = useSelector((state) => state.skills, shallowEqual);
   const selectedSkills = skills.filter((skill) => skill.selected);

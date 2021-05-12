@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getSkillsDB } from "./_actions/skill_action.js";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LandingPage from "./components/views/LandingPage/LandingPage.jsx";
 import LoginPage from "./components/views/LoginPage/LoginPage.jsx";
@@ -12,6 +14,10 @@ import ProfileMain from "./components/views/ProfilePage/ProfileMain.jsx";
 import NavBar from "./components/views/NavBar/NavBar.jsx";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getSkillsDB());
+  });
   return (
     <>
       <Router>

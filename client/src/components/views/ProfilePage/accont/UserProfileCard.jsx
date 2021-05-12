@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState } from "react";
 import UserName from "./UserName.jsx";
 import Email from "./Email.jsx";
 import Password from "./Password.jsx";
@@ -7,15 +7,12 @@ import Learn from "./Learn.jsx";
 import SkillSearchBar from "../../../common/SkillSearchBar.jsx";
 import TagContainer from "./TagContainer.jsx";
 import Tag from "./Tag.jsx";
-import { injectionProps } from "../../../../hoc/withTagContainer.js";
-import TestComponent from "../../../../hoc/TestComponent.jsx";
 import Modal from "./Modal.jsx";
 import { ButtonBox, Button } from "../styles/styled.js";
 
 import { addUserTech, addUserLearn } from "../../../../_actions/user_action.js";
 
 import {
-  getSkillsDB,
   addTechnitian,
   addLearningUser,
 } from "../../../../_actions/skill_action.js";
@@ -29,10 +26,6 @@ const UserProfileCard = () => {
   const [SkillName, setSkillName] = useState("");
   const [ModalOpen, setModalOpen] = useState(false);
   const [SkillId, setSkillId] = useState("");
-
-  useEffect(() => {
-    dispatch(getSkillsDB());
-  }, [dispatch]);
 
   const userData = useSelector((state) => state.user.userData, shallowEqual);
   const skills = useSelector((state) => state.skills, shallowEqual);
@@ -76,13 +69,6 @@ const UserProfileCard = () => {
       alert("스킬이 등록되었습니다.");
     }
   };
-
-  const withTest = injectionProps({
-    skills,
-    setSkillName,
-    addTech,
-    addLearn,
-  });
 
   const onModalPopup = () => {
     setModalOpen(!ModalOpen);

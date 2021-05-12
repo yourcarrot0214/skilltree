@@ -5,8 +5,8 @@ import Password from "./Password.jsx";
 import Tech from "./Tech.jsx";
 import Learn from "./Learn.jsx";
 import SkillSearchBar from "../../../common/SkillSearchBar.jsx";
-import TagContainer from "./TagContainer.jsx";
-import Tag from "./Tag.jsx";
+import TagContainer from "../../../common/TagContainer.jsx";
+import Tag from "../../../common/Tag.jsx";
 import Modal from "./Modal.jsx";
 import { ButtonBox, Button } from "../styles/styled.js";
 

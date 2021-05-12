@@ -31,8 +31,9 @@ function LandingPage() {
     setSkillName("");
   };
 
-  const onClickFunction = () => {
-    console.log("on Click this component");
+  const onClickFunction = (e) => {
+    const skillId = e.target.id;
+    dispatch(selectedSkill(skillId));
   };
 
   return (
@@ -47,15 +48,11 @@ function LandingPage() {
       {SkillName === "" ? (
         <>
           <TagContainer
-            skillsList={unSelectedSkills}
-            setSkillName={setSkillName}
-            skillDispatch={skillDispatch}
+            skills={selectedSkills}
             onClickFunction={onClickFunction}
           />
           <TagContainer
-            skillsList={selectedSkills}
-            setSkillName={setSkillName}
-            skillDispatch={skillDispatch}
+            skills={unSelectedSkills}
             onClickFunction={onClickFunction}
           />
         </>
@@ -64,9 +61,6 @@ function LandingPage() {
           tagname={skillSearchResult.name}
           key={skillSearchResult.key}
           id={skillSearchResult._id}
-          selected={skillSearchResult.selected}
-          setSkillName={setSkillName}
-          skillDispatch={skillDispatch}
           onClickFunction={onClickFunction}
         />
       ) : (

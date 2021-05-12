@@ -1,39 +1,31 @@
-import React from "react";
-import Styled from "styled-components";
+import React, { useMemo } from "react";
+import { TagContainerStyled } from "./styles/styled.js";
 import Tag from "./Tag.jsx";
 
-const TagContainerStyled = Styled.div`
-  border: 1px solid black;
-`;
+const getSkills = (skills) => skills;
 
-const TagContainer = ({
-  skillsList,
-  setSkillName,
-  skillDispatch,
-  onClickFunction,
-}) => {
+const TagContainer = (props) => {
+  const { skills, onClickFunction } = props;
+  const skillsList = useMemo(() => getSkills(skills), [skills]);
   return (
-    <>
-      <TagContainerStyled>
-        {skillsList.map((skill) => (
-          <Tag
-            tagname={skill.name}
-            key={skill._id}
-            id={skill._id}
-            selected={skill.selected}
-            setSkillName={setSkillName}
-            skillDispatch={skillDispatch}
-            onClickFunction={onClickFunction}
-          />
-        ))}
-      </TagContainerStyled>
-    </>
+    <TagContainerStyled>
+      {skillsList.map((skill) => (
+        <Tag
+          tagname={skill.name}
+          key={skill._id}
+          id={skill._id}
+          onClickFunction={onClickFunction}
+        />
+      ))}
+    </TagContainerStyled>
   );
 };
 
 export default TagContainer;
 
 /*
-  TagContainer에 props로 전달되는 값에 따라 styled-components 적용
-    - ${(props) => props.previewPage && css``}
+  1. 기능
+    props로 전달받은 skills 배열 정보를 통해 Tag 컴포넌트 출력
+  2. props
+    - skills : 스킬 정보를 담고 있는 배열
 */

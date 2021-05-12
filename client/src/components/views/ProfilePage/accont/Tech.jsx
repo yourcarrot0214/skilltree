@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TechStyled, ButtonBox, Button } from "../styles/styled.js";
-import TagContainer from "./TagContainer.jsx";
+import TagContainer from "../../../common/TagContainer.jsx";
 import Modal from "./Modal.jsx";
 import { useDispatch } from "react-redux";
 import { deleteTechnitian } from "../../../../_actions/skill_action.js";

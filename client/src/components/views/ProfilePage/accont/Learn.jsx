@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { LearnStyled, ButtonBox, Button } from "../styles/styled.js";
 import Modal from "./Modal.jsx";
-import TagContainer from "./TagContainer.jsx";
+import TagContainer from "../../../common/TagContainer.jsx";
 import { useDispatch } from "react-redux";
 import { deleteLearningUser } from "../../../../_actions/skill_action.js";
 import { deleteUserLearn } from "../../../../_actions/user_action.js";

@@ -1,15 +1,69 @@
-import React from "react";
-// import SkillSearchBar from "../common/SkillSearchBar.jsx";
-// import TagContainer from "../common/TagContainer.jsx";
-// import CreateClassForm from "./CreateClassForm.jsx";
+import React, { useState } from "react";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { selectedSkill } from "../../_actions/skill_action.js";
+
+import SkillSearchBar from "./SkillSearchBar.jsx";
+import TagContainer from "./TagContainer.jsx";
+import Tag from "./Tag.jsx";
 
 const DetailPage = () => {
+  const dispatch = useDispatch();
+  const [SkillName, setSkillName] = useState("");
+
+  const skills = useSelector((state) => state.skills, shallowEqual);
+  const selectedSkills = skills.filter((skill) => skill.selected);
+  const unSelectedSkills = skills.filter((skill) => !skill.selected);
+  const skillSearchResult = skills.find(
+    (skill) => skill.name === SkillName.toUpperCase()
+  );
+  const skillDispatch = (id) => dispatch(selectedSkill(id));
+
+  const onSkillSearch = (event) => {
+    event.preventDefault();
+    if (SkillName === "") return;
+    if (skillSearchResult === undefined) return;
+
+    skillDispatch(skillSearchResult._id);
+    setSkillName("");
+  };
+
+  const onClickFunction = (e) => {
+    const skillId = e.target.id;
+    dispatch(selectedSkill(skillId));
+  };
+  console.log(selectedSkills);
+
   return (
     <>
       <h3>Detail Page</h3>
-      {/* <SkillSearchBar /> */}
-      {/* <TagContainer /> */}
-      {/* <CreateClassForm /> */}
+      <SkillSearchBar
+        setSkillName={setSkillName}
+        SkillName={SkillName}
+        onSkillSearch={onSkillSearch}
+      />
+      {SkillName === "" ? (
+        <>
+          <TagContainer
+            skills={selectedSkills}
+            onClickFunction={onClickFunction}
+            selected={true}
+          />
+          <TagContainer
+            skills={unSelectedSkills}
+            onClickFunction={onClickFunction}
+            selected={false}
+          />
+        </>
+      ) : skillSearchResult ? (
+        <Tag
+          skillInfo={skillSearchResult}
+          key={skillSearchResult.key}
+          onClickFunction={onClickFunction}
+          selected={skillSearchResult.selected}
+        />
+      ) : (
+        <div>검색 결과가 없습니다.</div>
+      )}
     </>
   );
 };

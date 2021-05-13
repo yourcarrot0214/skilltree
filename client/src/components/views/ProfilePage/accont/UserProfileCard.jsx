@@ -15,6 +15,7 @@ import { addUserTech, addUserLearn } from "../../../../_actions/user_action.js";
 import {
   addTechnitian,
   addLearningUser,
+  selectedSkill,
 } from "../../../../_actions/skill_action.js";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
@@ -52,6 +53,7 @@ const UserProfileCard = () => {
       const requestBody = skills.find((skill) => skill._id === skillId);
       dispatch(addTechnitian(requestBody));
       dispatch(addUserTech(requestBody));
+      dispatch(selectedSkill(skillId));
       setSkillName("");
       alert("스킬이 등록되었습니다.");
     }
@@ -65,6 +67,7 @@ const UserProfileCard = () => {
       const requestBody = skills.find((skill) => skill._id === skillId);
       dispatch(addLearningUser(requestBody));
       dispatch(addUserLearn(requestBody));
+      dispatch(selectedSkill(skillId));
       setSkillName("");
       alert("스킬이 등록되었습니다.");
     }

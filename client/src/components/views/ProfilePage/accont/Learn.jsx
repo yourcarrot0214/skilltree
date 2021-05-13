@@ -37,7 +37,11 @@ const Learn = ({ userData }) => {
           header='Learn 스킬을 관리합니다.'
         ></Modal>
       </LearnStyled>
-      <TagContainer skills={userData.learn} onClickFunction={onClickFunction} />
+      <TagContainer
+        skills={userData.learn}
+        onClickFunction={onClickFunction}
+        selected={true}
+      />
       <Modal
         onClickFunction={onClickFunction}
         header='스킬수정하기'

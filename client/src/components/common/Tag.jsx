@@ -7,15 +7,20 @@ const getTagname = (tagname) => tagname;
 
 const getFunction = (onClickFunction) => onClickFunction;
 
-const Tag = ({ id, tagname, onClickFunction }) => {
-  const memorizedId = useMemo(() => getId(id), [id]);
-  const memorizedTagname = useMemo(() => getTagname(tagname), [tagname]);
+const Tag = ({ skillInfo, onClickFunction, selected }) => {
+  const { _id, name } = skillInfo;
+  const memorizedId = useMemo(() => getId(_id), [_id]);
+  const memorizedTagname = useMemo(() => getTagname(name), [name]);
   const memorizedFunction = useMemo(() => getFunction(onClickFunction), [
     onClickFunction,
   ]);
   return (
     <>
-      <TagStyled id={memorizedId} onClick={memorizedFunction}>
+      <TagStyled
+        id={memorizedId}
+        onClick={memorizedFunction}
+        selected={selected}
+      >
         {memorizedTagname}
       </TagStyled>
     </>

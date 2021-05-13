@@ -7,6 +7,12 @@ const TagStyled = Styled.button`
   border-radius: 4px;
   background-color: #868e96;
   color: #f8f9fa;
+
+  ${(props) =>
+    props.selected &&
+    css`
+      background-color: #51cf66;
+    `}
 `;
 
 const TagContainerStyled = Styled.div`

@@ -32,7 +32,11 @@ const Tech = ({ userData }) => {
           <p>다룰 수 있는 스킬들을 관리합니다.</p>
         </div>
       </TechStyled>
-      <TagContainer skills={userData.tech} onClickFunction={onClickFunction} />
+      <TagContainer
+        skills={userData.tech}
+        onClickFunction={onClickFunction}
+        selected={true}
+      />
       <Modal
         onClickFunction={onClickFunction}
         header='스킬수정하기'

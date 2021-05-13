@@ -50,10 +50,12 @@ function LandingPage() {
           <TagContainer
             skills={selectedSkills}
             onClickFunction={onClickFunction}
+            selected={true}
           />
           <TagContainer
             skills={unSelectedSkills}
             onClickFunction={onClickFunction}
+            selected={false}
           />
         </>
       ) : skillSearchResult ? (

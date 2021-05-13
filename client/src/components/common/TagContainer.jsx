@@ -5,16 +5,16 @@ import Tag from "./Tag.jsx";
 const getSkills = (skills) => skills;
 
 const TagContainer = (props) => {
-  const { skills, onClickFunction } = props;
+  const { skills, onClickFunction, selected } = props;
   const skillsList = useMemo(() => getSkills(skills), [skills]);
   return (
     <TagContainerStyled>
       {skillsList.map((skill) => (
         <Tag
-          tagname={skill.name}
+          skillInfo={skill}
           key={skill._id}
-          id={skill._id}
           onClickFunction={onClickFunction}
+          selected={selected}
         />
       ))}
     </TagContainerStyled>

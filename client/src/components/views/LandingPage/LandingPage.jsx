@@ -34,6 +34,7 @@ function LandingPage() {
   const onClickFunction = (e) => {
     const skillId = e.target.id;
     dispatch(selectedSkill(skillId));
+    setSkillName("");
   };
 
   return (
@@ -63,6 +64,7 @@ function LandingPage() {
           skillInfo={skillSearchResult}
           key={skillSearchResult.key}
           onClickFunction={onClickFunction}
+          selected={skillSearchResult.selected}
         />
       ) : (
         <div>검색 결과가 없습니다.</div>

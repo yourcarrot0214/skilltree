@@ -60,9 +60,8 @@ function LandingPage() {
         </>
       ) : skillSearchResult ? (
         <Tag
-          tagname={skillSearchResult.name}
+          skillInfo={skillSearchResult}
           key={skillSearchResult.key}
-          id={skillSearchResult._id}
           onClickFunction={onClickFunction}
         />
       ) : (

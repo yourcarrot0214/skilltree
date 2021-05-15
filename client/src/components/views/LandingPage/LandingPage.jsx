@@ -9,6 +9,7 @@ import Header from "./Header.jsx";
 import SkillSearchBar from "../../common/SkillSearchBar.jsx";
 import TagContainer from "../../common/TagContainer.jsx";
 import Tag from "../../common/Tag.jsx";
+import useSearchResult from "../../hooks/useSearchResult.js";
 
 function LandingPage() {
   const dispatch = useDispatch();
@@ -42,9 +43,9 @@ function LandingPage() {
       <h2>Landing Page</h2>
       <Header />
       <SkillSearchBar
-        setSkillName={setSkillName}
-        SkillName={SkillName}
-        onSkillSearch={onSkillSearch}
+      // setSkillName={setSkillName}
+      // SkillName={SkillName}
+      // onSkillSearch={onSkillSearch}
       />
       {SkillName === "" ? (
         <>

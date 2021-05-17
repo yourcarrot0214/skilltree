@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { useSelector, shallowEqual } from "react-redux";
+import useSkills from "./useSkills.js";
 
 const useSearchResult = (skillName) => {
-  const skills = useSelector((state) => state.skills, shallowEqual);
+  const skills = useSkills();
   const [searchResult, setSearchResult] = useState();
 
   // test code

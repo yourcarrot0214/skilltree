@@ -19,6 +19,8 @@ import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
 import { UserProfileCardStyled, ContentsContainer } from "../styles/styled.js";
 
+import useSkills from "../../../hooks/useSkills.js";
+
 const UserProfileCard = () => {
   const dispatch = useDispatch();
 
@@ -27,7 +29,7 @@ const UserProfileCard = () => {
   const [SkillId, setSkillId] = useState("");
 
   const userData = useSelector((state) => state.user.userData, shallowEqual);
-  const skills = useSelector((state) => state.skills, shallowEqual);
+  const skills = useSkills();
 
   const skillSearchResult = skills.find(
     (skill) => skill.name === SkillName.toUpperCase()

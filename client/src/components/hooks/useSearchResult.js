@@ -15,7 +15,7 @@ const useSearchResult = (skillName) => {
     }
     skillSearchResult(skillName);
 
-    return () => console.log("useSearchResult effect end.");
+    return () => setSearchResult("");
   });
 
   return searchResult;

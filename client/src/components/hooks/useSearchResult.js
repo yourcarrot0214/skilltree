@@ -5,6 +5,8 @@ const useSearchResult = (skillName) => {
   const skills = useSelector((state) => state.skills, shallowEqual);
   const [searchResult, setSearchResult] = useState();
 
+  // test code
+
   useEffect(() => {
     function skillSearchResult(skillName) {
       setSearchResult(

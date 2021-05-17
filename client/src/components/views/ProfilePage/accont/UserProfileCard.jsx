@@ -5,8 +5,6 @@ import Password from "./Password.jsx";
 import Tech from "./Tech.jsx";
 import Learn from "./Learn.jsx";
 import SkillSearchBar from "../../../common/SkillSearchBar.jsx";
-import TagContainer from "../../../common/TagContainer.jsx";
-import Tag from "../../../common/Tag.jsx";
 import Modal from "./Modal.jsx";
 import { ButtonBox, Button } from "../styles/styled.js";
 
@@ -40,7 +38,6 @@ const UserProfileCard = () => {
     if (SkillName === "") return;
     if (skillSearchResult === undefined) return;
     console.log("Skill Search Request.");
-
     setModalOpen(!ModalOpen);
     setSkillName("");
   };
@@ -109,23 +106,9 @@ const UserProfileCard = () => {
       <h3>스킬관리</h3>
       <ContentsContainer>
         <SkillSearchBar
-          SkillName={SkillName}
-          setSkillName={setSkillName}
           onSkillSearch={onSkillSearch}
+          onClickFunction={onClickFunction}
         />
-        {SkillName === "" ? (
-          <>
-            <TagContainer skills={skills} onClickFunction={onClickFunction} />
-          </>
-        ) : skillSearchResult ? (
-          <Tag
-            skillInfo={skillSearchResult}
-            key={skillSearchResult.key}
-            onClickFunction={onClickFunction}
-          />
-        ) : (
-          <div>검색 결과가 없습니다.</div>
-        )}
 
         {userData && (
           <>

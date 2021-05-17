@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import Styled from "styled-components";
+import TagContainer from "../common/TagContainer.jsx";
+import Tag from "../common/Tag.jsx";
 import { useDispatch } from "react-redux";
 import { selectedSkill } from "../../_actions/skill_action.js";
 
 import useSearchResult from "../hooks/useSearchResult.js";
+import useSkills from "../hooks/useSkills.js";
 
 // styles > styled.js로 이동
 const SkillSearchBarStyled = Styled.div`
@@ -12,10 +15,14 @@ const SkillSearchBarStyled = Styled.div`
   margin: 0 auto;
 `;
 
-const SkillSearchBar = () => {
+const SkillSearchBar = (props) => {
+  // props list :: skillSearchFunction, onClickFunction
   const dispatch = useDispatch();
   const [skillName, setSkillName] = useState("");
   const skillSearchResult = useSearchResult(skillName);
+  const skills = useSkills();
+  const selectedSkills = skills.selectedSkills();
+  const unSelectedSkills = skills.unSelectedSkills();
 
   const onChangeValue = (event) => {
     setSkillName(event.currentTarget.value);
@@ -28,13 +35,23 @@ const SkillSearchBar = () => {
     if (skillName === "") return;
     if (skillSearchResult === undefined) return;
     console.log("Skill Search Request.");
+    // props.skillSearchFunction(skillSearchResult._id)
     skillDispatch(skillSearchResult._id);
+    setSkillName("");
+  };
+
+  const onClickFunction = (e) => {
+    const skillId = e.target.id;
+    // props.clickFunction
+    skillDispatch(skillId);
     setSkillName("");
   };
 
   return (
     <SkillSearchBarStyled>
-      <form onSubmit={onSkillSearch}>
+      <form
+        onSubmit={props.onSkillSearch ? props.onSkillSearch : onSkillSearch}
+      >
         <input
           type='text'
           name='skill-name'
@@ -43,6 +60,38 @@ const SkillSearchBar = () => {
         />
         <button type='submit'>Skill Search</button>
       </form>
+      {skillName === "" ? (
+        <>
+          <TagContainer
+            skills={selectedSkills}
+            // onClickFunction={onClickFunction}
+            onClickFunction={
+              props.onClickFunction ? props.onClickFunction : onClickFunction
+            }
+            selected={props.selected ? true : null}
+          />
+          <TagContainer
+            skills={unSelectedSkills}
+            // onClickFunction={onClickFunction}
+            onClickFunction={
+              props.onClickFunction ? props.onClickFunction : onClickFunction
+            }
+            selected={props.selected ? false : null}
+          />
+        </>
+      ) : skillSearchResult ? (
+        <Tag
+          skillInfo={skillSearchResult}
+          key={skillSearchResult.key}
+          // onClickFunction={onClickFunction}
+          onClickFunction={
+            props.onClickFunction ? props.onClickFunction : onClickFunction
+          }
+          selected={skillSearchResult.selected}
+        />
+      ) : (
+        <div>검색 결과가 없습니다.</div>
+      )}
     </SkillSearchBarStyled>
   );
 };

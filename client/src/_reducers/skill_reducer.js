@@ -5,6 +5,7 @@ import {
   SKILLS_TECHNITIAN_DELETE,
   SKILLS_LEARNING_ADD,
   SKILLS_LEARNING_DELETE,
+  SKILLS_SELECTED_RESET,
 } from "../_actions/skill_types.js";
 
 export default function skill(state = {}, action) {
@@ -17,10 +18,15 @@ export default function skill(state = {}, action) {
         selected: false,
         id: action._id,
       };
+
     case SKILL_SELECTED:
       return state._id === action.id
         ? { ...state, selected: !state.selected }
         : state;
+
+    case SKILLS_SELECTED_RESET:
+      return { ...state, selected: false };
+
     case SKILLS_TECHNITIAN_ADD:
       return state._id === action.payload._id
         ? {
@@ -30,10 +36,12 @@ export default function skill(state = {}, action) {
             ),
           }
         : state;
+
     case SKILLS_TECHNITIAN_DELETE:
       return state._id === action.id
         ? { ...state, technitianUsers: action.technitianUsers }
         : state;
+
     case SKILLS_LEARNING_ADD:
       return state._id === action.id
         ? {
@@ -43,10 +51,12 @@ export default function skill(state = {}, action) {
             ),
           }
         : state;
+
     case SKILLS_LEARNING_DELETE:
       return state._id === action.id
         ? { ...state, learningUsers: action.learningUsers }
         : state;
+
     default:
       return state;
   }

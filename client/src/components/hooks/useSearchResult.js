@@ -14,8 +14,6 @@ const useSearchResult = (skillName) => {
       );
     }
     skillSearchResult(skillName);
-
-    return () => setSearchResult("");
   });
 
   return searchResult;

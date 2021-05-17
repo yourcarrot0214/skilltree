@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Styled from "styled-components";
 import TagContainer from "../common/TagContainer.jsx";
 import Tag from "../common/Tag.jsx";
 import { useDispatch } from "react-redux";
-import { selectedSkill } from "../../_actions/skill_action.js";
+import { selectedSkill, selectedReset } from "../../_actions/skill_action.js";
 
 import useSearchResult from "../hooks/useSearchResult.js";
 import useSkills from "../hooks/useSkills.js";
@@ -46,6 +46,10 @@ const SkillSearchBar = (props) => {
     skillDispatch(skillId);
     setSkillName("");
   };
+
+  useEffect(() => {
+    return dispatch(selectedReset());
+  }, [dispatch]);
 
   return (
     <SkillSearchBarStyled>

@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   SKILL_GET_LIST,
   SKILL_SELECTED,
+  SKILLS_SELECTED_RESET,
   SKILLS_TECHNITIAN_ADD,
   SKILLS_LEARNING_ADD,
   SKILLS_TECHNITIAN_DELETE,
@@ -23,6 +24,12 @@ export function selectedSkill(id) {
   return {
     type: SKILL_SELECTED,
     id: id,
+  };
+}
+
+export function selectedReset() {
+  return {
+    type: SKILLS_SELECTED_RESET,
   };
 }
 

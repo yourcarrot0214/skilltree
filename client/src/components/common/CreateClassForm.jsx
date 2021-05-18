@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useSelector, shallowEqual } from "react-redux";
+
+import SkillSearchBar from "./SkillSearchBar.jsx";
+
+import useSkills from "../hooks/useSkills.js";
 
 const SubmitContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   width: 100%;
   height: 100vh;
 `;
@@ -17,21 +23,40 @@ const SubmitForm = styled.form`
 const CreateClassForm = () => {
   const [Title, setTitle] = useState("");
   const [Description, setDescription] = useState("");
+  const [Personnel, setPersonnel] = useState(0);
+
+  const userData = useSelector((state) => state.user.userData, shallowEqual);
+  const skills = useSkills();
+  const selectedSkills = skills.selectedSkills();
 
   const onCreateClass = (event) => {
     event.preventDefault();
-    console.log("Create class request.");
+
+    const requestBody = {
+      title: Title,
+      description: Description,
+      skills: selectedSkills,
+      personnel: Personnel,
+      leader: userData._id,
+    };
+    console.log(requestBody);
   };
 
   const onChangeValue = (event) => {
-    const value = event.currentTarget.name;
-    if (value === "title") setTitle(event.currentTarget.value);
-    else if (value === "description") setDescription(event.currentTarget.value);
+    const name = event.currentTarget.name;
+    const value = event.currentTarget.value;
+
+    if (name === "title") setTitle(value);
+    else if (name === "description") setDescription(value);
+    else if (name === "personnel") setPersonnel(Number(value));
   };
+
   return (
     <>
       <h3>Create Class Form</h3>
       <SubmitContainer>
+        <h3>프로젝트에 필요한 스킬을 선택해 주세요.</h3>
+        <SkillSearchBar selected={true} />
         <SubmitForm onSubmit={onCreateClass}>
           <label>프로젝트명</label>
           <input
@@ -46,6 +71,15 @@ const CreateClassForm = () => {
             value={Description}
             onChange={onChangeValue}
           />
+          <label>모집 인원 수</label>
+          <input
+            type='number'
+            name='personnel'
+            value={Personnel}
+            onChange={onChangeValue}
+            min='2'
+            max='10'
+          />
           <button type='submit'>프로젝트 생성하기</button>
         </SubmitForm>
       </SubmitContainer>
@@ -56,8 +90,5 @@ const CreateClassForm = () => {
 export default CreateClassForm;
 
 /*
-  CreateClassForm Component
-    - Project, study를 생성할 때 사용하는 재사용 가능한 컴포넌트
-    - 입력 양식을 만들고 입력 정보를 서버로 전송한다.
-    - reducer, action 생성. 
+  1. DetailPage에서 Modal 컴포넌트에 ModalMain에서 출력.
 */

@@ -22,6 +22,9 @@ const projectSchema = mongoose.Schema({
   status: {
     type: Boolean,
   },
+  personnel: {
+    type: Number,
+  },
 });
 
 const Project = mongoose.model("Project", projectSchema);

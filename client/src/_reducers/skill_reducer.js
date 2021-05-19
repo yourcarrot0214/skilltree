@@ -31,9 +31,7 @@ export default function skill(state = {}, action) {
       return state._id === action.payload.responseData._id
         ? {
             ...state,
-            technitianUsers: state.technitianUsers.concat(
-              action.payload.responseData.technitianUsers
-            ),
+            technitianUsers: action.payload.responseData.technitianUsers,
           }
         : state;
 
@@ -49,9 +47,7 @@ export default function skill(state = {}, action) {
       return state._id === action.payload.responseData._id
         ? {
             ...state,
-            learningUsers: state.learningUsers.concat(
-              action.payload.responseData.learningUsers
-            ),
+            learningUsers: action.payload.responseData.technitianUsers,
           }
         : state;
 

@@ -28,33 +28,36 @@ export default function skill(state = {}, action) {
       return { ...state, selected: false };
 
     case SKILLS_TECHNITIAN_ADD:
-      return state._id === action.payload._id
+      return state._id === action.payload.responseData._id
         ? {
             ...state,
             technitianUsers: state.technitianUsers.concat(
-              action.payload.technitianUsers
+              action.payload.responseData.technitianUsers
             ),
           }
         : state;
 
     case SKILLS_TECHNITIAN_DELETE:
-      return state._id === action.id
-        ? { ...state, technitianUsers: action.technitianUsers }
+      return state._id === action.payload.responseData._id
+        ? {
+            ...state,
+            technitianUsers: action.payload.responseData.technitianUsers,
+          }
         : state;
 
     case SKILLS_LEARNING_ADD:
-      return state._id === action.id
+      return state._id === action.payload.responseData._id
         ? {
             ...state,
             learningUsers: state.learningUsers.concat(
-              action.payload.learningUsers
+              action.payload.responseData.learningUsers
             ),
           }
         : state;
 
     case SKILLS_LEARNING_DELETE:
-      return state._id === action.id
-        ? { ...state, learningUsers: action.learningUsers }
+      return state._id === action.payload.responseData._id
+        ? { ...state, learningUsers: action.payload.responseData.learningUsers }
         : state;
 
     default:

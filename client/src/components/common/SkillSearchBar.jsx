@@ -35,14 +35,12 @@ const SkillSearchBar = (props) => {
     if (skillName === "") return;
     if (skillSearchResult === undefined) return;
     console.log("Skill Search Request.");
-    // props.skillSearchFunction(skillSearchResult._id)
     skillDispatch(skillSearchResult._id);
     setSkillName("");
   };
 
   const onClickFunction = (e) => {
     const skillId = e.target.id;
-    // props.clickFunction
     skillDispatch(skillId);
     setSkillName("");
   };
@@ -68,7 +66,6 @@ const SkillSearchBar = (props) => {
         <>
           <TagContainer
             skills={selectedSkills}
-            // onClickFunction={onClickFunction}
             onClickFunction={
               props.onClickFunction ? props.onClickFunction : onClickFunction
             }
@@ -76,7 +73,6 @@ const SkillSearchBar = (props) => {
           />
           <TagContainer
             skills={unSelectedSkills}
-            // onClickFunction={onClickFunction}
             onClickFunction={
               props.onClickFunction ? props.onClickFunction : onClickFunction
             }
@@ -87,7 +83,6 @@ const SkillSearchBar = (props) => {
         <Tag
           skillInfo={skillSearchResult}
           key={skillSearchResult.key}
-          // onClickFunction={onClickFunction}
           onClickFunction={
             props.onClickFunction ? props.onClickFunction : onClickFunction
           }

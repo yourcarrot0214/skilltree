@@ -50,8 +50,12 @@ const UserProfileCard = () => {
       return alert("이미 Tech에 등록된 스킬입니다.");
     } else {
       const requestBody = skills.find((skill) => skill._id === skillId);
-      dispatch(addTechnitian(requestBody));
-      dispatch(addUserTech(requestBody));
+      dispatch(addTechnitian(requestBody)).then((response) =>
+        console.log("addTechnitian response : ", response)
+      );
+      dispatch(addUserTech(requestBody)).then((response) =>
+        console.log("addUserTech response : ", response)
+      );
       dispatch(selectedSkill(skillId));
       setSkillName("");
       alert("스킬이 등록되었습니다.");
@@ -64,8 +68,12 @@ const UserProfileCard = () => {
       return alert("이미 learn에 등록된 스킬입니다.");
     } else {
       const requestBody = skills.find((skill) => skill._id === skillId);
-      dispatch(addLearningUser(requestBody));
-      dispatch(addUserLearn(requestBody));
+      dispatch(addLearningUser(requestBody)).then((response) =>
+        console.log("addLearningUser response : ", response)
+      );
+      dispatch(addUserLearn(requestBody)).then((response) =>
+        console.log("addUserLearn response : ", response)
+      );
       dispatch(selectedSkill(skillId));
       setSkillName("");
       alert("스킬이 등록되었습니다.");

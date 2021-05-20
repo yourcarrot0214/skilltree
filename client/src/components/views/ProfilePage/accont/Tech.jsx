@@ -14,6 +14,7 @@ const Tech = ({ userData }) => {
   const onClickFunction = (e) => {
     setSkillId(e.target.id);
     setModalOpen(!ModalOpen);
+    console.log(e.target.id);
   };
 
   const onDeleteSkill = (e) => {

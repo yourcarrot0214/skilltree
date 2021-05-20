@@ -219,6 +219,16 @@ app.post("/api/skills/add/technitianUsers", auth, (req, res) => {
   });
 });
 
+/*
+  technitianUsers 정보가 모두 지워짐.
+  요청된 정보의 유저값만 지워지는게 아니라 모두 다 지워짐.
+  updateData 로직은 문제가 없는 것 같은데,
+  user._id !== requestUserId
+  이 부분이 인식이 안되는 것 같음.
+  user._id, requestUserId를 다시 한 번 검증하고,
+  findOneAndDelete 등 다른 메소드가 있는지 알아볼 것.
+*/
+
 app.post("/api/skills/delete/technitianUsers", auth, (req, res) => {
   const requestSkillId = req.body.id;
   const requestUserId = req.user._id;
@@ -226,11 +236,14 @@ app.post("/api/skills/delete/technitianUsers", auth, (req, res) => {
   Skills.findOne({ _id: requestSkillId }, (err, skill) => {
     if (err) return res.json(findOneError(SKILLS_MODEL, err));
     if (!skill) return res.json(skillNotFound());
-
+    console.log("findOne skill : ", skill);
     const updateData = skill.technitianUsers.filter((user) => {
-      user._id !== requestUserId;
+      console.log("user._id : ", user._id);
+      console.log("requestUserId : ", requestUserId);
+      console.log("is equal? : ", user._id === requestUserId);
+      return user._id !== requestUserId;
     });
-
+    console.log("updateData : ", updateData);
     Skills.findOneAndUpdate(
       { _id: skill._id },
       {
@@ -238,6 +251,7 @@ app.post("/api/skills/delete/technitianUsers", auth, (req, res) => {
       },
       { new: true },
       (err, skill) => {
+        console.log("afterUpdateSkill : ", skill);
         if (err) return res.json(findOneAndUpdateError(SKILLS_MODEL, err));
         if (!skill) return res.json(skillNotFoundAfterUpdate());
 
@@ -283,11 +297,11 @@ app.post("/api/skills/delete/learningUsers", auth, (req, res) => {
   Skills.findOne({ _id: requestSkillId }, (err, skill) => {
     if (err) return res.json(findOneError(SKILLS_MODEL, err));
     if (!skill) return res.json(skillNotFound());
-
+    console.log("findOne Skill : ", skill);
     const updateData = skill.learningUsers.filter((user) => {
       user._id !== requestUserId;
     });
-
+    console.log("updateData : ", updateData);
     Skills.findOneAndUpdate(
       { _id: skill._id },
       {
@@ -295,6 +309,7 @@ app.post("/api/skills/delete/learningUsers", auth, (req, res) => {
       },
       { new: true },
       (err, skill) => {
+        console.log("afterUpdateSkill : ", skill);
         if (err) return res.json(findOneAndUpdateError(SKILLS_MODEL, err));
         if (!skill) return res.json(skillNotFoundAfterUpdate());
 

@@ -19,4 +19,10 @@ const TagContainerStyled = Styled.div`
     border: 1px solid black;
 `;
 
-export { TagStyled, TagContainerStyled };
+const SkillSearchBarStyled = Styled.div`
+  padding: 1rem 1rem;
+  width: 90%;
+  margin: 0 auto;
+`;
+
+export { TagStyled, TagContainerStyled, SkillSearchBarStyled };

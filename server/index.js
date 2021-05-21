@@ -236,18 +236,17 @@ app.post("/api/skills/delete/technitianUsers", auth, (req, res) => {
   Skills.findOne({ _id: requestSkillId }, (err, skill) => {
     if (err) return res.json(findOneError(SKILLS_MODEL, err));
     if (!skill) return res.json(skillNotFound());
-    console.log("findOne skill : ", skill);
-    const updateData = skill.technitianUsers.filter((user) => {
-      console.log("user._id : ", user._id);
-      console.log("requestUserId : ", requestUserId);
-      console.log("is equal? : ", user._id === requestUserId);
-      return user._id !== requestUserId;
-    });
+    console.log("findOne skill : ", skill.technitianUsers);
+    const updateData = skill.technitianUsers.filter(
+      (user) => user._id !== requestUserId
+    );
     console.log("updateData : ", updateData);
     Skills.findOneAndUpdate(
       { _id: skill._id },
       {
-        technitianUsers: updateData,
+        technitianUsers: skill.technitianUsers.filter(
+          (user) => user._id !== req.user._id
+        ),
       },
       { new: true },
       (err, skill) => {

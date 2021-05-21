@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Styled from "styled-components";
+import { SkillSearchBarStyled } from "./styles/styled.js";
 import TagContainer from "../common/TagContainer.jsx";
 import Tag from "../common/Tag.jsx";
 import { useDispatch } from "react-redux";
@@ -7,13 +7,6 @@ import { selectedSkill, selectedReset } from "../../_actions/skill_action.js";
 
 import useSearchResult from "../hooks/useSearchResult.js";
 import useSkills from "../hooks/useSkills.js";
-
-// styles > styled.js로 이동
-const SkillSearchBarStyled = Styled.div`
-  padding: 1rem 1rem;
-  width: 90%;
-  margin: 0 auto;
-`;
 
 const SkillSearchBar = (props) => {
   // props list :: skillSearchFunction, onClickFunction

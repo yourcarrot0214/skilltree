@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
 import user from "./user_reducer";
 import skills from "./skills_reducer";
+import searchResult from "./searchResult_reducer";
 
 const rootReducer = combineReducers({
   user,
   skills,
+  searchResult,
 });
 
 export default rootReducer;

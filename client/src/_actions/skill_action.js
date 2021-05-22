@@ -7,6 +7,7 @@ import {
   SKILLS_LEARNING_ADD,
   SKILLS_TECHNITIAN_DELETE,
   SKILLS_LEARNING_DELETE,
+  SKILL_SEARCH,
 } from "./skill_types.js";
 
 export function getSkillsDB() {
@@ -83,5 +84,15 @@ export function deleteLearningUser(requestBody) {
   return {
     type: SKILLS_LEARNING_DELETE,
     payload: request,
+  };
+}
+
+export function searchRequest(skillName) {
+  const request = axios
+    .post("/api/skills/search", skillName)
+    .then((response) => response.data);
+  return {
+    type: SKILL_SEARCH,
+    result: request,
   };
 }

@@ -8,6 +8,7 @@ import {
   SKILLS_TECHNITIAN_DELETE,
   SKILLS_LEARNING_DELETE,
   SKILL_SEARCH,
+  SKILL_SEARCH_RESET,
 } from "./skill_types.js";
 
 export function getSkillsDB() {
@@ -87,12 +88,16 @@ export function deleteLearningUser(requestBody) {
   };
 }
 
-export function searchRequest(skillName) {
-  const request = axios
-    .post("/api/skills/search", skillName)
-    .then((response) => response.data);
+export function searchRequest(skill) {
   return {
     type: SKILL_SEARCH,
-    result: request,
+    result: skill,
+  };
+}
+
+export function searchResultReset() {
+  return {
+    type: SKILL_SEARCH_RESET,
+    result: {},
   };
 }

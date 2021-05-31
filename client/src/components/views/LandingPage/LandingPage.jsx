@@ -2,7 +2,6 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 
 import Test from "../../../_reducers/Test.jsx";
-
 import Header from "./Header.jsx";
 import SkillSearchBar from "../../common/SkillSearchBar.jsx";
 

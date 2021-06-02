@@ -286,14 +286,13 @@ app.post("/api/skills/delete/learningUsers", auth, (req, res) => {
     if (err) return res.json(findOneError(SKILLS_MODEL, err));
     if (!skill) return res.json(skillNotFound());
     console.log("findOne Skill : ", skill);
-    const updateData = skill.learningUsers.filter((user) => {
-      String(user._id) !== String(requestUserId);
-    });
-    console.log("updateData : ", updateData);
+
     Skills.findOneAndUpdate(
       { _id: skill._id },
       {
-        learningUsers: updateData,
+        learningUsers: skill.learningUsers.filter(
+          (user) => String(user._id) !== String(requestUserId)
+        ),
       },
       { new: true },
       (err, skill) => {

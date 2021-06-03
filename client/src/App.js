@@ -19,9 +19,10 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getSkillsDB());
-    // dispatch(getProjectList());
-    // dispatch(getStudyList());
+    dispatch(getProjectList());
+    dispatch(getStudyList());
   });
+
   return (
     <>
       <Router>

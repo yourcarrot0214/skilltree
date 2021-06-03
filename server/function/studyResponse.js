@@ -19,7 +19,7 @@ const getStudyListError = (err) => ({
 const getStudyListSuccess = (responseData) => ({
   success: true,
   message: "DB 스터디 정보를 얻는데 성공했습니다.",
-  docs: response.data,
+  docs: responseData,
 });
 
 module.exports = {

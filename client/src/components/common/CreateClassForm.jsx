@@ -30,7 +30,7 @@ const CreateClassForm = () => {
 
   const userData = useSelector((state) => state.user.userData, shallowEqual);
   const skills = useSkills();
-  const selectedSkills = skills.selectedSkills();
+  const selectedSkills = skills.filter((skill) => skill.selected);
 
   const onCreateClass = (event) => {
     event.preventDefault();

@@ -16,10 +16,10 @@ const getProjectListError = (err) => ({
   err,
 });
 
-const getProjectListSuccess = (respnoseData) => ({
+const getProjectListSuccess = (responseData) => ({
   success: true,
   message: "DB 프로젝트 정보를 얻는데 성공했습니다.",
-  docs: response.data,
+  docs: responseData,
 });
 
 module.exports = {

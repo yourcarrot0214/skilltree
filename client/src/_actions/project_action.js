@@ -16,7 +16,7 @@ export function createProject(requestBody) {
     .post("/api/project/create", requestBody)
     .then((response) => {
       console.log(response.data);
-      return response.data;
+      return response.data.docs;
     });
   return {
     type: PROJECT_CREATE,

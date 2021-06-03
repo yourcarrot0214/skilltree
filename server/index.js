@@ -6,8 +6,15 @@ const CONFIG = require("./config/key.js");
 
 const { User } = require("./models/User.js");
 const { Skills } = require("./models/Skills");
+const { Project } = require("./models/Project.js");
+const { Study } = require("./models/Study.js");
 const { auth } = require("./middleware/auth.js");
-const { SKILLS_MODEL, USER_MODEL } = require("./config/types.js");
+const {
+  SKILLS_MODEL,
+  USER_MODEL,
+  PROJECT_MODEL,
+  STUDY_MODEL,
+} = require("./config/types.js");
 
 const {
   saveError,
@@ -37,6 +44,20 @@ const {
   skillNotFoundAfterUpdate,
   skillUserUpdateSuccess,
 } = require("./function/skillsResponse.js");
+
+const {
+  projectSaveError,
+  projectSaveSuccess,
+  getProjectListError,
+  getProjectListSuccess,
+} = require("./function/projectResponse.js");
+
+const {
+  studySaveError,
+  studySaveSuccess,
+  getStudyListError,
+  getStudyListSuccess,
+} = require("./function/studyResponse.js");
 
 app.use(express.json());
 app.use(cookieParser());
@@ -72,6 +93,20 @@ app.get("/api/skills/list", (req, res) => {
   Skills.find({}, (err, docs) => {
     if (err) return res.json(skillListError(err));
     return res.status(200).json(skillListSuccess(docs));
+  });
+});
+
+app.get("/api/project/get/list", (req, res) => {
+  Project.find({}, (err, docs) => {
+    if (err) return res.json(getProjectListError(err));
+    return res.status(200).json(getProjectListSuccess(docs));
+  });
+});
+
+app.get("/api/study/get/list", (req, res) => {
+  Study.find({}, (err, docs) => {
+    if (err) return res.json(getStudyListError(err));
+    return res.status(200).json(getStudyListSuccess(docs));
   });
 });
 

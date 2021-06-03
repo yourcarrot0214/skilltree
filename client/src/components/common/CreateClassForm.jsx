@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useSelector, shallowEqual } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { createProject } from "../../_actions/project_action.js";
+import { createStudy } from "../../_actions/study_action.js";
 
 import SkillSearchBar from "./SkillSearchBar.jsx";
 
@@ -21,6 +23,7 @@ const SubmitForm = styled.form`
 `;
 
 const CreateClassForm = () => {
+  const dispatch = useDispatch();
   const [Title, setTitle] = useState("");
   const [Description, setDescription] = useState("");
   const [Personnel, setPersonnel] = useState(0);
@@ -40,6 +43,8 @@ const CreateClassForm = () => {
       leader: userData._id,
     };
     console.log(requestBody);
+    dispatch(createProject(requestBody));
+    dispatch(createStudy(requestBody));
   };
 
   const onChangeValue = (event) => {

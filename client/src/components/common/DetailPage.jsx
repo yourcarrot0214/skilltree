@@ -1,13 +1,7 @@
 import React from "react";
 import CreateClassForm from "./CreateClassForm.jsx";
 
-// import SkillSearchBar from "./SkillSearchBar.jsx";
-
 const DetailPage = () => {
-  // create project form => CreateClassForm
-  // project, study 정보를 db로부터 받아오는 axios, dispatch 기능
-  // 받아온 정보를 화면에 출력하는 jsx, styled
-
   return (
     <>
       <h3>Detail Page</h3>

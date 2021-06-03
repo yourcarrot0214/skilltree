@@ -5,7 +5,7 @@ export default function project(state = [], action) {
     case PROJECT_GET_LIST:
       return action.payload;
     case PROJECT_CREATE:
-      return [...state, action.payload];
+      return [...state, action.payload.responseData];
     default:
       return state;
   }

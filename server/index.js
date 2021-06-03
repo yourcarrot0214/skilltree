@@ -96,6 +96,22 @@ app.get("/api/skills/list", (req, res) => {
   });
 });
 
+app.post("/api/project/create", (req, res) => {
+  const project = new Project(req.body);
+  project.save((err, projectInfo) => {
+    if (err) return res.json(projectSaveError(err));
+    return res.status(200).json(projectSaveSuccess(projectInfo));
+  });
+});
+
+app.post("/api/study/create", (req, res) => {
+  const study = new Study(req.body);
+  study.save((err, studyInfo) => {
+    if (err) return res.json(studySaveError(err));
+    return res.status(200).json(studySaveSuccess(studyInfo));
+  });
+});
+
 app.get("/api/project/get/list", (req, res) => {
   Project.find({}, (err, docs) => {
     if (err) return res.json(getProjectListError(err));

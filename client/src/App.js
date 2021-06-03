@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getSkillsDB } from "./_actions/skill_action.js";
+import { getProjectList } from "./_actions/project_action.js";
+import { getStudyList } from "./_actions/study_action.js";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LandingPage from "./components/views/LandingPage/LandingPage.jsx";
 import LoginPage from "./components/views/LoginPage/LoginPage.jsx";
@@ -17,6 +19,8 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getSkillsDB());
+    // dispatch(getProjectList());
+    // dispatch(getStudyList());
   });
   return (
     <>

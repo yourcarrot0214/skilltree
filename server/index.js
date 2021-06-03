@@ -222,14 +222,11 @@ app.post("/api/skills/add/technitianUsers", auth, (req, res) => {
 app.post("/api/skills/delete/technitianUsers", auth, (req, res) => {
   const requestSkillId = req.body.id;
   const requestUserId = req.user._id;
-  console.log("requestSkillId : ", requestSkillId);
-  console.log("requestUserId : ", requestUserId);
 
   Skills.findOne({ _id: requestSkillId }, (err, skill) => {
     if (err) return res.json(findOneError(SKILLS_MODEL, err));
     if (!skill) return res.json(skillNotFound());
 
-    console.log("findOne skill : ", skill.technitianUsers);
     Skills.findOneAndUpdate(
       { _id: skill._id },
       {
@@ -239,7 +236,6 @@ app.post("/api/skills/delete/technitianUsers", auth, (req, res) => {
       },
       { new: true },
       (err, skill) => {
-        console.log("afterUpdateSkill : ", skill);
         if (err) return res.json(findOneAndUpdateError(SKILLS_MODEL, err));
         if (!skill) return res.json(skillNotFoundAfterUpdate());
 
@@ -285,7 +281,6 @@ app.post("/api/skills/delete/learningUsers", auth, (req, res) => {
   Skills.findOne({ _id: requestSkillId }, (err, skill) => {
     if (err) return res.json(findOneError(SKILLS_MODEL, err));
     if (!skill) return res.json(skillNotFound());
-    console.log("findOne Skill : ", skill);
 
     Skills.findOneAndUpdate(
       { _id: skill._id },
@@ -296,7 +291,6 @@ app.post("/api/skills/delete/learningUsers", auth, (req, res) => {
       },
       { new: true },
       (err, skill) => {
-        console.log("afterUpdateSkill : ", skill);
         if (err) return res.json(findOneAndUpdateError(SKILLS_MODEL, err));
         if (!skill) return res.json(skillNotFoundAfterUpdate());
 

@@ -1,6 +1,6 @@
 import { PROJECT_GET_LIST, PROJECT_CREATE } from "../_actions/project_types.js";
 
-export default function projects(state = [], action) {
+export default function project(state = [], action) {
   switch (action.type) {
     case PROJECT_GET_LIST:
       return action.payload;

@@ -14,13 +14,14 @@ const projectSchema = mongoose.Schema({
     type: Array,
   },
   leader: {
-    type: Object,
+    type: String,
   },
   volunteer: {
     type: Array,
   },
   status: {
     type: Boolean,
+    default: false,
   },
   personnel: {
     type: Number,
@@ -40,7 +41,7 @@ module.exports = { Project };
     - description : 프로젝트 설명
     - skills : 프로젝트에서 사용하는 스킬 목록. Array
     - members : 프로젝트에 참가중인 유저 목록. Array
-    - leader : 프로젝트를 개설한 유저. Object
+    - leader : 프로젝트를 개설한 유저. String => user._id
     - volunteer : 프로젝트에 지원한 유저 목록. Array
     - status : 프로젝트 상태. true = 모집중, false = 진행중
 

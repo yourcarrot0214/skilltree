@@ -14,7 +14,10 @@ export function getStudyList() {
 export function createStudy(requestBody) {
   const request = axios
     .post("/api/study/create", requestBody)
-    .then((response) => response.data);
+    .then((response) => {
+      console.log(response.data);
+      return response.data;
+    });
   return {
     type: STUDY_CREATE,
     payload: request,

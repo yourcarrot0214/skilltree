@@ -12,12 +12,14 @@ const studySchema = mongoose.Schema({
   },
   members: {
     type: Array,
+    default: [],
   },
   leader: {
     type: String,
   },
   volunteer: {
     type: Array,
+    default: [],
   },
   status: {
     type: Boolean,

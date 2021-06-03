@@ -1,1 +1,2 @@
 export const PROJECT_GET_LIST = "PROJECT_GET_LIST";
+export const PROJECT_CREATE = "PROJECT_CREATE";

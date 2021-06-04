@@ -36,6 +36,38 @@ const userSchema = mongoose.Schema({
     type: Array,
     default: [],
   },
+  project: {
+    type: Object,
+    default: {},
+    apply: {
+      type: Array,
+      default: [],
+    },
+    member: {
+      type: Array,
+      default: [],
+    },
+    leader: {
+      type: Array,
+      default: [],
+    },
+  },
+  study: {
+    type: Object,
+    default: {},
+    apply: {
+      type: Array,
+      default: [],
+    },
+    member: {
+      type: Array,
+      default: [],
+    },
+    leader: {
+      type: Array,
+      default: [],
+    },
+  },
 });
 
 userSchema.pre("save", function (next) {

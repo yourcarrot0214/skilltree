@@ -38,34 +38,36 @@ const userSchema = mongoose.Schema({
   },
   project: {
     type: Object,
-    default: {},
-    apply: {
-      type: Array,
-      default: [],
-    },
-    member: {
-      type: Array,
-      default: [],
-    },
-    leader: {
-      type: Array,
-      default: [],
+    default: {
+      apply: {
+        type: Array,
+        default: [],
+      },
+      member: {
+        type: Array,
+        default: [],
+      },
+      leader: {
+        type: Array,
+        default: [],
+      },
     },
   },
   study: {
     type: Object,
-    default: {},
-    apply: {
-      type: Array,
-      default: [],
-    },
-    member: {
-      type: Array,
-      default: [],
-    },
-    leader: {
-      type: Array,
-      default: [],
+    default: {
+      apply: {
+        type: Array,
+        default: [],
+      },
+      member: {
+        type: Array,
+        default: [],
+      },
+      leader: {
+        type: Array,
+        default: [],
+      },
     },
   },
 });

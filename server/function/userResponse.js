@@ -64,6 +64,8 @@ const authSuccess = (requestUserData) => ({
   image: requestUserData.image,
   tech: requestUserData.tech,
   learn: requestUserData.learn,
+  project: requestUserData.project,
+  study: requestUserData.study,
 });
 
 const encryptionError = (err) => ({

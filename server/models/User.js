@@ -37,38 +37,14 @@ const userSchema = mongoose.Schema({
     default: [],
   },
   project: {
-    type: Object,
-    default: {
-      apply: {
-        type: Array,
-        default: [],
-      },
-      member: {
-        type: Array,
-        default: [],
-      },
-      leader: {
-        type: Array,
-        default: [],
-      },
-    },
+    apply: [],
+    member: [],
+    leader: [],
   },
   study: {
-    type: Object,
-    default: {
-      apply: {
-        type: Array,
-        default: [],
-      },
-      member: {
-        type: Array,
-        default: [],
-      },
-      leader: {
-        type: Array,
-        default: [],
-      },
-    },
+    apply: [],
+    member: [],
+    leader: [],
   },
 });
 

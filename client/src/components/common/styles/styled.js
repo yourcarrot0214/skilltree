@@ -25,4 +25,49 @@ const SkillSearchBarStyled = Styled.div`
   margin: 0 auto;
 `;
 
-export { TagStyled, TagContainerStyled, SkillSearchBarStyled };
+const ClassCardContainer = Styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  border: 1px solid black;
+`;
+
+const ClassCardThumbNail = Styled.div`
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-right: 1rem;
+`;
+
+const ClassTitle = Styled.h3`
+
+`;
+
+const ClassDescription = Styled.p`
+  color: gray;
+`;
+
+const ClassLeader = Styled.div`
+  color: gray;
+`;
+
+const ClassPersonnel = Styled.div`
+  color: gray;
+`;
+
+const ClassStatus = Styled.div`
+  color: gray;
+`;
+
+export {
+  TagStyled,
+  TagContainerStyled,
+  SkillSearchBarStyled,
+  ClassCardContainer,
+  ClassCardThumbNail,
+  ClassTitle,
+  ClassDescription,
+  ClassLeader,
+  ClassPersonnel,
+  ClassStatus,
+};

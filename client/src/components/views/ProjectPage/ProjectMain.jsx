@@ -1,13 +1,16 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { useSelector, shallowEqual } from "react-redux";
 
 import DetailPage from "../../common/DetailPage.jsx";
 
 const ProjectMain = () => {
+  const projectList = useSelector((state) => state.project, shallowEqual);
+  console.log(projectList);
   return (
     <>
       <h3>Project Main Page</h3>
-      <DetailPage />
+      <DetailPage classList={projectList} />
     </>
   );
 };

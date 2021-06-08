@@ -20,9 +20,11 @@ const ClassCard = (props) => {
     membersLength,
     status,
   } = props;
+
   const onClickFunction = () => {
     console.log("ClassCard onClickFunction.");
   };
+
   return (
     <>
       <ClassCardThumbNail id={id}>

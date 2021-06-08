@@ -81,6 +81,14 @@ app.post("/api/users/register", (req, res) => {
   });
 });
 
+app.post("/api/users/get/name", (req, res) => {
+  console.log(req.body._id);
+  User.findOne({ _id: req.body._id }, (err, userInfo) => {
+    if (err) res.json({ success: false, message: "findOne err", err });
+    return res.status(200).json({ success: true, userName: userInfo.name });
+  });
+});
+
 app.post("/api/skills/upload", (req, res) => {
   const skills = new Skills(req.body);
   skills.save((err, skillInfo) => {

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import {
   ClassCardThumbNail,
   ClassTitle,
@@ -21,9 +22,17 @@ const ClassCard = (props) => {
     status,
   } = props;
 
+  const [leaderName, setLeaderName] = useState("DB 로딩중!");
+
   const onClickFunction = () => {
     console.log("ClassCard onClickFunction.");
   };
+
+  useEffect(() => {
+    axios
+      .post("/api/users/get/name", { _id: leader })
+      .then((response) => setLeaderName(response.data.userName));
+  });
 
   return (
     <>
@@ -35,7 +44,7 @@ const ClassCard = (props) => {
           selected={true}
           onClickFunction={onClickFunction}
         />
-        <ClassLeader>{`리더 : ${leader}`}</ClassLeader>
+        <ClassLeader>{`리더 : ${leaderName}`}</ClassLeader>
         <ClassPersonnel>{`모집인원 : ${membersLength} / ${personnel}`}</ClassPersonnel>
         <ClassStatus>{status ? "진행중" : "모집중"}</ClassStatus>
       </ClassCardThumbNail>
@@ -44,12 +53,3 @@ const ClassCard = (props) => {
 };
 
 export default ClassCard;
-
-/*
-  ClassCard
-  Project, Study 정보를 썸네일 형식으로 출력하는 컴포넌트.
-  부모 컴포너트로부터 필요한 props를 전달받아 출력한다.
-  onClickFunction으로 해당 Project, Study 정보를 modal popup으로 출력한다.
-
-
-*/

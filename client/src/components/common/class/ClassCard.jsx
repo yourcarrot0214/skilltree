@@ -7,8 +7,9 @@ import {
   ClassLeader,
   ClassPersonnel,
   ClassStatus,
-} from "./styles/styled.js";
-import TagContainer from "./TagContainer.jsx";
+} from "../styles/styled.js";
+import TagContainer from "../TagContainer.jsx";
+import Modal from "../../views/ProfilePage/accont/Modal.jsx";
 
 const ClassCard = (props) => {
   const {
@@ -23,6 +24,9 @@ const ClassCard = (props) => {
   } = props;
 
   const [leaderName, setLeaderName] = useState("DB 로딩중!");
+  const [ModalOpen, setModalOpen] = useState(false);
+
+  const onModalPopup = () => setModalOpen(!ModalOpen);
 
   const onClickFunction = () => {
     console.log("ClassCard onClickFunction.");
@@ -36,7 +40,7 @@ const ClassCard = (props) => {
 
   return (
     <>
-      <ClassCardThumbNail id={id}>
+      <ClassCardThumbNail id={id} onClick={onModalPopup}>
         <ClassTitle>{title}</ClassTitle>
         <ClassDescription>{description}</ClassDescription>
         <TagContainer
@@ -48,6 +52,13 @@ const ClassCard = (props) => {
         <ClassPersonnel>{`모집인원 : ${membersLength} / ${personnel}`}</ClassPersonnel>
         <ClassStatus>{status ? "진행중" : "모집중"}</ClassStatus>
       </ClassCardThumbNail>
+      <Modal
+        onClickFunction={onModalPopup}
+        header='Class 상세정보'
+        openModal={ModalOpen}
+      >
+        <h3>Modal Test</h3>
+      </Modal>
     </>
   );
 };

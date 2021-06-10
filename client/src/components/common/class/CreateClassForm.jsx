@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { createProject } from "../../_actions/project_action.js";
-import { createStudy } from "../../_actions/study_action.js";
+import { createProject } from "../../../_actions/project_action.js";
+import { createStudy } from "../../../_actions/study_action.js";
 
-import SkillSearchBar from "./SkillSearchBar.jsx";
+import SkillSearchBar from "../SkillSearchBar.jsx";
 
-import useSkills from "../hooks/useSkills.js";
+import useSkills from "../../hooks/useSkills.js";
 
 const SubmitContainer = styled.div`
   display: flex;

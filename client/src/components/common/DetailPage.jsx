@@ -1,6 +1,6 @@
 import React from "react";
-import CreateClassForm from "./CreateClassForm.jsx";
-import ClassCard from "./ClassCard.jsx";
+import CreateClassForm from "./class/CreateClassForm.jsx";
+import ClassCard from "./class/ClassCard.jsx";
 import { ClassCardContainer } from "./styles/styled.js";
 
 const DetailPage = ({ classList }) => {

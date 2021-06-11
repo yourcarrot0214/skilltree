@@ -80,6 +80,20 @@ const ClassInfoStyled = Styled.div`
   }
 `;
 
+const CreateClassButton = Styled.button`
+  position: fixed;
+  top: 5rem;
+  right: 2rem;
+  z-index: 99;
+  width: 130px;
+  height: 30px;
+  font-weight: bold;
+  background-color: #37b24d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+`;
+
 export {
   TagStyled,
   TagContainerStyled,
@@ -92,4 +106,5 @@ export {
   ClassPersonnel,
   ClassStatus,
   ClassInfoStyled,
+  CreateClassButton,
 };

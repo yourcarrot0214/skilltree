@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CreateClassForm from "./class/CreateClassForm.jsx";
 import ClassCard from "./class/ClassCard.jsx";
-import { ClassCardContainer } from "./styles/styled.js";
+import { ClassCardContainer, CreateClassButton } from "./styles/styled.js";
 import Modal from "../views/ProfilePage/accont/Modal.jsx";
 
 const DetailPage = ({ classList, location }) => {
@@ -13,7 +13,9 @@ const DetailPage = ({ classList, location }) => {
   return (
     <>
       <h3>Detail Page</h3>
-      <button onClick={onModalPopup}>{`${location} 생성하기`}</button>
+      <CreateClassButton
+        onClick={onModalPopup}
+      >{`${location} 생성하기`}</CreateClassButton>
       <ClassCardContainer>
         {classList.map((post) => (
           <ClassCard

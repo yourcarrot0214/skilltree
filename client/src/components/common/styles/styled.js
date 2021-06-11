@@ -59,6 +59,25 @@ const ClassStatus = Styled.div`
   color: gray;
 `;
 
+const ClassInfoStyled = Styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  margin: 6px 0;
+  span {
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 4px;
+    color: #adb5bd;
+  }
+  p {
+    margin-top: 0;
+    margin-bottom: 6px;
+    color: white;
+  }
+`;
+
 export {
   TagStyled,
   TagContainerStyled,
@@ -70,4 +89,5 @@ export {
   ClassLeader,
   ClassPersonnel,
   ClassStatus,
+  ClassInfoStyled,
 };

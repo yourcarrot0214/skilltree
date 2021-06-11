@@ -72,7 +72,16 @@ const ClassCard = (props) => {
         header='Class 상세정보'
         openModal={ModalOpen}
       >
-        <ClassInfo userData={userData} />
+        <ClassInfo
+          id={id}
+          title={title}
+          description={description}
+          skills={skills}
+          leaderName={leaderName}
+          personnel={personnel}
+          members={members}
+          status={status}
+        />
         {role === "leader" && <h3>LEADER</h3>}
         {role === "member" && <h3>MEMBER</h3>}
         {role === "user" && <h3>USER</h3>}

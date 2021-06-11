@@ -28,6 +28,7 @@ const DetailPage = ({ classList, location }) => {
             personnel={post.personnel}
             members={post.members}
             status={post.status}
+            loction={location}
           />
         ))}
       </ClassCardContainer>
@@ -36,7 +37,11 @@ const DetailPage = ({ classList, location }) => {
         onClickFunction={onModalPopup}
         header={`${location} 생성하기`}
       >
-        <CreateClassForm location={location} />
+        <CreateClassForm
+          location={location}
+          formStatus='create'
+          submitAddFunction={onModalPopup}
+        />
       </Modal>
     </>
   );

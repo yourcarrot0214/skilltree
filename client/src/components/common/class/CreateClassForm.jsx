@@ -20,11 +20,13 @@ const SubmitForm = styled.form`
   flex-direction: column;
 `;
 
-const CreateClassForm = ({ location }) => {
+const CreateClassForm = (props) => {
+  const { location } = props;
   const dispatch = useDispatch();
-  const [Title, setTitle] = useState("");
-  const [Description, setDescription] = useState("");
-  const [Personnel, setPersonnel] = useState(0);
+  const [Title, setTitle] = useState(props.title || "");
+  const [Description, setDescription] = useState(props.description || "");
+  const [Personnel, setPersonnel] = useState(props.personnel || 0);
+  const [formStatus, setFormStatus] = useState(props.formStatus);
 
   const userData = useSelector((state) => state.user.userData, shallowEqual);
   const skills = useSkills();
@@ -41,12 +43,20 @@ const CreateClassForm = ({ location }) => {
       leader: userData._id,
     };
     console.log(requestBody);
-    if (location === "Project") {
-      dispatch(createProject(requestBody));
-    } else if (location === "Study") {
-      dispatch(createStudy(requestBody));
-    } else {
-      alert("location props가 존재하지 않습니다.");
+
+    if (formStatus === "create") {
+      if (location === "Project") {
+        dispatch(createProject(requestBody));
+      } else if (location === "Study") {
+        dispatch(createStudy(requestBody));
+      } else {
+        alert("location props가 존재하지 않습니다.");
+      }
+      props.submitAddFunction();
+    } else if (formStatus === "update") {
+      console.log("Class update dispatch.");
+      alert(`${location} 정보가 업데이트 되었습니다.`);
+      props.submitAddFunction();
     }
   };
 
@@ -63,7 +73,7 @@ const CreateClassForm = ({ location }) => {
     <>
       <SubmitContainer>
         <h3>프로젝트에 필요한 스킬을 선택해 주세요.</h3>
-        <SkillSearchBar selected={true} />
+        <SkillSearchBar selected={true} selectedSkills={props.selectedSkills} />
         <SubmitForm onSubmit={onCreateClass}>
           <label>프로젝트명</label>
           <input

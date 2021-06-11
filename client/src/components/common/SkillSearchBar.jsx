@@ -20,7 +20,8 @@ const SkillSearchBar = (props) => {
   const skills = useSkills();
   // const selectedSkills = skills.selectedSkills();
   // const unSelectedSkills = skills.unSelectedSkills();
-  const selectedSkills = skills.filter((skill) => skill.selected);
+  const selectedSkills =
+    props.selectedSkills || skills.filter((skill) => skill.selected);
   const unSelectedSkills = skills.filter((skill) => !skill.selected);
 
   const onChangeValue = (event) => {

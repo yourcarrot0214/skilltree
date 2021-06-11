@@ -13,6 +13,7 @@ import TagContainer from "../TagContainer.jsx";
 import Modal from "../../views/ProfilePage/accont/Modal.jsx";
 import ClassInfo from "./ClassInfo.jsx";
 import LeaderBoard from "./LeaderBoard.jsx";
+import CreateClassForm from "./CreateClassForm.jsx";
 
 const ClassCard = (props) => {
   const {
@@ -24,6 +25,7 @@ const ClassCard = (props) => {
     personnel,
     members,
     status,
+    location,
   } = props;
   const userData = useSelector((state) => state.user.userData, shallowEqual);
 
@@ -41,8 +43,10 @@ const ClassCard = (props) => {
   const [leaderId, setLeaderId] = useState(leader);
   const [ModalOpen, setModalOpen] = useState(false);
   const [role, setRole] = useState(roleValidation(userData._id));
+  const [componentToggle, setComponentToggle] = useState(false);
 
   const onModalPopup = () => setModalOpen(!ModalOpen);
+  const onComponentToggle = () => setComponentToggle(!componentToggle);
 
   const onClickFunction = () => {
     console.log("ClassCard onClickFunction.");
@@ -73,17 +77,31 @@ const ClassCard = (props) => {
         header='Class 상세정보'
         openModal={ModalOpen}
       >
-        <ClassInfo
-          id={id}
-          title={title}
-          description={description}
-          skills={skills}
-          leaderName={leaderName}
-          personnel={personnel}
-          members={members}
-          status={status}
-        />
-        {role === "leader" && <LeaderBoard />}
+        {componentToggle ? (
+          <CreateClassForm
+            location={location}
+            selectedSkills={skills}
+            title={title}
+            description={description}
+            personnel={personnel}
+            formStatus='update'
+            submitAddFunction={setComponentToggle}
+          />
+        ) : (
+          <ClassInfo
+            id={id}
+            title={title}
+            description={description}
+            skills={skills}
+            leaderName={leaderName}
+            personnel={personnel}
+            members={members}
+            status={status}
+          />
+        )}
+        {role === "leader" && (
+          <LeaderBoard onComponentToggle={onComponentToggle} />
+        )}
         {role === "member" && <h3>MEMBER</h3>}
         {role === "user" && <h3>USER</h3>}
       </Modal>

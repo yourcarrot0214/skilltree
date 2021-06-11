@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import CreateClassForm from "./class/CreateClassForm.jsx";
 import ClassCard from "./class/ClassCard.jsx";
 import { ClassCardContainer } from "./styles/styled.js";
+import Modal from "../views/ProfilePage/accont/Modal.jsx";
 
 const DetailPage = ({ classList, location }) => {
+  const [ModalOpen, setModalOpen] = useState(false);
+
+  const onModalPopup = () => {
+    setModalOpen(!ModalOpen);
+  };
   return (
     <>
       <h3>Detail Page</h3>
-      {/* <SkillSearchBar selected={true} /> */}
-      <CreateClassForm location={location} />
+      <button onClick={onModalPopup}>{`${location} 생성하기`}</button>
       <ClassCardContainer>
         {classList.map((post) => (
           <ClassCard
@@ -24,6 +29,13 @@ const DetailPage = ({ classList, location }) => {
           />
         ))}
       </ClassCardContainer>
+      <Modal
+        openModal={ModalOpen}
+        onClickFunction={onModalPopup}
+        header={`${location} 생성하기`}
+      >
+        <CreateClassForm location={location} />
+      </Modal>
     </>
   );
 };

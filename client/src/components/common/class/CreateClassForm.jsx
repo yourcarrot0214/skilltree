@@ -12,9 +12,7 @@ const SubmitContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
   width: 100%;
-  height: 100vh;
 `;
 
 const SubmitForm = styled.form`
@@ -43,9 +41,9 @@ const CreateClassForm = ({ location }) => {
       leader: userData._id,
     };
     console.log(requestBody);
-    if (location === "project") {
+    if (location === "Project") {
       dispatch(createProject(requestBody));
-    } else if (location === "study") {
+    } else if (location === "Study") {
       dispatch(createStudy(requestBody));
     } else {
       alert("location props가 존재하지 않습니다.");
@@ -63,7 +61,6 @@ const CreateClassForm = ({ location }) => {
 
   return (
     <>
-      <h3>Create Class Form</h3>
       <SubmitContainer>
         <h3>프로젝트에 필요한 스킬을 선택해 주세요.</h3>
         <SkillSearchBar selected={true} />

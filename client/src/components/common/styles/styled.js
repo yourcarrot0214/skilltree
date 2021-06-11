@@ -17,6 +17,8 @@ const TagStyled = Styled.button`
 
 const TagContainerStyled = Styled.div`
     border: 1px solid black;
+    overflow: auto;
+    max-height: 300px;
 `;
 
 const SkillSearchBarStyled = Styled.div`

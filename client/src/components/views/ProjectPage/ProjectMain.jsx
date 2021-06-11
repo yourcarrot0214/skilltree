@@ -10,7 +10,7 @@ const ProjectMain = () => {
   return (
     <>
       <h3>Project Main Page</h3>
-      <DetailPage loaction='project' classList={projectState} />
+      <DetailPage location='Project' classList={projectState} />
     </>
   );
 };

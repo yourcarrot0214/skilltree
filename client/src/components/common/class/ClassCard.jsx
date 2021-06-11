@@ -12,6 +12,7 @@ import {
 import TagContainer from "../TagContainer.jsx";
 import Modal from "../../views/ProfilePage/accont/Modal.jsx";
 import ClassInfo from "./ClassInfo.jsx";
+import LeaderBoard from "./LeaderBoard.jsx";
 
 const ClassCard = (props) => {
   const {
@@ -82,7 +83,7 @@ const ClassCard = (props) => {
           members={members}
           status={status}
         />
-        {role === "leader" && <h3>LEADER</h3>}
+        {role === "leader" && <LeaderBoard />}
         {role === "member" && <h3>MEMBER</h3>}
         {role === "user" && <h3>USER</h3>}
       </Modal>

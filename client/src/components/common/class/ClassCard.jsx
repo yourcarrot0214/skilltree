@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, shallowEqual } from "react-redux";
 import axios from "axios";
 import {
   ClassCardThumbNail,
@@ -10,6 +11,7 @@ import {
 } from "../styles/styled.js";
 import TagContainer from "../TagContainer.jsx";
 import Modal from "../../views/ProfilePage/accont/Modal.jsx";
+import ClassInfo from "./ClassInfo.jsx";
 
 const ClassCard = (props) => {
   const {
@@ -19,12 +21,25 @@ const ClassCard = (props) => {
     skills,
     leader,
     personnel,
-    membersLength,
+    members,
     status,
   } = props;
+  const userData = useSelector((state) => state.user.userData, shallowEqual);
+
+  const roleValidation = (userId) => {
+    if (userId === leaderId) {
+      return "leader";
+    } else if (members.find((member) => member === userId) !== undefined) {
+      return "member";
+    } else {
+      return "user";
+    }
+  };
 
   const [leaderName, setLeaderName] = useState("DB 로딩중!");
+  const [leaderId, setLeaderId] = useState(leader);
   const [ModalOpen, setModalOpen] = useState(false);
+  const [role, setRole] = useState(roleValidation(userData._id));
 
   const onModalPopup = () => setModalOpen(!ModalOpen);
 
@@ -49,7 +64,7 @@ const ClassCard = (props) => {
           onClickFunction={onClickFunction}
         />
         <ClassLeader>{`리더 : ${leaderName}`}</ClassLeader>
-        <ClassPersonnel>{`모집인원 : ${membersLength} / ${personnel}`}</ClassPersonnel>
+        <ClassPersonnel>{`모집인원 : ${members.length} / ${personnel}`}</ClassPersonnel>
         <ClassStatus>{status ? "진행중" : "모집중"}</ClassStatus>
       </ClassCardThumbNail>
       <Modal
@@ -57,10 +72,19 @@ const ClassCard = (props) => {
         header='Class 상세정보'
         openModal={ModalOpen}
       >
-        <h3>Modal Test</h3>
+        <ClassInfo userData={userData} />
+        {role === "leader" && <h3>LEADER</h3>}
+        {role === "member" && <h3>MEMBER</h3>}
+        {role === "user" && <h3>USER</h3>}
       </Modal>
     </>
   );
 };
 
 export default ClassCard;
+
+/*
+  Modal Children
+    - ClassInfo
+    - role에 따른 LeaderBoard, MemberBoard, UserBoard
+*/

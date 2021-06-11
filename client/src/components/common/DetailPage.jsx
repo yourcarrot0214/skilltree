@@ -19,7 +19,7 @@ const DetailPage = ({ classList }) => {
             skills={post.skills}
             leader={post.leader}
             personnel={post.personnel}
-            membersLength={post.members.length}
+            members={post.members}
             status={post.status}
           />
         ))}
@@ -29,10 +29,3 @@ const DetailPage = ({ classList }) => {
 };
 
 export default DetailPage;
-
-/*
-  props => class(project, study)
-  출력
-    - 검색영역 : SkillSearchBar
-    - 썸네일 영역 : classlist.map(class => <ClassCard />)
-*/

@@ -16,7 +16,7 @@ const ClassInfo = (props) => {
   console.log(props);
 
   const onClickFunction = () => {
-    console.log("ClassInfo sillTag onClickFunction.");
+    console.log("ClassInfo skillTag onClickFunction.");
   };
   return (
     <ClassInfoStyled id={id}>

@@ -3,12 +3,12 @@ import CreateClassForm from "./class/CreateClassForm.jsx";
 import ClassCard from "./class/ClassCard.jsx";
 import { ClassCardContainer } from "./styles/styled.js";
 
-const DetailPage = ({ classList }) => {
+const DetailPage = ({ classList, location }) => {
   return (
     <>
       <h3>Detail Page</h3>
       {/* <SkillSearchBar selected={true} /> */}
-      <CreateClassForm />
+      <CreateClassForm location={location} />
       <ClassCardContainer>
         {classList.map((post) => (
           <ClassCard

@@ -22,7 +22,7 @@ const SubmitForm = styled.form`
   flex-direction: column;
 `;
 
-const CreateClassForm = () => {
+const CreateClassForm = ({ location }) => {
   const dispatch = useDispatch();
   const [Title, setTitle] = useState("");
   const [Description, setDescription] = useState("");
@@ -43,8 +43,13 @@ const CreateClassForm = () => {
       leader: userData._id,
     };
     console.log(requestBody);
-    dispatch(createProject(requestBody));
-    dispatch(createStudy(requestBody));
+    if (location === "project") {
+      dispatch(createProject(requestBody));
+    } else if (location === "study") {
+      dispatch(createStudy(requestBody));
+    } else {
+      alert("location props가 존재하지 않습니다.");
+    }
   };
 
   const onChangeValue = (event) => {
@@ -69,12 +74,14 @@ const CreateClassForm = () => {
             name='title'
             value={Title}
             onChange={onChangeValue}
+            required
           />
           <label>프로젝트 설명</label>
           <textarea
             name='description'
             value={Description}
             onChange={onChangeValue}
+            required
           />
           <label>모집 인원 수</label>
           <input
@@ -84,6 +91,7 @@ const CreateClassForm = () => {
             onChange={onChangeValue}
             min='2'
             max='10'
+            required
           />
           <button type='submit'>프로젝트 생성하기</button>
         </SubmitForm>

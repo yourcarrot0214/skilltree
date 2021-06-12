@@ -94,6 +94,18 @@ const CreateClassButton = Styled.button`
   border-radius: 4px;
 `;
 
+const SubmitContainer = Styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+`;
+
+const SubmitForm = Styled.form`
+  display: flex;
+  flex-direction: column;
+`;
+
 export {
   TagStyled,
   TagContainerStyled,
@@ -107,4 +119,6 @@ export {
   ClassStatus,
   ClassInfoStyled,
   CreateClassButton,
+  SubmitContainer,
+  SubmitForm,
 };

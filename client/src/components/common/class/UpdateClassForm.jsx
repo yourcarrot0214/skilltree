@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import { SubmitContainer, SubmitForm } from "../styles/styled.js";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { createProject } from "../../../_actions/project_action.js";
-import { createStudy } from "../../../_actions/study_action.js";
+// import update dispatch
 
 import SkillSearchBar from "../SkillSearchBar.jsx";
 
 import useSkills from "../../hooks/useSkills.js";
 
-const CreateClassForm = (props) => {
+const UpdateClassForm = (props) => {
   const { location } = props;
   const dispatch = useDispatch();
-  const [Title, setTitle] = useState(props.title || "");
-  const [Description, setDescription] = useState(props.description || "");
-  const [Personnel, setPersonnel] = useState(props.personnel || 0);
+  const [Title, setTitle] = useState(props.title);
+  const [Description, setDescription] = useState(props.description);
+  const [Personnel, setPersonnel] = useState(props.personnel);
 
   const userData = useSelector((state) => state.user.userData, shallowEqual);
   const skills = useSkills();
@@ -32,9 +31,11 @@ const CreateClassForm = (props) => {
     console.log(requestBody);
 
     if (location === "Project") {
-      dispatch(createProject(requestBody));
+      //   dispatch(createProject(requestBody));
+      console.log("update project info.");
     } else if (location === "Study") {
-      dispatch(createStudy(requestBody));
+      //   dispatch(createStudy(requestBody));
+      console.log("update study info.");
     } else {
       alert("location props가 존재하지 않습니다.");
     }
@@ -90,4 +91,4 @@ const CreateClassForm = (props) => {
   );
 };
 
-export default CreateClassForm;
+export default UpdateClassForm;

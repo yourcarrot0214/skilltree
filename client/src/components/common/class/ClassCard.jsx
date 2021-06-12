@@ -13,7 +13,7 @@ import TagContainer from "../TagContainer.jsx";
 import Modal from "../../views/ProfilePage/accont/Modal.jsx";
 import ClassInfo from "./ClassInfo.jsx";
 import LeaderBoard from "./LeaderBoard.jsx";
-import CreateClassForm from "./CreateClassForm.jsx";
+import UpdateClassForm from "./CreateClassForm.jsx";
 
 const ClassCard = (props) => {
   const {
@@ -53,9 +53,11 @@ const ClassCard = (props) => {
   };
 
   useEffect(() => {
-    axios
-      .post("/api/users/get/name", { _id: leader })
-      .then((response) => setLeaderName(response.data.userName));
+    if (leaderName === "DB 로딩중!") {
+      axios
+        .post("/api/users/get/name", { _id: leader })
+        .then((response) => setLeaderName(response.data.userName));
+    }
   });
 
   return (
@@ -78,13 +80,12 @@ const ClassCard = (props) => {
         openModal={ModalOpen}
       >
         {componentToggle ? (
-          <CreateClassForm
+          <UpdateClassForm
             location={location}
             selectedSkills={skills}
             title={title}
             description={description}
             personnel={personnel}
-            formStatus='update'
             submitAddFunction={setComponentToggle}
           />
         ) : (
@@ -112,7 +113,5 @@ const ClassCard = (props) => {
 export default ClassCard;
 
 /*
-  Modal Children
-    - ClassInfo
-    - role에 따른 LeaderBoard, MemberBoard, UserBoard
+  1. CreateClassForm => UpdateClassForm 으로 변경
 */

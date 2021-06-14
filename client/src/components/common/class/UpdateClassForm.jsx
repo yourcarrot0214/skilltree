@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { SubmitContainer, SubmitForm } from "../styles/styled.js";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-// import update dispatch
+import useSkills from "../../hooks/useSkills.js";
+import { updateProject } from "../../../_actions/project_action.js";
 
 import SkillSearchBar from "../SkillSearchBar.jsx";
-
-import useSkills from "../../hooks/useSkills.js";
 
 const UpdateClassForm = (props) => {
   const { location } = props;
@@ -16,12 +15,13 @@ const UpdateClassForm = (props) => {
 
   const userData = useSelector((state) => state.user.userData, shallowEqual);
   const skills = useSkills();
-  const selectedSkills = skills.filter((skill) => skill.selected);
+  const selectedSkills = skills.selectedSkills();
 
-  const onCreateClass = (event) => {
+  const onUpdateClass = (event) => {
     event.preventDefault();
 
     const requestBody = {
+      id: props.id,
       title: Title,
       description: Description,
       skills: selectedSkills,
@@ -31,8 +31,7 @@ const UpdateClassForm = (props) => {
     console.log(requestBody);
 
     if (location === "Project") {
-      //   dispatch(createProject(requestBody));
-      console.log("update project info.");
+      dispatch(updateProject(requestBody));
     } else if (location === "Study") {
       //   dispatch(createStudy(requestBody));
       console.log("update study info.");
@@ -57,8 +56,8 @@ const UpdateClassForm = (props) => {
     <>
       <SubmitContainer>
         <h3>프로젝트에 필요한 스킬을 선택해 주세요.</h3>
-        <SkillSearchBar selected={true} selectedSkills={props.selectedSkills} />
-        <SubmitForm onSubmit={onCreateClass}>
+        <SkillSearchBar selected={true} />
+        <SubmitForm onSubmit={onUpdateClass}>
           <label>프로젝트명</label>
           <input
             type='text'
@@ -84,7 +83,7 @@ const UpdateClassForm = (props) => {
             max='10'
             required
           />
-          <button type='submit'>프로젝트 생성하기</button>
+          <button type='submit'>업데이트</button>
         </SubmitForm>
       </SubmitContainer>
     </>

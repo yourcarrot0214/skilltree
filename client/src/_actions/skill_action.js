@@ -30,6 +30,7 @@ export function selectedSkill(id) {
 }
 
 export function selectedReset() {
+  console.log("selected Reset.");
   return {
     type: SKILLS_SELECTED_RESET,
   };

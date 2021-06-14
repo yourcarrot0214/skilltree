@@ -28,7 +28,7 @@ const DetailPage = ({ classList, location }) => {
             personnel={post.personnel}
             members={post.members}
             status={post.status}
-            loction={location}
+            location={location}
           />
         ))}
       </ClassCardContainer>

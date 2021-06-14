@@ -134,6 +134,72 @@ app.get("/api/study/get/list", (req, res) => {
   });
 });
 
+app.post("/api/project/update", (req, res) => {
+  Project.findOneAndUpdate(
+    { _id: req.body.id },
+    {
+      title: req.body.title,
+      description: req.body.description,
+      skills: req.body.skills,
+      personnel: req.body.personnel,
+    },
+    { new: true },
+    (err, projectInfo) => {
+      console.log(projectInfo);
+      if (err)
+        return res.json({
+          success: false,
+          message: "findOneAndUpdate err",
+          err,
+        });
+      if (!projectInfo)
+        return res.json({
+          sucess: false,
+          message: "project not found err",
+          projectId: req.body.id,
+        });
+      return res.status(200).json({
+        success: true,
+        message: "project update success.",
+        projectInfo: projectInfo,
+      });
+    }
+  );
+});
+
+app.post("/api/study/update", (req, res) => {
+  Study.findOneAndUpdate(
+    { _id: req.body.id },
+    {
+      title: req.body.title,
+      description: req.body.description,
+      skills: req.body.skills,
+      personnel: req.body.personnel,
+    },
+    { new: true },
+    (err, studyInfo) => {
+      console.log(studyInfo);
+      if (err)
+        return res.json({
+          success: false,
+          message: "findOneAndUpdate err",
+          err,
+        });
+      if (!studyInfo)
+        return res.json({
+          sucess: false,
+          message: "study not found err",
+          studyId: req.body.id,
+        });
+      return res.status(200).json({
+        success: true,
+        message: "study update success.",
+        studyInfo: studyInfo,
+      });
+    }
+  );
+});
+
 // "POST", "/api/skills/search"
 app.post("/api/skills/search", (req, res) => {
   Skills.findOne({ name: req.body.name }, (err, skill) => {

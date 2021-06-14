@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, shallowEqual } from "react-redux";
 import axios from "axios";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { selectedSkill } from "../../../_actions/skill_action.js";
 import {
   ClassCardThumbNail,
   ClassTitle,
@@ -13,7 +14,7 @@ import TagContainer from "../TagContainer.jsx";
 import Modal from "../../views/ProfilePage/accont/Modal.jsx";
 import ClassInfo from "./ClassInfo.jsx";
 import LeaderBoard from "./LeaderBoard.jsx";
-import UpdateClassForm from "./CreateClassForm.jsx";
+import UpdateClassForm from "./UpdateClassForm.jsx";
 
 const ClassCard = (props) => {
   const {
@@ -27,6 +28,8 @@ const ClassCard = (props) => {
     status,
     location,
   } = props;
+
+  const dispatch = useDispatch();
   const userData = useSelector((state) => state.user.userData, shallowEqual);
 
   const roleValidation = (userId) => {
@@ -46,7 +49,10 @@ const ClassCard = (props) => {
   const [componentToggle, setComponentToggle] = useState(false);
 
   const onModalPopup = () => setModalOpen(!ModalOpen);
-  const onComponentToggle = () => setComponentToggle(!componentToggle);
+  const onComponentToggle = () => {
+    setComponentToggle(!componentToggle);
+    skills.map((skill) => dispatch(selectedSkill(skill._id)));
+  };
 
   const onClickFunction = () => {
     console.log("ClassCard onClickFunction.");
@@ -82,11 +88,11 @@ const ClassCard = (props) => {
         {componentToggle ? (
           <UpdateClassForm
             location={location}
-            selectedSkills={skills}
             title={title}
             description={description}
             personnel={personnel}
             submitAddFunction={setComponentToggle}
+            id={id}
           />
         ) : (
           <ClassInfo
@@ -101,7 +107,10 @@ const ClassCard = (props) => {
           />
         )}
         {role === "leader" && (
-          <LeaderBoard onComponentToggle={onComponentToggle} />
+          <LeaderBoard
+            onComponentToggle={onComponentToggle}
+            componentToggle={componentToggle}
+          />
         )}
         {role === "member" && <h3>MEMBER</h3>}
         {role === "user" && <h3>USER</h3>}
@@ -111,7 +120,3 @@ const ClassCard = (props) => {
 };
 
 export default ClassCard;
-
-/*
-  1. CreateClassForm => UpdateClassForm 으로 변경
-*/

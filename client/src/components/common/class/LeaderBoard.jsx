@@ -1,10 +1,12 @@
 import React from "react";
 
-const LeaderBoard = ({ onComponentToggle }) => {
+const LeaderBoard = ({ onComponentToggle, componentToggle }) => {
   return (
     <>
       <h3>Leader Board</h3>
-      <button onClick={onComponentToggle}>수정하기</button>
+      <button onClick={onComponentToggle}>
+        {componentToggle ? "취소하기" : "수정하기"}
+      </button>
     </>
   );
 };

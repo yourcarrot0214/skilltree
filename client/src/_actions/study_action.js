@@ -1,5 +1,5 @@
 import axios from "axios";
-import { STUDY_GET_LIST, STUDY_CREATE } from "./study_types.js";
+import { STUDY_GET_LIST, STUDY_CREATE, STUDY_UPDATE } from "./study_types.js";
 
 export function getStudyList() {
   const request = axios
@@ -20,6 +20,16 @@ export function createStudy(requestBody) {
     });
   return {
     type: STUDY_CREATE,
+    payload: request,
+  };
+}
+
+export function updateStudy(requestBody) {
+  const request = axios
+    .post("/api/study/update", requestBody)
+    .then((response) => response.data);
+  return {
+    type: STUDY_UPDATE,
     payload: request,
   };
 }

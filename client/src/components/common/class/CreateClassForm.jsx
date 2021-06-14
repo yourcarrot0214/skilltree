@@ -9,6 +9,7 @@ import SkillSearchBar from "../SkillSearchBar.jsx";
 import useSkills from "../../hooks/useSkills.js";
 
 const CreateClassForm = (props) => {
+  console.log(props);
   const { location } = props;
   const dispatch = useDispatch();
   const [Title, setTitle] = useState(props.title || "");
@@ -56,7 +57,7 @@ const CreateClassForm = (props) => {
     <>
       <SubmitContainer>
         <h3>프로젝트에 필요한 스킬을 선택해 주세요.</h3>
-        <SkillSearchBar selected={true} selectedSkills={props.selectedSkills} />
+        <SkillSearchBar selected={true} />
         <SubmitForm onSubmit={onCreateClass}>
           <label>프로젝트명</label>
           <input

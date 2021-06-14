@@ -1,5 +1,9 @@
 import axios from "axios";
-import { PROJECT_GET_LIST, PROJECT_CREATE } from "./project_types.js";
+import {
+  PROJECT_GET_LIST,
+  PROJECT_CREATE,
+  PROJECT_UPDATE,
+} from "./project_types.js";
 
 export function getProjectList() {
   const request = axios
@@ -20,6 +24,16 @@ export function createProject(requestBody) {
     });
   return {
     type: PROJECT_CREATE,
+    payload: request,
+  };
+}
+
+export function updateProject(requestBody) {
+  const request = axios
+    .post("/api/project/update", requestBody)
+    .then((response) => response.data);
+  return {
+    type: PROJECT_UPDATE,
     payload: request,
   };
 }

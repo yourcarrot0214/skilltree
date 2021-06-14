@@ -10,7 +10,14 @@ const notFoundError = (model, err) => ({
   err: err,
 });
 
+const findOneError = (model, err) => ({
+  success: false,
+  message: `${model}.findOne err`,
+  err: err,
+});
+
 module.exports = {
   findOneAndUpdateError,
   notFoundError,
+  findOneError,
 };

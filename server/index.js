@@ -19,6 +19,7 @@ const {
 const {
   findOneAndUpdateError,
   notFoundError,
+  findOneError,
 } = require("./function/errorResponse");
 
 const {
@@ -90,7 +91,8 @@ app.post("/api/users/register", (req, res) => {
 app.post("/api/users/get/name", (req, res) => {
   console.log(req.body._id);
   User.findOne({ _id: req.body._id }, (err, userInfo) => {
-    if (err) res.json({ success: false, message: "findOne err", err });
+    if (err) res.json(findOneError(USER_MODEL, err));
+    if (!userInfo) res.json(notFoundError(USER_MODEL, err));
     return res.status(200).json({ success: true, userName: userInfo.name });
   });
 });

@@ -22,9 +22,16 @@ const getProjectListSuccess = (responseData) => ({
   docs: responseData,
 });
 
+const projectUpdateSuccess = (responseData) => ({
+  success: true,
+  message: "Project 정보 업데이트에 성공했습니다.",
+  projectInfo: responseData,
+});
+
 module.exports = {
   projectSaveError,
   projectSaveSuccess,
   getProjectListError,
   getProjectListSuccess,
+  projectUpdateSuccess,
 };

@@ -17,6 +17,11 @@ const {
 } = require("./config/types.js");
 
 const {
+  findOneAndUpdateError,
+  notFoundError,
+} = require("./function/errorResponse");
+
+const {
   saveError,
   signupSuccess,
   userFindOneError,
@@ -40,7 +45,6 @@ const {
   skillNotFound,
   skillSearchSuccess,
   findOneError,
-  findOneAndUpdateError,
   skillNotFoundAfterUpdate,
   skillUserUpdateSuccess,
 } = require("./function/skillsResponse.js");
@@ -50,6 +54,7 @@ const {
   projectSaveSuccess,
   getProjectListError,
   getProjectListSuccess,
+  projectUpdateSuccess,
 } = require("./function/projectResponse.js");
 
 const {
@@ -57,6 +62,7 @@ const {
   studySaveSuccess,
   getStudyListError,
   getStudyListSuccess,
+  studyUpdateSuccess,
 } = require("./function/studyResponse.js");
 
 app.use(express.json());
@@ -145,24 +151,9 @@ app.post("/api/project/update", (req, res) => {
     },
     { new: true },
     (err, projectInfo) => {
-      console.log(projectInfo);
-      if (err)
-        return res.json({
-          success: false,
-          message: "findOneAndUpdate err",
-          err,
-        });
-      if (!projectInfo)
-        return res.json({
-          sucess: false,
-          message: "project not found err",
-          projectId: req.body.id,
-        });
-      return res.status(200).json({
-        success: true,
-        message: "project update success.",
-        projectInfo: projectInfo,
-      });
+      if (err) return res.json(findOneAndUpdateError(PROJECT_MODEL, err));
+      if (!projectInfo) return res.json(notFoundError(PROJECT_MODEL, err));
+      return res.status(200).json(projectUpdateSuccess(projectInfo));
     }
   );
 });
@@ -178,24 +169,9 @@ app.post("/api/study/update", (req, res) => {
     },
     { new: true },
     (err, studyInfo) => {
-      console.log(studyInfo);
-      if (err)
-        return res.json({
-          success: false,
-          message: "findOneAndUpdate err",
-          err,
-        });
-      if (!studyInfo)
-        return res.json({
-          sucess: false,
-          message: "study not found err",
-          studyId: req.body.id,
-        });
-      return res.status(200).json({
-        success: true,
-        message: "study update success.",
-        studyInfo: studyInfo,
-      });
+      if (err) return res.json(findOneAndUpdateError(STUDY_MODEL, err));
+      if (!studyInfo) return res.json(notFoundError(STUDY_MODEL, err));
+      return res.status(200).json(studyUpdateSuccess(studyInfo));
     }
   );
 });

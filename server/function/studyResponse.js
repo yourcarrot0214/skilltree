@@ -22,9 +22,16 @@ const getStudyListSuccess = (responseData) => ({
   docs: responseData,
 });
 
+const studyUpdateSuccess = (responseData) => ({
+  success: true,
+  message: "Study 정보 업데이트에 성공했습니다.",
+  studyInfo: responseData,
+});
+
 module.exports = {
   studySaveError,
   studySaveSuccess,
   getStudyListError,
   getStudyListSuccess,
+  studyUpdateSuccess,
 };

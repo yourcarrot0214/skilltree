@@ -35,6 +35,7 @@ const ClassCardContainer = Styled.div`
 `;
 
 const ClassCardThumbNail = Styled.div`
+  max-width: 400px;
   padding: 1rem;
   border: 1px solid black;
   border-radius: 5px;

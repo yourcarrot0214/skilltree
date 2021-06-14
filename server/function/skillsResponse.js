@@ -46,13 +46,6 @@ const findOneError = (model, err) => ({
   err,
 });
 
-const findOneAndUpdateError = (model, err) => ({
-  model: model,
-  success: false,
-  message: `${model} findOneAndUpdate() 중 에러가 발생했습니다.`,
-  err,
-});
-
 const skillNotFoundAfterUpdate = () => ({
   success: false,
   message: "업데이트한 스킬을 찾을 수 없습니다.",
@@ -73,7 +66,6 @@ module.exports = {
   skillNotFound,
   skillSearchSuccess,
   findOneError,
-  findOneAndUpdateError,
   skillNotFoundAfterUpdate,
   skillUserUpdateSuccess,
 };

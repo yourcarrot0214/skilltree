@@ -9,7 +9,6 @@ import SkillSearchBar from "../SkillSearchBar.jsx";
 import useSkills from "../../hooks/useSkills.js";
 
 const CreateClassForm = (props) => {
-  console.log(props);
   const { location } = props;
   const dispatch = useDispatch();
   const [Title, setTitle] = useState(props.title || "");

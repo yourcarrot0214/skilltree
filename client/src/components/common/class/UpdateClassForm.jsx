@@ -3,6 +3,7 @@ import { SubmitContainer, SubmitForm } from "../styles/styled.js";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import useSkills from "../../hooks/useSkills.js";
 import { updateProject } from "../../../_actions/project_action.js";
+import { updateStudy } from "../../../_actions/study_action.js";
 
 import SkillSearchBar from "../SkillSearchBar.jsx";
 
@@ -33,8 +34,7 @@ const UpdateClassForm = (props) => {
     if (location === "Project") {
       dispatch(updateProject(requestBody));
     } else if (location === "Study") {
-      //   dispatch(createStudy(requestBody));
-      console.log("update study info.");
+      dispatch(updateStudy(requestBody));
     } else {
       alert("location props가 존재하지 않습니다.");
     }

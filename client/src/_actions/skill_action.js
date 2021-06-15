@@ -15,7 +15,8 @@ export function getSkillsDB() {
   const request = axios
     .get("/api/skills/list")
     .then((response) => response.data.docs)
-    .then((docs) => docs.map((skill) => ({ ...skill, selected: false })));
+    .then((docs) => docs.map((skill) => ({ ...skill, selected: false })))
+    .catch((err) => console.log(err));
   return {
     type: SKILL_GET_LIST,
     payload: request,
@@ -39,10 +40,7 @@ export function selectedReset() {
 export function addTechnitian(requestBody) {
   const request = axios
     .post("/api/skills/add/technitianUsers", requestBody)
-    .then((response) => {
-      console.log(response.data);
-      return response.data;
-    })
+    .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
     type: SKILLS_TECHNITIAN_ADD,
@@ -53,10 +51,8 @@ export function addTechnitian(requestBody) {
 export function addLearningUser(requestBody) {
   const request = axios
     .post("/api/skills/add/learningUsers", requestBody)
-    .then((response) => {
-      console.log(response.data);
-      return response.data;
-    });
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
   return {
     type: SKILLS_LEARNING_ADD,
     payload: request,
@@ -66,10 +62,8 @@ export function addLearningUser(requestBody) {
 export function deleteTechnitian(requestBody) {
   const request = axios
     .post("/api/skills/delete/technitianUsers", requestBody)
-    .then((response) => {
-      console.log(response.data);
-      return response.data;
-    });
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
   return {
     type: SKILLS_TECHNITIAN_DELETE,
     payload: request,
@@ -79,10 +73,8 @@ export function deleteTechnitian(requestBody) {
 export function deleteLearningUser(requestBody) {
   const request = axios
     .post("/api/skills/delete/learningUsers", requestBody)
-    .then((response) => {
-      console.log(response.data);
-      return response.data;
-    });
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
   return {
     type: SKILLS_LEARNING_DELETE,
     payload: request,

@@ -14,8 +14,8 @@ import {
 export function loginUser(loginData) {
   const request = axios
     .post("/api/users/login", loginData)
-    .then((response) => response.data);
-
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
   return {
     type: LOGIN_USER,
     payload: request,
@@ -25,7 +25,8 @@ export function loginUser(loginData) {
 export function logoutUser() {
   const request = axios
     .get("/api/users/logout")
-    .then((response) => response.data);
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
   return {
     type: LOGOUT_USER,
     payload: request,
@@ -35,8 +36,8 @@ export function logoutUser() {
 export function registerUser(signupData) {
   const request = axios
     .post("/api/users/register", signupData)
-    .then((response) => response.data);
-
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
   return {
     type: REGISTER_USER,
     payload: request,
@@ -46,7 +47,8 @@ export function registerUser(signupData) {
 export function auth() {
   const request = axios
     .get("/api/users/auth")
-    .then((response) => response.data);
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
   return {
     type: AUTH_USER,
     payload: request,
@@ -56,7 +58,8 @@ export function auth() {
 export function updateUserName(newName) {
   const request = axios
     .post("/api/users/update/name", newName)
-    .then((response) => response.data);
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
   return {
     type: UPDATE_NAME,
     payload: request,
@@ -66,7 +69,8 @@ export function updateUserName(newName) {
 export function addUserTech(newTech) {
   const request = axios
     .post("/api/users/add/tech", newTech)
-    .then((response) => response.data);
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
   return {
     type: ADD_TECH,
     payload: request,
@@ -76,7 +80,8 @@ export function addUserTech(newTech) {
 export function deleteUserTech(techId) {
   const request = axios
     .post("/api/users/delete/tech", techId)
-    .then((response) => response.data);
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
   return {
     type: DELETE_TECH,
     payload: request,
@@ -86,7 +91,8 @@ export function deleteUserTech(techId) {
 export function addUserLearn(newTech) {
   const request = axios
     .post("/api/users/add/learn", newTech)
-    .then((response) => response.data);
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
   return {
     type: ADD_LEARN,
     payload: request,
@@ -96,7 +102,8 @@ export function addUserLearn(newTech) {
 export function deleteUserLearn(techId) {
   const request = axios
     .post("/api/users/delete/learn", techId)
-    .then((response) => response.data);
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
   return {
     type: DELETE_LEARN,
     payload: request,

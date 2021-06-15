@@ -8,7 +8,8 @@ import {
 export function getProjectList() {
   const request = axios
     .get("/api/project/get/list")
-    .then((response) => response.data.docs);
+    .then((response) => response.data.docs)
+    .catch((err) => console.log(err));
   return {
     type: PROJECT_GET_LIST,
     payload: request,
@@ -18,10 +19,8 @@ export function getProjectList() {
 export function createProject(requestBody) {
   const request = axios
     .post("/api/project/create", requestBody)
-    .then((response) => {
-      console.log(response.data);
-      return response.data;
-    });
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
   return {
     type: PROJECT_CREATE,
     payload: request,
@@ -31,7 +30,8 @@ export function createProject(requestBody) {
 export function updateProject(requestBody) {
   const request = axios
     .post("/api/project/update", requestBody)
-    .then((response) => response.data);
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
   return {
     type: PROJECT_UPDATE,
     payload: request,

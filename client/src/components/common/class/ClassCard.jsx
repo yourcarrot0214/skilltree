@@ -62,7 +62,8 @@ const ClassCard = (props) => {
     if (leaderName === "DB 로딩중!") {
       axios
         .post("/api/users/get/name", { _id: leader })
-        .then((response) => setLeaderName(response.data.userName));
+        .then((response) => setLeaderName(response.data.userName))
+        .catch((err) => console.log(err));
     }
   });
 

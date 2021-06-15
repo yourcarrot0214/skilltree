@@ -88,10 +88,9 @@ app.post("/api/users/register", (req, res) => {
 });
 
 app.post("/api/users/get/name", (req, res) => {
-  console.log(req.body._id);
   User.findOne({ _id: req.body._id }, (err, userInfo) => {
     if (err) res.json(findOneError(USER_MODEL, err));
-    if (!userInfo) res.json(notFoundError(USER_MODEL, err));
+    if (!userInfo) res.json(notFoundError(USER_MODEL, req.body._id));
     return res.status(200).json({ success: true, userName: userInfo.name });
   });
 });
@@ -153,7 +152,8 @@ app.post("/api/project/update", (req, res) => {
     { new: true },
     (err, projectInfo) => {
       if (err) return res.json(findOneAndUpdateError(PROJECT_MODEL, err));
-      if (!projectInfo) return res.json(notFoundError(PROJECT_MODEL, err));
+      if (!projectInfo)
+        return res.json(notFoundError(PROJECT_MODEL, req.body.id));
       return res.status(200).json(projectUpdateSuccess(projectInfo));
     }
   );
@@ -171,10 +171,30 @@ app.post("/api/study/update", (req, res) => {
     { new: true },
     (err, studyInfo) => {
       if (err) return res.json(findOneAndUpdateError(STUDY_MODEL, err));
-      if (!studyInfo) return res.json(notFoundError(STUDY_MODEL, err));
+      if (!studyInfo) return res.json(notFoundError(STUDY_MODEL, req.body.id));
       return res.status(200).json(studyUpdateSuccess(studyInfo));
     }
   );
+});
+
+app.post("/api/project/apply", (req, res) => {
+  Project.findOne({ _id: req.body.classId }, (err, project) => {
+    if (err) return res.json(findOneError(PROJECT_MODEL, err));
+    if (!project)
+      return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
+
+    Project.findOneAndUpdate(
+      { _id: req.body.classId },
+      { volunteer: project.volunteer.concat(req.body.userId) },
+      { new: true },
+      (err, updatedProject) => {
+        if (err) return res.json(findOneError(PROJECT_MODEL, err));
+        if (!updatedProject)
+          return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
+        return res.status(200).json(projectUpdateSuccess(updatedProject));
+      }
+    );
+  });
 });
 
 // "POST", "/api/skills/search"

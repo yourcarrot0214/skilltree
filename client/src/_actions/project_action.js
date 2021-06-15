@@ -3,6 +3,7 @@ import {
   PROJECT_GET_LIST,
   PROJECT_CREATE,
   PROJECT_UPDATE,
+  PROJECT_APPLY,
 } from "./project_types.js";
 
 export async function getProjectList() {
@@ -34,6 +35,17 @@ export async function updateProject(requestBody) {
     .catch((err) => console.log(err));
   return {
     type: PROJECT_UPDATE,
+    payload: request,
+  };
+}
+
+export async function applyProject(requestBody) {
+  const request = await axios
+    .post("/api/project/apply", requestBody)
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
+  return {
+    type: PROJECT_APPLY,
     payload: request,
   };
 }

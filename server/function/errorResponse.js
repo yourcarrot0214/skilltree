@@ -4,10 +4,10 @@ const findOneAndUpdateError = (model, err) => ({
   err: err,
 });
 
-const notFoundError = (model, err) => ({
+const notFoundError = (model, id) => ({
   success: false,
   message: `해당 ${model}을 찾을 수 없습니다.`,
-  err: err,
+  id: id,
 });
 
 const findOneError = (model, err) => ({

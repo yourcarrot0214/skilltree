@@ -131,7 +131,7 @@ const ClassCard = (props) => {
         {role === "user" && (
           <UserBoard
             isVolunteer={isVolunteer}
-            projectId={id}
+            classId={id}
             userId={userId}
             location={location}
           />

@@ -45,7 +45,6 @@ const {
   skillSearchError,
   skillNotFound,
   skillSearchSuccess,
-  findOneError,
   skillNotFoundAfterUpdate,
   skillUserUpdateSuccess,
 } = require("./function/skillsResponse.js");

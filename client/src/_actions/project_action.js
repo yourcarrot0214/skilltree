@@ -5,8 +5,8 @@ import {
   PROJECT_UPDATE,
 } from "./project_types.js";
 
-export function getProjectList() {
-  const request = axios
+export async function getProjectList() {
+  const request = await axios
     .get("/api/project/get/list")
     .then((response) => response.data.docs)
     .catch((err) => console.log(err));
@@ -16,8 +16,8 @@ export function getProjectList() {
   };
 }
 
-export function createProject(requestBody) {
-  const request = axios
+export async function createProject(requestBody) {
+  const request = await axios
     .post("/api/project/create", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
@@ -27,8 +27,8 @@ export function createProject(requestBody) {
   };
 }
 
-export function updateProject(requestBody) {
-  const request = axios
+export async function updateProject(requestBody) {
+  const request = await axios
     .post("/api/project/update", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));

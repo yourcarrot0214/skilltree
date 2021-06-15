@@ -14,6 +14,7 @@ import TagContainer from "../TagContainer.jsx";
 import Modal from "../../views/ProfilePage/accont/Modal.jsx";
 import ClassInfo from "./ClassInfo.jsx";
 import LeaderBoard from "./LeaderBoard.jsx";
+import UserBoard from "./UserBoard.jsx";
 import UpdateClassForm from "./UpdateClassForm.jsx";
 
 const ClassCard = (props) => {
@@ -27,6 +28,7 @@ const ClassCard = (props) => {
     members,
     status,
     location,
+    volunteer,
   } = props;
 
   const dispatch = useDispatch();
@@ -37,16 +39,28 @@ const ClassCard = (props) => {
       return "leader";
     } else if (members.find((member) => member === userId) !== undefined) {
       return "member";
-    } else {
+    } else if (userData.isAuth) {
       return "user";
+    } else {
+      return "guest";
+    }
+  };
+
+  const applyCheck = (userId) => {
+    if (volunteer.find((user) => user === userId) !== undefined) {
+      return true;
+    } else {
+      return false;
     }
   };
 
   const [leaderName, setLeaderName] = useState("DB 로딩중!");
   const [leaderId, setLeaderId] = useState(leader);
+  const [userId, setUserId] = useState(userData._id);
   const [ModalOpen, setModalOpen] = useState(false);
   const [role, setRole] = useState(roleValidation(userData._id));
   const [componentToggle, setComponentToggle] = useState(false);
+  const [isVolunteer, setIsVolunteer] = useState(applyCheck(userData._id));
 
   const onModalPopup = () => setModalOpen(!ModalOpen);
   const onComponentToggle = () => {
@@ -114,7 +128,14 @@ const ClassCard = (props) => {
           />
         )}
         {role === "member" && <h3>MEMBER</h3>}
-        {role === "user" && <h3>USER</h3>}
+        {role === "user" && (
+          <UserBoard
+            isVolunteer={isVolunteer}
+            projectId={id}
+            userId={userId}
+            location={location}
+          />
+        )}
       </Modal>
     </>
   );

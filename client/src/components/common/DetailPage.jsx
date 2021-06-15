@@ -33,6 +33,7 @@ const DetailPage = ({ classList, location }) => {
             members={post.members}
             status={post.status}
             location={location}
+            volunteer={post.volunteer}
           />
         ))}
       </ClassCardContainer>

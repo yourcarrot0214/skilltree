@@ -1,8 +1,8 @@
 import axios from "axios";
 import { STUDY_GET_LIST, STUDY_CREATE, STUDY_UPDATE } from "./study_types.js";
 
-export function getStudyList() {
-  const request = axios
+export async function getStudyList() {
+  const request = await axios
     .get("/api/study/get/list")
     .then((response) => response.data.docs)
     .catch((err) => console.log(err));
@@ -12,8 +12,8 @@ export function getStudyList() {
   };
 }
 
-export function createStudy(requestBody) {
-  const request = axios
+export async function createStudy(requestBody) {
+  const request = await axios
     .post("/api/study/create", requestBody)
     .then((response) => response.data)
     .catach((err) => console.log(err));
@@ -23,8 +23,8 @@ export function createStudy(requestBody) {
   };
 }
 
-export function updateStudy(requestBody) {
-  const request = axios
+export async function updateStudy(requestBody) {
+  const request = await axios
     .post("/api/study/update", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));

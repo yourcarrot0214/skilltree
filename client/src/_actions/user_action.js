@@ -11,8 +11,8 @@ import {
   DELETE_LEARN,
 } from "./types.js";
 
-export function loginUser(loginData) {
-  const request = axios
+export async function loginUser(loginData) {
+  const request = await axios
     .post("/api/users/login", loginData)
     .then((response) => response.data)
     .catch((err) => console.log(err));
@@ -22,8 +22,8 @@ export function loginUser(loginData) {
   };
 }
 
-export function logoutUser() {
-  const request = axios
+export async function logoutUser() {
+  const request = await axios
     .get("/api/users/logout")
     .then((response) => response.data)
     .catch((err) => console.log(err));
@@ -33,8 +33,8 @@ export function logoutUser() {
   };
 }
 
-export function registerUser(signupData) {
-  const request = axios
+export async function registerUser(signupData) {
+  const request = await axios
     .post("/api/users/register", signupData)
     .then((response) => response.data)
     .catch((err) => console.log(err));
@@ -44,8 +44,8 @@ export function registerUser(signupData) {
   };
 }
 
-export function auth() {
-  const request = axios
+export async function auth() {
+  const request = await axios
     .get("/api/users/auth")
     .then((response) => response.data)
     .catch((err) => console.log(err));
@@ -55,8 +55,8 @@ export function auth() {
   };
 }
 
-export function updateUserName(newName) {
-  const request = axios
+export async function updateUserName(newName) {
+  const request = await axios
     .post("/api/users/update/name", newName)
     .then((response) => response.data)
     .catch((err) => console.log(err));
@@ -66,8 +66,8 @@ export function updateUserName(newName) {
   };
 }
 
-export function addUserTech(newTech) {
-  const request = axios
+export async function addUserTech(newTech) {
+  const request = await axios
     .post("/api/users/add/tech", newTech)
     .then((response) => response.data)
     .catch((err) => console.log(err));
@@ -77,8 +77,8 @@ export function addUserTech(newTech) {
   };
 }
 
-export function deleteUserTech(techId) {
-  const request = axios
+export async function deleteUserTech(techId) {
+  const request = await axios
     .post("/api/users/delete/tech", techId)
     .then((response) => response.data)
     .catch((err) => console.log(err));
@@ -88,8 +88,8 @@ export function deleteUserTech(techId) {
   };
 }
 
-export function addUserLearn(newTech) {
-  const request = axios
+export async function addUserLearn(newTech) {
+  const request = await axios
     .post("/api/users/add/learn", newTech)
     .then((response) => response.data)
     .catch((err) => console.log(err));
@@ -99,8 +99,8 @@ export function addUserLearn(newTech) {
   };
 }
 
-export function deleteUserLearn(techId) {
-  const request = axios
+export async function deleteUserLearn(techId) {
+  const request = await axios
     .post("/api/users/delete/learn", techId)
     .then((response) => response.data)
     .catch((err) => console.log(err));

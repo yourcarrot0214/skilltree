@@ -11,8 +11,8 @@ import {
   SKILL_SEARCH_RESET,
 } from "./skill_types.js";
 
-export function getSkillsDB() {
-  const request = axios
+export async function getSkillsDB() {
+  const request = await axios
     .get("/api/skills/list")
     .then((response) => response.data.docs)
     .then((docs) => docs.map((skill) => ({ ...skill, selected: false })))
@@ -37,8 +37,8 @@ export function selectedReset() {
   };
 }
 
-export function addTechnitian(requestBody) {
-  const request = axios
+export async function addTechnitian(requestBody) {
+  const request = await axios
     .post("/api/skills/add/technitianUsers", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
@@ -48,8 +48,8 @@ export function addTechnitian(requestBody) {
   };
 }
 
-export function addLearningUser(requestBody) {
-  const request = axios
+export async function addLearningUser(requestBody) {
+  const request = await axios
     .post("/api/skills/add/learningUsers", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
@@ -59,8 +59,8 @@ export function addLearningUser(requestBody) {
   };
 }
 
-export function deleteTechnitian(requestBody) {
-  const request = axios
+export async function deleteTechnitian(requestBody) {
+  const request = await axios
     .post("/api/skills/delete/technitianUsers", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
@@ -70,8 +70,8 @@ export function deleteTechnitian(requestBody) {
   };
 }
 
-export function deleteLearningUser(requestBody) {
-  const request = axios
+export async function deleteLearningUser(requestBody) {
+  const request = await axios
     .post("/api/skills/delete/learningUsers", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));

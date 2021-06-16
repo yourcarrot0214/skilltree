@@ -13,7 +13,6 @@ const ClassInfo = (props) => {
     members,
     status,
   } = props;
-  console.log(props);
 
   const onClickFunction = () => {
     console.log("ClassInfo skillTag onClickFunction.");

@@ -8,6 +8,7 @@ import Modal from "../views/ProfilePage/accont/Modal.jsx";
 const DetailPage = ({ classList, location }) => {
   const userData = useSelector((state) => state.user.userData, shallowEqual);
   const [ModalOpen, setModalOpen] = useState(false);
+  const [isAuth, setIsAuth] = useState(userData.isAuth);
 
   const onModalPopup = () => {
     setModalOpen(!ModalOpen);
@@ -15,7 +16,7 @@ const DetailPage = ({ classList, location }) => {
   return (
     <>
       <h3>Detail Page</h3>
-      {userData.isAuth && (
+      {isAuth && (
         <CreateClassButton
           onClick={onModalPopup}
         >{`${location} 생성하기`}</CreateClassButton>

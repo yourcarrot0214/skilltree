@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { applyProject } from "../../../_actions/project_action.js";
+import { applyStudy } from "../../../_actions/study_action.js";
 
 const UserBoard = (props) => {
   const dispatch = useDispatch();
@@ -19,6 +20,8 @@ const UserBoard = (props) => {
       alert("request apply to project");
       console.log("request apply to project.");
     } else if (location === "Study") {
+      dispatch(applyStudy(requestBody));
+      setVolunteer(!volunteer);
       alert("request apply to study.");
       console.log("request apply to study.");
     }

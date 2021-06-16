@@ -2,8 +2,9 @@ import {
   STUDY_GET_LIST,
   STUDY_CREATE,
   STUDY_UPDATE,
+  STUDY_APPLY,
 } from "../_actions/study_types.js";
-import applyToStudy from "./study_sub_reducer.js";
+import studySetting from "./study_sub_reducer.js";
 
 export default function study(state = [], action) {
   switch (action.type) {
@@ -12,7 +13,9 @@ export default function study(state = [], action) {
     case STUDY_CREATE:
       return [...state, action.payload];
     case STUDY_UPDATE:
-      return state.map((study) => applyToStudy(study, action));
+      return state.map((study) => studySetting(study, action));
+    case STUDY_APPLY:
+      return state.map((study) => studySetting(study, action));
     default:
       return state;
   }

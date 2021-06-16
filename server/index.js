@@ -197,6 +197,26 @@ app.post("/api/project/apply", (req, res) => {
   });
 });
 
+app.post("/api/study/apply", (req, res) => {
+  Study.findOne({ _id: req.body.classId }, (err, study) => {
+    if (err) return res.json(findOneError(STUDY_MODEL, err));
+    if (!study) return res.json(notFoundError(STUDY_MODEL, req.body.classId));
+
+    Study.findOneAndUpdate(
+      { _id: req.body.classId },
+      { volunteer: study.volunteer.concat(req.body.userId) },
+      { new: true },
+      (err, updatedStudy) => {
+        if (err) return res.json(findOneError(STUDY_MODEL, err));
+        if (!updatedStudy)
+          return res.json(notFoundError(STUDY_MODEL, req.body.classId));
+
+        return res.status(200).json(studyUpdateSuccess(updatedStudy));
+      }
+    );
+  });
+});
+
 // "POST", "/api/skills/search"
 app.post("/api/skills/search", (req, res) => {
   Skills.findOne({ name: req.body.name }, (err, skill) => {

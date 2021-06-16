@@ -1,5 +1,10 @@
 import axios from "axios";
-import { STUDY_GET_LIST, STUDY_CREATE, STUDY_UPDATE } from "./study_types.js";
+import {
+  STUDY_GET_LIST,
+  STUDY_CREATE,
+  STUDY_UPDATE,
+  STUDY_APPLY,
+} from "./study_types.js";
 
 export async function getStudyList() {
   const request = await axios
@@ -30,6 +35,17 @@ export async function updateStudy(requestBody) {
     .catch((err) => console.log(err));
   return {
     type: STUDY_UPDATE,
+    payload: request,
+  };
+}
+
+export async function applyStudy(requestBody) {
+  const request = await axios
+    .post("/api/study/apply", requestBody)
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
+  return {
+    type: STUDY_APPLY,
     payload: request,
   };
 }

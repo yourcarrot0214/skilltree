@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { selectedSkill } from "../../../_actions/skill_action.js";
 import {
@@ -10,6 +9,7 @@ import {
   ClassPersonnel,
   ClassStatus,
 } from "../styles/styled.js";
+import useGetUserName from "../../hooks/useGetUserName.js";
 import TagContainer from "../TagContainer.jsx";
 import Modal from "../../views/ProfilePage/accont/Modal.jsx";
 import ClassInfo from "./ClassInfo.jsx";
@@ -54,7 +54,7 @@ const ClassCard = (props) => {
     }
   };
 
-  const [leaderName, setLeaderName] = useState("DB 로딩중!");
+  const leaderName = useGetUserName(leader);
   const [leaderId, setLeaderId] = useState(leader);
   const [userId, setUserId] = useState(userData._id);
   const [ModalOpen, setModalOpen] = useState(false);
@@ -71,15 +71,6 @@ const ClassCard = (props) => {
   const onClickFunction = () => {
     console.log("ClassCard onClickFunction.");
   };
-
-  useEffect(() => {
-    if (leaderName === "DB 로딩중!") {
-      axios
-        .post("/api/users/get/name", { _id: leader })
-        .then((response) => setLeaderName(response.data.userName))
-        .catch((err) => console.log(err));
-    }
-  });
 
   return (
     <>
@@ -125,6 +116,8 @@ const ClassCard = (props) => {
           <LeaderBoard
             onComponentToggle={onComponentToggle}
             componentToggle={componentToggle}
+            volunteer={volunteer}
+            members={members}
           />
         )}
         {role === "member" && <h3>MEMBER</h3>}

@@ -1,12 +1,22 @@
 import React from "react";
+import UserTag from "./UserTag.jsx";
 
-const LeaderBoard = ({ onComponentToggle, componentToggle }) => {
+const LeaderBoard = ({
+  onComponentToggle,
+  componentToggle,
+  volunteer,
+  members,
+}) => {
   return (
     <>
       <h3>Leader Board</h3>
       <button onClick={onComponentToggle}>
         {componentToggle ? "취소하기" : "수정하기"}
       </button>
+
+      {volunteer.map((user) => (
+        <UserTag key={user} userId={user} />
+      ))}
     </>
   );
 };

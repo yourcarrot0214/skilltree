@@ -4,6 +4,7 @@ import {
   PROJECT_CREATE,
   PROJECT_UPDATE,
   PROJECT_APPLY,
+  PROJECT_APPLY_CANCEL,
 } from "./project_types.js";
 
 export async function getProjectList() {
@@ -46,6 +47,17 @@ export async function applyProject(requestBody) {
     .catch((err) => console.log(err));
   return {
     type: PROJECT_APPLY,
+    payload: request,
+  };
+}
+
+export async function cancelProjectApply(requestBody) {
+  const request = await axios
+    .post("/api/project/apply/cancel", requestBody)
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
+  return {
+    type: PROJECT_APPLY_CANCEL,
     payload: request,
   };
 }

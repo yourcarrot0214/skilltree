@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { applyProject } from "../../../_actions/project_action.js";
-import { applyStudy } from "../../../_actions/study_action.js";
+import {
+  applyProject,
+  cancelProjectApply,
+} from "../../../_actions/project_action.js";
+import {
+  applyStudy,
+  cancelStudyApply,
+} from "../../../_actions/study_action.js";
 
 const UserBoard = (props) => {
   const dispatch = useDispatch();
@@ -18,12 +24,27 @@ const UserBoard = (props) => {
       dispatch(applyProject(requestBody));
       setVolunteer(!volunteer);
       alert("request apply to project");
-      console.log("request apply to project.");
     } else if (location === "Study") {
       dispatch(applyStudy(requestBody));
       setVolunteer(!volunteer);
       alert("request apply to study.");
-      console.log("request apply to study.");
+    }
+  };
+
+  const applyToCancel = () => {
+    const requestBody = {
+      classId: classId,
+      userId: userId,
+    };
+
+    if (location === "Project") {
+      dispatch(cancelProjectApply(requestBody));
+      setVolunteer(!volunteer);
+      alert("request project apply to cancel.");
+    } else if (location === "Study") {
+      dispatch(cancelStudyApply(requestBody));
+      setVolunteer(!volunteer);
+      alert("request study apply to cancel");
     }
   };
 
@@ -31,7 +52,7 @@ const UserBoard = (props) => {
     <>
       <h3>User Board</h3>
       {volunteer ? (
-        <button>참가신청취소</button>
+        <button onClick={applyToCancel}>참가신청취소</button>
       ) : (
         <button onClick={applyToClass}>참가신청하기</button>
       )}

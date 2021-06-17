@@ -4,6 +4,7 @@ import {
   STUDY_CREATE,
   STUDY_UPDATE,
   STUDY_APPLY,
+  STUDY_APPLY_CANCEL,
 } from "./study_types.js";
 
 export async function getStudyList() {
@@ -46,6 +47,17 @@ export async function applyStudy(requestBody) {
     .catch((err) => console.log(err));
   return {
     type: STUDY_APPLY,
+    payload: request,
+  };
+}
+
+export async function cancelStudyApply(requestBody) {
+  const request = await axios
+    .post("/api/study/apply/cancel", requestBody)
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
+  return {
+    type: STUDY_APPLY_CANCEL,
     payload: request,
   };
 }

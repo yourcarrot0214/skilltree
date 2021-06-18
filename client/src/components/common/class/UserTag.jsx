@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Modal from "../../views/ProfilePage/accont/Modal.jsx";
+import useGetUserName from "../../hooks/useGetUserName.js";
 
 const UserTag = ({ userId }) => {
+  const userName = useGetUserName(userId);
   const [ModalOpen, setModalOpen] = useState(false);
-  const [userName, setUserName] = useState("DB 로딩중!");
 
   const onModalPopup = () => {
     setModalOpen(!ModalOpen);
   };
 
-  // get username custom hook
-
   return (
     <>
-      <h3>{userName}</h3>
+      <h3 onClick={onModalPopup}>{userName}</h3>
 
       <Modal
         onClickFunction={onModalPopup}

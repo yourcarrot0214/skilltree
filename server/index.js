@@ -95,6 +95,14 @@ app.post("/api/users/get/name", (req, res) => {
   });
 });
 
+app.post("/api/users/userInfo", (req, res) => {
+  User.findOne({ _id: req.body._id }, (err, userInfo) => {
+    if (err) return res.json(findOneError(USER_MODEL, err));
+    if (!userInfo) return res.json(notFoundError(USER_MODEL, req.body._id));
+    return res.status(200).json({ success: true, userInfo: userInfo });
+  });
+});
+
 app.post("/api/skills/upload", (req, res) => {
   const skills = new Skills(req.body);
   skills.save((err, skillInfo) => {

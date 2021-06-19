@@ -2,27 +2,23 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const useGetUserInfo = (userId) => {
-  const [userInfo, setUserInfo] = useState({});
+  const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
-    const CancelToken = axios.CancelToken;
-    const source = CancelToken.source();
-
-    axios
-      .post(
-        "/api/users/userInfo",
-        { _id: userId },
-        { cancelToken: source.token }
-      )
-      .then((response) => {
+    const fetchUser = async (userId) => {
+      try {
+        const response = await axios.post("/api/users/userInfo", {
+          _id: userId,
+        });
+        console.log(response);
         setUserInfo(response.data.userInfo);
-      })
-      .catch((err) => console.log(err));
-
-    return () => {
-      source.cancel("axios operation canceled.");
+      } catch (err) {
+        console.log(err);
+      }
     };
-  });
+
+    fetchUser(userId);
+  }, [userId]);
 
   return userInfo;
 };

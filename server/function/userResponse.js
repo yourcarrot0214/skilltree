@@ -79,6 +79,15 @@ const passwordUpdateSuccess = () => ({
   message: "비밀번호가 업데이트 되었습니다.",
 });
 
+const userInfoSuccess = (responseData) => ({
+  success: true,
+  userInfo: {
+    name: responseData.name,
+    tech: responseData.tech,
+    learn: responseData.learn,
+  },
+});
+
 module.exports = {
   saveError,
   signupSuccess,
@@ -92,4 +101,5 @@ module.exports = {
   authSuccess,
   encryptionError,
   passwordUpdateSuccess,
+  userInfoSuccess,
 };

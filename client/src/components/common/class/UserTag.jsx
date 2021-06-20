@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from "../../views/ProfilePage/accont/Modal.jsx";
 import useGetUserName from "../../hooks/useGetUserName.js";
 import useGetUserInfo from "../../hooks/useGetUserInfo.js";
+import UserInfo from "./UserInfo.jsx";
 
 const UserTag = ({ userId }) => {
   const userInfo = useGetUserInfo(userId);
@@ -23,7 +24,7 @@ const UserTag = ({ userId }) => {
         header='유저 정보'
         openModal={ModalOpen}
       >
-        <div>user info component</div>
+        <UserInfo userInfo={userInfo} />
       </Modal>
     </>
   );

@@ -2,6 +2,8 @@ import {
   STUDY_UPDATE,
   STUDY_APPLY,
   STUDY_APPLY_CANCEL,
+  STUDY_APPLY_ACCEPT,
+  STUDY_APPLY_REJECT,
 } from "../_actions/study_types.js";
 
 export default function studySetting(state = {}, action) {
@@ -15,6 +17,14 @@ export default function studySetting(state = {}, action) {
         ? action.payload.studyInfo
         : state;
     case STUDY_APPLY_CANCEL:
+      return state._id === action.payload.studyInfo._id
+        ? action.payload.studyInfo
+        : state;
+    case STUDY_APPLY_ACCEPT:
+      return state._id === action.payload.studyInfo._id
+        ? action.payload.studyInfo
+        : state;
+    case STUDY_APPLY_REJECT:
       return state._id === action.payload.studyInfo._id
         ? action.payload.studyInfo
         : state;

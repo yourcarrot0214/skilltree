@@ -114,10 +114,12 @@ const ClassCard = (props) => {
         )}
         {role === "leader" && (
           <LeaderBoard
+            classId={id}
             onComponentToggle={onComponentToggle}
             componentToggle={componentToggle}
             volunteer={volunteer}
             members={members}
+            location={location}
           />
         )}
         {role === "member" && <h3>MEMBER</h3>}

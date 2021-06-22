@@ -5,6 +5,8 @@ import {
   STUDY_UPDATE,
   STUDY_APPLY,
   STUDY_APPLY_CANCEL,
+  STUDY_APPLY_ACCEPT,
+  STUDY_APPLY_REJECT,
 } from "./study_types.js";
 
 export async function getStudyList() {
@@ -58,6 +60,28 @@ export async function cancelStudyApply(requestBody) {
     .catch((err) => console.log(err));
   return {
     type: STUDY_APPLY_CANCEL,
+    payload: request,
+  };
+}
+
+export async function acceptStudyApply(requestBody) {
+  const request = await axios
+    .post("/api/study/apply/accept", requestBody)
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
+  return {
+    type: STUDY_APPLY_ACCEPT,
+    payload: request,
+  };
+}
+
+export async function rejectStudyApply(requestBody) {
+  const request = await axios
+    .post("/api/study/apply/reject", requestBody)
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
+  return {
+    type: STUDY_APPLY_REJECT,
     payload: request,
   };
 }

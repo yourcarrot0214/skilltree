@@ -5,6 +5,8 @@ import {
   PROJECT_UPDATE,
   PROJECT_APPLY,
   PROJECT_APPLY_CANCEL,
+  PROJECT_APPLY_ACCEPT,
+  PROJECT_APPLY_REJECT,
 } from "./project_types.js";
 
 export async function getProjectList() {
@@ -58,6 +60,28 @@ export async function cancelProjectApply(requestBody) {
     .catch((err) => console.log(err));
   return {
     type: PROJECT_APPLY_CANCEL,
+    payload: request,
+  };
+}
+
+export async function acceptProjectApply(requestBody) {
+  const request = await axios
+    .post("/api/project/apply/accept", requestBody)
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
+  return {
+    type: PROJECT_APPLY_ACCEPT,
+    payload: request,
+  };
+}
+
+export async function rejectProjectApply(requestBody) {
+  const request = await axios
+    .post("/api/project/apply/reject", requestBody)
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
+  return {
+    type: PROJECT_APPLY_REJECT,
     payload: request,
   };
 }

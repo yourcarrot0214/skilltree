@@ -2,10 +2,12 @@ import React from "react";
 import UserTag from "./UserTag.jsx";
 
 const LeaderBoard = ({
+  classId,
   onComponentToggle,
   componentToggle,
   volunteer,
   members,
+  location,
 }) => {
   return (
     <>
@@ -15,7 +17,14 @@ const LeaderBoard = ({
       </button>
 
       {volunteer.map((user) => (
-        <UserTag key={user} userId={user} />
+        <>
+          <UserTag
+            key={user}
+            userId={user}
+            classId={classId}
+            location={location}
+          />
+        </>
       ))}
     </>
   );

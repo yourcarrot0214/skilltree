@@ -16,7 +16,7 @@ import {
 
 const UserTag = (props) => {
   const dispatch = useDispatch();
-  const { userId, classId, location } = props;
+  const { userId, classId, location, acceptTrigger } = props;
   const userInfo = useGetUserInfo(userId);
   const userName = useGetUserName(userId);
   const [ModalOpen, setModalOpen] = useState(false);
@@ -26,6 +26,13 @@ const UserTag = (props) => {
   };
 
   const acceptDispatch = () => {
+    console.log(acceptTrigger);
+    if (!acceptTrigger) {
+      return alert("멤버가 모두 모집되었습니다.");
+    } else {
+      console.log("accept dispatch request.");
+    }
+
     let requestBody = {
       classId: classId,
       userId: userId,

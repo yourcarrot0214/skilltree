@@ -8,6 +8,7 @@ const LeaderBoard = ({
   volunteer,
   members,
   location,
+  personnel,
 }) => {
   return (
     <>
@@ -23,6 +24,7 @@ const LeaderBoard = ({
             userId={user}
             classId={classId}
             location={location}
+            acceptTrigger={members.length < personnel}
           />
         </>
       ))}

@@ -119,6 +119,7 @@ const ClassCard = (props) => {
             volunteer={volunteer}
             members={members}
             location={location}
+            personnel={personnel}
           />
         )}
         {role === "member" && <h3>MEMBER</h3>}

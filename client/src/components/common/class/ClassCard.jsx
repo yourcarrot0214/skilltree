@@ -76,7 +76,6 @@ const ClassCard = (props) => {
     <>
       <ClassCardThumbNail id={id} onClick={onModalPopup}>
         <ClassTitle>{title}</ClassTitle>
-        <ClassDescription>{description}</ClassDescription>
         <TagContainer
           skills={skills}
           selected={true}

@@ -4,6 +4,7 @@ import {
   PROJECT_APPLY_CANCEL,
   PROJECT_APPLY_ACCEPT,
   PROJECT_APPLY_REJECT,
+  PROJECT_MEMBER_LEAVE,
 } from "../_actions/project_types.js";
 
 export default function projectSetting(state = {}, action) {
@@ -25,6 +26,10 @@ export default function projectSetting(state = {}, action) {
         ? action.payload.projectInfo
         : state;
     case PROJECT_APPLY_REJECT:
+      return state._id === action.payload.projectInfo._id
+        ? action.payload.projectInfo
+        : state;
+    case PROJECT_MEMBER_LEAVE:
       return state._id === action.payload.projectInfo._id
         ? action.payload.projectInfo
         : state;

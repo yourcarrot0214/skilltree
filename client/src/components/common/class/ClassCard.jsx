@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { selectedSkill } from "../../../_actions/skill_action.js";
 import {
@@ -13,6 +13,7 @@ import TagContainer from "../TagContainer.jsx";
 import Modal from "../../views/ProfilePage/accont/Modal.jsx";
 import ClassInfo from "./ClassInfo.jsx";
 import LeaderBoard from "./LeaderBoard.jsx";
+import MemberBoard from "./MemberBoard.jsx";
 import UserBoard from "./UserBoard.jsx";
 import UpdateClassForm from "./UpdateClassForm.jsx";
 
@@ -71,6 +72,12 @@ const ClassCard = (props) => {
     console.log("ClassCard onClickFunction.");
   };
 
+  useEffect(() => {
+    return () => {
+      setRole(roleValidation(userId));
+    };
+  });
+
   return (
     <>
       <ClassCardThumbNail id={id} onClick={onModalPopup}>
@@ -123,7 +130,14 @@ const ClassCard = (props) => {
             onModalPopup={onModalPopup}
           />
         )}
-        {role === "member" && <h3>MEMBER</h3>}
+        {role === "member" && (
+          <MemberBoard
+            classId={id}
+            userId={userId}
+            location={location}
+            onModalPopup={onModalPopup}
+          />
+        )}
         {role === "user" && (
           <UserBoard
             isVolunteer={isVolunteer}

@@ -7,6 +7,7 @@ import {
   STUDY_APPLY_CANCEL,
   STUDY_APPLY_ACCEPT,
   STUDY_APPLY_REJECT,
+  STUDY_MEMBER_LEAVE,
 } from "../_actions/study_types.js";
 import studySetting from "./study_sub_reducer.js";
 
@@ -15,7 +16,7 @@ export default function study(state = [], action) {
     case STUDY_GET_LIST:
       return action.payload;
     case STUDY_CREATE:
-      return [...state, action.payload];
+      return [...state, action.payload.responseData];
     case STUDY_UPDATE:
       return state.map((study) => studySetting(study, action));
     case STUDY_DELETE:
@@ -27,6 +28,8 @@ export default function study(state = [], action) {
     case STUDY_APPLY_ACCEPT:
       return state.map((study) => studySetting(study, action));
     case STUDY_APPLY_REJECT:
+      return state.map((study) => studySetting(study, action));
+    case STUDY_MEMBER_LEAVE:
       return state.map((study) => studySetting(study, action));
     default:
       return state;

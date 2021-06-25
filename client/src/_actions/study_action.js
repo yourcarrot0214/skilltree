@@ -8,6 +8,7 @@ import {
   STUDY_APPLY_CANCEL,
   STUDY_APPLY_ACCEPT,
   STUDY_APPLY_REJECT,
+  STUDY_MEMBER_LEAVE,
 } from "./study_types.js";
 
 export async function getStudyList() {
@@ -25,7 +26,7 @@ export async function createStudy(requestBody) {
   const request = await axios
     .post("/api/study/create", requestBody)
     .then((response) => response.data)
-    .catach((err) => console.log(err));
+    .catch((err) => console.log(err));
   return {
     type: STUDY_CREATE,
     payload: request,
@@ -94,6 +95,20 @@ export async function rejectStudyApply(requestBody) {
     .catch((err) => console.log(err));
   return {
     type: STUDY_APPLY_REJECT,
+    payload: request,
+  };
+}
+
+export async function leaveToStudy(requestBody) {
+  const request = await axios
+    .post("/api/study/member/leave", requestBody)
+    .then((response) => {
+      console.log(response.data);
+      return response.data;
+    })
+    .catch((err) => console.log(err));
+  return {
+    type: STUDY_MEMBER_LEAVE,
     payload: request,
   };
 }

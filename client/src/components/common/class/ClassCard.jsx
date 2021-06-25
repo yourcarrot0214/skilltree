@@ -4,7 +4,6 @@ import { selectedSkill } from "../../../_actions/skill_action.js";
 import {
   ClassCardThumbNail,
   ClassTitle,
-  ClassDescription,
   ClassLeader,
   ClassPersonnel,
   ClassStatus,
@@ -98,6 +97,7 @@ const ClassCard = (props) => {
             personnel={personnel}
             submitAddFunction={setComponentToggle}
             id={id}
+            status={status}
           />
         ) : (
           <ClassInfo

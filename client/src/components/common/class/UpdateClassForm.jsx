@@ -13,6 +13,7 @@ const UpdateClassForm = (props) => {
   const [Title, setTitle] = useState(props.title);
   const [Description, setDescription] = useState(props.description);
   const [Personnel, setPersonnel] = useState(props.personnel);
+  const [Status, setStatus] = useState(props.status);
 
   const userData = useSelector((state) => state.user.userData, shallowEqual);
   const skills = useSkills();
@@ -28,6 +29,7 @@ const UpdateClassForm = (props) => {
       skills: selectedSkills,
       personnel: Personnel,
       leader: userData._id,
+      status: Status,
     };
     console.log(requestBody);
 
@@ -50,6 +52,7 @@ const UpdateClassForm = (props) => {
     if (name === "title") setTitle(value);
     else if (name === "description") setDescription(value);
     else if (name === "personnel") setPersonnel(Number(value));
+    else if (name === "status") setStatus(value);
   };
 
   return (
@@ -82,6 +85,20 @@ const UpdateClassForm = (props) => {
             min='2'
             max='10'
             required
+          />
+          <label>모집중</label>
+          <input
+            type='radio'
+            name='status'
+            value={false}
+            onChange={onChangeValue}
+          />
+          <label>진행중</label>
+          <input
+            type='radio'
+            name='status'
+            value={true}
+            onChange={onChangeValue}
           />
           <button type='submit'>업데이트</button>
         </SubmitForm>

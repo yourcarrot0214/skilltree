@@ -157,6 +157,7 @@ app.post("/api/project/update", (req, res) => {
       description: req.body.description,
       skills: req.body.skills,
       personnel: req.body.personnel,
+      status: req.body.status,
     },
     { new: true },
     (err, projectInfo) => {
@@ -176,6 +177,7 @@ app.post("/api/study/update", (req, res) => {
       description: req.body.description,
       skills: req.body.skills,
       personnel: req.body.personnel,
+      status: req.body.status,
     },
     { new: true },
     (err, studyInfo) => {

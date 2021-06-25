@@ -133,6 +133,7 @@ const ModalStyled = Styled.div`
         display: flex;
         align-items: center;
         animation: modal-bg-show 0.3s;
+        overflow: auto;
       `}
 `;
 

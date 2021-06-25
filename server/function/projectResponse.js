@@ -28,10 +28,17 @@ const projectUpdateSuccess = (responseData) => ({
   projectInfo: responseData,
 });
 
+const projectDeleteSuccess = (responseData) => ({
+  success: true,
+  message: "Project 삭제에 성공했습니다.",
+  id: responseData,
+});
+
 module.exports = {
   projectSaveError,
   projectSaveSuccess,
   getProjectListError,
   getProjectListSuccess,
   projectUpdateSuccess,
+  projectDeleteSuccess,
 };

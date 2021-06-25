@@ -1,5 +1,8 @@
 import React from "react";
 import UserTag from "./UserTag.jsx";
+import { useDispatch } from "react-redux";
+import { deleteProject } from "../../../_actions/project_action.js";
+import { deleteStudy } from "../../../_actions/study_action.js";
 
 const LeaderBoard = ({
   classId,
@@ -9,13 +12,29 @@ const LeaderBoard = ({
   members,
   location,
   personnel,
+  onModalPopup,
 }) => {
+  const dispatch = useDispatch();
+
+  const deleteClass = () => {
+    let check = window.confirm(`${location}를 정말 삭제할까요?`);
+
+    if (check && location === "Project") {
+      dispatch(deleteProject({ id: classId }));
+    } else if (check && location === "Study") {
+      dispatch(deleteStudy({ id: classId }));
+    } else {
+      return;
+    }
+    onModalPopup();
+  };
   return (
     <>
       <h3>Leader Board</h3>
       <button onClick={onComponentToggle}>
         {componentToggle ? "취소하기" : "수정하기"}
       </button>
+      <button onClick={deleteClass}>{`${location} 삭제하기`}</button>
 
       {volunteer.map((user) => (
         <>

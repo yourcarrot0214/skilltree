@@ -120,6 +120,7 @@ const ClassCard = (props) => {
             members={members}
             location={location}
             personnel={personnel}
+            onModalPopup={onModalPopup}
           />
         )}
         {role === "member" && <h3>MEMBER</h3>}

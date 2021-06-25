@@ -2,6 +2,7 @@ import {
   STUDY_GET_LIST,
   STUDY_CREATE,
   STUDY_UPDATE,
+  STUDY_DELETE,
   STUDY_APPLY,
   STUDY_APPLY_CANCEL,
   STUDY_APPLY_ACCEPT,
@@ -17,6 +18,8 @@ export default function study(state = [], action) {
       return [...state, action.payload];
     case STUDY_UPDATE:
       return state.map((study) => studySetting(study, action));
+    case STUDY_DELETE:
+      return state.filter((study) => study._id !== action.payload.id);
     case STUDY_APPLY:
       return state.map((study) => studySetting(study, action));
     case STUDY_APPLY_CANCEL:

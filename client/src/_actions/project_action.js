@@ -3,6 +3,7 @@ import {
   PROJECT_GET_LIST,
   PROJECT_CREATE,
   PROJECT_UPDATE,
+  PROJECT_DELETE,
   PROJECT_APPLY,
   PROJECT_APPLY_CANCEL,
   PROJECT_APPLY_ACCEPT,
@@ -38,6 +39,20 @@ export async function updateProject(requestBody) {
     .catch((err) => console.log(err));
   return {
     type: PROJECT_UPDATE,
+    payload: request,
+  };
+}
+
+export async function deleteProject(requestBody) {
+  const request = await axios
+    .post("/api/project/delete", requestBody)
+    .then((response) => {
+      console.log(response.data);
+      return response.data;
+    })
+    .catch((err) => console.log(err));
+  return {
+    type: PROJECT_DELETE,
     payload: request,
   };
 }

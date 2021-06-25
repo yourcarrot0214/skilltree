@@ -28,10 +28,17 @@ const studyUpdateSuccess = (responseData) => ({
   studyInfo: responseData,
 });
 
+const studyDeleteSuccess = (responseData) => ({
+  success: true,
+  message: "Study 삭제에 성공했습니다.",
+  id: responseData,
+});
+
 module.exports = {
   studySaveError,
   studySaveSuccess,
   getStudyListError,
   getStudyListSuccess,
   studyUpdateSuccess,
+  studyDeleteSuccess,
 };

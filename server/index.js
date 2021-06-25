@@ -18,6 +18,7 @@ const {
 
 const {
   findOneAndUpdateError,
+  findOneAndDeleteError,
   notFoundError,
   findOneError,
 } = require("./function/errorResponse");
@@ -56,6 +57,7 @@ const {
   getProjectListError,
   getProjectListSuccess,
   projectUpdateSuccess,
+  projectDeleteSuccess,
 } = require("./function/projectResponse.js");
 
 const {
@@ -64,6 +66,7 @@ const {
   getStudyListError,
   getStudyListSuccess,
   studyUpdateSuccess,
+  studyDeleteSuccess,
 } = require("./function/studyResponse.js");
 
 app.use(express.json());
@@ -169,6 +172,16 @@ app.post("/api/project/update", (req, res) => {
   );
 });
 
+app.post("/api/project/delete", (req, res) => {
+  Project.findOneAndDelete({ _id: req.body.id }, (err, deletedProject) => {
+    if (err) return res.json(findOneAndUpdateError(PROJECT_MODEL, err));
+    if (!deletedProject)
+      return res.json(notFoundError(PROJECT_MODEL, req.body.id));
+
+    return res.status(200).json(projectDeleteSuccess(req.body.id));
+  });
+});
+
 app.post("/api/study/update", (req, res) => {
   Study.findOneAndUpdate(
     { _id: req.body.id },
@@ -186,6 +199,15 @@ app.post("/api/study/update", (req, res) => {
       return res.status(200).json(studyUpdateSuccess(studyInfo));
     }
   );
+});
+
+app.post("/api/study/delete", (req, res) => {
+  Study.findOneAndDelete({ _id: req.body.id }, (err, deletedStudy) => {
+    if (err) return res.json(findOneAndDeleteError(STUDY_MODEL, err));
+    if (!deletedStudy) return res.json(notFoundError(STUDY_MODEL, req.body.id));
+
+    return res.status(200).json(studyDeleteSuccess(req.body.id));
+  });
 });
 
 app.post("/api/project/apply", (req, res) => {

@@ -2,6 +2,7 @@ import {
   PROJECT_GET_LIST,
   PROJECT_CREATE,
   PROJECT_UPDATE,
+  PROJECT_DELETE,
   PROJECT_APPLY,
   PROJECT_APPLY_CANCEL,
   PROJECT_APPLY_ACCEPT,
@@ -17,6 +18,8 @@ export default function project(state = [], action) {
       return [...state, action.payload.responseData];
     case PROJECT_UPDATE:
       return state.map((project) => projectSetting(project, action));
+    case PROJECT_DELETE:
+      return state.filter((project) => project._id !== action.payload.id);
     case PROJECT_APPLY:
       return state.map((project) => projectSetting(project, action));
     case PROJECT_APPLY_CANCEL:

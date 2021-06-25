@@ -3,6 +3,7 @@ import {
   STUDY_GET_LIST,
   STUDY_CREATE,
   STUDY_UPDATE,
+  STUDY_DELETE,
   STUDY_APPLY,
   STUDY_APPLY_CANCEL,
   STUDY_APPLY_ACCEPT,
@@ -38,6 +39,17 @@ export async function updateStudy(requestBody) {
     .catch((err) => console.log(err));
   return {
     type: STUDY_UPDATE,
+    payload: request,
+  };
+}
+
+export async function deleteStudy(requestBody) {
+  const request = await axios
+    .post("/api/study/delete", requestBody)
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
+  return {
+    type: STUDY_DELETE,
     payload: request,
   };
 }

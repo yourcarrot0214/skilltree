@@ -37,15 +37,14 @@ const LeaderBoard = ({
       <button onClick={deleteClass}>{`${location} 삭제하기`}</button>
 
       {volunteer.map((user) => (
-        <>
+        <div key={user}>
           <UserTag
-            key={user}
             userId={user}
             classId={classId}
             location={location}
             acceptTrigger={members.length < personnel}
           />
-        </>
+        </div>
       ))}
     </>
   );

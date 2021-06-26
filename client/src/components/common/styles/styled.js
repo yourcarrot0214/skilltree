@@ -107,6 +107,23 @@ const SubmitForm = Styled.form`
   flex-direction: column;
 `;
 
+const ButtonContainer = Styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+`;
+
+const UserTagContainer = Styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 4px;
+  border: 1px solid black;
+`;
+
 export {
   TagStyled,
   TagContainerStyled,
@@ -122,4 +139,6 @@ export {
   CreateClassButton,
   SubmitContainer,
   SubmitForm,
+  ButtonContainer,
+  UserTagContainer,
 };

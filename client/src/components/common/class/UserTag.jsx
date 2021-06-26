@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ButtonContainer, UserTagContainer } from "../styles/styled.js";
 import { useDispatch } from "react-redux";
 import Modal from "../../views/ProfilePage/accont/Modal.jsx";
 import Button from "./Button.jsx";
@@ -61,10 +62,12 @@ const UserTag = (props) => {
   };
 
   return (
-    <>
+    <UserTagContainer>
       <h3 onClick={onModalPopup}>{userName}</h3>
-      <Button onClickFunction={acceptDispatch} accept />
-      <Button onClickFunction={rejectDispatch} />
+      <ButtonContainer>
+        <Button onClickFunction={acceptDispatch} accept />
+        <Button onClickFunction={rejectDispatch} />
+      </ButtonContainer>
       <Modal
         onClickFunction={onModalPopup}
         header='유저 정보'
@@ -72,7 +75,7 @@ const UserTag = (props) => {
       >
         <UserInfo userInfo={userInfo} />
       </Modal>
-    </>
+    </UserTagContainer>
   );
 };
 

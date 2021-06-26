@@ -112,7 +112,6 @@ const ButtonContainer = Styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
 `;
 
 const UserTagContainer = Styled.div`
@@ -121,7 +120,31 @@ const UserTagContainer = Styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 4px 4px;
-  border: 1px solid black;
+
+  span {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  span:hover {
+    color: #69db7c;
+  }
+`;
+
+const StyledButton = Styled.button`
+  height: 24px;
+  margin-left: 6px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f03e3e;
+  font-size: 1rem;
+  padding: 4px 6px;
+  
+  ${(props) =>
+    props.admission &&
+    css`
+      background-color: #37b24d;
+    `}
 `;
 
 export {
@@ -141,4 +164,5 @@ export {
   SubmitForm,
   ButtonContainer,
   UserTagContainer,
+  StyledButton,
 };

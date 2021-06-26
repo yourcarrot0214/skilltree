@@ -63,10 +63,10 @@ const UserTag = (props) => {
 
   return (
     <UserTagContainer>
-      <h3 onClick={onModalPopup}>{userName}</h3>
+      <span onClick={onModalPopup}>{userName}</span>
       <ButtonContainer>
-        <Button onClickFunction={acceptDispatch} accept />
-        <Button onClickFunction={rejectDispatch} />
+        <Button onClickFunction={acceptDispatch} admission={true} />
+        <Button onClickFunction={rejectDispatch} admission={false} />
       </ButtonContainer>
       <Modal
         onClickFunction={onModalPopup}

@@ -1,9 +1,12 @@
 import React from "react";
+import { StyledButton } from "../styles/styled.js";
 
-const Button = ({ onClickFunction, accept }) => {
+const Button = ({ onClickFunction, admission }) => {
   return (
     <>
-      <button onClick={onClickFunction}>{accept ? "수락" : "거절"}</button>
+      <StyledButton onClick={onClickFunction} admission={admission}>
+        {admission ? "수락" : "거절"}
+      </StyledButton>
     </>
   );
 };

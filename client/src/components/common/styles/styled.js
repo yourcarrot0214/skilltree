@@ -30,16 +30,20 @@ const SkillSearchBarStyled = Styled.div`
 const ClassCardContainer = Styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   padding: 1rem;
   border: 1px solid black;
 `;
 
 const ClassCardThumbNail = Styled.div`
-  max-width: 400px;
+flex-grow: 1;
+  width: 350px;
+  min-width: 300px;
   padding: 1rem;
   border: 1px solid black;
   border-radius: 5px;
   margin-right: 1rem;
+  margin-top: 1rem;
 `;
 
 const ClassTitle = Styled.h3`

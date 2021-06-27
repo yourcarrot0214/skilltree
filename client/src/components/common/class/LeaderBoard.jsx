@@ -79,16 +79,19 @@ const LeaderBoard = ({
   };
 
   const memberExpulsion = (userId) => {
+    let check = window.confirm("해당 멤버를 추방합니까?");
     let requestBody = {
       classId: classId,
       userId: userId,
     };
-    if (location === "Project") {
+    if (check && location === "Project") {
       dispatch(expulsionProjectMember(requestBody));
       alert("프로젝트 멤버를 추방했습니다.");
-    } else if (location === "Study") {
+    } else if (check && location === "Study") {
       dispatch(expulsionStudyMember(requestBody));
       alert("스터디 멤버를 추방했습니다.");
+    } else {
+      return;
     }
   };
 

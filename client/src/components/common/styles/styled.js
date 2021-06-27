@@ -36,8 +36,8 @@ const ClassCardContainer = Styled.div`
 `;
 
 const ClassCardThumbNail = Styled.div`
-flex-grow: 1;
   width: 350px;
+  max-width: 350px;
   min-width: 300px;
   padding: 1rem;
   border: 1px solid black;

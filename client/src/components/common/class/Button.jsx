@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyledButton } from "../styles/styled.js";
 
-const Button = ({ onClickFunction, admission }) => {
+const Button = ({ onClickFunction, admission, name, userId }) => {
+  const [id, setId] = useState(userId);
+  const dispatchFunction = () => onClickFunction(id);
   return (
     <>
-      <StyledButton onClick={onClickFunction} admission={admission}>
-        {admission ? "수락" : "거절"}
+      <StyledButton onClick={dispatchFunction} admission={admission}>
+        {name}
       </StyledButton>
     </>
   );

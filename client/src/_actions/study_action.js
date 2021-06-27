@@ -9,6 +9,7 @@ import {
   STUDY_APPLY_ACCEPT,
   STUDY_APPLY_REJECT,
   STUDY_MEMBER_LEAVE,
+  STUDY_MEMBER_EXPULSION,
 } from "./study_types.js";
 
 export async function getStudyList() {
@@ -109,6 +110,17 @@ export async function leaveToStudy(requestBody) {
     .catch((err) => console.log(err));
   return {
     type: STUDY_MEMBER_LEAVE,
+    payload: request,
+  };
+}
+
+export async function expulsionStudyMember(requestBody) {
+  const request = await axios
+    .post("/api/study/member/expulsion", requestBody)
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
+  return {
+    type: STUDY_MEMBER_EXPULSION,
     payload: request,
   };
 }

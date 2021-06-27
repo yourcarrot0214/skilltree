@@ -9,6 +9,7 @@ import {
   PROJECT_APPLY_ACCEPT,
   PROJECT_APPLY_REJECT,
   PROJECT_MEMBER_LEAVE,
+  PORJECT_MEMBER_EXPULSION,
 } from "./project_types.js";
 
 export async function getProjectList() {
@@ -109,6 +110,17 @@ export async function leaveToProject(requestBody) {
     .catch((err) => console.log(err));
   return {
     type: PROJECT_MEMBER_LEAVE,
+    payload: request,
+  };
+}
+
+export async function expulsionProjectMember(requestBody) {
+  const request = await axios
+    .post("/api/project/member/expulsion", requestBody)
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
+  return {
+    type: PORJECT_MEMBER_EXPULSION,
     payload: request,
   };
 }

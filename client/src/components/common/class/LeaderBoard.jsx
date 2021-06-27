@@ -7,11 +7,13 @@ import {
   deleteProject,
   acceptProjectApply,
   rejectProjectApply,
+  expulsionProjectMember,
 } from "../../../_actions/project_action.js";
 import {
   deleteStudy,
   acceptStudyApply,
   rejectStudyApply,
+  expulsionStudyMember,
 } from "../../../_actions/study_action.js";
 
 const LeaderBoard = ({
@@ -76,6 +78,20 @@ const LeaderBoard = ({
     }
   };
 
+  const memberExpulsion = (userId) => {
+    let requestBody = {
+      classId: classId,
+      userId: userId,
+    };
+    if (location === "Project") {
+      dispatch(expulsionProjectMember(requestBody));
+      alert("프로젝트 멤버를 추방했습니다.");
+    } else if (location === "Study") {
+      dispatch(expulsionStudyMember(requestBody));
+      alert("스터디 멤버를 추방했습니다.");
+    }
+  };
+
   return (
     <>
       <h3>Leader Board</h3>
@@ -109,6 +125,14 @@ const LeaderBoard = ({
       {members.map((user) => (
         <UserListWrapper key={user}>
           <UserTag userId={user} />
+          <ButtonContainer>
+            <Button
+              onClickFunction={memberExpulsion}
+              admission={false}
+              name='추방'
+              userId={user}
+            />
+          </ButtonContainer>
         </UserListWrapper>
       ))}
     </>

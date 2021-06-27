@@ -5,6 +5,7 @@ import {
   STUDY_APPLY_ACCEPT,
   STUDY_APPLY_REJECT,
   STUDY_MEMBER_LEAVE,
+  STUDY_MEMBER_EXPULSION,
 } from "../_actions/study_types.js";
 
 export default function studySetting(state = {}, action) {
@@ -30,6 +31,10 @@ export default function studySetting(state = {}, action) {
         ? action.payload.studyInfo
         : state;
     case STUDY_MEMBER_LEAVE:
+      return state._id === action.payload.studyInfo._id
+        ? action.payload.studyInfo
+        : state;
+    case STUDY_MEMBER_EXPULSION:
       return state._id === action.payload.studyInfo._id
         ? action.payload.studyInfo
         : state;

@@ -8,6 +8,7 @@ import {
   STUDY_APPLY_ACCEPT,
   STUDY_APPLY_REJECT,
   STUDY_MEMBER_LEAVE,
+  STUDY_MEMBER_EXPULSION,
 } from "../_actions/study_types.js";
 import studySetting from "./study_sub_reducer.js";
 
@@ -30,6 +31,8 @@ export default function study(state = [], action) {
     case STUDY_APPLY_REJECT:
       return state.map((study) => studySetting(study, action));
     case STUDY_MEMBER_LEAVE:
+      return state.map((study) => studySetting(study, action));
+    case STUDY_MEMBER_EXPULSION:
       return state.map((study) => studySetting(study, action));
     default:
       return state;

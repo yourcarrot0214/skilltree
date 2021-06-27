@@ -119,10 +119,6 @@ const ButtonContainer = Styled.div`
 `;
 
 const UserTagContainer = Styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
   padding: 4px 4px;
 
   span {
@@ -133,6 +129,13 @@ const UserTagContainer = Styled.div`
   span:hover {
     color: #69db7c;
   }
+`;
+
+const UserListWrapper = Styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const StyledButton = Styled.button`
@@ -169,4 +172,5 @@ export {
   ButtonContainer,
   UserTagContainer,
   StyledButton,
+  UserListWrapper,
 };

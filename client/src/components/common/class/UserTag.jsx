@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { UserTagContainer } from "../styles/styled.js";
-import { useDispatch } from "react-redux";
 import Modal from "../../views/ProfilePage/accont/Modal.jsx";
 import useGetUserName from "../../hooks/useGetUserName.js";
 import useGetUserInfo from "../../hooks/useGetUserInfo.js";

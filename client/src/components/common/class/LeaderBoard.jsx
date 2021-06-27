@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import UserTag from "./UserTag.jsx";
 import Button from "./Button.jsx";
-import { ButtonContainer } from "../styles/styled.js";
+import { ButtonContainer, UserListWrapper } from "../styles/styled.js";
 import { useDispatch } from "react-redux";
 import {
   deleteProject,
@@ -86,7 +86,7 @@ const LeaderBoard = ({
 
       <h3>지원자 관리</h3>
       {volunteer.map((user) => (
-        <div key={user}>
+        <UserListWrapper key={user}>
           <UserTag userId={user} />
           <ButtonContainer>
             <Button
@@ -102,14 +102,14 @@ const LeaderBoard = ({
               userId={user}
             />
           </ButtonContainer>
-        </div>
+        </UserListWrapper>
       ))}
 
       <h3>멤버 관리</h3>
       {members.map((user) => (
-        <div key={user}>
+        <UserListWrapper key={user}>
           <UserTag userId={user} />
-        </div>
+        </UserListWrapper>
       ))}
     </>
   );

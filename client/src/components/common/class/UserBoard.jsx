@@ -8,6 +8,10 @@ import {
   applyStudy,
   cancelStudyApply,
 } from "../../../_actions/study_action.js";
+import {
+  addApplyProject,
+  cancelApplyProject,
+} from "../../../_actions/user_action.js";
 
 const UserBoard = (props) => {
   const dispatch = useDispatch();
@@ -22,6 +26,7 @@ const UserBoard = (props) => {
 
     if (location === "Project") {
       dispatch(applyProject(requestBody));
+      dispatch(addApplyProject(requestBody));
       setVolunteer(!volunteer);
       alert("request apply to project");
     } else if (location === "Study") {
@@ -39,6 +44,7 @@ const UserBoard = (props) => {
 
     if (location === "Project") {
       dispatch(cancelProjectApply(requestBody));
+      dispatch(cancelApplyProject(requestBody));
       setVolunteer(!volunteer);
       alert("request project apply to cancel.");
     } else if (location === "Study") {

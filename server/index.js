@@ -37,6 +37,7 @@ const {
   encryptionError,
   passwordUpdateSuccess,
   userInfoSuccess,
+  userApplyUpdate,
 } = require("./function/userResponse.js");
 
 const {
@@ -595,6 +596,58 @@ app.post("/api/users/delete/learn", auth, (req, res) => {
       res.status(200).json(authSuccess(user));
     }
   );
+});
+
+app.post("/api/users/project/apply/add", (req, res) => {
+  User.findOne({ _id: req.body.userId }, (err, user) => {
+    if (err) return res.json(findOneError(USER_MODEL, err));
+    if (!user) return res.json(notFoundError(USER_MODEL, req.body.userId));
+
+    User.findOneAndUpdate(
+      { _id: req.body.userId },
+      {
+        project: {
+          ...user.project,
+          apply: user.project.apply.concat(req.body.classId),
+        },
+      },
+      { new: true },
+      (err, updatedUser) => {
+        if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+        if (!updatedUser)
+          return res.json(notFoundError(USER_MODEL, req.body.userId));
+
+        return res.status(200).json(userApplyUpdate(updatedUser.project.apply));
+      }
+    );
+  });
+});
+
+app.post("/api/users/project/apply/cancel", (req, res) => {
+  User.findOne({ _id: req.body.userId }, (err, user) => {
+    if (err) return res.json(findOneError(USER_MODEL, err));
+    if (!user) return res.json(notFoundError(USER_MODEL, req.body.userId));
+
+    User.findOneAndUpdate(
+      { _id: req.body.userId },
+      {
+        project: {
+          ...user.project,
+          apply: user.project.apply.filter(
+            (classId) => classId !== req.body.classId
+          ),
+        },
+      },
+      { new: true },
+      (err, updatedUser) => {
+        if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+        if (!updatedUser)
+          return res.json(notFoundError(USER_MODEL, req.body.userId));
+
+        return res.status(200).json(userApplyUpdate(updatedUser.project.apply));
+      }
+    );
+  });
 });
 
 app.post("/api/skills/add/technitianUsers", auth, (req, res) => {

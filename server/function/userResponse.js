@@ -88,6 +88,12 @@ const userInfoSuccess = (responseData) => ({
   },
 });
 
+const userApplyUpdate = (responseData) => ({
+  success: true,
+  message: "유저 정보 업데이트에 성공했습니다.",
+  apply: responseData,
+});
+
 module.exports = {
   saveError,
   signupSuccess,
@@ -102,4 +108,5 @@ module.exports = {
   encryptionError,
   passwordUpdateSuccess,
   userInfoSuccess,
+  userApplyUpdate,
 };

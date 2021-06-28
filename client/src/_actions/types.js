@@ -7,3 +7,5 @@ export const ADD_TECH = "ADD_TECH";
 export const ADD_LEARN = "ADD_LEARN";
 export const DELETE_TECH = "DELETE_TECH";
 export const DELETE_LEARN = "DELETE_LEARN";
+export const PROJECT_APPLY_ADD = "PROJECT_APPLY_ADD";
+export const PROJECT_APPLY_DELETE = "PROJECT_APPLY_CANCEL";

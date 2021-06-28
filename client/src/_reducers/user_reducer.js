@@ -8,6 +8,8 @@ import {
   ADD_LEARN,
   DELETE_TECH,
   DELETE_LEARN,
+  PROJECT_APPLY_ADD,
+  PROJECT_APPLY_DELETE,
 } from "../_actions/types.js";
 
 export default function user(state = {}, action) {
@@ -30,6 +32,28 @@ export default function user(state = {}, action) {
       return { ...state, userData: action.payload };
     case DELETE_LEARN:
       return { ...state, userData: action.payload };
+    case PROJECT_APPLY_ADD:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          project: {
+            ...state.userData.project,
+            apply: action.payload.apply,
+          },
+        },
+      };
+    case PROJECT_APPLY_DELETE:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          project: {
+            ...state.userData.project,
+            apply: action.payload.apply,
+          },
+        },
+      };
     default:
       return state;
   }

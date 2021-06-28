@@ -9,6 +9,8 @@ import {
   DELETE_TECH,
   ADD_LEARN,
   DELETE_LEARN,
+  PROJECT_APPLY_ADD,
+  PROJECT_APPLY_DELETE,
 } from "./types.js";
 
 export async function loginUser(loginData) {
@@ -106,6 +108,28 @@ export async function deleteUserLearn(techId) {
     .catch((err) => console.log(err));
   return {
     type: DELETE_LEARN,
+    payload: request,
+  };
+}
+
+export async function addApplyProject(requestBody) {
+  const request = await axios
+    .post("/api/users/project/apply/add", requestBody)
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
+  return {
+    type: PROJECT_APPLY_ADD,
+    payload: request,
+  };
+}
+
+export async function cancelApplyProject(requestBody) {
+  const request = await axios
+    .post("/api/users/project/apply/cancel", requestBody)
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
+  return {
+    type: PROJECT_APPLY_DELETE,
     payload: request,
   };
 }

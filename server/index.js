@@ -598,7 +598,7 @@ app.post("/api/users/delete/learn", auth, (req, res) => {
   );
 });
 
-app.post("/api/users/project/apply/add", (req, res) => {
+app.post("/api/users/project/apply/save", (req, res) => {
   User.findOne({ _id: req.body.userId }, (err, user) => {
     if (err) return res.json(findOneError(USER_MODEL, err));
     if (!user) return res.json(notFoundError(USER_MODEL, req.body.userId));
@@ -623,7 +623,7 @@ app.post("/api/users/project/apply/add", (req, res) => {
   });
 });
 
-app.post("/api/users/project/apply/cancel", (req, res) => {
+app.post("/api/users/project/apply/remove", (req, res) => {
   User.findOne({ _id: req.body.userId }, (err, user) => {
     if (err) return res.json(findOneError(USER_MODEL, err));
     if (!user) return res.json(notFoundError(USER_MODEL, req.body.userId));

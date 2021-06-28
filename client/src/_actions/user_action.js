@@ -112,9 +112,9 @@ export async function deleteUserLearn(techId) {
   };
 }
 
-export async function addApplyProject(requestBody) {
+export async function saveApplyProject(requestBody) {
   const request = await axios
-    .post("/api/users/project/apply/add", requestBody)
+    .post("/api/users/project/apply/save", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -123,9 +123,9 @@ export async function addApplyProject(requestBody) {
   };
 }
 
-export async function cancelApplyProject(requestBody) {
+export async function removeApplyProject(requestBody) {
   const request = await axios
-    .post("/api/users/project/apply/cancel", requestBody)
+    .post("/api/users/project/apply/remove", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {

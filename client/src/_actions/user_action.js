@@ -10,7 +10,9 @@ import {
   ADD_LEARN,
   DELETE_LEARN,
   PROJECT_APPLY_ADD,
-  PROJECT_APPLY_DELETE,
+  PROJECT_APPLY_REMOVE,
+  STUDY_APPLY_ADD,
+  STUDY_APPLY_REMOVE,
 } from "./types.js";
 
 export async function loginUser(loginData) {
@@ -129,7 +131,29 @@ export async function removeApplyProject(requestBody) {
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
-    type: PROJECT_APPLY_DELETE,
+    type: PROJECT_APPLY_REMOVE,
+    payload: request,
+  };
+}
+
+export async function saveApplyStudy(requestBody) {
+  const request = await axios
+    .post("/api/users/study/apply/save", requestBody)
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
+  return {
+    type: STUDY_APPLY_ADD,
+    payload: request,
+  };
+}
+
+export async function removeApplyStudy(requestBody) {
+  const request = await axios
+    .post("/api/users/study/apply/remove", requestBody)
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
+  return {
+    type: STUDY_APPLY_REMOVE,
     payload: request,
   };
 }

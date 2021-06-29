@@ -9,7 +9,9 @@ import {
   DELETE_TECH,
   DELETE_LEARN,
   PROJECT_APPLY_ADD,
-  PROJECT_APPLY_DELETE,
+  PROJECT_APPLY_REMOVE,
+  STUDY_APPLY_ADD,
+  STUDY_APPLY_REMOVE,
 } from "../_actions/types.js";
 
 export default function user(state = {}, action) {
@@ -43,13 +45,34 @@ export default function user(state = {}, action) {
           },
         },
       };
-    case PROJECT_APPLY_DELETE:
+    case PROJECT_APPLY_REMOVE:
       return {
         ...state,
         userData: {
           ...state.userData,
           project: {
             ...state.userData.project,
+            apply: action.payload.apply,
+          },
+        },
+      };
+    case STUDY_APPLY_ADD:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          study: {
+            ...state.userData.study,
+            apply: action.payload.apply,
+          },
+        },
+      };
+    case STUDY_APPLY_REMOVE:
+      return {
+        ...state,
+        userData: {
+          study: {
+            ...state.userData.study,
             apply: action.payload.apply,
           },
         },

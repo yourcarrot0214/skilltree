@@ -619,6 +619,31 @@ app.post("/api/users/project/apply/save", (req, res) => {
   });
 });
 
+app.post("/api/users/study/apply/save", (req, res) => {
+  User.findOne({ _id: req.body.userId }, (err, user) => {
+    if (err) return res.json(findOneError(USER_MODEL, err));
+    if (!user) return res.json(notFoundError(USER_MODEL, req.body.userId));
+
+    User.findOneAndUpdate(
+      { _id: req.body.userId },
+      {
+        study: {
+          ...user.study,
+          apply: user.study.apply.concat(req.body.classId),
+        },
+      },
+      { new: true },
+      (err, updatedUser) => {
+        if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+        if (!updatedUser)
+          return res.json(notFoundError(USER_MODEL, req.body.userId));
+
+        return res.status(200).json(userApplyUpdate(updatedUser.study.apply));
+      }
+    );
+  });
+});
+
 app.post("/api/users/project/apply/remove", (req, res) => {
   User.findOne({ _id: req.body.userId }, (err, user) => {
     if (err) return res.json(findOneError(USER_MODEL, err));
@@ -641,6 +666,33 @@ app.post("/api/users/project/apply/remove", (req, res) => {
           return res.json(notFoundError(USER_MODEL, req.body.userId));
 
         return res.status(200).json(userApplyUpdate(updatedUser.project.apply));
+      }
+    );
+  });
+});
+
+app.post("/api/users/study/apply/remove", (req, res) => {
+  User.findOne({ _id: req.body.userId }, (err, user) => {
+    if (err) return res.json(findOneError(USER_MODEL, err));
+    if (!user) return res.json(notFoundError(USER_MODEL, req.body.userId));
+
+    User.findOneAndUpdate(
+      { _id: req.body.userId },
+      {
+        study: {
+          ...user.study,
+          apply: user.study.apply.filter(
+            (classId) => classId !== req.body.classId
+          ),
+        },
+      },
+      { new: true },
+      (err, updatedUser) => {
+        if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+        if (!updatedUser)
+          return res.json(notFoundError(USER_MODEL, req.body.userId));
+
+        return res.status(200).json(userApplyUpdate(updatedUser.study.apply));
       }
     );
   });

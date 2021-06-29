@@ -11,6 +11,8 @@ import {
 import {
   saveApplyProject,
   removeApplyProject,
+  saveApplyStudy,
+  removeApplyStudy,
 } from "../../../_actions/user_action.js";
 
 const UserBoard = (props) => {
@@ -28,11 +30,12 @@ const UserBoard = (props) => {
       dispatch(applyProject(requestBody));
       dispatch(saveApplyProject(requestBody));
       setVolunteer(!volunteer);
-      alert("request apply to project");
+      alert(`프로젝트 참가 신청이 완료되었습니다.`);
     } else if (location === "Study") {
       dispatch(applyStudy(requestBody));
+      dispatch(saveApplyStudy(requestBody));
       setVolunteer(!volunteer);
-      alert("request apply to study.");
+      alert(`스터디 참가 신청이 완료되었습니다.`);
     }
   };
 
@@ -46,11 +49,12 @@ const UserBoard = (props) => {
       dispatch(cancelProjectApply(requestBody));
       dispatch(removeApplyProject(requestBody));
       setVolunteer(!volunteer);
-      alert("request project apply to cancel.");
+      alert(`프로젝트 참가 신청이 취소되었습니다.`);
     } else if (location === "Study") {
       dispatch(cancelStudyApply(requestBody));
+      dispatch(removeApplyStudy(requestBody));
       setVolunteer(!volunteer);
-      alert("request study apply to cancel");
+      alert(`스터디 참가 신청이 취소되었습니다.`);
     }
   };
 
@@ -67,8 +71,3 @@ const UserBoard = (props) => {
 };
 
 export default UserBoard;
-
-/*
-  참가신청 dispatch 이후 화면 업데이트가 안됨.
-  참가신청 => 참가신청취소로 전환되도록 코드 수정.
-*/

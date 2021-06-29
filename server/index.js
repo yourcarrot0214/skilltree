@@ -39,6 +39,7 @@ const {
   passwordUpdateSuccess,
   userInfoSuccess,
   userApplyUpdate,
+  userMemberUpdate,
 } = require("./function/userResponse.js");
 
 const {
@@ -693,6 +694,64 @@ app.post("/api/users/study/apply/remove", (req, res) => {
           return res.json(notFoundError(USER_MODEL, req.body.userId));
 
         return res.status(200).json(userApplyUpdate(updatedUser.study.apply));
+      }
+    );
+  });
+});
+
+app.post("/api/users/project/member/save", (req, res) => {
+  User.findOne({ _id: req.body.userId }, (err, user) => {
+    if (err) return res.json(findOneError(USER_MODEL, err));
+    if (!user) return res.json(notFoundError(USER_MODEL, req.body.userId));
+
+    User.findOneAndUpdate(
+      { _id: req.body.userId },
+      {
+        project: {
+          ...user.project,
+          apply: user.project.apply.filter(
+            (classId) => classId !== req.body.classId
+          ),
+          member: user.project.member.concat(req.body.classId),
+        },
+      },
+      { new: true },
+      (err, updatedUser) => {
+        if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+        if (!updatedUser)
+          return res.json(notFoundError(USER_MODEL, req.body.userId));
+
+        return res.status(200).json(userMemberUpdate(updatedUser.project));
+      }
+    );
+  });
+});
+// response data 수정, userResponse 코드 수정, reducer 수정
+
+app.post("/api/users/project/member/remove", (req, res) => {
+  User.findOne({ _id: req.body.userId }, (err, user) => {
+    if (err) return res.json(findOneError(USER_MODEL, err));
+    if (!user) return res.json(notFoundError(USER_MODEL, req.body.userId));
+
+    User.findOneAndUpdate(
+      { _id: req.body.userId },
+      {
+        project: {
+          ...user.project,
+          member: user.project.member.filter(
+            (classId) => classId !== req.body.classId
+          ),
+        },
+      },
+      { new: true },
+      (err, updatedUser) => {
+        if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+        if (!updatedUser)
+          return res.json(notFoundError(USER_MODEL, req.body.userId));
+
+        return res
+          .status(200)
+          .json(userMemberUpdate(updatedUser.project.member));
       }
     );
   });

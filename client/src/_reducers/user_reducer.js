@@ -10,6 +10,8 @@ import {
   DELETE_LEARN,
   PROJECT_APPLY_ADD,
   PROJECT_APPLY_REMOVE,
+  PROJECT_MEMBER_ADD,
+  PROJECT_MEMBER_REMOVE,
   STUDY_APPLY_ADD,
   STUDY_APPLY_REMOVE,
 } from "../_actions/types.js";
@@ -53,6 +55,29 @@ export default function user(state = {}, action) {
           project: {
             ...state.userData.project,
             apply: action.payload.apply,
+          },
+        },
+      };
+    case PROJECT_MEMBER_ADD:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          project: {
+            ...state.userData.project,
+            member: action.payload.updatedInfo.member,
+            apply: action.payload.updatedInfo.apply,
+          },
+        },
+      };
+    case PROJECT_MEMBER_REMOVE:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          project: {
+            ...state.userData.project,
+            member: action.payload.updatedInfo,
           },
         },
       };

@@ -9,6 +9,7 @@ const { Skills } = require("./models/Skills");
 const { Project } = require("./models/Project.js");
 const { Study } = require("./models/Study.js");
 const { auth } = require("./middleware/auth.js");
+const { projectFindOne } = require("./middleware/projectFindOne.js");
 const {
   SKILLS_MODEL,
   USER_MODEL,
@@ -211,24 +212,19 @@ app.post("/api/study/delete", (req, res) => {
   });
 });
 
-app.post("/api/project/apply", (req, res) => {
-  Project.findOne({ _id: req.body.classId }, (err, project) => {
-    if (err) return res.json(findOneError(PROJECT_MODEL, err));
-    if (!project)
-      return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
+app.post("/api/project/apply", projectFindOne, (req, res) => {
+  Project.findOneAndUpdate(
+    { _id: req.body.classId },
+    { volunteer: req.project.volunteer.concat(req.body.userId) },
+    { new: true },
+    (err, updatedProject) => {
+      if (err) return res.json(findOneError(PROJECT_MODEL, err));
+      if (!updatedProject)
+        return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
 
-    Project.findOneAndUpdate(
-      { _id: req.body.classId },
-      { volunteer: project.volunteer.concat(req.body.userId) },
-      { new: true },
-      (err, updatedProject) => {
-        if (err) return res.json(findOneError(PROJECT_MODEL, err));
-        if (!updatedProject)
-          return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
-        return res.status(200).json(projectUpdateSuccess(updatedProject));
-      }
-    );
-  });
+      return res.status(200).json(projectUpdateSuccess(updatedProject));
+    }
+  );
 });
 
 app.post("/api/study/apply", (req, res) => {

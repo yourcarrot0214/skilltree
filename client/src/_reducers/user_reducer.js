@@ -14,6 +14,8 @@ import {
   PROJECT_MEMBER_REMOVE,
   STUDY_APPLY_ADD,
   STUDY_APPLY_REMOVE,
+  STUDY_MEMBER_ADD,
+  STUDY_MEMBER_REMOVE,
 } from "../_actions/types.js";
 
 export default function user(state = {}, action) {
@@ -96,9 +98,33 @@ export default function user(state = {}, action) {
       return {
         ...state,
         userData: {
+          ...state.userData,
           study: {
             ...state.userData.study,
             apply: action.payload.apply,
+          },
+        },
+      };
+    case STUDY_MEMBER_ADD:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          study: {
+            ...state.userData.study,
+            member: action.payload.updatedInfo.member,
+            apply: action.payload.updatedInfo.apply,
+          },
+        },
+      };
+    case STUDY_MEMBER_REMOVE:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          study: {
+            ...state.userData.study,
+            member: action.payload.updatedInfo,
           },
         },
       };

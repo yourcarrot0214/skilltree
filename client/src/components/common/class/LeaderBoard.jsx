@@ -18,6 +18,8 @@ import {
 import {
   saveProjectMember,
   removeProjectMember,
+  saveStudyMember,
+  removeStudyMember,
 } from "../../../_actions/user_action.js";
 
 const LeaderBoard = ({
@@ -66,6 +68,7 @@ const LeaderBoard = ({
     } else if (location === "Study") {
       dispatch(acceptStudyApply(requestBody));
       // 해당 유저 study.member에 정보 추가
+      dispatch(saveStudyMember(requestBody));
       console.log("accept study apply.");
     }
   };
@@ -97,6 +100,7 @@ const LeaderBoard = ({
     } else if (check && location === "Study") {
       dispatch(expulsionStudyMember(requestBody));
       // 해당 유저 study.member에 classId 삭제
+      dispatch(removeStudyMember(requestBody));
       alert("스터디 멤버를 추방했습니다.");
     } else {
       return;

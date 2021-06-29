@@ -726,7 +726,6 @@ app.post("/api/users/project/member/save", (req, res) => {
     );
   });
 });
-// response data 수정, userResponse 코드 수정, reducer 수정
 
 app.post("/api/users/project/member/remove", (req, res) => {
   User.findOne({ _id: req.body.userId }, (err, user) => {
@@ -752,6 +751,61 @@ app.post("/api/users/project/member/remove", (req, res) => {
         return res
           .status(200)
           .json(userMemberUpdate(updatedUser.project.member));
+      }
+    );
+  });
+});
+
+app.post("/api/users/study/member/save", (req, res) => {
+  User.findOne({ _id: req.body.userId }, (err, user) => {
+    if (err) return res.json(findOneError(USER_MODEL, err));
+    if (!user) return res.json(notFoundError(USER_MODEL, req.body.userId));
+
+    User.findOneAndUpdate(
+      { _id: req.body.userId },
+      {
+        study: {
+          ...user.study,
+          apply: user.study.apply.filter(
+            (classId) => classId !== req.body.classId
+          ),
+          member: user.study.member.concat(req.body.classId),
+        },
+      },
+      { new: true },
+      (err, updatedUser) => {
+        if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+        if (!updatedUser)
+          return res.json(notFoundError(USER_MODEL, req.body.userId));
+
+        return res.status(200).json(userMemberUpdate(updatedUser.study));
+      }
+    );
+  });
+});
+
+app.post("/api/users/study/member/remove", (req, res) => {
+  User.findOne({ _id: req.body.userId }, (err, user) => {
+    if (err) return res.json(findOneError(USER_MODEL, err));
+    if (!user) return res.json(notFoundError(USER_MODEL, req.body.userId));
+
+    User.findOneAndUpdate(
+      { _id: req.body.userId },
+      {
+        study: {
+          ...user.study,
+          member: user.study.member.filter(
+            (classId) => classId !== req.body.classId
+          ),
+        },
+      },
+      { new: true },
+      (err, updatedUser) => {
+        if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+        if (!updatedUser)
+          return res.json(notFoundError(USER_MODEL, req.body.userId));
+
+        return res.status(200).json(userMemberUpdate(updatedUser.study.member));
       }
     );
   });

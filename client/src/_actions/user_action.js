@@ -15,6 +15,8 @@ import {
   STUDY_APPLY_REMOVE,
   PROJECT_MEMBER_ADD,
   PROJECT_MEMBER_REMOVE,
+  STUDY_MEMBER_ADD,
+  STUDY_MEMBER_REMOVE,
 } from "./types.js";
 
 export async function loginUser(loginData) {
@@ -178,6 +180,28 @@ export async function removeProjectMember(requestBody) {
     .catch((err) => console.log(err));
   return {
     type: PROJECT_MEMBER_REMOVE,
+    payload: request,
+  };
+}
+
+export async function saveStudyMember(requestBody) {
+  const request = await axios
+    .post("/api/users/study/member/save", requestBody)
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
+  return {
+    type: STUDY_MEMBER_ADD,
+    payload: request,
+  };
+}
+
+export async function removeStudyMember(requestBody) {
+  const request = await axios
+    .post("/api/users/study/member/remove", requestBody)
+    .then((response) => response.data)
+    .catch((err) => console.log(err));
+  return {
+    type: STUDY_MEMBER_REMOVE,
     payload: request,
   };
 }

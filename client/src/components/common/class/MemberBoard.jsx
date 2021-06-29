@@ -2,7 +2,10 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { leaveToProject } from "../../../_actions/project_action.js";
 import { leaveToStudy } from "../../../_actions/study_action.js";
-import { removeProjectMember } from "../../../_actions/user_action.js";
+import {
+  removeProjectMember,
+  removeStudyMember,
+} from "../../../_actions/user_action.js";
 
 const MemberBoard = ({ classId, userId, location, onModalPopup }) => {
   const dispatch = useDispatch();
@@ -12,7 +15,6 @@ const MemberBoard = ({ classId, userId, location, onModalPopup }) => {
       classId: classId,
       userId: userId,
     };
-    console.log(requestBody);
 
     if (check && location === "Project") {
       dispatch(leaveToProject(requestBody));
@@ -20,6 +22,7 @@ const MemberBoard = ({ classId, userId, location, onModalPopup }) => {
       alert("프로젝트에서 탈퇴 했습니다.");
     } else if (check && location === "Study") {
       dispatch(leaveToStudy(requestBody));
+      dispatch(removeStudyMember(requestBody));
       alert("스터디에서 탈퇴 했습니다.");
     } else {
       return;

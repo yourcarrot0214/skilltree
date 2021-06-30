@@ -24,6 +24,7 @@ import {
 
 const LeaderBoard = ({
   classId,
+  leaderId,
   onComponentToggle,
   componentToggle,
   volunteer,
@@ -41,9 +42,9 @@ const LeaderBoard = ({
     let check = window.confirm(`${location}를 정말 삭제할까요?`);
 
     if (check && location === "Project") {
-      dispatch(deleteProject({ id: classId }));
+      dispatch(deleteProject({ classId: classId, userId: leaderId }));
     } else if (check && location === "Study") {
-      dispatch(deleteStudy({ id: classId }));
+      dispatch(deleteStudy({ classId: classId, userId: leaderId }));
     } else {
       return;
     }

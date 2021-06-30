@@ -121,6 +121,7 @@ const ClassCard = (props) => {
         {role === "leader" && (
           <LeaderBoard
             classId={id}
+            leaderId={leaderId}
             onComponentToggle={onComponentToggle}
             componentToggle={componentToggle}
             volunteer={volunteer}

@@ -159,7 +159,7 @@ app.post("/api/study/create", leaderFindOne, (req, res) => {
     {
       study: {
         ...req.user.study,
-        leader: req.user.study.leader.concat(Study._id),
+        leader: req.user.study.leader.concat(study._id),
       },
     },
     { new: true },
@@ -211,13 +211,31 @@ app.post("/api/project/update", (req, res) => {
   );
 });
 
-app.post("/api/project/delete", (req, res) => {
-  Project.findOneAndDelete({ _id: req.body.id }, (err, deletedProject) => {
+app.post("/api/project/delete", userFindOne, (req, res) => {
+  User.findOneAndUpdate(
+    { _id: req.user._id },
+    {
+      project: {
+        ...req.user.project,
+        leader: req.user.project.leader.filter(
+          (classId) => String(classId) !== String(req.body.classId)
+        ),
+      },
+    },
+    { new: true },
+    (err, updatedUser) => {
+      if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+      if (!updatedUser)
+        return res.json(notFoundError(USER_MODEL, req.body.userId));
+    }
+  );
+
+  Project.findOneAndDelete({ _id: req.body.classId }, (err, deletedProject) => {
     if (err) return res.json(findOneAndUpdateError(PROJECT_MODEL, err));
     if (!deletedProject)
-      return res.json(notFoundError(PROJECT_MODEL, req.body.id));
+      return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
 
-    return res.status(200).json(projectDeleteSuccess(req.body.id));
+    return res.status(200).json(projectDeleteSuccess(req.body.classId));
   });
 });
 
@@ -240,12 +258,31 @@ app.post("/api/study/update", (req, res) => {
   );
 });
 
-app.post("/api/study/delete", (req, res) => {
-  Study.findOneAndDelete({ _id: req.body.id }, (err, deletedStudy) => {
-    if (err) return res.json(findOneAndDeleteError(STUDY_MODEL, err));
-    if (!deletedStudy) return res.json(notFoundError(STUDY_MODEL, req.body.id));
+app.post("/api/study/delete", userFindOne, (req, res) => {
+  User.findOneAndUpdate(
+    { _id: req.user._id },
+    {
+      study: {
+        ...req.user.study,
+        leader: req.user.study.leader.filter(
+          (classId) => String(classId) !== String(req.body.classId)
+        ),
+      },
+    },
+    { new: true },
+    (err, updatedUser) => {
+      if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+      if (!updatedUser)
+        return res.json(notFoundError(USER_MODEL, req.body.userId));
+    }
+  );
 
-    return res.status(200).json(studyDeleteSuccess(req.body.id));
+  Study.findOneAndDelete({ _id: req.body.classId }, (err, deletedStudy) => {
+    if (err) return res.json(findOneAndDeleteError(STUDY_MODEL, err));
+    if (!deletedStudy)
+      return res.json(notFoundError(STUDY_MODEL, req.body.classId));
+
+    return res.status(200).json(studyDeleteSuccess(req.body.classId));
   });
 });
 

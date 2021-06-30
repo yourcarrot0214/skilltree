@@ -10,6 +10,7 @@ const { Project } = require("./models/Project.js");
 const { Study } = require("./models/Study.js");
 const { auth } = require("./middleware/auth.js");
 const { projectFindOne } = require("./middleware/projectFindOne.js");
+const { leaderFindOne, userFindOne } = require("./middleware/userFindOne.js");
 const {
   SKILLS_MODEL,
   USER_MODEL,
@@ -125,16 +126,51 @@ app.get("/api/skills/list", (req, res) => {
   });
 });
 
-app.post("/api/project/create", (req, res) => {
+app.post("/api/project/create", leaderFindOne, (req, res) => {
   const project = new Project(req.body);
+
+  User.findOneAndUpdate(
+    { _id: req.user._id },
+    {
+      project: {
+        ...req.user.project,
+        leader: req.user.project.leader.concat(project._id),
+      },
+    },
+    { new: true },
+    (err, updatedUser) => {
+      if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+      if (!updatedUser) res.json(notFoundError(USER_MODEL, req.user._id));
+      console.log(updatedUser.project.leader);
+    }
+  );
+
   project.save((err, projectInfo) => {
     if (err) return res.json(projectSaveError(err));
     return res.status(200).json(projectSaveSuccess(projectInfo));
   });
 });
 
-app.post("/api/study/create", (req, res) => {
+app.post("/api/study/create", leaderFindOne, (req, res) => {
   const study = new Study(req.body);
+
+  User.findOneAndUpdate(
+    { _id: req.user._id },
+    {
+      study: {
+        ...req.user.study,
+        leader: req.user.study.leader.concat(Study._id),
+      },
+    },
+    { new: true },
+    (err, updatedUser) => {
+      if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+      if (!updatedUser)
+        return res.json(notFoundError(USER_MODEL, req.user._id));
+      console.log(updatedUser.study.leader);
+    }
+  );
+
   study.save((err, studyInfo) => {
     if (err) return res.json(studySaveError(err));
     return res.status(200).json(studySaveSuccess(studyInfo));

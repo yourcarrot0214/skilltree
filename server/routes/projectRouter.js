@@ -6,8 +6,7 @@ const { User } = require("../models/User.js");
 const { projectFindOne } = require("../middleware/projectFindOne.js");
 const { leaderFindOne, userFindOne } = require("../middleware/userFindOne.js");
 
-const { PROJECT_MODEL } = require("../config/types.js");
-const { USER_MODEL } = require("../config/types.js");
+const { PROJECT_MODEL, USER_MODEL } = require("../config/types.js");
 
 const {
   findOneError,

@@ -57,24 +57,6 @@ const {
   skillUserUpdateSuccess,
 } = require("./function/skillsResponse.js");
 
-const {
-  projectSaveError,
-  projectSaveSuccess,
-  getProjectListError,
-  getProjectListSuccess,
-  projectUpdateSuccess,
-  projectDeleteSuccess,
-} = require("./function/projectResponse.js");
-
-const {
-  studySaveError,
-  studySaveSuccess,
-  getStudyListError,
-  getStudyListSuccess,
-  studyUpdateSuccess,
-  studyDeleteSuccess,
-} = require("./function/studyResponse.js");
-
 app.use(express.json());
 app.use(cookieParser());
 

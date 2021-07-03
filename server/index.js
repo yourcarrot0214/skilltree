@@ -10,7 +10,9 @@ const { Project } = require("./models/Project.js");
 const { Study } = require("./models/Study.js");
 const { auth } = require("./middleware/auth.js");
 const { projectFindOne } = require("./middleware/projectFindOne.js");
+const { studyFindOne } = require("./middleware/studyFindOne.js");
 const { leaderFindOne, userFindOne } = require("./middleware/userFindOne.js");
+
 const {
   SKILLS_MODEL,
   USER_MODEL,
@@ -301,256 +303,207 @@ app.post("/api/project/apply", projectFindOne, (req, res) => {
   );
 });
 
-app.post("/api/study/apply", (req, res) => {
-  Study.findOne({ _id: req.body.classId }, (err, study) => {
-    if (err) return res.json(findOneError(STUDY_MODEL, err));
-    if (!study) return res.json(notFoundError(STUDY_MODEL, req.body.classId));
+app.post("/api/study/apply", studyFindOne, (req, res) => {
+  Study.findOneAndUpdate(
+    { _id: req.body.classId },
+    { volunteer: req.study.volunteer.concat(req.body.userId) },
+    { new: true },
+    (err, updatedStudy) => {
+      if (err) return res.json(findOneUpdateError(STUDY_MODEL, err));
+      if (!updatedStudy)
+        return res.json(notFoundError(STUDY_MODEL, req.body.classId));
 
-    Study.findOneAndUpdate(
-      { _id: req.body.classId },
-      { volunteer: study.volunteer.concat(req.body.userId) },
-      { new: true },
-      (err, updatedStudy) => {
-        if (err) return res.json(findOneUpdateError(STUDY_MODEL, err));
-        if (!updatedStudy)
-          return res.json(notFoundError(STUDY_MODEL, req.body.classId));
-
-        return res.status(200).json(studyUpdateSuccess(updatedStudy));
-      }
-    );
-  });
+      return res.status(200).json(studyUpdateSuccess(updatedStudy));
+    }
+  );
 });
 
-app.post("/api/project/apply/cancel", (req, res) => {
-  Project.findOne({ _id: req.body.classId }, (err, project) => {
-    if (err) return res.json(findOneError(PROJECT_MODEL, err));
-    if (!project) return res.json(notFoundError(PROJECT_MODEL, classId));
-    Project.findOneAndUpdate(
-      { _id: req.body.classId },
-      {
-        volunteer: project.volunteer.filter((user) => user !== req.body.userId),
-      },
-      { new: true },
-      (err, updatedProject) => {
-        if (err) return res.json(findOneAndUpdateError(PROJECT_MODEL, err));
-        if (!updatedProject)
-          return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
+app.post("/api/project/apply/cancel", projectFindOne, (req, res) => {
+  Project.findOneAndUpdate(
+    { _id: req.body.classId },
+    {
+      volunteer: req.project.volunteer.filter(
+        (user) => user !== req.body.userId
+      ),
+    },
+    { new: true },
+    (err, updatedProject) => {
+      if (err) return res.json(findOneAndUpdateError(PROJECT_MODEL, err));
+      if (!updatedProject)
+        return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
 
-        return res.status(200).json(projectUpdateSuccess(updatedProject));
-      }
-    );
-  });
+      return res.status(200).json(projectUpdateSuccess(updatedProject));
+    }
+  );
 });
 
-app.post("/api/study/apply/cancel", (req, res) => {
-  Study.findOne({ _id: req.body.classId }, (err, study) => {
-    if (err) return res.json(findOneError(STUDY_MODEL, err));
-    if (!study) return res.json(notFoundError(STUDY_MODEL, req.body.classId));
+app.post("/api/study/apply/cancel", studyFindOne, (req, res) => {
+  Study.findOneAndUpdate(
+    { _id: req.body.classId },
+    {
+      volunteer: req.study.volunteer.filter(
+        (study) => study !== req.body.userId
+      ),
+    },
+    { new: true },
+    (err, updatedStudy) => {
+      if (err) return res.json(findOneAndUpdateError(STUDY_MODEL, err));
+      if (!updatedStudy)
+        return res.json(notFoundError(SKILLS_MODEL, req.body.classId));
 
-    Study.findOneAndUpdate(
-      { _id: req.body.classId },
-      {
-        volunteer: study.volunteer.filter((study) => study !== req.body.userId),
-      },
-      { new: true },
-      (err, updatedStudy) => {
-        if (err) return res.json(findOneAndUpdateError(STUDY_MODEL, err));
-        if (!updatedStudy)
-          return res.json(notFoundError(SKILLS_MODEL, req.body.classId));
-
-        return res.status(200).json(studyUpdateSuccess(updatedStudy));
-      }
-    );
-  });
+      return res.status(200).json(studyUpdateSuccess(updatedStudy));
+    }
+  );
 });
 
-app.post("/api/project/apply/accept", (req, res) => {
-  Project.findOne({ _id: req.body.classId }, (err, project) => {
-    if (err) return res.json(findOneError(PROJECT_MODEL, err));
-    if (!project)
-      return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
+app.post("/api/project/apply/accept", projectFindOne, (req, res) => {
+  Project.findOneAndUpdate(
+    { _id: req.body.classId },
+    {
+      volunteer: req.project.volunteer.filter(
+        (userId) => userId !== req.body.userId
+      ),
+      members: req.project.members.concat(req.body.userId),
+    },
+    { new: true },
+    (err, updatedProject) => {
+      if (err) return res.json(findOneAndUpdateError(PROJECT_MODEL, err));
+      if (!updatedProject)
+        return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
 
-    Project.findOneAndUpdate(
-      { _id: req.body.classId },
-      {
-        volunteer: project.volunteer.filter(
-          (userId) => userId !== req.body.userId
-        ),
-        members: project.members.concat(req.body.userId),
-      },
-      { new: true },
-      (err, updatedProject) => {
-        if (err) return res.json(findOneAndUpdateError(PROJECT_MODEL, err));
-        if (!updatedProject)
-          return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
-
-        return res.status(200).json(projectUpdateSuccess(updatedProject));
-      }
-    );
-  });
+      return res.status(200).json(projectUpdateSuccess(updatedProject));
+    }
+  );
 });
 
-app.post("/api/project/apply/reject", (req, res) => {
-  Project.findOne({ _id: req.body.classId }, (err, project) => {
-    if (err) return res.json(findOneError(PROJECT_MODEL, err));
-    if (!project)
-      return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
+app.post("/api/project/apply/reject", projectFindOne, (req, res) => {
+  Project.findOneAndUpdate(
+    { _id: req.body.classId },
+    {
+      volunteer: req.project.volunteer.filter(
+        (userId) => userId !== req.body.userId
+      ),
+    },
+    { new: true },
+    (err, updatedProject) => {
+      if (err) return res.json(findOneAndUpdateError(PROJECT_MODEL, err));
+      if (!updatedProject)
+        return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
 
-    Project.findOneAndUpdate(
-      { _id: req.body.classId },
-      {
-        volunteer: project.volunteer.filter(
-          (userId) => userId !== req.body.userId
-        ),
-      },
-      { new: true },
-      (err, updatedProject) => {
-        if (err) return res.json(findOneAndUpdateError(PROJECT_MODEL, err));
-        if (!updatedProject)
-          return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
-
-        return res.status(200).json(projectUpdateSuccess(updatedProject));
-      }
-    );
-  });
+      return res.status(200).json(projectUpdateSuccess(updatedProject));
+    }
+  );
 });
 
-app.post("/api/study/apply/accept", (req, res) => {
-  Study.findOne({ _id: req.body.classId }, (err, study) => {
-    if (err) return res.json(findOneError(STUDY_MODEL, err));
-    if (!study) return res.json(notFoundError(STUDY_MODEL, req.body.classId));
+app.post("/api/study/apply/accept", studyFindOne, (req, res) => {
+  Study.findOneAndUpdate(
+    { _id: req.body.classId },
+    {
+      volunteer: req.study.volunteer.filter(
+        (userId) => userId !== req.body.userId
+      ),
+      members: req.study.members.concat(req.body.userId),
+    },
+    { new: true },
+    (err, updatedStudy) => {
+      if (err) return res.json(findOneAndUpdateError(STUDY_MODEL, err));
+      if (!updatedStudy)
+        return res.json(notFoundError(STUDY_MODEL, req.body.classId));
 
-    Study.findOneAndUpdate(
-      { _id: req.body.classId },
-      {
-        volunteer: study.volunteer.filter(
-          (userId) => userId !== req.body.userId
-        ),
-        members: study.members.concat(req.body.userId),
-      },
-      { new: true },
-      (err, updatedStudy) => {
-        if (err) return res.json(findOneAndUpdateError(STUDY_MODEL, err));
-        if (!updatedStudy)
-          return res.json(notFoundError(STUDY_MODEL, req.body.classId));
-
-        return res.status(200).json(studyUpdateSuccess(updatedStudy));
-      }
-    );
-  });
+      return res.status(200).json(studyUpdateSuccess(updatedStudy));
+    }
+  );
 });
 
-app.post("/api/study/apply/reject", (req, res) => {
-  Study.findOne({ _id: req.body.classId }, (err, study) => {
-    if (err) return res.json(findOneError(STUDY_MODEL, err));
-    if (!study) return res.json(notFoundError(STUDY_MODEL, req.body.classId));
+app.post("/api/study/apply/reject", studyFindOne, (req, res) => {
+  Study.findOneAndUpdate(
+    { _id: req.body.classId },
+    {
+      volunteer: req.study.volunteer.filter(
+        (userId) => userId !== req.body.userId
+      ),
+    },
+    { new: true },
+    (err, updatedStudy) => {
+      if (err) return res.json(findOneAndUpdateError(STUDY_MODEL, err));
+      if (!updatedStudy)
+        return res.json(notFoundError(STUDY_MODEL, req.body.classId));
 
-    Study.findOneAndUpdate(
-      { _id: req.body.classId },
-      {
-        volunteer: study.volunteer.filter(
-          (userId) => userId !== req.body.userId
-        ),
-      },
-      { new: true },
-      (err, updatedStudy) => {
-        if (err) return res.json(findOneAndUpdateError(STUDY_MODEL, err));
-        if (!updatedStudy)
-          return res.json(notFoundError(STUDY_MODEL, req.body.classId));
-
-        return res.status(200).json(studyUpdateSuccess(updatedStudy));
-      }
-    );
-  });
+      return res.status(200).json(studyUpdateSuccess(updatedStudy));
+    }
+  );
 });
 
-app.post("/api/project/member/leave", (req, res) => {
-  Project.findOne({ _id: req.body.classId }, (err, project) => {
-    if (err) return res.json(findOneError(PROJECT_MODEL, err));
-    if (!project)
-      return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
+app.post("/api/project/member/leave", projectFindOne, (req, res) => {
+  Project.findOneAndUpdate(
+    { _id: req.body.classId },
+    {
+      members: req.project.members.filter(
+        (member) => member !== req.body.userId
+      ),
+    },
+    { new: true },
+    (err, updatedProject) => {
+      if (err) return res.json(findOneAndUpdateError(PROJECT_MODEL, err));
+      if (!updatedProject)
+        return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
 
-    Project.findOneAndUpdate(
-      { _id: req.body.classId },
-      {
-        members: project.members.filter((member) => member !== req.body.userId),
-      },
-      { new: true },
-      (err, updatedProject) => {
-        if (err) return res.json(findOneAndUpdateError(PROJECT_MODEL, err));
-        if (!updatedProject)
-          return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
-
-        return res.status(200).json(projectUpdateSuccess(updatedProject));
-      }
-    );
-  });
+      return res.status(200).json(projectUpdateSuccess(updatedProject));
+    }
+  );
 });
 
-app.post("/api/study/member/leave", (req, res) => {
-  Study.findOne({ _id: req.body.classId }, (err, study) => {
-    if (err) return res.json(findOneError(STUDY_MODEL, err));
-    if (!study) return res.json(notFoundError(STUDY_MODEL, req.body.classId));
+app.post("/api/study/member/leave", studyFindOne, (req, res) => {
+  Study.findOneAndUpdate(
+    { _id: req.body.classId },
+    {
+      members: req.study.members.filter((member) => member !== req.body.userId),
+    },
+    { new: true },
+    (err, updatedStudy) => {
+      if (err) return res.json(findOneAndUpdateError(STUDY_MODEL, err));
+      if (!updatedStudy)
+        return res.json(notFoundError(STUDY_MODEL, req.body.classId));
 
-    Study.findOneAndUpdate(
-      { _id: req.body.classId },
-      { members: study.members.filter((member) => member !== req.body.userId) },
-      { new: true },
-      (err, updatedStudy) => {
-        console.log(updatedStudy);
-        if (err) return res.json(findOneAndUpdateError(STUDY_MODEL, err));
-        if (!updatedStudy)
-          return res.json(notFoundError(STUDY_MODEL, req.body.classId));
-
-        return res.status(200).json(studyUpdateSuccess(updatedStudy));
-      }
-    );
-  });
+      return res.status(200).json(studyUpdateSuccess(updatedStudy));
+    }
+  );
 });
 
-app.post("/api/project/member/expulsion", (req, res) => {
-  Project.findOne({ _id: req.body.classId }, (err, project) => {
-    if (err) return res.json(findOneError(PROJECT_MODEL, err));
-    if (!project)
-      return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
+app.post("/api/project/member/expulsion", projectFindOne, (req, res) => {
+  Project.findOneAndUpdate(
+    { _id: req.body.classId },
+    {
+      members: req.project.members.filter(
+        (userId) => userId !== req.body.userId
+      ),
+    },
+    { new: true },
+    (err, updatedProject) => {
+      if (err) return res.json(findOneAndUpdateError(PROJECT_MODEL, err));
+      if (!updatedProject)
+        return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
 
-    Project.findOneAndUpdate(
-      { _id: req.body.classId },
-      {
-        members: project.members.filter((userId) => userId !== req.body.userId),
-      },
-      { new: true },
-      (err, updatedProject) => {
-        if (err) return res.json(findOneAndUpdateError(PROJECT_MODEL, err));
-        if (!updatedProject)
-          return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
-
-        return res.status(200).json(projectUpdateSuccess(updatedProject));
-      }
-    );
-  });
+      return res.status(200).json(projectUpdateSuccess(updatedProject));
+    }
+  );
 });
 
-app.post("/api/study/member/expulsion", (req, res) => {
-  Study.findOne({ _id: req.body.classId }, (err, study) => {
-    if (err) return res.json(findOneError(STUDY_MODEL, err));
-    if (!study) return res.json(notFoundError(STUDY_MODEL, req.body.classId));
+app.post("/api/study/member/expulsion", studyFindOne, (req, res) => {
+  Study.findOneAndUpdate(
+    { _id: req.body.classId },
+    {
+      members: req.study.members.filter((userId) => userId !== req.body.userId),
+    },
+    { new: true },
+    (err, updatedStudy) => {
+      if (err) return res.json(findOneAndUpdateError(STUDY_MODEL, err));
+      if (!updatedStudy)
+        return res.json(notFoundError(STUDY_MODEL, req.body.classId));
 
-    Study.findOneAndUpdate(
-      { _id: req.body.classId },
-      {
-        members: study.members.filter((userId) => userId !== req.body.userId),
-      },
-      { new: true },
-      (err, updatedStudy) => {
-        if (err) return res.json(findOneAndUpdateError(STUDY_MODEL, err));
-        if (!updatedStudy)
-          return res.json(notFoundError(STUDY_MODEL, req.body.classId));
-
-        return res.status(200).json(studyUpdateSuccess(updatedStudy));
-      }
-    );
-  });
+      return res.status(200).json(studyUpdateSuccess(updatedStudy));
+    }
+  );
 });
 
 // "POST", "/api/skills/search"
@@ -668,220 +621,178 @@ app.post("/api/users/delete/learn", auth, (req, res) => {
   );
 });
 
-app.post("/api/users/project/apply/save", (req, res) => {
-  User.findOne({ _id: req.body.userId }, (err, user) => {
-    if (err) return res.json(findOneError(USER_MODEL, err));
-    if (!user) return res.json(notFoundError(USER_MODEL, req.body.userId));
-
-    User.findOneAndUpdate(
-      { _id: req.body.userId },
-      {
-        project: {
-          ...user.project,
-          apply: user.project.apply.concat(req.body.classId),
-        },
+app.post("/api/users/project/apply/save", userFindOne, (req, res) => {
+  User.findOneAndUpdate(
+    { _id: req.body.userId },
+    {
+      project: {
+        ...req.user.project,
+        apply: req.user.project.apply.concat(req.body.classId),
       },
-      { new: true },
-      (err, updatedUser) => {
-        if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
-        if (!updatedUser)
-          return res.json(notFoundError(USER_MODEL, req.body.userId));
+    },
+    { new: true },
+    (err, updatedUser) => {
+      if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+      if (!updatedUser)
+        return res.json(notFoundError(USER_MODEL, req.body.userId));
 
-        return res.status(200).json(userApplyUpdate(updatedUser.project.apply));
-      }
-    );
-  });
+      return res.status(200).json(userApplyUpdate(updatedUser.project.apply));
+    }
+  );
 });
 
-app.post("/api/users/study/apply/save", (req, res) => {
-  User.findOne({ _id: req.body.userId }, (err, user) => {
-    if (err) return res.json(findOneError(USER_MODEL, err));
-    if (!user) return res.json(notFoundError(USER_MODEL, req.body.userId));
-
-    User.findOneAndUpdate(
-      { _id: req.body.userId },
-      {
-        study: {
-          ...user.study,
-          apply: user.study.apply.concat(req.body.classId),
-        },
+app.post("/api/users/study/apply/save", userFindOne, (req, res) => {
+  User.findOneAndUpdate(
+    { _id: req.body.userId },
+    {
+      study: {
+        ...req.user.study,
+        apply: req.user.study.apply.concat(req.body.classId),
       },
-      { new: true },
-      (err, updatedUser) => {
-        if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
-        if (!updatedUser)
-          return res.json(notFoundError(USER_MODEL, req.body.userId));
+    },
+    { new: true },
+    (err, updatedUser) => {
+      if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+      if (!updatedUser)
+        return res.json(notFoundError(USER_MODEL, req.body.userId));
 
-        return res.status(200).json(userApplyUpdate(updatedUser.study.apply));
-      }
-    );
-  });
+      return res.status(200).json(userApplyUpdate(updatedUser.study.apply));
+    }
+  );
 });
 
-app.post("/api/users/project/apply/remove", (req, res) => {
-  User.findOne({ _id: req.body.userId }, (err, user) => {
-    if (err) return res.json(findOneError(USER_MODEL, err));
-    if (!user) return res.json(notFoundError(USER_MODEL, req.body.userId));
-
-    User.findOneAndUpdate(
-      { _id: req.body.userId },
-      {
-        project: {
-          ...user.project,
-          apply: user.project.apply.filter(
-            (classId) => classId !== req.body.classId
-          ),
-        },
+app.post("/api/users/project/apply/remove", userFindOne, (req, res) => {
+  User.findOneAndUpdate(
+    { _id: req.body.userId },
+    {
+      project: {
+        ...req.user.project,
+        apply: req.user.project.apply.filter(
+          (classId) => classId !== req.body.classId
+        ),
       },
-      { new: true },
-      (err, updatedUser) => {
-        if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
-        if (!updatedUser)
-          return res.json(notFoundError(USER_MODEL, req.body.userId));
+    },
+    { new: true },
+    (err, updatedUser) => {
+      if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+      if (!updatedUser)
+        return res.json(notFoundError(USER_MODEL, req.body.userId));
 
-        return res.status(200).json(userApplyUpdate(updatedUser.project.apply));
-      }
-    );
-  });
+      return res.status(200).json(userApplyUpdate(updatedUser.project.apply));
+    }
+  );
 });
 
-app.post("/api/users/study/apply/remove", (req, res) => {
-  User.findOne({ _id: req.body.userId }, (err, user) => {
-    if (err) return res.json(findOneError(USER_MODEL, err));
-    if (!user) return res.json(notFoundError(USER_MODEL, req.body.userId));
-
-    User.findOneAndUpdate(
-      { _id: req.body.userId },
-      {
-        study: {
-          ...user.study,
-          apply: user.study.apply.filter(
-            (classId) => classId !== req.body.classId
-          ),
-        },
+app.post("/api/users/study/apply/remove", userFindOne, (req, res) => {
+  User.findOneAndUpdate(
+    { _id: req.body.userId },
+    {
+      study: {
+        ...req.user.study,
+        apply: req.user.study.apply.filter(
+          (classId) => classId !== req.body.classId
+        ),
       },
-      { new: true },
-      (err, updatedUser) => {
-        if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
-        if (!updatedUser)
-          return res.json(notFoundError(USER_MODEL, req.body.userId));
+    },
+    { new: true },
+    (err, updatedUser) => {
+      if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+      if (!updatedUser)
+        return res.json(notFoundError(USER_MODEL, req.body.userId));
 
-        return res.status(200).json(userApplyUpdate(updatedUser.study.apply));
-      }
-    );
-  });
+      return res.status(200).json(userApplyUpdate(updatedUser.study.apply));
+    }
+  );
 });
 
-app.post("/api/users/project/member/save", (req, res) => {
-  User.findOne({ _id: req.body.userId }, (err, user) => {
-    if (err) return res.json(findOneError(USER_MODEL, err));
-    if (!user) return res.json(notFoundError(USER_MODEL, req.body.userId));
-
-    User.findOneAndUpdate(
-      { _id: req.body.userId },
-      {
-        project: {
-          ...user.project,
-          apply: user.project.apply.filter(
-            (classId) => classId !== req.body.classId
-          ),
-          member: user.project.member.concat(req.body.classId),
-        },
+app.post("/api/users/project/member/save", userFindOne, (req, res) => {
+  User.findOneAndUpdate(
+    { _id: req.body.userId },
+    {
+      project: {
+        ...req.user.project,
+        apply: req.user.project.apply.filter(
+          (classId) => classId !== req.body.classId
+        ),
+        member: user.project.member.concat(req.body.classId),
       },
-      { new: true },
-      (err, updatedUser) => {
-        if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
-        if (!updatedUser)
-          return res.json(notFoundError(USER_MODEL, req.body.userId));
+    },
+    { new: true },
+    (err, updatedUser) => {
+      if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+      if (!updatedUser)
+        return res.json(notFoundError(USER_MODEL, req.body.userId));
 
-        return res.status(200).json(userMemberUpdate(updatedUser.project));
-      }
-    );
-  });
+      return res.status(200).json(userMemberUpdate(updatedUser.project));
+    }
+  );
 });
 
-app.post("/api/users/project/member/remove", (req, res) => {
-  User.findOne({ _id: req.body.userId }, (err, user) => {
-    if (err) return res.json(findOneError(USER_MODEL, err));
-    if (!user) return res.json(notFoundError(USER_MODEL, req.body.userId));
-
-    User.findOneAndUpdate(
-      { _id: req.body.userId },
-      {
-        project: {
-          ...user.project,
-          member: user.project.member.filter(
-            (classId) => classId !== req.body.classId
-          ),
-        },
+app.post("/api/users/project/member/remove", userFindOne, (req, res) => {
+  User.findOneAndUpdate(
+    { _id: req.body.userId },
+    {
+      project: {
+        ...req.user.project,
+        member: req.user.project.member.filter(
+          (classId) => classId !== req.body.classId
+        ),
       },
-      { new: true },
-      (err, updatedUser) => {
-        if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
-        if (!updatedUser)
-          return res.json(notFoundError(USER_MODEL, req.body.userId));
+    },
+    { new: true },
+    (err, updatedUser) => {
+      if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+      if (!updatedUser)
+        return res.json(notFoundError(USER_MODEL, req.body.userId));
 
-        return res
-          .status(200)
-          .json(userMemberUpdate(updatedUser.project.member));
-      }
-    );
-  });
+      return res.status(200).json(userMemberUpdate(updatedUser.project.member));
+    }
+  );
 });
 
-app.post("/api/users/study/member/save", (req, res) => {
-  User.findOne({ _id: req.body.userId }, (err, user) => {
-    if (err) return res.json(findOneError(USER_MODEL, err));
-    if (!user) return res.json(notFoundError(USER_MODEL, req.body.userId));
-
-    User.findOneAndUpdate(
-      { _id: req.body.userId },
-      {
-        study: {
-          ...user.study,
-          apply: user.study.apply.filter(
-            (classId) => classId !== req.body.classId
-          ),
-          member: user.study.member.concat(req.body.classId),
-        },
+app.post("/api/users/study/member/save", userFindOne, (req, res) => {
+  User.findOneAndUpdate(
+    { _id: req.body.userId },
+    {
+      study: {
+        ...req.user.study,
+        apply: req.user.study.apply.filter(
+          (classId) => classId !== req.body.classId
+        ),
+        member: user.study.member.concat(req.body.classId),
       },
-      { new: true },
-      (err, updatedUser) => {
-        if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
-        if (!updatedUser)
-          return res.json(notFoundError(USER_MODEL, req.body.userId));
+    },
+    { new: true },
+    (err, updatedUser) => {
+      if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+      if (!updatedUser)
+        return res.json(notFoundError(USER_MODEL, req.body.userId));
 
-        return res.status(200).json(userMemberUpdate(updatedUser.study));
-      }
-    );
-  });
+      return res.status(200).json(userMemberUpdate(updatedUser.study));
+    }
+  );
 });
 
-app.post("/api/users/study/member/remove", (req, res) => {
-  User.findOne({ _id: req.body.userId }, (err, user) => {
-    if (err) return res.json(findOneError(USER_MODEL, err));
-    if (!user) return res.json(notFoundError(USER_MODEL, req.body.userId));
-
-    User.findOneAndUpdate(
-      { _id: req.body.userId },
-      {
-        study: {
-          ...user.study,
-          member: user.study.member.filter(
-            (classId) => classId !== req.body.classId
-          ),
-        },
+app.post("/api/users/study/member/remove", userFindOne, (req, res) => {
+  User.findOneAndUpdate(
+    { _id: req.body.userId },
+    {
+      study: {
+        ...req.user.study,
+        member: req.user.study.member.filter(
+          (classId) => classId !== req.body.classId
+        ),
       },
-      { new: true },
-      (err, updatedUser) => {
-        if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
-        if (!updatedUser)
-          return res.json(notFoundError(USER_MODEL, req.body.userId));
+    },
+    { new: true },
+    (err, updatedUser) => {
+      if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
+      if (!updatedUser)
+        return res.json(notFoundError(USER_MODEL, req.body.userId));
 
-        return res.status(200).json(userMemberUpdate(updatedUser.study.member));
-      }
-    );
-  });
+      return res.status(200).json(userMemberUpdate(updatedUser.study.member));
+    }
+  );
 });
 
 app.post("/api/skills/add/technitianUsers", auth, (req, res) => {

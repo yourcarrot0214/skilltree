@@ -4,6 +4,7 @@ import Email from "./Email.jsx";
 import Password from "./Password.jsx";
 import Tech from "./Tech.jsx";
 import Learn from "./Learn.jsx";
+import Project from "./Project.jsx";
 import SkillSearchBar from "../../../common/SkillSearchBar.jsx";
 import Modal from "./Modal.jsx";
 import { ButtonBox, Button } from "../styles/styled.js";
@@ -140,6 +141,10 @@ const UserProfileCard = () => {
             </Button>
           </ButtonBox>
         </Modal>
+      </ContentsContainer>
+      <h3>프로젝트 관리</h3>
+      <ContentsContainer>
+        <Project userData={userData} />
       </ContentsContainer>
     </UserProfileCardStyled>
   );

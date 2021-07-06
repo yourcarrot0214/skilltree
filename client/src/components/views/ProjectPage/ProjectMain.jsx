@@ -1,22 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import { withRouter } from "react-router-dom";
-import { useSelector, shallowEqual } from "react-redux";
-
+import useProject from "../../hooks/useProject.js";
 import DetailPage from "../../common/DetailPage.jsx";
 import SkillSearchBar from "../../common/SkillSearchBar.jsx";
 import useSkills from "../../hooks/useSkills.js";
 
 const ProjectMain = () => {
   const skills = useSkills();
-  const projectState = useSelector((state) => state.project, shallowEqual);
+  const projectState = useProject();
   const selectedSkills = skills.selectedSkills();
-  console.log(selectedSkills);
+  const skillIdList = selectedSkills.map((skill) => skill._id);
+  const projectSearchResult = projectState.searchResult(skillIdList);
 
   return (
     <>
       <h3>Project Main Page</h3>
       <SkillSearchBar selected />
-      <DetailPage location='Project' classList={projectState} />
+      <DetailPage location='Project' classList={projectSearchResult} />
     </>
   );
 };

@@ -148,16 +148,18 @@ const ModalHeaderButton = Styled.button`
 const ModalSection = Styled.section`
     width: 90%;
     max-width: 450px;
+    max-height: 700px;
     margin: 0 auto;
     border-radius: 6px;
     background-color: #495057;
     animation: modal-show .3s;
-    overflow: hidden;
+    overflow: auto;
 `;
 
 const ModalHeader = Styled.header`
   position: relative;
-  padding: 16px 64px 16px 16px;
+  margin: 0 auto;
+  padding: 16px;
   width: 90%;
   font-weight: 700;
   font-size: 1.5rem;

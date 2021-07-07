@@ -11,59 +11,113 @@ const TagStyled = Styled.button`
   ${(props) =>
     props.selected &&
     css`
-      background-color: #51cf66;
+      background-color: #2f9e44;
     `}
 `;
 
 const TagContainerStyled = Styled.div`
-    border: 1px solid black;
     overflow: auto;
     max-height: 300px;
+
+    ${(props) =>
+      props.thumbnail &&
+      css`
+        max-height: 30px;
+        overflow: hidden;
+      `}
 `;
 
 const SkillSearchBarStyled = Styled.div`
   padding: 1rem 1rem;
-  width: 90%;
+  /* width: 90%; */
   margin: 0 auto;
+  max-width: 1024px;
+  min-width: 320px;
+`;
+
+const SkillSearchForm = Styled.form`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-bottom: 1rem;
+`;
+
+const SearchBar = Styled.input`
+  width: 170px;
+  height: 30px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 3px solid black;
+  background-color : rgba(255, 255, 255, 0);
+  ::placeholder {
+    color: #ced4da;
+  }
+`;
+
+const SearchButton = Styled.button`
+  width: 100px;
+  height: 35px;
+  font-weight: bold;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 3px solid black;
+  background-color : rgba(255, 255, 255, 0);
 `;
 
 const ClassCardContainer = Styled.div`
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   padding: 1rem;
-  border: 1px solid black;
+  margin: 0 auto;
+  justify-content: space-between;
+  max-width: 1024px;
 `;
 
 const ClassCardThumbNail = Styled.div`
-  width: 350px;
-  max-width: 350px;
+  width: 430px;
+  max-width: 500px;
   min-width: 300px;
   padding: 1rem;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 5px;
-  margin-right: 1rem;
-  margin-top: 1rem;
+  margin-bottom: 2rem;
+  background: #343a40;
+  box-shadow:  5px 5px 10px #2a2e33,
+                -5px -5px 10px #3e464d;
+  :hover {
+    background: #343a40;
+    box-shadow: inset 5px 5px 10px #2a2e33,
+            inset -5px -5px 10px #3e464d;
+  }
 `;
 
 const ClassTitle = Styled.h3`
-
+  color: #f8f9fa;
 `;
 
 const ClassDescription = Styled.p`
-  color: gray;
+  color: #f8f9fa;
 `;
 
 const ClassLeader = Styled.div`
-  color: gray;
+  color: #f8f9fa;
+  padding-left: 4px;
+  padding-top: 4px;
+  margin-top: 1rem;
 `;
 
 const ClassPersonnel = Styled.div`
-  color: gray;
+  color: #f8f9fa;
+  padding-left: 4px;
+  padding-top: 4px;
 `;
 
 const ClassStatus = Styled.div`
-  color: gray;
+  color: #f8f9fa;
+  padding-left: 4px;
+  padding-top: 4px;
 `;
 
 const ClassInfoStyled = Styled.div`
@@ -85,18 +139,28 @@ const ClassInfoStyled = Styled.div`
   }
 `;
 
+const DetailContainer = Styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const CreateClassButton = Styled.button`
-  position: fixed;
-  top: 5rem;
-  right: 2rem;
-  z-index: 99;
-  width: 130px;
-  height: 30px;
+  text-align: center;
+  margin-bottom: 1rem;
+  width: 150px;
+  height: 40px;
   font-weight: bold;
-  background-color: #37b24d;
+  font-size: 1rem;
+
+  background: linear-gradient(145deg, #3bbe52, #32a045);
   color: white;
   border: none;
   border-radius: 4px;
+
+  :hover {
+    background: linear-gradient(145deg, #32a045, #3bbe52);
+  }
 `;
 
 const SubmitContainer = Styled.div`
@@ -158,6 +222,9 @@ export {
   TagStyled,
   TagContainerStyled,
   SkillSearchBarStyled,
+  SkillSearchForm,
+  SearchBar,
+  SearchButton,
   ClassCardContainer,
   ClassCardThumbNail,
   ClassTitle,
@@ -166,6 +233,7 @@ export {
   ClassPersonnel,
   ClassStatus,
   ClassInfoStyled,
+  DetailContainer,
   CreateClassButton,
   SubmitContainer,
   SubmitForm,

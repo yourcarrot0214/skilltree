@@ -8,7 +8,7 @@ const TagContainer = (props) => {
   const { skills, onClickFunction, selected } = props;
   const skillsList = useMemo(() => getSkills(skills), [skills]);
   return (
-    <TagContainerStyled>
+    <TagContainerStyled thumbnail={props.thumbnail || false}>
       {skillsList.map((skill) => (
         <Tag
           skillInfo={skill}

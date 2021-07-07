@@ -86,6 +86,7 @@ const ClassCard = (props) => {
           skills={skills}
           selected={true}
           onClickFunction={onClickFunction}
+          thumbnail={true}
         />
         <ClassLeader>{`리더 : ${leaderName}`}</ClassLeader>
         <ClassPersonnel>{`모집인원 : ${members.length} / ${personnel}`}</ClassPersonnel>

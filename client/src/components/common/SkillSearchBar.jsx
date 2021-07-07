@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { SkillSearchBarStyled } from "./styles/styled.js";
+import {
+  SkillSearchBarStyled,
+  SkillSearchForm,
+  SearchBar,
+  SearchButton,
+} from "./styles/styled.js";
 import TagContainer from "../common/TagContainer.jsx";
 import Tag from "../common/Tag.jsx";
 import { useDispatch } from "react-redux";
@@ -46,17 +51,18 @@ const SkillSearchBar = (props) => {
 
   return (
     <SkillSearchBarStyled>
-      <form
+      <SkillSearchForm
         onSubmit={props.onSkillSearch ? props.onSkillSearch : onSkillSearch}
       >
-        <input
+        <SearchBar
           type='text'
           name='skill-name'
           value={skillName}
           onChange={onChangeValue}
+          placeholder='찾는 스킬이 있나요?'
         />
-        <button type='submit'>Skill Search</button>
-      </form>
+        <SearchButton type='submit'>Skill Search</SearchButton>
+      </SkillSearchForm>
       {skillName === "" ? (
         <>
           <TagContainer

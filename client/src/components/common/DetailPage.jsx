@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { useSelector, shallowEqual } from "react-redux";
 import CreateClassForm from "./class/CreateClassForm.jsx";
 import ClassCard from "./class/ClassCard.jsx";
-import { ClassCardContainer, CreateClassButton } from "./styles/styled.js";
+import {
+  ClassCardContainer,
+  CreateClassButton,
+  DetailContainer,
+} from "./styles/styled.js";
 import Modal from "../views/ProfilePage/accont/Modal.jsx";
 
 const DetailPage = ({ classList, location }) => {
@@ -14,8 +18,7 @@ const DetailPage = ({ classList, location }) => {
     setModalOpen(!ModalOpen);
   };
   return (
-    <>
-      <h3>Detail Page</h3>
+    <DetailContainer>
       {isAuth && (
         <CreateClassButton
           onClick={onModalPopup}
@@ -49,7 +52,7 @@ const DetailPage = ({ classList, location }) => {
           submitAddFunction={onModalPopup}
         />
       </Modal>
-    </>
+    </DetailContainer>
   );
 };
 

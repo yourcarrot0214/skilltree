@@ -1,18 +1,17 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-
+import { LandingPageContainer } from "./styles/styled.js";
 import Test from "../../../_reducers/Test.jsx";
 import Header from "./Header.jsx";
 import SkillSearchBar from "../../common/SkillSearchBar.jsx";
 
 function LandingPage() {
   return (
-    <>
-      <h2>Landing Page</h2>
+    <LandingPageContainer>
       <Header />
       <SkillSearchBar selected={true} />
       <Test />
-    </>
+    </LandingPageContainer>
   );
 }
 

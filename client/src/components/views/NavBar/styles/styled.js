@@ -6,7 +6,6 @@ const NavBarContainer = Styled.div`
   justify-content: space-between;
   width: 100%;
   height: 50px;
-  padding: 5px;
   background-color: #343a40;
 `;
 

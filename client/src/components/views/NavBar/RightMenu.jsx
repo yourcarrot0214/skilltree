@@ -2,28 +2,7 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../../_actions/user_action.js";
-import styled from "styled-components";
-
-const RightMenuContainer = styled.div`
-  border: 1px solid red;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 12px;
-  /* flex: 3; */
-  font-weight: bold;
-`;
-
-const LinkBox = styled.div`
-  margin-right: 16px;
-  width: 100%;
-  height: 100%;
-  background: tomato;
-  text-align: center;
-  a {
-    text-decoration: none;
-  }
-`;
+import { RightMenuContainer, LinkBox } from "./styles/styled.js";
 
 const RightMenu = (props) => {
   const dispatch = useDispatch();
@@ -35,7 +14,6 @@ const RightMenu = (props) => {
 
   const onClickLogoutButton = () => {
     dispatch(logoutUser()).then((response) => {
-      console.log(response);
       props.history.push("/login");
     });
   };

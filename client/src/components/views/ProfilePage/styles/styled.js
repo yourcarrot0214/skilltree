@@ -12,7 +12,7 @@ const UserProfileCardStyled = Styled.div`
   padding-left: 2rem;
   padding-bottom: 2rem;
   background-color: #212529;
-  margin: 1rem 1rem;
+  margin: 0 1rem;
   border-radius: 6px;
 `;
 

@@ -58,10 +58,13 @@ const UpdateClassForm = (props) => {
   return (
     <>
       <SubmitContainer>
-        <h3>프로젝트에 필요한 스킬을 선택해 주세요.</h3>
+        <h3>
+          {location === "Project" ? "프로젝트" : "스터디"}에 필요한 스킬을
+          선택해 주세요.
+        </h3>
         <SkillSearchBar selected={true} />
         <SubmitForm onSubmit={onUpdateClass}>
-          <label>프로젝트명</label>
+          <label>{location === "Project" ? "프로젝트" : "스터디"}명</label>
           <input
             type='text'
             name='title'
@@ -69,7 +72,7 @@ const UpdateClassForm = (props) => {
             onChange={onChangeValue}
             required
           />
-          <label>프로젝트 설명</label>
+          <label>{location === "Project" ? "프로젝트" : "스터디"} 설명</label>
           <textarea
             name='description'
             value={Description}

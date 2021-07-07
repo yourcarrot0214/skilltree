@@ -12,8 +12,10 @@ const UserProfileCardStyled = Styled.div`
   padding-left: 2rem;
   padding-bottom: 2rem;
   background-color: #212529;
-  margin: 0 1rem;
+  margin: 0 auto;
   border-radius: 6px;
+  max-width: 1024px;
+  width: 100%;
 `;
 
 const ContentsContainer = Styled.div`
@@ -234,6 +236,14 @@ const UserNameStyled = Styled.div`
   }
 `;
 
+const ProjectContainer = Styled.div`
+  width: 100%;
+`;
+
+const Menu = Styled.h3`
+  padding-left: 1rem;
+`;
+
 export {
   ProfileMainStyled,
   UserProfileCardStyled,
@@ -252,4 +262,6 @@ export {
   PasswordStyled,
   TechStyled,
   UserNameStyled,
+  ProjectContainer,
+  Menu,
 };

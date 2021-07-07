@@ -1,6 +1,7 @@
 import React from "react";
 import useProject from "../../../hooks/useProject.js";
 import { ClassCardContainer } from "../../../common/styles/styled";
+import { ProjectContainer, Menu } from "../styles/styled.js";
 import ClassCard from "../../../common/class/ClassCard.jsx";
 
 const Project = ({ userData }) => {
@@ -10,8 +11,8 @@ const Project = ({ userData }) => {
   const projectApply = projectList.findProject(userData.project.apply);
 
   return (
-    <>
-      <div>운영중인 프로젝트</div>
+    <ProjectContainer>
+      <Menu>운영중인 프로젝트</Menu>
       <ClassCardContainer>
         {projectLeader.map((project) => (
           <ClassCard
@@ -29,7 +30,7 @@ const Project = ({ userData }) => {
           />
         ))}
       </ClassCardContainer>
-      <div>참가중인 프로젝트</div>
+      <Menu>참가중인 프로젝트</Menu>
       <ClassCardContainer>
         {projectMember.map((project) => (
           <ClassCard
@@ -47,7 +48,7 @@ const Project = ({ userData }) => {
           />
         ))}
       </ClassCardContainer>
-      <div>지원중인 프로젝트</div>
+      <Menu>지원중인 프로젝트</Menu>
       <ClassCardContainer>
         {projectApply.map((project) => (
           <ClassCard
@@ -65,7 +66,7 @@ const Project = ({ userData }) => {
           />
         ))}
       </ClassCardContainer>
-    </>
+    </ProjectContainer>
   );
 };
 

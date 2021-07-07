@@ -107,7 +107,7 @@ const UserProfileCard = () => {
     <UserProfileCardStyled>
       {userData && (
         <>
-          <h3>계정관리</h3>
+          <h2>계정관리</h2>
           <ContentsContainer>
             <Email email={userData.email} />
             <UserName name={userData.name} />
@@ -115,7 +115,7 @@ const UserProfileCard = () => {
           </ContentsContainer>
         </>
       )}
-      <h3>스킬관리</h3>
+      <h2>스킬관리</h2>
       <ContentsContainer>
         <SkillSearchBar
           onSkillSearch={onSkillSearch}
@@ -143,11 +143,11 @@ const UserProfileCard = () => {
           </ButtonBox>
         </Modal>
       </ContentsContainer>
-      <h3>프로젝트 관리</h3>
+      <h2>프로젝트 관리</h2>
       <ContentsContainer>
         <Project userData={userData} />
       </ContentsContainer>
-      <h3>스터디 관리</h3>
+      <h2>스터디 관리</h2>
       <ContentsContainer>
         <Study userData={userData} />
       </ContentsContainer>

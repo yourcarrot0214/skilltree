@@ -73,7 +73,7 @@ const ClassCardContainer = Styled.div`
   margin: 0 auto;
   justify-content: space-between;
   max-width: 1024px;
-  width: 100%;
+  /* width: 100%; */
 `;
 
 const ClassCardThumbNail = Styled.div`

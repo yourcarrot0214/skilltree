@@ -13,6 +13,14 @@ const useStudy = () => {
     );
   };
 
+  studyState.searchResult = function (skillIdList) {
+    return skillIdList.reduce((acc, cur) => {
+      return acc.filter((study) =>
+        study.skills.find((skill) => skill._id === cur)
+      );
+    }, studyState);
+  };
+
   return studyState;
 };
 

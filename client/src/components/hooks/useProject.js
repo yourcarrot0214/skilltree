@@ -13,14 +13,6 @@ const useProject = () => {
     );
   };
 
-  projectState.containSkills = function (skillIdList) {
-    return skillIdList.map((skillId) =>
-      projectState.filter((project) =>
-        project.skills.find((skill) => skill._id === skillId)
-      )
-    );
-  };
-
   projectState.searchResult = function (skillIdList) {
     return skillIdList.reduce((acc, cur) => {
       return acc.filter((project) =>

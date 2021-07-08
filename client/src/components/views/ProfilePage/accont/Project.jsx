@@ -1,8 +1,9 @@
 import React from "react";
 import useProject from "../../../hooks/useProject.js";
 import { ClassCardContainer } from "../../../common/styles/styled";
-import { ProjectContainer, Menu } from "../styles/styled.js";
+import { ClassContainer, Menu } from "../styles/styled.js";
 import ClassCard from "../../../common/class/ClassCard.jsx";
+import PrintMessage from "./PrintMessage.jsx";
 
 const Project = ({ userData }) => {
   const projectList = useProject();
@@ -10,63 +11,51 @@ const Project = ({ userData }) => {
   const projectMember = projectList.findProject(userData.project.member);
   const projectApply = projectList.findProject(userData.project.apply);
 
+  const classCardList = (projectList) => {
+    return projectList.map((project) => (
+      <ClassCard
+        key={project._id}
+        id={project._id}
+        title={project.title}
+        description={project.description}
+        skills={project.skills}
+        leader={project.leader}
+        personnel={project.personnel}
+        members={project.members}
+        status={project.status}
+        location='Project'
+        volunteer={project.volunteer}
+      />
+    ));
+  };
+
   return (
-    <ProjectContainer>
+    <ClassContainer>
       <Menu>운영중인 프로젝트</Menu>
       <ClassCardContainer>
-        {projectLeader.map((project) => (
-          <ClassCard
-            key={project._id}
-            id={project._id}
-            title={project.title}
-            description={project.description}
-            skills={project.skills}
-            leader={project.leader}
-            personnel={project.personnel}
-            members={project.members}
-            status={project.status}
-            location='Project'
-            volunteer={project.volunteer}
-          />
-        ))}
+        {projectLeader.length !== 0 ? (
+          classCardList(projectLeader)
+        ) : (
+          <PrintMessage message='운영중인 프로젝트가 없습니다.' />
+        )}
       </ClassCardContainer>
       <Menu>참가중인 프로젝트</Menu>
       <ClassCardContainer>
-        {projectMember.map((project) => (
-          <ClassCard
-            key={project._id}
-            id={project._id}
-            title={project.title}
-            description={project.description}
-            skills={project.skills}
-            leader={project.leader}
-            personnel={project.personnel}
-            members={project.members}
-            status={project.status}
-            location='Project'
-            volunteer={project.volunteer}
-          />
-        ))}
+        {projectMember.length !== 0 ? (
+          classCardList(projectMember)
+        ) : (
+          <PrintMessage message='참가중인 프로젝트가 없습니다.' />
+        )}
       </ClassCardContainer>
       <Menu>지원중인 프로젝트</Menu>
       <ClassCardContainer>
-        {projectApply.map((project) => (
-          <ClassCard
-            key={project._id}
-            id={project._id}
-            title={project.title}
-            description={project.description}
-            skills={project.skills}
-            leader={project.leader}
-            personnel={project.personnel}
-            members={project.members}
-            status={project.status}
-            location='Project'
-            volunteer={project.volunteer}
-          />
-        ))}
+        {projectApply.length !== 0 ? (
+          classCardList(projectApply)
+        ) : (
+          <PrintMessage message='지원중인 프로젝트가 없습니다.' />
+        )}
       </ClassCardContainer>
-    </ProjectContainer>
+    </ClassContainer>
   );
 };
 

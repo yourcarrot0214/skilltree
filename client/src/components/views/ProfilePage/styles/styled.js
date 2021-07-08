@@ -236,12 +236,19 @@ const UserNameStyled = Styled.div`
   }
 `;
 
-const ProjectContainer = Styled.div`
+const ClassContainer = Styled.div`
   width: 100%;
 `;
 
 const Menu = Styled.h3`
   padding-left: 1rem;
+`;
+
+const PrintMessageStyled = Styled.div`
+  width: 100%;
+  color: #f1f3f5;
+  font-size: 1rem;
+  text-align: center;
 `;
 
 export {
@@ -262,6 +269,7 @@ export {
   PasswordStyled,
   TechStyled,
   UserNameStyled,
-  ProjectContainer,
+  ClassContainer,
   Menu,
+  PrintMessageStyled,
 };

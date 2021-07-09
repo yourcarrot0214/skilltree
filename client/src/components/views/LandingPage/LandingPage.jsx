@@ -5,7 +5,18 @@ import Test from "../../../_reducers/Test.jsx";
 import Header from "./Header.jsx";
 import SkillSearchBar from "../../common/SkillSearchBar.jsx";
 
+import useSkills from "../../hooks/useSkills.js";
+import useProject from "../../hooks/useProject.js";
+import useStudy from "../../hooks/useStudy.js";
+
 function LandingPage() {
+  const skillsState = useSkills();
+  const projectState = useProject();
+  const studyState = useStudy();
+  const selectedSkills = skillsState.selectedSkills();
+
+  const relatedUsers = skillsState.relatedUsers(selectedSkills);
+
   return (
     <LandingPageContainer>
       <Header />
@@ -16,9 +27,3 @@ function LandingPage() {
 }
 
 export default withRouter(LandingPage);
-
-/*
-  1. DB에서 skills data를 가져온다.
-  2. 가져온 데이터를 redux, unSelectedSkills 배열에 넣는다.
-  3. 
-*/

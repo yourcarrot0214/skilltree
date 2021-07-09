@@ -11,6 +11,14 @@ const useSkills = () => {
     return this.filter((skill) => !skill.selected);
   };
 
+  skills.relatedUsers = function (selectedSkills) {
+    return selectedSkills.map((skill) => ({
+      name: skill.name,
+      technitianUsers: skill.technitianUsers.length,
+      learningUsers: skill.learningUsers.length,
+    }));
+  };
+
   return skills;
 };
 

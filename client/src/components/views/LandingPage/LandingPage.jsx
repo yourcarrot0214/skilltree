@@ -14,8 +14,10 @@ function LandingPage() {
   const projectState = useProject();
   const studyState = useStudy();
   const selectedSkills = skillsState.selectedSkills();
+  const skillIdList = selectedSkills.map((skill) => skill._id);
 
   const relatedUsers = skillsState.relatedUsers(selectedSkills);
+  const relatedProject = projectState.relatedProject(skillIdList);
 
   return (
     <LandingPageContainer>

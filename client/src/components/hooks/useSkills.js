@@ -19,6 +19,10 @@ const useSkills = () => {
     }));
   };
 
+  skills.findSkillById = function (skillId) {
+    return skills.find((skill) => skill._id === skillId);
+  };
+
   return skills;
 };
 

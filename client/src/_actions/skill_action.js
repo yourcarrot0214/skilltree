@@ -9,6 +9,7 @@ import {
   SKILLS_LEARNING_DELETE,
   SKILL_SEARCH,
   SKILL_SEARCH_RESET,
+  SKILL_SELECTED_ONE,
 } from "./skill_types.js";
 
 export async function getSkillsDB() {
@@ -26,6 +27,13 @@ export async function getSkillsDB() {
 export function selectedSkill(id) {
   return {
     type: SKILL_SELECTED,
+    id: id,
+  };
+}
+
+export function chooseOneSelected(id) {
+  return {
+    type: SKILL_SELECTED_ONE,
     id: id,
   };
 }

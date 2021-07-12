@@ -6,6 +6,7 @@ import {
   SKILLS_LEARNING_ADD,
   SKILLS_LEARNING_DELETE,
   SKILLS_SELECTED_RESET,
+  SKILL_SELECTED_ONE,
 } from "../_actions/skill_types.js";
 import skill from "./skill_reducer.js";
 
@@ -24,6 +25,8 @@ export default function skills(state = [], action) {
     case SKILLS_LEARNING_DELETE:
       return state.map((doc) => skill(doc, action));
     case SKILLS_SELECTED_RESET:
+      return state.map((doc) => skill(doc, action));
+    case SKILL_SELECTED_ONE:
       return state.map((doc) => skill(doc, action));
     default:
       return state;

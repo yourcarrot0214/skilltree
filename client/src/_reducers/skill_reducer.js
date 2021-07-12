@@ -6,6 +6,7 @@ import {
   SKILLS_LEARNING_ADD,
   SKILLS_LEARNING_DELETE,
   SKILLS_SELECTED_RESET,
+  SKILL_SELECTED_ONE,
 } from "../_actions/skill_types.js";
 
 export default function skill(state = {}, action) {
@@ -23,6 +24,11 @@ export default function skill(state = {}, action) {
       return state._id === action.id
         ? { ...state, selected: !state.selected }
         : state;
+
+    case SKILL_SELECTED_ONE:
+      return state._id === action.id
+        ? { ...state, selected: !state.selected }
+        : { ...state, selected: false };
 
     case SKILLS_SELECTED_RESET:
       return { ...state, selected: false };

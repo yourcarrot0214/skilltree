@@ -21,13 +21,12 @@ const useProject = () => {
     }, projectState);
   };
 
-  projectState.relatedProject = function (skillIdList) {
-    return skillIdList.map((skillId) => {
-      return projectState.filter((project) => {
-        return project.skills.find((skill) => skill._id === skillId);
-      });
+  projectState.relatedProject = function (skillId) {
+    return projectState.filter((project) => {
+      return project.skills.find((skill) => skill._id === skillId);
     });
   };
+
   return projectState;
 };
 

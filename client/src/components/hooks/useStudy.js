@@ -21,6 +21,12 @@ const useStudy = () => {
     }, studyState);
   };
 
+  studyState.relatedStudy = function (skillId) {
+    return studyState.filter((study) => {
+      return study.skills.find((skill) => skill._id === skillId);
+    });
+  };
+
   return studyState;
 };
 

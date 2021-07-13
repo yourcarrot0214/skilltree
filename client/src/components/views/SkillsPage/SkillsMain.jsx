@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { chooseOneSelected } from "../../../_actions/skill_action";
 
 import SkillSearchBar from "../../common/SkillSearchBar.jsx";
+import SkillInfoSection from "./SkillInfoSection.jsx";
 
 import useSkills from "../../hooks/useSkills.js";
 import useProject from "../../hooks/useProject.js";
@@ -17,13 +18,11 @@ const SkillsMain = () => {
   const selectedSkill = skillsState.selectedSkills();
   const relatedProject = projectState.relatedProject(skillId);
   const relatedStudy = studyState.relatedStudy(skillId);
-  console.log(selectedSkill);
-  console.log(relatedProject);
-  console.log(relatedStudy);
+  const relatedUsers = skillsState.findSkillById(skillId);
 
   const onClickFunction = (e) => {
     dispatch(chooseOneSelected(e.target.id));
-    setSkillId(e.target.id);
+    setSkillId((prev) => (e.target.id === prev ? "" : e.target.id));
   };
 
   return (
@@ -31,6 +30,11 @@ const SkillsMain = () => {
       <h3>Skills Main Page</h3>
       <p>Skills page</p>
       <SkillSearchBar selected={true} onClickFunction={onClickFunction} />
+      <SkillInfoSection
+        relatedUsers={relatedUsers}
+        relatedProject={relatedProject}
+        relatedStudy={relatedStudy}
+      />
     </>
   );
 };

@@ -4,6 +4,8 @@ const ProfileMainStyled = Styled.div`
   background-color: #343a40;
   color: white;
   padding-bottom: 2rem;
+  width: 100%;
+  margin: 0 auto;
 `;
 
 const UserProfileCardStyled = Styled.div`
@@ -15,7 +17,7 @@ const UserProfileCardStyled = Styled.div`
   margin: 0 auto;
   border-radius: 6px;
   max-width: 1024px;
-  width: 100%;
+  min-width: 320px;
 `;
 
 const ContentsContainer = Styled.div`

@@ -19,11 +19,11 @@ const DetailPage = ({ classList, location }) => {
   };
   return (
     <DetailContainer>
-      {isAuth && (
+      {isAuth ? (
         <CreateClassButton
           onClick={onModalPopup}
         >{`${location} 생성하기`}</CreateClassButton>
-      )}
+      ) : null}
       <ClassCardContainer>
         {classList.map((post) => (
           <ClassCard

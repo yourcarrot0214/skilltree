@@ -27,8 +27,6 @@ const SkillsMain = () => {
 
   return (
     <>
-      <h3>Skills Main Page</h3>
-      <p>Skills page</p>
       <SkillSearchBar selected={true} onClickFunction={onClickFunction} />
       <SkillInfoSection
         relatedUsers={relatedUsers}

@@ -7,6 +7,7 @@ import {
 } from "./styles/styled.js";
 import TagContainer from "../common/TagContainer.jsx";
 import Tag from "../common/Tag.jsx";
+import PrintMessage from "../views/ProfilePage/accont/PrintMessage.jsx";
 import { useDispatch } from "react-redux";
 import { selectedSkill, selectedReset } from "../../_actions/skill_action.js";
 
@@ -32,7 +33,6 @@ const SkillSearchBar = (props) => {
     event.preventDefault();
     if (skillName === "") return;
     if (skillSearchResult === undefined) return;
-    console.log("Skill Search Request.");
     skillDispatch(skillSearchResult._id);
     setSkillName("");
   };
@@ -90,7 +90,7 @@ const SkillSearchBar = (props) => {
           selected={skillSearchResult.selected}
         />
       ) : (
-        <div>검색 결과가 없습니다.</div>
+        <PrintMessage message='검색 결과가 없습니다.' />
       )}
     </SkillSearchBarStyled>
   );

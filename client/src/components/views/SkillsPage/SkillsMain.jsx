@@ -15,7 +15,6 @@ const SkillsMain = () => {
   const skillsState = useSkills();
   const projectState = useProject();
   const studyState = useStudy();
-  const selectedSkill = skillsState.selectedSkills();
   const relatedProject = projectState.relatedProject(skillId);
   const relatedStudy = studyState.relatedStudy(skillId);
   const relatedUsers = skillsState.findSkillById(skillId);
@@ -27,7 +26,12 @@ const SkillsMain = () => {
 
   return (
     <>
-      <SkillSearchBar selected={true} onClickFunction={onClickFunction} />
+      <SkillSearchBar
+        selected={true}
+        onClickFunction={onClickFunction}
+        setSkillId={setSkillId}
+        chooseOneSelected
+      />
       <SkillInfoSection
         relatedUsers={relatedUsers}
         relatedProject={relatedProject}

@@ -9,7 +9,11 @@ import TagContainer from "../common/TagContainer.jsx";
 import Tag from "../common/Tag.jsx";
 import PrintMessage from "../views/ProfilePage/accont/PrintMessage.jsx";
 import { useDispatch } from "react-redux";
-import { selectedSkill, selectedReset } from "../../_actions/skill_action.js";
+import {
+  selectedSkill,
+  selectedReset,
+  chooseOneSelected,
+} from "../../_actions/skill_action.js";
 
 import useSearchResult from "../hooks/useSearchResult.js";
 import useSkills from "../hooks/useSkills.js";
@@ -33,7 +37,16 @@ const SkillSearchBar = (props) => {
     event.preventDefault();
     if (skillName === "") return;
     if (skillSearchResult === undefined) return;
-    skillDispatch(skillSearchResult._id);
+    if (props.chooseOneSelected) {
+      console.log("chooseOneSelected");
+      dispatch(chooseOneSelected(skillSearchResult._id));
+      props.setSkillId((prev) =>
+        skillSearchResult._id === prev ? "" : skillSearchResult._id
+      );
+    } else {
+      console.log("selectedSkill");
+      skillDispatch(skillSearchResult._id);
+    }
     setSkillName("");
   };
 

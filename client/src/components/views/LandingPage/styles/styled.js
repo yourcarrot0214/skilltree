@@ -19,4 +19,38 @@ const HeaderContainer = Styled.div`
   }
 `;
 
-export { LandingPageContainer, HeaderContainer };
+const SectionBox = Styled.div`
+  padding: 2rem 0;
+  border: 1px solid black;
+  max-width: 1024px;
+`;
+
+const SectionTitle = Styled.h3`
+  text-align: center;
+  color: #f1f3f5;
+`;
+
+const SectionDescription = Styled.p`
+  text-align: center;
+  color: #ced4da;
+`;
+
+const LinkBox = Styled.div`
+  text-align: center;
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  a:hover {
+      color: #69db7c;
+  }
+`;
+
+export {
+  LandingPageContainer,
+  HeaderContainer,
+  SectionBox,
+  SectionTitle,
+  SectionDescription,
+  LinkBox,
+};

@@ -7,8 +7,8 @@ import {
   LinkBox,
 } from "./styles/styled.js";
 
-const Section = ({ info }) => {
-  const { title, description, linkTo } = info;
+const Section = (props) => {
+  const { title, description, linkTo } = props.info;
   return (
     <SectionBox>
       <SectionTitle>{title}</SectionTitle>

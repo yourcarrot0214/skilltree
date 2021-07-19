@@ -19,6 +19,16 @@ const TagContainerStyled = Styled.div`
     overflow: auto;
     max-height: 300px;
 
+    /* scroll bar hidden */
+    /* Chrome, Safari, Opera */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    /* IE and Edge */
+    -ms-overflow-style: none;
+    /* Firefox */
+    scrollbar-width: none;
+
     ${(props) =>
       props.thumbnail &&
       css`

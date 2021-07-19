@@ -3,14 +3,14 @@ import MainHeaderImage from "../images/skills-background.jpeg";
 
 const LandingPageContainer = Styled.div`
   /* background-color: #343a40; */
-  height: 100%;
+  height: 3000px;
 `;
 
 const HeaderContainer = Styled.div`
   padding: 2rem 0;
   width: 100%;
   margin: 0 auto;
-  height: 300px;
+  height: 100%;
   position: relative;
   &:after {
     content: "";

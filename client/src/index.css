@@ -8,6 +8,16 @@ body {
   box-sizing: border-box;
   height: 100%;
   background-color: #343a40;
+  /* IE and Edge */
+  -ms-overflow-style: none;
+  /* Firefox */
+  scrollbar-width: none;
+}
+
+/* scroll bar hidden */
+/* Chrome, Safari, Opera */
+body::-webkit-scrollbar {
+  display: none;
 }
 
 code {

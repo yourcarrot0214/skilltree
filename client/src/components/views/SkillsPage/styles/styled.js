@@ -24,7 +24,7 @@ const InfoStyled = Styled.div`
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   margin: 0 auto;
-  color: #f1f3f5;
+  color: #343a40;
   text-align: center;
 `;
 

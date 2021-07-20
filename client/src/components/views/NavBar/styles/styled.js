@@ -6,7 +6,7 @@ const NavBarContainer = Styled.div`
   justify-content: space-between;
   width: 100%;
   height: 50px;
-  background-color: #343a40;
+  /* background-color: #343a40; */
 `;
 
 const LeftMenuContainer = Styled.div`
@@ -31,14 +31,14 @@ const LinkBox = Styled.div`
   text-align: center;
   a {
     text-decoration: none;
-    color: white;
+    color: black;
   }
   a:hover {
       color: #69db7c;
   }
 
   div {
-      color: white;
+      color: black;
   }
 
   div:hover {

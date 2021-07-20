@@ -1,8 +1,8 @@
 import Styled, { css } from "styled-components";
 
 const ProfileMainStyled = Styled.div`
-  background-color: #343a40;
-  color: white;
+  /* background-color: #343a40; */
+  color: #212529;
   padding-bottom: 2rem;
   width: 100%;
   margin: 0 auto;
@@ -13,7 +13,7 @@ const UserProfileCardStyled = Styled.div`
   padding-right: 2rem;
   padding-left: 2rem;
   padding-bottom: 2rem;
-  background-color: #212529;
+  background-color: #dee2e6;
   margin: 0 auto;
   border-radius: 6px;
   max-width: 1024px;
@@ -21,7 +21,7 @@ const UserProfileCardStyled = Styled.div`
 `;
 
 const ContentsContainer = Styled.div`
-  background-color: #343a40;
+  background-color: #adb5bd;
   border-radius: 6px;
   padding: 6px 6px;
   margin-bottom: 2rem;
@@ -64,7 +64,7 @@ const EmailStyled = Styled.div`
     font-weight: bold;
     font-size: 12px;
     margin-bottom: 4px;
-    color: #adb5bd;
+    color: #343a40;
   }
   p {
     margin-top: 0;
@@ -136,7 +136,7 @@ const ModalStyled = Styled.div`
       css`
         display: flex;
         align-items: center;
-        animation: modal-bg-show 0.3s;
+        animation: 0.3s;
         overflow: auto;
       `}
 `;
@@ -155,7 +155,7 @@ const ModalSection = Styled.section`
     max-height: 700px;
     margin: 0 auto;
     border-radius: 6px;
-    background-color: #495057;
+    background-color: #dee2e6;
     animation: modal-show .3s;
     overflow: auto;
 `;
@@ -170,6 +170,8 @@ const ModalHeader = Styled.header`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  color: #black;
 `;
 
 const ModalMain = Styled.main`
@@ -181,7 +183,7 @@ const ModalMain = Styled.main`
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 1rem;
-  color: black;
+  color: #black;
 `;
 
 const PasswordStyled = Styled.div`
@@ -194,7 +196,7 @@ const PasswordStyled = Styled.div`
     font-weight: bold;
     font-size: 12px;
     margin-bottom: 4px;
-    color: #adb5bd;
+    color: #343a40;
   }
   p {
     margin-top: 0;
@@ -230,7 +232,7 @@ const UserNameStyled = Styled.div`
     font-weight: bold;
     font-size: 12px;
     margin-bottom: 4px;
-    color: #adb5bd;
+    color: #343a40;
   }
   p {
     margin-top: 0;
@@ -248,7 +250,7 @@ const Menu = Styled.h3`
 
 const PrintMessageStyled = Styled.div`
   width: 100%;
-  color: #f1f3f5;
+  color: #495057;
   font-size: 1rem;
   text-align: center;
 `;

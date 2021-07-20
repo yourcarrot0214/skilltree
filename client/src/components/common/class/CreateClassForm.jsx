@@ -55,10 +55,10 @@ const CreateClassForm = (props) => {
   return (
     <>
       <SubmitContainer>
-        <h3>프로젝트에 필요한 스킬을 선택해 주세요.</h3>
+        <h3>{`${location}`}에 필요한 스킬을 선택해 주세요.</h3>
         <SkillSearchBar selected={true} />
         <SubmitForm onSubmit={onCreateClass}>
-          <label>프로젝트명</label>
+          <label>제목</label>
           <input
             type='text'
             name='title'
@@ -66,7 +66,7 @@ const CreateClassForm = (props) => {
             onChange={onChangeValue}
             required
           />
-          <label>프로젝트 설명</label>
+          <label>설명</label>
           <textarea
             name='description'
             value={Description}
@@ -83,7 +83,7 @@ const CreateClassForm = (props) => {
             max='10'
             required
           />
-          <button type='submit'>프로젝트 생성하기</button>
+          <button type='submit'>생성하기</button>
         </SubmitForm>
       </SubmitContainer>
     </>

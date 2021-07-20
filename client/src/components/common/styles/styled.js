@@ -5,7 +5,7 @@ const TagStyled = Styled.button`
   margin: 6px 6px;
   border: none;
   border-radius: 4px;
-  background-color: #868e96;
+  background-color: #343a40;
   color: #f8f9fa;
 
   ${(props) =>
@@ -61,7 +61,7 @@ const SearchBar = Styled.input`
   border-bottom: 3px solid black;
   background-color : rgba(255, 255, 255, 0);
   ::placeholder {
-    color: #ced4da;
+    color: #868e96;
   }
 `;
 
@@ -94,39 +94,46 @@ const ClassCardThumbNail = Styled.div`
   /* border: 1px solid black; */
   border-radius: 5px;
   margin-bottom: 2rem;
-  background: #343a40;
+  /* background: #343a40;
   box-shadow:  5px 5px 10px #2a2e33,
-                -5px -5px 10px #3e464d;
+                -5px -5px 10px #3e464d; */
+  /* background: #e9ecef;
+  box-shadow:  20px 20px 60px #c6c9cb,
+               -20px -20px 60px #ffffff; */
+  background: #dee2e6;
   :hover {
-    background: #343a40;
+    /* background: #343a40;
     box-shadow: inset 5px 5px 10px #2a2e33,
-            inset -5px -5px 10px #3e464d;
+            inset -5px -5px 10px #3e464d; */
+    background: linear-gradient(145deg, #f9fdff, #d2d4d7);
+    /* box-shadow:  20px 20px 60px #c6c9cb,
+                 -20px -20px 60px #ffffff; */
   }
 `;
 
 const ClassTitle = Styled.h3`
-  color: #f8f9fa;
+  color: #343a40;
 `;
 
 const ClassDescription = Styled.p`
-  color: #f8f9fa;
+  color: #343a40;
 `;
 
 const ClassLeader = Styled.div`
-  color: #f8f9fa;
+  color: #343a40;
   padding-left: 4px;
   padding-top: 4px;
   margin-top: 1rem;
 `;
 
 const ClassPersonnel = Styled.div`
-  color: #f8f9fa;
+  color: #343a40;
   padding-left: 4px;
   padding-top: 4px;
 `;
 
 const ClassStatus = Styled.div`
-  color: #f8f9fa;
+  color: #343a40;
   padding-left: 4px;
   padding-top: 4px;
 `;
@@ -141,12 +148,12 @@ const ClassInfoStyled = Styled.div`
     font-weight: bold;
     font-size: 12px;
     margin-bottom: 4px;
-    color: #adb5bd;
+    color: #343a40;
   }
   p {
     margin-top: 0;
     margin-bottom: 6px;
-    color: white;
+    color: #212529;
   }
 `;
 

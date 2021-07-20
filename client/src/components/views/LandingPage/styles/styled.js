@@ -1,27 +1,26 @@
-import Styled, { css } from "styled-components";
-import MainHeaderImage from "../images/skills-background.jpeg";
+import Styled from "styled-components";
+import HeaderImage from "../images/header.jpeg";
 
 const LandingPageContainer = Styled.div`
-  /* background-color: #343a40; */
-  height: 3000px;
+  width: 100%;
 `;
 
 const HeaderContainer = Styled.div`
   padding: 2rem 0;
   width: 100%;
   margin: 0 auto;
-  height: 100%;
+  height: 500px;
   position: relative;
+  
   &:after {
     content: "";
     width: 100%;
-    height: 300px;
+    height: 500px;
     margin: 0 auto;
     padding: 2rem 0;
-    background-image: url(${MainHeaderImage});
+    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${HeaderImage});
     background-repeat: no-repeat;
     background-size: cover;
-    opacity: 0.7;
     position: absolute;
     top: 0;
     left: 0;
@@ -30,14 +29,14 @@ const HeaderContainer = Styled.div`
 
   h1 {
       text-align: center;
-      color: #f1f3f5;
+      color: #f8f9fa;
       position: relative;
       top: 3rem;
       font-size: 3rem;
   }
   p {
       text-align: center;
-      color: #ced4da;
+      color: #f8f9fa;
       position: relative;
       top: 5rem;
   }
@@ -66,19 +65,19 @@ const SectionLogo = Styled.div`
 
 const SectionTitle = Styled.h3`
   text-align: center;
-  color: #f1f3f5;
+  color: black;
 `;
 
 const SectionDescription = Styled.p`
   text-align: center;
-  color: #ced4da;
+  color: black;
 `;
 
 const LinkBox = Styled.div`
   text-align: center;
   a {
     text-decoration: none;
-    color: white;
+    color: black;
   }
   a:hover {
       color: #69db7c;

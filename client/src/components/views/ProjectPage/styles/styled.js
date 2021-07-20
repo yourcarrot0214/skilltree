@@ -7,7 +7,7 @@ const ProjectMainContainer = Styled.div`
   
   h2 {
       text-align: center;
-      color: #f8f9fa;
+      color: #212529;
   }
 `;
 

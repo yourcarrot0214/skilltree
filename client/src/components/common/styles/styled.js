@@ -18,6 +18,7 @@ const TagStyled = Styled.button`
 const TagContainerStyled = Styled.div`
     overflow: auto;
     max-height: 300px;
+    min-height: 36px;
 
     /* scroll bar hidden */
     /* Chrome, Safari, Opera */

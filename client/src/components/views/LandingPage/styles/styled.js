@@ -36,8 +36,8 @@ const SectionContainer = Styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  margin: 2rem auto;
-  padding: 2rem 0;
+  margin: 0 auto;
+  padding: 4rem 0;
 `;
 
 const SectionBox = Styled.div`
@@ -51,9 +51,8 @@ const SectionBox = Styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 1rem;
-  background: #dee2e6;
-  box-shadow:  20px 20px 60px #bdc0c4,
-               -20px -20px 60px #ffffff;
+  box-shadow:  20px 20px 40px #bdc0c4,
+              -20px -20px 40px #ffffff;
 `;
 
 const SectionTitle = Styled.h1`

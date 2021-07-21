@@ -31,41 +31,47 @@ const HeaderContainer = Styled.div`
 
 const SectionContainer = Styled.div`
   width: 100%;
+  border: 1px soild black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin: 2rem auto;
+  padding: 2rem 0;
 `;
 
 const SectionBox = Styled.div`
   padding: 2rem 0;
-  border: 1px solid black;
   margin: 0 auto;
-  width: 100%;
-  height: 100px;
+  width: 400px;
+  height: 200px;
   max-width: 1024px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  background: #dee2e6;
+  box-shadow:  20px 20px 60px #bdc0c4,
+               -20px -20px 60px #ffffff;
 `;
 
-const SectionLogo = Styled.div`
-  font-size: 3rem;
-  padding: 0 1rem;
-`;
-
-const SectionTitle = Styled.h3`
+const SectionTitle = Styled.h1`
   text-align: center;
-  color: black;
+  color: #212529;
 `;
 
 const SectionDescription = Styled.p`
   text-align: center;
-  color: black;
+  color: #343a40;
 `;
 
 const LinkBox = Styled.div`
   a {
     text-decoration: none;
-    color: white;
     padding: 1rem 1.5rem;
     margin: 0 auto;
+    color: black;
   }
   a:hover {
       color: #69db7c;
@@ -84,8 +90,11 @@ const LinkBox = Styled.div`
       :hover {
         background-color: #40c057;
       }
+      a {
+        color: #fff;
+      }
       a:hover {
-        color: black;
+        color: white;
       }
     `}
 `;
@@ -95,7 +104,6 @@ export {
   HeaderContainer,
   SectionContainer,
   SectionBox,
-  SectionLogo,
   SectionTitle,
   SectionDescription,
   LinkBox,

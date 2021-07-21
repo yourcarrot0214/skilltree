@@ -62,7 +62,10 @@ const SearchBar = Styled.input`
   border-bottom: 3px solid black;
   background-color : rgba(255, 255, 255, 0);
   ::placeholder {
-    color: #868e96;
+    color: #495057;
+  }
+  :focus {
+    outline: none;
   }
 `;
 

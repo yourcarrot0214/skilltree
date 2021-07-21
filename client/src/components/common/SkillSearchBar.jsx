@@ -103,7 +103,9 @@ const SkillSearchBar = (props) => {
           selected={skillSearchResult.selected}
         />
       ) : (
-        <PrintMessage message='검색 결과가 없습니다.' />
+        <div style={{ minHeight: "180px" }}>
+          <PrintMessage message='검색 결과가 없습니다.' />
+        </div>
       )}
     </SkillSearchBarStyled>
   );

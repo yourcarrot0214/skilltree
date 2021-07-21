@@ -1,4 +1,4 @@
-import Styled from "styled-components";
+import Styled, { css } from "styled-components";
 import HeaderImage from "../images/header.jpeg";
 
 const LandingPageContainer = Styled.div`
@@ -6,39 +6,26 @@ const LandingPageContainer = Styled.div`
 `;
 
 const HeaderContainer = Styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 2rem 0;
   width: 100%;
   margin: 0 auto;
   height: 500px;
-  position: relative;
-  
-  &:after {
-    content: "";
-    width: 100%;
-    height: 500px;
-    margin: 0 auto;
-    padding: 2rem 0;
-    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${HeaderImage});
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-  }
+  background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${HeaderImage});
+  background-repeat: no-repeat;
+  background-size: cover;
 
   h1 {
       text-align: center;
       color: #f8f9fa;
-      position: relative;
-      top: 3rem;
       font-size: 3rem;
   }
   p {
       text-align: center;
       color: #f8f9fa;
-      position: relative;
-      top: 5rem;
   }
 `;
 
@@ -74,14 +61,33 @@ const SectionDescription = Styled.p`
 `;
 
 const LinkBox = Styled.div`
-  text-align: center;
   a {
     text-decoration: none;
-    color: black;
+    color: white;
+    padding: 1rem 1.5rem;
+    margin: 0 auto;
   }
   a:hover {
       color: #69db7c;
   }
+
+  ${(props) =>
+    props.signup &&
+    css`
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      border-radius: 6px;
+      border: 3px solid #40c057;
+      margin-top: 1.5rem;
+      :hover {
+        background-color: #40c057;
+      }
+      a:hover {
+        color: black;
+      }
+    `}
 `;
 
 export {

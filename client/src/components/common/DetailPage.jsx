@@ -13,6 +13,7 @@ const DetailPage = ({ classList, location }) => {
   const userData = useSelector((state) => state.user.userData, shallowEqual);
   const [ModalOpen, setModalOpen] = useState(false);
   const [isAuth, setIsAuth] = useState(userData.isAuth);
+  // isAuth...
 
   const onModalPopup = () => {
     setModalOpen(!ModalOpen);

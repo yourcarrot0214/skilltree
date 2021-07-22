@@ -3,6 +3,11 @@ import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { selectedSkill } from "../../../_actions/skill_action.js";
 import {
   ClassCardThumbNail,
+  ClassCardHeader,
+  ClassCardSection,
+  ClassTable,
+  ClassTableMenu,
+  ClassTableValue,
   ClassTitle,
   ClassLeader,
   ClassPersonnel,
@@ -81,16 +86,29 @@ const ClassCard = (props) => {
   return (
     <>
       <ClassCardThumbNail id={id} onClick={onModalPopup}>
-        <ClassTitle>{title}</ClassTitle>
-        <TagContainer
-          skills={skills}
-          selected={true}
-          onClickFunction={onClickFunction}
-          thumbnail={true}
-        />
-        <ClassLeader>{`리더 : ${leaderName}`}</ClassLeader>
-        <ClassPersonnel>{`모집인원 : ${members.length} / ${personnel}`}</ClassPersonnel>
-        <ClassStatus>{status ? "진행중" : "모집중"}</ClassStatus>
+        <ClassCardHeader>
+          <ClassTitle>{title}</ClassTitle>
+          <TagContainer
+            skills={skills}
+            selected={true}
+            onClickFunction={onClickFunction}
+            thumbnail={true}
+          />
+        </ClassCardHeader>
+        <ClassCardSection>
+          <ClassTable>
+            <ClassTableMenu>모집인원</ClassTableMenu>
+            <ClassTableValue>{`${members.length} / ${personnel}`}</ClassTableValue>
+          </ClassTable>
+          <ClassTable>
+            <ClassTableMenu>상태</ClassTableMenu>
+            <ClassTableValue>{status ? "진행중" : "모집중"}</ClassTableValue>
+          </ClassTable>
+          <ClassTable>
+            <ClassTableMenu>내 정보</ClassTableMenu>
+            <ClassTableValue>{role}</ClassTableValue>
+          </ClassTable>
+        </ClassCardSection>
       </ClassCardThumbNail>
       <Modal
         onClickFunction={onModalPopup}
@@ -154,3 +172,18 @@ const ClassCard = (props) => {
 };
 
 export default ClassCard;
+
+/*
+      <ClassCardThumbNail id={id} onClick={onModalPopup}>
+        <ClassTitle>{title}</ClassTitle>
+        <TagContainer
+          skills={skills}
+          selected={true}
+          onClickFunction={onClickFunction}
+          thumbnail={true}
+        />
+        <ClassLeader>{`리더 : ${leaderName}`}</ClassLeader>
+        <ClassPersonnel>{`모집인원 : ${members.length} / ${personnel}`}</ClassPersonnel>
+        <ClassStatus>{status ? "진행중" : "모집중"}</ClassStatus>
+      </ClassCardThumbNail>
+*/

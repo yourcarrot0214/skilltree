@@ -33,8 +33,8 @@ const TagContainerStyled = Styled.div`
     ${(props) =>
       props.thumbnail &&
       css`
-        max-height: 30px;
-        overflow: hidden;
+        max-height: 36px;
+        overflow: auto;
       `}
 `;
 
@@ -87,36 +87,67 @@ const ClassCardContainer = Styled.div`
   margin: 0 auto;
   justify-content: space-between;
   max-width: 1024px;
-  /* width: 100%; */
 `;
 
 const ClassCardThumbNail = Styled.div`
-  width: 430px;
-  max-width: 500px;
+  width: 100%;
+  max-width: 1024px;
   min-width: 300px;
-  padding: 1rem;
-  /* border: 1px solid black; */
-  border-radius: 5px;
-  margin-bottom: 2rem;
-  /* background: #343a40;
-  box-shadow:  5px 5px 10px #2a2e33,
-                -5px -5px 10px #3e464d; */
-  /* background: #e9ecef;
-  box-shadow:  20px 20px 60px #c6c9cb,
-               -20px -20px 60px #ffffff; */
+  padding: 1rem 2rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
   background: #dee2e6;
+  display: flex;
+  flex-direction: row;
   :hover {
-    /* background: #343a40;
-    box-shadow: inset 5px 5px 10px #2a2e33,
-            inset -5px -5px 10px #3e464d; */
     background: linear-gradient(145deg, #f9fdff, #d2d4d7);
-    /* box-shadow:  20px 20px 60px #c6c9cb,
-                 -20px -20px 60px #ffffff; */
   }
 `;
 
-const ClassTitle = Styled.h3`
+const ClassCardHeader = Styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 5;
+  width: 100px;
+  padding: 1rem 0;
+`;
+
+const ClassCardSection = Styled.div`
+  display: flex;
+  flex-direction: row;
+  flex: 5;
+  height: 80px;
+  justify-content: space-evenly;
+
+`;
+
+const ClassTable = Styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ClassTableMenu = Styled.div`
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 1rem 0;
+  width: 100px;
   color: #343a40;
+`;
+
+const ClassTableValue = Styled.div`
+  text-align: center;
+  height: 40px;
+  color: #343a40;
+`;
+
+const ClassTitle = Styled.div`
+  color: #343a40;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-left: 6px;
 `;
 
 const ClassDescription = Styled.p`
@@ -249,6 +280,11 @@ export {
   SearchButton,
   ClassCardContainer,
   ClassCardThumbNail,
+  ClassCardHeader,
+  ClassCardSection,
+  ClassTable,
+  ClassTableMenu,
+  ClassTableValue,
   ClassTitle,
   ClassDescription,
   ClassLeader,

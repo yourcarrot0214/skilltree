@@ -9,15 +9,15 @@ body {
   height: 100%;
   background-color: #e9ecef;
   /* IE and Edge */
-  -ms-overflow-style: none;
+  /* -ms-overflow-style: none; */
   /* Firefox */
-  scrollbar-width: none;
+  /* scrollbar-width: none; */
 }
 
 /* scroll bar hidden */
 /* Chrome, Safari, Opera */
 body::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
 }
 
 code {

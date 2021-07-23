@@ -11,22 +11,41 @@ const Project = ({ userData }) => {
   const projectMember = projectList.findProject(userData.project.member);
   const projectApply = projectList.findProject(userData.project.apply);
 
+  const interaction = (post, userId) => {
+    let userStatus, isVolunteer;
+
+    if (post.leader === userId) userStatus = "운영중";
+    else if (post.members.includes(userId)) userStatus = "참가중";
+    else if (post.volunteer.includes(userId)) userStatus = "지원중";
+    else userStatus = "-";
+
+    if (post.volunteer.includes(userId)) isVolunteer = true;
+    else isVolunteer = false;
+
+    return { userStatus, isVolunteer };
+  };
+
   const classCardList = (projectList) => {
-    return projectList.map((project) => (
-      <ClassCard
-        key={project._id}
-        id={project._id}
-        title={project.title}
-        description={project.description}
-        skills={project.skills}
-        leader={project.leader}
-        personnel={project.personnel}
-        members={project.members}
-        status={project.status}
-        location='Project'
-        volunteer={project.volunteer}
-      />
-    ));
+    return projectList.map((project) => {
+      let userInteraction = interaction(project, userData._id);
+      return (
+        <ClassCard
+          key={project._id}
+          id={project._id}
+          title={project.title}
+          description={project.description}
+          skills={project.skills}
+          leader={project.leader}
+          personnel={project.personnel}
+          members={project.members}
+          status={project.status}
+          location='Project'
+          volunteer={project.volunteer}
+          userStatus={userInteraction.userStatus}
+          isVolunteer={userInteraction.isVolunteer}
+        />
+      );
+    });
   };
 
   return (

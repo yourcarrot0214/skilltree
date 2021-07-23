@@ -85,9 +85,9 @@ const ClassCardContainer = Styled.div`
   flex-wrap: wrap;
   padding: 1rem;
   margin: 0 auto;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   max-width: 1024px;
-  width: 100%;
+  /* width: 100%; */
 `;
 
 const ClassCardThumbNail = Styled.div`
@@ -109,7 +109,6 @@ const ClassCardHeader = Styled.div`
   display: flex;
   flex-direction: column;
   flex: 5;
-  width: 100px;
   padding: 1rem 0;
 `;
 
@@ -198,6 +197,7 @@ const DetailContainer = Styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 `;
 
 const CreateClassButton = Styled.button`

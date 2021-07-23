@@ -7,6 +7,7 @@ import { SKILL_INFO, PROJECT_INFO, STUDY_INFO } from "./config/sectionInfo.js";
 import Test from "../../../_reducers/Test.jsx";
 import Header from "./Header.jsx";
 import Section from "./Section.jsx";
+import Banner from "./Banner.jsx";
 
 function LandingPage() {
   return (
@@ -20,6 +21,7 @@ function LandingPage() {
         <Section info={PROJECT_INFO} />
         <Section info={STUDY_INFO} />
       </SectionContainer>
+      <Banner />
       <Test />
     </LandingPageContainer>
   );

@@ -100,6 +100,21 @@ const LinkBox = Styled.div`
     `}
 `;
 
+const BannerContainer = Styled.div`
+  width: 100%;
+  height: 250px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Wrapper = Styled.div`
+  width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+`;
+
 export {
   LandingPageContainer,
   HeaderContainer,
@@ -108,4 +123,6 @@ export {
   SectionTitle,
   SectionDescription,
   LinkBox,
+  BannerContainer,
+  Wrapper,
 };

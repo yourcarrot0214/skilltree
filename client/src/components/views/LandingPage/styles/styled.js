@@ -88,12 +88,14 @@ const LinkBox = Styled.div`
       margin-top: 1.5rem;
       :hover {
         background-color: #40c057;
+        transition: 0.5s;
       }
       a {
         color: #fff;
       }
       a:hover {
         color: white;
+        transition: 0.5;
       }
     `}
 `;

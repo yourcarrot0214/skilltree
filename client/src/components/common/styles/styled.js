@@ -82,18 +82,15 @@ const SearchButton = Styled.button`
 
 const ClassCardContainer = Styled.div`
   display: flex;
-  flex-wrap: wrap;
-  padding: 1rem;
+  flex-direction: column;
+  padding: 1rem 0;
   margin: 0 auto;
-  /* justify-content: space-between; */
-  max-width: 1024px;
+  justify-content: space-between;
   /* width: 100%; */
 `;
 
 const ClassCardThumbNail = Styled.div`
-  width: 100%;
-  max-width: 1024px;
-  min-width: 300px;
+  /* width: 100%; */
   padding: 1rem 2rem;
   border-radius: 6px;
   margin-bottom: 1rem;
@@ -194,19 +191,19 @@ const ClassInfoStyled = Styled.div`
 `;
 
 const DetailContainer = Styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
 `;
 
 const CreateClassButton = Styled.button`
   text-align: center;
   margin-bottom: 1rem;
+  display: block;
   width: 150px;
   height: 40px;
   font-weight: bold;
   font-size: 1rem;
+  margin: 0 auto;
 
   background: linear-gradient(145deg, #3bbe52, #32a045);
   color: white;

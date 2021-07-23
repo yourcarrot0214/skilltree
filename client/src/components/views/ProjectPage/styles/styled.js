@@ -1,7 +1,7 @@
 import Styled from "styled-components";
 
 const ProjectMainContainer = Styled.div`
-  padding: 5px 5px;
+  padding-bottom: 2rem;
   max-width: 1024px;
   margin: 0 auto;
   h2 {

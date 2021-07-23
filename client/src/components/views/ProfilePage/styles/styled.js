@@ -1,11 +1,10 @@
 import Styled, { css } from "styled-components";
 
 const ProfileMainStyled = Styled.div`
-  /* background-color: #343a40; */
   color: #212529;
   padding-bottom: 2rem;
-  max-width: 1024px;
   margin: 0 auto;
+  max-width: 1024px;
 `;
 
 const UserProfileCardStyled = Styled.div`
@@ -16,9 +15,6 @@ const UserProfileCardStyled = Styled.div`
   background-color: #dee2e6;
   margin: 0 auto;
   border-radius: 6px;
-  width: 100%;
-  max-width: 1024px;
-  min-width: 320px;
 `;
 
 const ContentsContainer = Styled.div`
@@ -242,9 +238,6 @@ const UserNameStyled = Styled.div`
 `;
 
 const ClassContainer = Styled.div`
-  display: flex;
-  flex-direction: column;
-  /* align-items: center; */
   width: 100%;
 `;
 

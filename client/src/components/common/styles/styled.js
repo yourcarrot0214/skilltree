@@ -148,6 +148,7 @@ const ClassTitle = Styled.div`
   font-size: 1.3rem;
   font-weight: bold;
   margin-left: 6px;
+  margin-bottom: 14px;
 `;
 
 const ClassDescription = Styled.p`

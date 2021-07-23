@@ -9,9 +9,6 @@ import {
   ClassTableMenu,
   ClassTableValue,
   ClassTitle,
-  ClassLeader,
-  ClassPersonnel,
-  ClassStatus,
 } from "../styles/styled.js";
 import useGetUserName from "../../hooks/useGetUserName.js";
 import TagContainer from "../TagContainer.jsx";
@@ -34,6 +31,8 @@ const ClassCard = (props) => {
     status,
     location,
     volunteer,
+    userStatus,
+    isVolunteer,
   } = props;
 
   const dispatch = useDispatch();
@@ -51,21 +50,12 @@ const ClassCard = (props) => {
     }
   };
 
-  const applyCheck = (userId) => {
-    if (volunteer.find((user) => user === userId) !== undefined) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
   const leaderName = useGetUserName(leader);
   const [leaderId, setLeaderId] = useState(leader);
   const [userId, setUserId] = useState(userData._id);
   const [ModalOpen, setModalOpen] = useState(false);
   const [role, setRole] = useState(roleValidation(userData._id));
   const [componentToggle, setComponentToggle] = useState(false);
-  const [isVolunteer, setIsVolunteer] = useState(applyCheck(userData._id));
 
   const onModalPopup = () => setModalOpen(!ModalOpen);
   const onComponentToggle = () => {
@@ -106,7 +96,7 @@ const ClassCard = (props) => {
           </ClassTable>
           <ClassTable>
             <ClassTableMenu>내 정보</ClassTableMenu>
-            <ClassTableValue>{role}</ClassTableValue>
+            <ClassTableValue>{userStatus}</ClassTableValue>
           </ClassTable>
         </ClassCardSection>
       </ClassCardThumbNail>
@@ -172,18 +162,3 @@ const ClassCard = (props) => {
 };
 
 export default ClassCard;
-
-/*
-      <ClassCardThumbNail id={id} onClick={onModalPopup}>
-        <ClassTitle>{title}</ClassTitle>
-        <TagContainer
-          skills={skills}
-          selected={true}
-          onClickFunction={onClickFunction}
-          thumbnail={true}
-        />
-        <ClassLeader>{`리더 : ${leaderName}`}</ClassLeader>
-        <ClassPersonnel>{`모집인원 : ${members.length} / ${personnel}`}</ClassPersonnel>
-        <ClassStatus>{status ? "진행중" : "모집중"}</ClassStatus>
-      </ClassCardThumbNail>
-*/

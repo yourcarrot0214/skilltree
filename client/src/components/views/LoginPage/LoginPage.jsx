@@ -1,21 +1,13 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import {
+  LoginContainer,
+  LoginWrapper,
+  LoginImage,
+  LoginForm,
+} from "./styles/styled.js";
 import { loginUser } from "../../../_actions/user_action.js";
 import { withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
-
-const SubmitContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-`;
-
-const SubmitForm = styled.form`
-  display: flex;
-  flex-direction: column;
-`;
 
 function LoginPage(props) {
   const dispatch = useDispatch();
@@ -43,27 +35,31 @@ function LoginPage(props) {
   };
 
   return (
-    <SubmitContainer>
-      <SubmitForm onSubmit={onLoginSubmit}>
-        <label>Email</label>
-        <input
-          type='email'
-          name='email'
-          value={Email}
-          onChange={onChangeValue}
-          required
-        />
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          value={Password}
-          onChange={onChangeValue}
-          required
-        />
-        <button type='submit'>LOGIN</button>
-      </SubmitForm>
-    </SubmitContainer>
+    <LoginContainer>
+      <LoginWrapper>
+        <LoginImage />
+        <LoginForm onSubmit={onLoginSubmit}>
+          <h2>Welcome to SKILL TREE</h2>
+          <label>Email</label>
+          <input
+            type='email'
+            name='email'
+            value={Email}
+            onChange={onChangeValue}
+            required
+          />
+          <label>Password</label>
+          <input
+            type='password'
+            name='password'
+            value={Password}
+            onChange={onChangeValue}
+            required
+          />
+          <button type='submit'>LOGIN</button>
+        </LoginForm>
+      </LoginWrapper>
+    </LoginContainer>
   );
 }
 

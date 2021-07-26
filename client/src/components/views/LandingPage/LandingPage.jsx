@@ -21,7 +21,11 @@ function LandingPage() {
         <Section info={PROJECT_INFO} />
         <Section info={STUDY_INFO} />
       </SectionContainer>
-      <Banner />
+      <Banner
+        bannerTitle='함께 성장할 동료를 찾아보세요.'
+        bannerSubTitle1='혼자서는 막막할 때, 당신에게는 동료가 필요할 거에요.'
+        bannerSubTitle2='같은 방향과 목표를 향해 나아갈 동료를 찾아보세요!'
+      />
       <Test />
     </LandingPageContainer>
   );

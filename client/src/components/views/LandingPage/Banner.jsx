@@ -1,13 +1,21 @@
 import React from "react";
-import { BannerContainer, Wrapper } from "./styles/styled.js";
+import {
+  BannerContainer,
+  Wrapper,
+  BannerImage,
+  BannerContents,
+} from "./styles/styled.js";
 
-const Banner = () => {
+const Banner = ({ bannerTitle, bannerSubTitle1, bannerSubTitle2 }) => {
   return (
     <BannerContainer>
       <Wrapper>
-        <h2>함께 성장할 동료를 찾아보세요.</h2>
-        <p>혼자서는 막막할 때, 당신에게는 동료가 필요할 거에요.</p>
-        <p>같은 방향과 목표를 향해 나아갈 동료를 찾아보세요!</p>
+        <BannerImage />
+        <BannerContents className='BannerContents'>
+          <h1>{bannerTitle}</h1>
+          <p>{bannerSubTitle1}</p>
+          <p>{bannerSubTitle2}</p>
+        </BannerContents>
       </Wrapper>
     </BannerContainer>
   );

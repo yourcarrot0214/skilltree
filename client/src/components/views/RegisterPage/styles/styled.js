@@ -7,7 +7,7 @@ const SubmitContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 90%;
+  flex: 1;
 `;
 
 const SubmitWrapper = styled.div`
@@ -34,7 +34,7 @@ const SubmitImage = styled.div`
 const SubmitForm = styled.form`
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 0 1rem;
   justify-content: center;
   align-items: center;
   width: 400px;

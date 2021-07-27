@@ -14,6 +14,7 @@ import StudyMain from "./components/views/StudyPage/StudyMain.jsx";
 import AdminPage from "./components/views/AdminPage/AdminPage.jsx";
 import ProfileMain from "./components/views/ProfilePage/ProfileMain.jsx";
 import NavBar from "./components/views/NavBar/NavBar.jsx";
+import Footer from "./components/views/Footer/Footer.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ function App() {
           <Route exact path='/profile' component={Auth(ProfileMain, true)} />
           <Route exact path='/admin' component={Auth(AdminPage, true, true)} />
         </Switch>
+        <Footer />
       </Router>
     </>
   );

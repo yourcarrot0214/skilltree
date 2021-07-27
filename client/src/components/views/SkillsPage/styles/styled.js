@@ -28,4 +28,8 @@ const InfoStyled = Styled.div`
   text-align: center;
 `;
 
-export { HeaderStyled, SkillNameStyled, InfoStyled };
+const SkillsMainContainer = Styled.div`
+  flex: 1;
+`;
+
+export { HeaderStyled, SkillNameStyled, InfoStyled, SkillsMainContainer };

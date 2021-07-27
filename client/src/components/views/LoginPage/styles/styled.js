@@ -8,6 +8,7 @@ const LoginContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 90%;
+  flex: 1;
 `;
 
 const LoginWrapper = styled.div`

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { chooseOneSelected } from "../../../_actions/skill_action";
+import { SkillsMainContainer } from "./styles/styled.js";
 
 import SkillSearchBar from "../../common/SkillSearchBar.jsx";
 import SkillInfoSection from "./SkillInfoSection.jsx";
@@ -25,7 +26,7 @@ const SkillsMain = () => {
   };
 
   return (
-    <>
+    <SkillsMainContainer>
       <SkillSearchBar
         selected={true}
         onClickFunction={onClickFunction}
@@ -37,7 +38,7 @@ const SkillsMain = () => {
         relatedProject={relatedProject}
         relatedStudy={relatedStudy}
       />
-    </>
+    </SkillsMainContainer>
   );
 };
 

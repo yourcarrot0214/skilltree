@@ -28,6 +28,16 @@ const HeaderContainer = Styled.div`
       text-align: center;
       color: #f8f9fa;
   }
+
+  @media screen and (max-width: 768px) {
+    h1 {
+      font-size: 1.4em;
+    }
+    p {
+      font-size: 1rem;
+      width: 300px;
+    }
+  }
 `;
 
 const SectionContainer = Styled.div`

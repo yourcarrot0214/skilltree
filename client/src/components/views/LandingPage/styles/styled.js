@@ -31,11 +31,10 @@ const HeaderContainer = Styled.div`
 
   @media screen and (max-width: 768px) {
     h1 {
-      font-size: 1.4em;
+      font-size: 2em;
     }
     p {
       font-size: 1rem;
-      width: 300px;
     }
   }
 `;

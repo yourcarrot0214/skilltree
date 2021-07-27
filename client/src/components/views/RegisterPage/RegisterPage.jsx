@@ -51,10 +51,10 @@ function RegisterPage(props) {
   };
 
   return (
-    <SubmitContainer>
-      <SubmitWrapper>
-        <SubmitImage />
-        <SubmitForm onSubmit={onSignUpSubmit}>
+    <SubmitContainer className='SubmitContainer'>
+      <SubmitWrapper className='SubmitWrapper'>
+        <SubmitImage className='SubmitImage' />
+        <SubmitForm className='SubmitForm' onSubmit={onSignUpSubmit}>
           <label>Name</label>
           <input
             type='text'

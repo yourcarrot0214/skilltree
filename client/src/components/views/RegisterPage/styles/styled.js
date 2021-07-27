@@ -21,6 +21,10 @@ const SubmitWrapper = styled.div`
   justify-content: space-around;
   border-radius: 1rem;
   box-shadow: 20px 20px 60px #bdc0c4, -20px -20px 60px #ffffff;
+
+  @media screen and (max-width: 768px) {
+    max-width: 700px;
+  }
 `;
 
 const SubmitImage = styled.div`
@@ -29,6 +33,10 @@ const SubmitImage = styled.div`
   background-image: url(${backgroundImage});
   background-repeat: no-repeat;
   background-size: cover;
+
+  @media screen and (max-width: 768px) {
+    width: 300px;
+  }
 `;
 
 const SubmitForm = styled.form`
@@ -84,6 +92,10 @@ const SubmitForm = styled.form`
       background-color: #40c057;
       transition: 0.5s;
     }
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 300px;
   }
 `;
 

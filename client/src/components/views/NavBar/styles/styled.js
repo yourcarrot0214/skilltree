@@ -5,8 +5,11 @@ const NavBarContainer = Styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  height: 50px;
-  /* background-color: #343a40; */
+  /* height: 50px; */
+  
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const LeftMenuContainer = Styled.div`
@@ -15,6 +18,11 @@ const LeftMenuContainer = Styled.div`
   align-items: center;
   padding: 12px;
   font-weight: bold;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    padding: 0;
+  }
 `;
 
 const RightMenuContainer = Styled.div`
@@ -23,6 +31,11 @@ const RightMenuContainer = Styled.div`
   align-items: center;
   padding: 12px;
   font-weight: bold;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    padding: 0;
+  }
 `;
 
 const LinkBox = Styled.div`
@@ -52,6 +65,55 @@ const LinkBox = Styled.div`
   :first-child {
       margin-left: 8px;
   }
+
+  @media screen and (max-width: 768px) {
+    margin-left: 0;
+    width: 100%;
+    
+    a {
+      display: block;
+      padding: 0.5rem 0;
+    }
+
+    :first-child {
+      margin-left: 0;
+    }
+
+    div:last-child {
+      margin-right: 0;
+    }
+  }
 `;
 
-export { NavBarContainer, LeftMenuContainer, RightMenuContainer, LinkBox };
+const MenuDropButton = Styled.div`
+  display: none;
+  margin: 0 auto;
+  padding: 0.5rem 0;
+  width: 100%;
+  text-align: center;
+
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
+`;
+
+const MenuWrapper = Styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  @media screen and (max-width: 768px) {
+    display: ${(props) => props.display};
+    flex-direction: column;
+  }
+`;
+
+export {
+  NavBarContainer,
+  LeftMenuContainer,
+  RightMenuContainer,
+  LinkBox,
+  MenuDropButton,
+  MenuWrapper,
+};

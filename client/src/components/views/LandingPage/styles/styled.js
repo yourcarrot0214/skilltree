@@ -112,12 +112,15 @@ const LinkBox = Styled.div`
 
 const BannerContainer = Styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 100%;
   margin: 0 auto;
   padding: 4rem 0;
+
+  @media screen and (max-width: 768px) {
+    padding: 2rem 0;
+  }
 `;
 
 const Wrapper = Styled.div`
@@ -131,17 +134,29 @@ const Wrapper = Styled.div`
   justify-content: space-around;
   border-radius: 1rem;
   box-shadow: 20px 20px 60px #bdc0c4, -20px -20px 60px #ffffff;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    height: 500px;
+    max-width: 500px;
+    flex-direction: column;
+  }
 `;
 
 const BannerImage = Styled.div`
   width: 100%;
   height: 250px;
-  /* background-image: url(${BannerImage1}); */
   background-repeat: no-repeat;
   background-size: cover;
   flex: 4;
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
+
+  @media screen and (max-width: 768px) {
+    flex: 6;
+    border-top-right-radius: 1rem;
+    border-bottom-left-radius: 0;
+  }
 `;
 
 const BannerContents = Styled.div`
@@ -162,6 +177,10 @@ const BannerContents = Styled.div`
     color: #495057;
     font-size: 1rem;
     margin-bottom: 1rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    flex: 4;
   }
 `;
 

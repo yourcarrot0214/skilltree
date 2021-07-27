@@ -9,9 +9,12 @@ import {
 const Banner = (props) => {
   const { bannerTitle, bannerSubTitle1, bannerSubTitle2 } = props;
   return (
-    <BannerContainer>
-      <Wrapper>
-        <BannerImage style={{ backgroundImage: `url(${props.image})` }} />
+    <BannerContainer className='BannerContainer'>
+      <Wrapper className='Wrapper'>
+        <BannerImage
+          className='BannerImage'
+          style={{ backgroundImage: `url(${props.image})` }}
+        />
         <BannerContents className='BannerContents'>
           <h1>{bannerTitle}</h1>
           <div>{bannerSubTitle1}</div>

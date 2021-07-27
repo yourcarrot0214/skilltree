@@ -6,15 +6,16 @@ import {
   BannerContents,
 } from "./styles/styled.js";
 
-const Banner = ({ bannerTitle, bannerSubTitle1, bannerSubTitle2 }) => {
+const Banner = (props) => {
+  const { bannerTitle, bannerSubTitle1, bannerSubTitle2 } = props;
   return (
     <BannerContainer>
       <Wrapper>
-        <BannerImage />
+        <BannerImage style={{ backgroundImage: `url(${props.image})` }} />
         <BannerContents className='BannerContents'>
           <h1>{bannerTitle}</h1>
-          <p>{bannerSubTitle1}</p>
-          <p>{bannerSubTitle2}</p>
+          <div>{bannerSubTitle1}</div>
+          <div>{bannerSubTitle2}</div>
         </BannerContents>
       </Wrapper>
     </BannerContainer>
@@ -22,3 +23,7 @@ const Banner = ({ bannerTitle, bannerSubTitle1, bannerSubTitle2 }) => {
 };
 
 export default Banner;
+
+/*
+  banner + section 합쳐서 banner 형태로 landingpage에 출력
+*/

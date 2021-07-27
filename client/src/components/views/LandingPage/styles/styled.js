@@ -127,7 +127,7 @@ const Wrapper = Styled.div`
 const BannerImage = Styled.div`
   width: 100%;
   height: 250px;
-  background-image: url(${BannerImage1});
+  /* background-image: url(${BannerImage1}); */
   background-repeat: no-repeat;
   background-size: cover;
   flex: 4;
@@ -149,9 +149,10 @@ const BannerContents = Styled.div`
     color: #212529;
   }
 
-  p {
+  div {
     color: #495057;
     font-size: 1rem;
+    margin-bottom: 1rem;
   }
 `;
 

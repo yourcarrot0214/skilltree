@@ -7,7 +7,6 @@ const LoginContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 90%;
   flex: 1;
 `;
 
@@ -21,6 +20,11 @@ const LoginWrapper = styled.div`
   justify-content: space-around;
   border-radius: 1rem;
   box-shadow: 20px 20px 60px #bdc0c4, -20px -20px 60px #ffffff;
+
+  @media screen and (max-width: 768px) {
+    max-width: 700px;
+    height: 300px;
+  }
 `;
 
 const LoginImage = styled.div`
@@ -32,6 +36,10 @@ const LoginImage = styled.div`
   flex: 5;
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
+
+  @media screen and (max-width: 768px) {
+    height: 300px;
+  }
 `;
 
 const LoginForm = styled.form`
@@ -90,6 +98,23 @@ const LoginForm = styled.form`
     :hover {
       background-color: #40c057;
       transition: 0.5s;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 300px;
+    padding: 0;
+    label {
+      width: 220px;
+    }
+
+    input {
+      width: 220px;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 220px;
     }
   }
 `;

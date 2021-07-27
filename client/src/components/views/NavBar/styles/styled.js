@@ -81,6 +81,7 @@ const LinkBox = Styled.div`
 
     div:last-child {
       margin-right: 0;
+      padding: 0.5rem 0;
     }
   }
 `;
@@ -106,6 +107,7 @@ const MenuWrapper = Styled.div`
   @media screen and (max-width: 768px) {
     display: ${(props) => props.display};
     flex-direction: column;
+    margin-bottom: 1rem;
   }
 `;
 

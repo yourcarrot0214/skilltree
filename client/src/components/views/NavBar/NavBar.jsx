@@ -20,8 +20,8 @@ function NavBar() {
         <GiHamburgerMenu style={{ fontSize: "2rem", fontWeight: "bold" }} />
       </MenuDropButton>
       <MenuWrapper display={display}>
-        <LeftMenu />
-        <RightMenu />
+        <LeftMenu displayToggle={displayToggle} />
+        <RightMenu displayToggle={displayToggle} />
       </MenuWrapper>
     </NavBarContainer>
   );

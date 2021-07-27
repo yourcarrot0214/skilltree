@@ -13,6 +13,7 @@ const RightMenu = (props) => {
   const { isAdmin, isAuth } = userData;
 
   const onClickLogoutButton = () => {
+    props.displayToggle();
     dispatch(logoutUser()).then((response) => {
       props.history.push("/login");
     });
@@ -23,10 +24,14 @@ const RightMenu = (props) => {
       return (
         <>
           <LinkBox>
-            <Link to='/register'>Sign Up</Link>
+            <Link to='/register' onClick={props.displayToggle}>
+              Sign Up
+            </Link>
           </LinkBox>
           <LinkBox>
-            <Link to='/login'>Log In</Link>
+            <Link to='/login' onClick={props.displayToggle}>
+              Log In
+            </Link>
           </LinkBox>
         </>
       );
@@ -35,7 +40,9 @@ const RightMenu = (props) => {
         return (
           <>
             <LinkBox>
-              <Link to='/profile'>Profile</Link>
+              <Link to='/profile' onClick={props.displayToggle}>
+                Profile
+              </Link>
             </LinkBox>
             <LinkBox>
               <div onClick={onClickLogoutButton}>Log Out</div>
@@ -49,7 +56,9 @@ const RightMenu = (props) => {
         return (
           <>
             <LinkBox>
-              <Link to='/profile'>Profile</Link>
+              <Link to='/profile' onClick={props.displayToggle}>
+                Profile
+              </Link>
             </LinkBox>
             <LinkBox>
               <div onClick={onClickLogoutButton}>Log Out</div>

@@ -2,20 +2,28 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { LeftMenuContainer, LinkBox } from "./styles/styled.js";
 
-const LeftMenu = () => {
+const LeftMenu = ({ displayToggle }) => {
   return (
     <LeftMenuContainer>
       <LinkBox>
-        <Link to='/'>HOME</Link>
+        <Link to='/' onClick={displayToggle}>
+          HOME
+        </Link>
       </LinkBox>
       <LinkBox>
-        <Link to='/skills'>Skills</Link>
+        <Link to='/skills' onClick={displayToggle}>
+          Skills
+        </Link>
       </LinkBox>
       <LinkBox>
-        <Link to='/project'>Project</Link>
+        <Link to='/project' onClick={displayToggle}>
+          Project
+        </Link>
       </LinkBox>
       <LinkBox>
-        <Link to='/study'>Study</Link>
+        <Link to='/study' onClick={displayToggle}>
+          Study
+        </Link>
       </LinkBox>
     </LeftMenuContainer>
   );

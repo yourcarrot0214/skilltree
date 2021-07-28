@@ -35,12 +35,15 @@ const TagContainerStyled = Styled.div`
       css`
         max-height: 36px;
         overflow: auto;
+
+        @media screen and (max-width: 500px) {
+          max-height: 100%;
+        }
       `}
 `;
 
 const SkillSearchBarStyled = Styled.div`
   padding: 1rem 1rem;
-  /* width: 90%; */
   margin: 0 auto;
   max-width: 1024px;
   min-width: 320px;
@@ -86,11 +89,9 @@ const ClassCardContainer = Styled.div`
   padding: 1rem 0;
   margin: 0 auto;
   justify-content: space-between;
-  /* width: 100%; */
 `;
 
 const ClassCardThumbNail = Styled.div`
-  /* width: 100%; */
   padding: 1rem 2rem;
   border-radius: 6px;
   margin-bottom: 1rem;
@@ -99,6 +100,11 @@ const ClassCardThumbNail = Styled.div`
   flex-direction: row;
   :hover {
     background: linear-gradient(145deg, #f9fdff, #d2d4d7);
+  }
+
+  @media screen and (max-width: 500px) {
+    max-width: 450px;
+    flex-direction: column;
   }
 `;
 
@@ -193,6 +199,10 @@ const ClassInfoStyled = Styled.div`
 const DetailContainer = Styled.div`
   margin: 0 auto;
   padding: 1rem;
+
+  @media screen and (max-width: 500px) {
+    /* width: 450px; */
+  }
 `;
 
 const CreateClassButton = Styled.button`

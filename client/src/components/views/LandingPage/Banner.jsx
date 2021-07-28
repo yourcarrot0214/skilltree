@@ -26,7 +26,3 @@ const Banner = (props) => {
 };
 
 export default Banner;
-
-/*
-  banner + section 합쳐서 banner 형태로 landingpage에 출력
-*/

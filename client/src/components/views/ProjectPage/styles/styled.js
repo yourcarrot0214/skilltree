@@ -8,6 +8,10 @@ const ProjectMainContainer = Styled.div`
       text-align: center;
       color: #212529;
   }
+
+  @media screen and (max-width: 500px) {
+    max-width: 450px;
+  }
 `;
 
 export { ProjectMainContainer };

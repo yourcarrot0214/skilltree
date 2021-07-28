@@ -33,13 +33,13 @@ const DetailPage = ({ classList, location }) => {
   };
 
   return (
-    <DetailContainer>
+    <DetailContainer className='DetailContainer'>
       {isAuth ? (
         <CreateClassButton
           onClick={onModalPopup}
         >{`${location} 생성하기`}</CreateClassButton>
       ) : null}
-      <ClassCardContainer>
+      <ClassCardContainer className='ClassCardContainer'>
         {classList.map((post) => {
           let userInteraction = interaction(post, userData._id);
 

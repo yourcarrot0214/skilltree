@@ -25,6 +25,11 @@ const SubmitWrapper = styled.div`
   @media screen and (max-width: 768px) {
     max-width: 700px;
   }
+
+  @media screen and (max-width: 500px) {
+    width: 450px;
+    padding: 1rem 0;
+  }
 `;
 
 const SubmitImage = styled.div`
@@ -36,6 +41,10 @@ const SubmitImage = styled.div`
 
   @media screen and (max-width: 768px) {
     width: 300px;
+  }
+
+  @media screen and (max-width: 500px) {
+    display: none;
   }
 `;
 

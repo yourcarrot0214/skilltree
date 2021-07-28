@@ -1,6 +1,5 @@
 import Styled, { css } from "styled-components";
 import HeaderImage from "../images/header.jpeg";
-import BannerImage1 from "../images/banner1-image.jpeg";
 
 const LandingPageContainer = Styled.div`
   width: 100%;
@@ -37,42 +36,17 @@ const HeaderContainer = Styled.div`
       font-size: 1rem;
     }
   }
-`;
 
-const SectionContainer = Styled.div`
-  width: 100%;
-  border: 1px soild black;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  margin: 0 auto;
-  padding: 4rem 0;
-`;
-
-const SectionBox = Styled.div`
-  padding: 2rem 0;
-  margin: 0 auto;
-  width: 400px;
-  height: 200px;
-  max-width: 1024px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 1rem;
-  box-shadow:  20px 20px 40px #bdc0c4,
-              -20px -20px 40px #ffffff;
-`;
-
-const SectionTitle = Styled.h1`
-  text-align: center;
-  color: #212529;
-`;
-
-const SectionDescription = Styled.p`
-  text-align: center;
-  color: #343a40;
+  @media screen and (max-width: 500px) {
+    h1 {
+      font-size: 1.3em;
+    }
+    p {
+      font-size: 1em;
+      padding: 1rem;
+      line-height: 1.5rem;
+    }
+  }
 `;
 
 const LinkBox = Styled.div`
@@ -141,6 +115,11 @@ const Wrapper = Styled.div`
     max-width: 500px;
     flex-direction: column;
   }
+
+  @media screen and (max-width: 500px) {
+    margin: 0 auto;
+    max-width: 450px;
+  }
 `;
 
 const BannerImage = Styled.div`
@@ -187,10 +166,6 @@ const BannerContents = Styled.div`
 export {
   LandingPageContainer,
   HeaderContainer,
-  SectionContainer,
-  SectionBox,
-  SectionTitle,
-  SectionDescription,
   LinkBox,
   BannerContainer,
   Wrapper,

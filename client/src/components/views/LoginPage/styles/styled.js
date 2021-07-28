@@ -25,6 +25,11 @@ const LoginWrapper = styled.div`
     max-width: 700px;
     height: 300px;
   }
+
+  @media screen and (max-width: 500px) {
+    width: 450px;
+    padding: 1rem 0;
+  }
 `;
 
 const LoginImage = styled.div`
@@ -39,6 +44,10 @@ const LoginImage = styled.div`
 
   @media screen and (max-width: 768px) {
     height: 300px;
+  }
+
+  @media screen and (max-width: 500px) {
+    display: none;
   }
 `;
 

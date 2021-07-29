@@ -123,10 +123,10 @@ const UserProfileCard = () => {
         />
 
         {userData && (
-          <>
+          <div style={{ paddingLeft: "1rem", margin: "1rem 0" }}>
             <Tech userData={userData} />
             <Learn userData={userData} />
-          </>
+          </div>
         )}
         <Modal
           onClickFunction={onModalPopup}

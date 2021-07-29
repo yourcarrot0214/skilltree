@@ -73,17 +73,14 @@ const LearnStyled = Styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 1rem 1rem;
-  margin: 6px 0;
+  margin: 6px;
   span {
     font-weight: bold;
-    font-size: 12px;
+    font-size: 1rem;
     margin-bottom: 4px;
-    color: #adb5bd;
   }
   p {
-    margin-top: 0;
-    margin-bottom: 6px;
+    margin-bottom: 0;
   }
 `;
 
@@ -205,17 +202,14 @@ const TechStyled = Styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 1rem 1rem;
-  margin: 6px 0;
+  margin: 6px;
   span {
     font-weight: bold;
-    font-size: 12px;
+    font-size: 1rem;
     margin-bottom: 4px;
-    color: #adb5bd;
   }
   p {
-    margin-top: 0;
-    margin-bottom: 6px;
+    margin-bottom: 0;
   }
 `;
 

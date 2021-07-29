@@ -30,16 +30,6 @@ const TagContainerStyled = Styled.div`
     /* Firefox */
     scrollbar-width: none;
 
-    ${(props) =>
-      props.thumbnail &&
-      css`
-        max-height: 36px;
-        overflow: auto;
-
-        @media screen and (max-width: 500px) {
-          max-height: 100%;
-        }
-      `}
 `;
 
 const SkillSearchBarStyled = Styled.div`
@@ -89,17 +79,28 @@ const ClassCardContainer = Styled.div`
   padding: 1rem 0;
   margin: 0 auto;
   justify-content: space-between;
+
+  @media screen and (max-width: 768px) {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
 `;
 
 const ClassCardThumbNail = Styled.div`
   padding: 1rem 2rem;
   border-radius: 6px;
+  margin-left: 1rem;
+  margin-right: 1rem;
   margin-bottom: 1rem;
   background: #dee2e6;
   display: flex;
   flex-direction: row;
   :hover {
     background: linear-gradient(145deg, #f9fdff, #d2d4d7);
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 1rem;
   }
 
   @media screen and (max-width: 500px) {
@@ -113,6 +114,11 @@ const ClassCardHeader = Styled.div`
   flex-direction: column;
   flex: 5;
   padding: 1rem 0;
+
+  @media screen and (max-width: 768px) {
+    padding: 0.5rem 0;
+    flex: 6;
+  }
 `;
 
 const ClassCardSection = Styled.div`
@@ -122,6 +128,9 @@ const ClassCardSection = Styled.div`
   height: 80px;
   justify-content: space-evenly;
 
+  @media screen and (max-width: 768px) {
+    flex: 4;
+  }
 `;
 
 const ClassTable = Styled.div`
@@ -138,12 +147,23 @@ const ClassTableMenu = Styled.div`
   padding: 1rem 0;
   width: 100px;
   color: #343a40;
+
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    width: 100%;
+  }
 `;
 
 const ClassTableValue = Styled.div`
   text-align: center;
   height: 40px;
   color: #343a40;
+
+  @media screen and (max-width: 768px) {
+    width: 60px;
+    height: auto;
+  }
 `;
 
 const ClassTitle = Styled.div`
@@ -152,6 +172,12 @@ const ClassTitle = Styled.div`
   font-weight: bold;
   margin-left: 6px;
   margin-bottom: 14px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+    padding: 0.5rem 0;
+  }
 `;
 
 const ClassDescription = Styled.p`
@@ -198,7 +224,7 @@ const ClassInfoStyled = Styled.div`
 
 const DetailContainer = Styled.div`
   margin: 0 auto;
-  padding: 1rem;
+  padding: 1rem 0;
 
   @media screen and (max-width: 500px) {
     /* width: 450px; */
@@ -235,6 +261,62 @@ const SubmitContainer = Styled.div`
 const SubmitForm = Styled.form`
   display: flex;
   flex-direction: column;
+  padding: 0 1rem;
+  justify-content: center;
+  
+  label {
+    font-size: 1rem;
+    color: #495057;
+  }
+
+  input {
+    height: 30px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid black;
+    background-color: rgba(255, 255, 255, 0);
+    margin-bottom: 1rem;
+
+    :focus {
+      outline: none;
+      border-bottom: 3px solid #40c057;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  textarea {
+    min-height: 300px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid black;
+    background-color: rgba(255, 255, 255, 0);
+    margin-bottom: 1rem;
+
+    :focus {
+      outline: none;
+      border-bottom: 3px solid #40c057;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: 0.7rem;
+    margin: 1rem auto;
+    border: none;
+    border-radius: 0.3rem;
+    background-color: #51cf66;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+
+    :hover {
+      background-color: #40c057;
+      transition: 0.5s;
+    }
+  }
 `;
 
 const ButtonContainer = Styled.div`

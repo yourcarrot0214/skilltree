@@ -33,8 +33,6 @@ mongoose
   .then(() => console.log("MongoDB Connected ...."))
   .catch((err) => console.log(err));
 
-app.get("/", (req, res) => res.send("Hello express"));
-
 if (process.env.NODE_ENV === "projuction") {
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {

@@ -31,7 +31,6 @@ function RegisterPage(props) {
       if (response.payload.success) {
         props.history.push("/login");
       } else {
-        console.log("Sign Up Filed :: ", response.payload.err);
         if (response.payload.err.keyPattern.email === 1) {
           alert("이미 가입된 이메일 주소 입니다.");
         } else {
@@ -95,9 +94,3 @@ function RegisterPage(props) {
 }
 
 export default withRouter(RegisterPage);
-
-/*
-  회원가입 성공시 ProfilePage로 이동
-  기술 스택 등록 설명 및 유도
-  
-*/

@@ -31,7 +31,6 @@ const UpdateClassForm = (props) => {
       leader: userData._id,
       status: Status,
     };
-    console.log(requestBody);
 
     if (location === "Project") {
       dispatch(updateProject(requestBody));

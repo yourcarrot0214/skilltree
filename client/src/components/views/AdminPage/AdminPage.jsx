@@ -35,7 +35,6 @@ const AdminPage = () => {
   return (
     <>
       <h3>Admin Page</h3>
-      {/* skill search :: component 분리 */}
       <div>
         <form onSubmit={onSkillUpload}>
           <label>Skill Name</label>
@@ -48,7 +47,6 @@ const AdminPage = () => {
           <button type='submit'>Skill Upload</button>
         </form>
       </div>
-      {/* skill list */}
       <div>
         <h3>Skill 등록 현황</h3>
         {SkillList.map((skill) => (
@@ -65,11 +63,3 @@ const AdminPage = () => {
 };
 
 export default withRouter(AdminPage);
-
-/*
-  1. Skill 등록 기능 구현
-    - 입력양식을 만들어 스킬을 등록한다.
-    - 스킬명은 toUpperCase()로 등록된다.
-  2. Skill 등록 현황
-    - 현재 DB에 등록된 Skill 목록을 출력한다.
-*/

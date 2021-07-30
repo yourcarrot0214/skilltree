@@ -59,10 +59,3 @@ const Learn = ({ userData }) => {
 };
 
 export default Learn;
-
-/*
-  onChangeUserName function
-    - username update in MongoDB
-    - axios post request
-    - back-end response
-*/

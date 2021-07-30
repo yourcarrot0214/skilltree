@@ -38,13 +38,11 @@ const SkillSearchBar = (props) => {
     if (skillName === "") return;
     if (skillSearchResult === undefined) return;
     if (props.chooseOneSelected) {
-      console.log("chooseOneSelected");
       dispatch(chooseOneSelected(skillSearchResult._id));
       props.setSkillId((prev) =>
         skillSearchResult._id === prev ? "" : skillSearchResult._id
       );
     } else {
-      console.log("selectedSkill");
       skillDispatch(skillSearchResult._id);
     }
     setSkillName("");

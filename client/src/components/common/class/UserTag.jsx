@@ -31,8 +31,3 @@ const UserTag = (props) => {
 };
 
 export default UserTag;
-
-/*
-  Button component logic 분리 => LeaderBoard에서 직접 호출
-  onClickFunction도 LeaderBoard에서 직접 props로 전달.
-*/

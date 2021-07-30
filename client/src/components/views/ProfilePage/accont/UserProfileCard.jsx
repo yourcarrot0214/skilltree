@@ -41,7 +41,6 @@ const UserProfileCard = () => {
     event.preventDefault();
     if (SkillName === "") return;
     if (skillSearchResult === undefined) return;
-    console.log("Skill Search Request.");
     setModalOpen(!ModalOpen);
     setSkillName("");
   };
@@ -52,12 +51,8 @@ const UserProfileCard = () => {
       return alert("이미 Tech에 등록된 스킬입니다.");
     } else {
       const requestBody = skills.find((skill) => skill._id === skillId);
-      dispatch(addTechnitian(requestBody)).then((response) =>
-        console.log("addTechnitian response : ", response)
-      );
-      dispatch(addUserTech(requestBody)).then((response) =>
-        console.log("addUserTech response : ", response)
-      );
+      dispatch(addTechnitian(requestBody));
+      dispatch(addUserTech(requestBody));
       dispatch(selectedSkill(skillId));
       setSkillName("");
       alert("스킬이 등록되었습니다.");
@@ -70,12 +65,8 @@ const UserProfileCard = () => {
       return alert("이미 learn에 등록된 스킬입니다.");
     } else {
       const requestBody = skills.find((skill) => skill._id === skillId);
-      dispatch(addLearningUser(requestBody)).then((response) =>
-        console.log("addLearningUser response : ", response)
-      );
-      dispatch(addUserLearn(requestBody)).then((response) =>
-        console.log("addUserLearn response : ", response)
-      );
+      dispatch(addLearningUser(requestBody));
+      dispatch(addUserLearn(requestBody));
       dispatch(selectedSkill(skillId));
       setSkillName("");
       alert("스킬이 등록되었습니다.");
@@ -90,10 +81,8 @@ const UserProfileCard = () => {
     e.preventDefault();
 
     if (e.currentTarget.name === "tech") {
-      console.log("tech update");
       addTech(SkillId);
     } else if (e.currentTarget.name === "learn") {
-      console.log("learn update");
       addLearn(SkillId);
     }
   };
@@ -156,15 +145,3 @@ const UserProfileCard = () => {
 };
 
 export default UserProfileCard;
-
-/*
-  issue A. 중복 체크
-    - case 1. user tech에 저장된 스킬과 등록하려는 스킬이 같은 경우(중복)
-      > 중복 체크 타이밍은 request 요청 전
-      > 로그인시 DB에서 받아온 user state 정보와 selectedSkills 정보를 비교
-    
-  answer A. 중복된 정보 제거
-    - SkillSearchBar에 props로 전달되는 unSelectedSkills 정보 수정
-      > props 전달 전 userData.tech, userData.learn에 등록된 스킬정보 제거
-      > selectedSkills로 선택된 스킬을 넣기 전 tech, learn에 있는지 검증
-*/

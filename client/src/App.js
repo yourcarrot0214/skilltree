@@ -45,12 +45,3 @@ function App() {
 }
 
 export default App;
-
-/*
-  신규 페이지 route path 연결
-  Suspense 설정
-   import {Suspense} from 'react';
-   <Suspense fallback={LodingPage}>
-    <Children Component ... />
-   </Suspense>
-*/

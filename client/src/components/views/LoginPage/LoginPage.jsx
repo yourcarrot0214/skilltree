@@ -19,11 +19,9 @@ function LoginPage(props) {
     let requestBody = { email: Email, password: Password };
     dispatch(loginUser(requestBody)).then((response) => {
       if (response.payload.success) {
-        console.log(response);
         props.history.push("/");
       } else {
         alert(response.payload.message);
-        console.log(response.payload.err);
       }
     });
   };
@@ -64,8 +62,3 @@ function LoginPage(props) {
 }
 
 export default withRouter(LoginPage);
-
-/*
-  login 성공시
-    - 1. LandingPage로 넘어가서 메인 페이지를 보여준다.
-*/

@@ -107,13 +107,3 @@ userSchema.statics.findByToken = function (token, cb) {
 const User = mongoose.model("User", userSchema);
 
 module.exports = { User };
-
-/*
-  Models
-    - models는 schema 정의에서 컴파일된 생성자 입니다.
-    - models는 기본 MongoDB 데이터베이스에서 문서를 만들고 읽는 역할을 합니다.
-
-  Schema
-    - Mongoose의 모든 것은 Schema로 시작됩니다.
-    - 각 Schema는 MongoDB 컬렉션에 매핑되고 해당 컬렉션 내의 문서 모양을 정의합니다.
-*/

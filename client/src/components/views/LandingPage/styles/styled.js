@@ -155,7 +155,6 @@ const BannerContents = Styled.div`
   justify-content: center;
   align-items: center;
   width: 400px;
-  /* height: 250px; */
   flex: 6;
 
   h1 {

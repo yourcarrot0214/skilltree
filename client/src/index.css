@@ -24,12 +24,6 @@ body {
   flex-direction: column;
 }
 
-/* scroll bar hidden */
-/* Chrome, Safari, Opera */
-body::-webkit-scrollbar {
-  /* display: none; */
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

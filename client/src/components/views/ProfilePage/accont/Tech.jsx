@@ -14,7 +14,6 @@ const Tech = ({ userData }) => {
   const onClickFunction = (e) => {
     setSkillId(e.target.id);
     setModalOpen(!ModalOpen);
-    console.log(e.target.id);
   };
 
   const onDeleteSkill = (e) => {
@@ -55,9 +54,3 @@ const Tech = ({ userData }) => {
 };
 
 export default Tech;
-
-/*
-  Tech Component
-    1. user.Tech에 있는 스킬들을 출력한다.
-    2. DB user.Tech, skills.technitianUsers에서 각각 스킬, 유저 정보를 삭제한다.
-*/

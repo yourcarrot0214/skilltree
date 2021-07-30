@@ -5,8 +5,6 @@ const useSearchResult = (skillName) => {
   const skills = useSkills();
   const [searchResult, setSearchResult] = useState();
 
-  // test code
-
   useEffect(() => {
     function skillSearchResult(skillName) {
       setSearchResult(
@@ -20,8 +18,3 @@ const useSearchResult = (skillName) => {
 };
 
 export default useSearchResult;
-
-/*
-  skill search에 관련된 로직들을 모두 포함한 custom hook
-  skills도 custom hook로 변경.
-*/

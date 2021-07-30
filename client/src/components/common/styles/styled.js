@@ -249,10 +249,6 @@ const DetailContainer = Styled.div`
   margin: 0 auto;
   padding: 1rem 0;
 
-  @media screen and (max-width: 500px) {
-    /* width: 450px; */
-  }
-
   @media screen and (max-width: 450px) {
     padding: 0.5rem 0;
   }

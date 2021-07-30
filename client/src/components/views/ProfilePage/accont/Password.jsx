@@ -41,7 +41,6 @@ const Password = () => {
       newPassword: NewPassword,
     };
 
-    console.log("update password request");
     axios.post("/api/users/update/password", requestBody).then((response) => {
       if (response.data.passwordUpdate) {
         setCurrentPassword("");
@@ -106,14 +105,3 @@ const Password = () => {
 };
 
 export default Password;
-
-/*
-  update password 기능구현
-    - axios.post('/api/users/update/password', passwordInfo)
-    - passwordInfo = {currentPassword: CurrentPassword, newPassword: NewPassword}
-    - submit 검증
-      > if( currentPassword === NewPassword)
-      > if( NewPassword !== CheckNewPassowrd )
-  
-    - 
-*/

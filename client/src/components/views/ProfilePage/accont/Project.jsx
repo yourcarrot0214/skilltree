@@ -79,7 +79,3 @@ const Project = ({ userData }) => {
 };
 
 export default Project;
-
-/*
-  props.userData 에서 프로젝트 정보 id로 dispatch
-*/

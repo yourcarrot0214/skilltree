@@ -62,10 +62,3 @@ const UserName = ({ name }) => {
 };
 
 export default UserName;
-
-/*
-  onChangeUserName function
-    - username update in MongoDB
-    - axios post request
-    - back-end response
-*/

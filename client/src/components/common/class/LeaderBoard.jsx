@@ -68,7 +68,6 @@ const LeaderBoard = ({
       console.log("accept project apply.");
     } else if (location === "Study") {
       dispatch(acceptStudyApply(requestBody));
-      // 해당 유저 study.member에 정보 추가
       dispatch(saveStudyMember(requestBody));
       console.log("accept study apply.");
     }
@@ -100,7 +99,6 @@ const LeaderBoard = ({
       alert("프로젝트 멤버를 추방했습니다.");
     } else if (check && location === "Study") {
       dispatch(expulsionStudyMember(requestBody));
-      // 해당 유저 study.member에 classId 삭제
       dispatch(removeStudyMember(requestBody));
       alert("스터디 멤버를 추방했습니다.");
     } else {
@@ -156,12 +154,3 @@ const LeaderBoard = ({
 };
 
 export default LeaderBoard;
-
-/*
-  LeaderBoard
-  1. 출력
-    - 수정하기 : button => CreateClassForm 출력
-    - 삭제하기 : button => dispatch
-    - 지원중인 유저 : volunteer 배열 유저 정보 출력 
-    - 참가중인 유저 : members 배열 유저 정보 출력
-*/

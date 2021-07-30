@@ -5,7 +5,6 @@ const NavBarContainer = Styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  /* height: 50px; */
   
   @media screen and (max-width: 768px) {
     flex-direction: column;

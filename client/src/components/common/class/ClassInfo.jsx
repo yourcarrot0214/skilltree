@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import TagContainer from "../TagContainer.jsx";
 import { ClassInfoStyled } from "../styles/styled.js";
 

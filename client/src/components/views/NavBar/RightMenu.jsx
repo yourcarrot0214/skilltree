@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { logoutUser } from "../../../_actions/user_action.js";
 import { RightMenuContainer, LinkBox } from "./styles/styled.js";
 
@@ -9,6 +9,7 @@ const RightMenu = (props) => {
 
   const userData = useSelector((state) => ({
     ...state.user.userData,
+    shallowEqual,
   }));
   const { isAdmin, isAuth } = userData;
 

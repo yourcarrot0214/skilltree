@@ -33,7 +33,6 @@ const SubmitWrapper = styled.div`
 
   @media screen and (max-width: 450px) {
     width: 300px;
-    /* padding: 0.5rem; */
     margin: 0 0.5rem;
   }
 `;

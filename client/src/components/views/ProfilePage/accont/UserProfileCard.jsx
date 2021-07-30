@@ -8,7 +8,7 @@ import Project from "./Project.jsx";
 import Study from "./Study.jsx";
 import SkillSearchBar from "../../../common/SkillSearchBar.jsx";
 import Modal from "./Modal.jsx";
-import { ButtonBox, Button } from "../styles/styled.js";
+import { ButtonBox, Button, ClassWrapper } from "../styles/styled.js";
 
 import { addUserTech, addUserLearn } from "../../../../_actions/user_action.js";
 
@@ -123,10 +123,10 @@ const UserProfileCard = () => {
         />
 
         {userData && (
-          <div style={{ paddingLeft: "1rem", margin: "1rem 0" }}>
+          <ClassWrapper>
             <Tech userData={userData} />
             <Learn userData={userData} />
-          </div>
+          </ClassWrapper>
         )}
         <Modal
           onClickFunction={onModalPopup}

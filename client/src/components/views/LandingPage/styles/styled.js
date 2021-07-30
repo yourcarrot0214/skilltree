@@ -120,6 +120,12 @@ const Wrapper = Styled.div`
     margin: 0 auto;
     max-width: 450px;
   }
+
+  @media screen and (max-width: 450px) {
+    width: 300px;
+    height: 370px;
+    padding: 0 0.5rem;
+  }
 `;
 
 const BannerImage = Styled.div`
@@ -136,6 +142,10 @@ const BannerImage = Styled.div`
     border-top-right-radius: 1rem;
     border-bottom-left-radius: 0;
   }
+
+  @media screen and (max-width: 450px) {
+    flex: 6;
+  }
 `;
 
 const BannerContents = Styled.div`
@@ -145,7 +155,7 @@ const BannerContents = Styled.div`
   justify-content: center;
   align-items: center;
   width: 400px;
-  height: 250px;
+  /* height: 250px; */
   flex: 6;
 
   h1 {
@@ -160,6 +170,19 @@ const BannerContents = Styled.div`
 
   @media screen and (max-width: 768px) {
     flex: 4;
+  }
+
+  @media screen and (max-width: 450px) {
+    flex: 4;
+    width: 300px;
+    padding: 0.5rem;
+    h1 {
+      font-size: 1.5em;
+    }
+
+    div {
+      font-size: 0.8rem;
+    }
   }
 `;
 

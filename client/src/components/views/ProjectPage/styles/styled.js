@@ -12,6 +12,13 @@ const ProjectMainContainer = Styled.div`
   @media screen and (max-width: 500px) {
     max-width: 450px;
   }
+
+  @media screen and (max-width: 450px) {
+    padding-bottom: 0.5rem;
+    h2 {
+      font-size: 1em;
+    }
+  }
 `;
 
 export { ProjectMainContainer };

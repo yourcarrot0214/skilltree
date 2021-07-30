@@ -30,6 +30,10 @@ const TagContainerStyled = Styled.div`
     /* Firefox */
     scrollbar-width: none;
 
+    @media screen and (max-width: 450px) {
+      max-height: 200px;
+      width: 100%;
+    }
 `;
 
 const SkillSearchBarStyled = Styled.div`
@@ -37,6 +41,12 @@ const SkillSearchBarStyled = Styled.div`
   margin: 0 auto;
   max-width: 1024px;
   min-width: 320px;
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+    padding: 0;
+    min-width: 100%;
+  }
 `;
 
 const SkillSearchForm = Styled.form`
@@ -44,6 +54,10 @@ const SkillSearchForm = Styled.form`
   flex-direction: row;
   justify-content: center;
   padding-bottom: 1rem;
+
+  @media screen and (max-width: 450px) {
+    padding: 1rem;
+  }
 `;
 
 const SearchBar = Styled.input`
@@ -84,6 +98,11 @@ const ClassCardContainer = Styled.div`
     margin-left: 1rem;
     margin-right: 1rem;
   }
+
+  @media screen and (max-width: 450px) {
+    padding: 0.5rem 0;
+    margin: 0 auto;
+  }
 `;
 
 const ClassCardThumbNail = Styled.div`
@@ -106,6 +125,10 @@ const ClassCardThumbNail = Styled.div`
   @media screen and (max-width: 500px) {
     max-width: 450px;
     flex-direction: column;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 0.5rem;
+    padding-bottom: 1rem;
   }
 `;
 
@@ -228,6 +251,10 @@ const DetailContainer = Styled.div`
 
   @media screen and (max-width: 500px) {
     /* width: 450px; */
+  }
+
+  @media screen and (max-width: 450px) {
+    padding: 0.5rem 0;
   }
 `;
 

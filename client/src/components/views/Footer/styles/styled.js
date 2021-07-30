@@ -1,8 +1,12 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const FooterContainer = styled.footer`
   background-color: #adb5bd;
   padding: 1rem 0;
+
+  @media screen and (max-width: 450px) {
+    padding: 0.5rem 0;
+  }
 `;
 
 const FooterWrapper = styled.div`
@@ -11,6 +15,11 @@ const FooterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 1rem auto;
+
+  @media screen and (max-width: 450px) {
+    width: 250px;
+    margin: 0.5rem auto;
+  }
 `;
 
 const FooterInfo = styled.div`

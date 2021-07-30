@@ -5,6 +5,10 @@ const ProfileMainStyled = Styled.div`
   padding-bottom: 2rem;
   margin: 0 auto;
   max-width: 1024px;
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+  }
 `;
 
 const UserProfileCardStyled = Styled.div`
@@ -15,6 +19,10 @@ const UserProfileCardStyled = Styled.div`
   background-color: #dee2e6;
   margin: 0 auto;
   border-radius: 6px;
+
+  @media screen and (max-width: 450px) {
+    padding: 0.5rem;
+  }
 `;
 
 const ContentsContainer = Styled.div`
@@ -67,6 +75,10 @@ const EmailStyled = Styled.div`
     margin-top: 0;
     margin-bottom: 6px;
   }
+
+  @media screen and (max-width: 450px) {
+    padding: 1rem 0.5rem;
+  }
 `;
 
 const LearnStyled = Styled.div`
@@ -91,7 +103,7 @@ const Form = Styled.form`
     font-weight: bold;
     font-size: 12px;
     margin-bottom: 4px;
-    color: #adb5bd;
+    color: #212529;
   }
   input {
     background-color : #212529;
@@ -105,7 +117,7 @@ const Form = Styled.form`
   button {
     padding: 6px 12px;
     color: #fff;
-    background-color: #6c757d;
+    background-color: #212529;
     border-radius: 5px;
     font-size: 13px;
     min-width: 60px;
@@ -138,7 +150,7 @@ const ModalStyled = Styled.div`
 const ModalHeaderButton = Styled.button`
     padding: 6px 12px;
     color: #fff;
-    background-color: #6c757d;
+    background-color: #212529;
     border-radius: 5px;
     font-size: 13px;
 `;
@@ -196,6 +208,10 @@ const PasswordStyled = Styled.div`
     margin-top: 0;
     margin-bottom: 6px;
   }
+
+  @media screen and (max-width: 450px) {
+    padding: 1rem 0.5rem;
+  }
 `;
 
 const TechStyled = Styled.div`
@@ -229,6 +245,10 @@ const UserNameStyled = Styled.div`
     margin-top: 0;
     margin-bottom: 6px;
   }
+
+  @media screen and (max-width: 450px) {
+    padding: 1rem 0.5rem;
+  }
 `;
 
 const ClassContainer = Styled.div`
@@ -244,6 +264,15 @@ const PrintMessageStyled = Styled.div`
   color: #495057;
   font-size: 1rem;
   text-align: center;
+`;
+
+const ClassWrapper = Styled.div`
+  padding-left: 1rem;
+  margin: 1rem 0;
+
+  @media screen and (max-width: 450px) {
+    padding-left: 0;
+  }
 `;
 
 export {
@@ -267,4 +296,5 @@ export {
   ClassContainer,
   Menu,
   PrintMessageStyled,
+  ClassWrapper,
 };

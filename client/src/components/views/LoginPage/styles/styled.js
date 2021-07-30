@@ -30,6 +30,11 @@ const LoginWrapper = styled.div`
     width: 450px;
     padding: 1rem 0;
   }
+
+  @media screen and (max-width: 450px) {
+    width: 300px;
+    padding: 0.5rem 0;
+  }
 `;
 
 const LoginImage = styled.div`

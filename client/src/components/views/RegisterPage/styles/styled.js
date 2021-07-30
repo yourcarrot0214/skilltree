@@ -30,6 +30,12 @@ const SubmitWrapper = styled.div`
     width: 450px;
     padding: 1rem 0;
   }
+
+  @media screen and (max-width: 450px) {
+    width: 300px;
+    /* padding: 0.5rem; */
+    margin: 0 0.5rem;
+  }
 `;
 
 const SubmitImage = styled.div`
@@ -105,6 +111,23 @@ const SubmitForm = styled.form`
 
   @media screen and (max-width: 768px) {
     width: 300px;
+  }
+
+  @media screen and (max-width: 450px) {
+    width: 280px;
+    padding: 0 1.5rem;
+    height: auto;
+    label {
+      width: 100%;
+    }
+
+    input {
+      width: 100%;
+    }
+
+    button {
+      width: 100%;
+    }
   }
 `;
 

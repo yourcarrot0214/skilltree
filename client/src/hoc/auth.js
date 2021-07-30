@@ -7,9 +7,9 @@ export default function Auth(Component, option, adminRoute = null) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-      dispatch(auth()).then((response) => {
+      dispatch(auth()).then(async (response) => {
         // login 하지 않은 상태
-        if (!response.payload.isAuth) {
+        if (await !response.payload.isAuth) {
           if (option) {
             props.history.push("/login");
           }

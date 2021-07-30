@@ -8,13 +8,11 @@ export default function Auth(Component, option, adminRoute = null) {
 
     useEffect(() => {
       dispatch(auth()).then(async (response) => {
-        // login 하지 않은 상태
         if (await !response.payload.isAuth) {
           if (option) {
             props.history.push("/login");
           }
         } else {
-          // login 상태
           if (adminRoute && !response.payload.isAdmin) {
             props.history.push("/");
           } else {

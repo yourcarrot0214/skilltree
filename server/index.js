@@ -23,7 +23,7 @@ const studyRouter = require("./routes/studyRouter.js");
 app.use("/api/study", studyRouter);
 
 const mongoose = require("mongoose");
-mongoose
+const connect = mongoose
   .connect(CONFIG.mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

@@ -1,7 +1,7 @@
 {
-  "name": "boiler-plate-setup",
+  "name": "skilltree",
   "version": "1.0.0",
-  "description": "MERN-Stack을 활용한 Base 애플리케이션",
+  "description": "MERN-Stack 기반 프로젝트, 스터디 커뮤니티",
   "main": "index.js",
   "engine": {
     "node": "14.16.0",

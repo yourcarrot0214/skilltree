@@ -107,6 +107,11 @@ const MenuWrapper = Styled.div`
     display: ${(props) => props.display};
     flex-direction: column;
     margin-bottom: 1rem;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    z-index: 99;
+    background-color: #e9ecef
   }
 `;
 

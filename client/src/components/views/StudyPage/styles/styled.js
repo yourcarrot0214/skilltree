@@ -4,6 +4,7 @@ const StudyMainContainer = Styled.div`
   padding-bottom: 2rem;
   max-width: 1024px;
   margin: 0 auto;
+  flex: 1;
   h2 {
       text-align: center;
       color: #212529;

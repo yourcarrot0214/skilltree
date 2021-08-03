@@ -30,6 +30,10 @@ const FooterInfo = styled.div`
     color: #212529;
     margin-bottom: 0.5rem;
   }
+
+  @media screen and (max-width: 768px) {
+    font-size: 0.7rem;
+  }
 `;
 
 const FooterLogo = styled.div`

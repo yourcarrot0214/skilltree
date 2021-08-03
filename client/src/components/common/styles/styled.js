@@ -256,7 +256,6 @@ const DetailContainer = Styled.div`
 
 const CreateClassButton = Styled.button`
   text-align: center;
-  margin-bottom: 1rem;
   display: block;
   width: 150px;
   height: 40px;
@@ -271,6 +270,10 @@ const CreateClassButton = Styled.button`
 
   :hover {
     background: linear-gradient(145deg, #32a045, #3bbe52);
+  }
+
+  @media screen and (max-width: 450px) {
+    margin: 0.5rem auto;
   }
 `;
 

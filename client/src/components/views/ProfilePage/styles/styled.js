@@ -157,6 +157,7 @@ const ModalHeaderButton = Styled.button`
 
 const ModalSection = Styled.section`
     width: 90%;
+    height: 100vh;
     max-width: 450px;
     max-height: 700px;
     margin: 0 auto;

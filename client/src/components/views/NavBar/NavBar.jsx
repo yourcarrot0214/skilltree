@@ -12,7 +12,7 @@ function NavBar() {
   const [display, setDisplay] = useState("none");
 
   const displayToggle = () => {
-    setDisplay((prev) => (prev === "none" ? "display" : "none"));
+    setDisplay((prev) => (prev === "none" ? "block" : "none"));
   };
   return (
     <NavBarContainer className='NavBarContainer'>

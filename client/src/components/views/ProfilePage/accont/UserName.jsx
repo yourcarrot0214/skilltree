@@ -1,18 +1,16 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import Button from "./Button.jsx";
 import { UserNameStyled, Form } from "../styles/styled.js";
 import Modal from "./Modal.jsx";
 import { useDispatch } from "react-redux";
 import { updateUserName } from "../../../../_actions/user_action.js";
 
-const getName = (name) => name;
-
 const UserName = ({ name }) => {
-  const memorizedName = useMemo(() => getName(name), [name]);
   const dispatch = useDispatch();
   const [ModalOpen, setModalOpen] = useState(false);
-  const [Name, setName] = useState(memorizedName);
-  const [NewName, setNewName] = useState(memorizedName);
+
+  const [currentName, setCurrentName] = useState(name);
+  const [updatedName, setUpdatedName] = useState(name);
 
   const onClickFunction = () => {
     setModalOpen(!ModalOpen);
@@ -20,23 +18,23 @@ const UserName = ({ name }) => {
 
   const onUpdateUserName = (event) => {
     event.preventDefault();
-    if (Name === NewName) {
+    if (currentName === updatedName) {
       setModalOpen(!ModalOpen);
     }
-    const requestBody = { newName: NewName };
+    const requestBody = { newName: updatedName };
     dispatch(updateUserName(requestBody));
-    setName(NewName);
+    setCurrentName(updatedName);
     setModalOpen(!ModalOpen);
   };
 
   const onChangeValue = (event) => {
-    setNewName(event.currentTarget.value);
+    setUpdatedName(event.currentTarget.value);
   };
   return (
     <UserNameStyled>
       <div>
         <span>사용자명</span>
-        <p>{Name}</p>
+        <p>{name}</p>
       </div>
       <Button buttonName='수정' onClickFunction={onClickFunction} />
       <Modal
@@ -48,7 +46,7 @@ const UserName = ({ name }) => {
           <label>사용자명</label>
           <input
             type='text'
-            value={NewName}
+            value={updatedName}
             onChange={onChangeValue}
             autoFocus
           />

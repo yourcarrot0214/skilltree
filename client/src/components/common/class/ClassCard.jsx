@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { useDispatch } from "react-redux";
 import { selectedSkill } from "../../../_actions/skill_action.js";
 import {
   ClassCardThumbNail,
@@ -33,10 +33,10 @@ const ClassCard = (props) => {
     volunteer,
     userStatus,
     isVolunteer,
+    userData,
   } = props;
 
   const dispatch = useDispatch();
-  const userData = useSelector((state) => state.user.userData, shallowEqual);
 
   const roleValidation = (userId) => {
     if (userId === leaderId) {

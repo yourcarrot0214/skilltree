@@ -11,7 +11,10 @@ const Project = ({ userData }) => {
   const projectMember = projectList.findProject(userData.project.member);
   const projectApply = projectList.findProject(userData.project.apply);
 
-  const interaction = (post, userId) => {
+  const interaction = (
+    post = { leader: "", members: [], volunteer: [] },
+    userId
+  ) => {
     let userStatus, isVolunteer;
 
     if (post.leader === userId) userStatus = "운영중";
@@ -26,7 +29,18 @@ const Project = ({ userData }) => {
   };
 
   const classCardList = (projectList) => {
-    return projectList.map((project) => {
+    let initialState = {
+      _id: "",
+      title: "",
+      description: "",
+      skills: [],
+      leader: "",
+      personnel: 0,
+      members: [],
+      status: false,
+      volunteer: [],
+    };
+    return projectList.map((project = initialState) => {
       let userInteraction = interaction(project, userData._id);
       return (
         <ClassCard
@@ -43,6 +57,7 @@ const Project = ({ userData }) => {
           volunteer={project.volunteer}
           userStatus={userInteraction.userStatus}
           isVolunteer={userInteraction.isVolunteer}
+          userData={userData}
         />
       );
     });

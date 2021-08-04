@@ -11,22 +11,56 @@ const Study = ({ userData }) => {
   const studyMember = studyList.findStudy(userData.study.member);
   const studyApply = studyList.findStudy(userData.study.apply);
 
+  const interaction = (
+    post = { leader: "", members: [], volunteer: [] },
+    userId
+  ) => {
+    let userStatus, isVolunteer;
+
+    if (post.leader === userId) userStatus = "운영중";
+    else if (post.members.includes(userId)) userStatus = "참가중";
+    else if (post.volunteer.includes(userId)) userStatus = "지원중";
+    else userStatus = "-";
+
+    if (post.volunteer.includes(userId)) isVolunteer = true;
+    else isVolunteer = false;
+
+    return { userStatus, isVolunteer };
+  };
+
   const classCardList = (studyList) => {
-    return studyList.map((study) => (
-      <ClassCard
-        key={study._id}
-        id={study._id}
-        title={study.title}
-        description={study.description}
-        skills={study.skills}
-        leader={study.leader}
-        personnel={study.personnel}
-        members={study.members}
-        status={study.status}
-        location='Study'
-        volunteer={study.volunteer}
-      />
-    ));
+    let initialState = {
+      _id: "",
+      title: "",
+      description: "",
+      skills: [],
+      leader: "",
+      personnel: 0,
+      members: [],
+      status: false,
+      volunteer: [],
+    };
+    return studyList.map((study = initialState) => {
+      let userInteraction = interaction(study, userData._id);
+      return (
+        <ClassCard
+          key={study._id}
+          id={study._id}
+          title={study.title}
+          description={study.description}
+          skills={study.skills}
+          leader={study.leader}
+          personnel={study.personnel}
+          members={study.members}
+          status={study.status}
+          location='Study'
+          volunteer={study.volunteer}
+          userStatus={userInteraction.userStatus}
+          isVolunteer={userInteraction.isVolunteer}
+          userData={userData}
+        />
+      );
+    });
   };
 
   return (

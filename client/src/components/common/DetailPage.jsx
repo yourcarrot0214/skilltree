@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useSelector, shallowEqual } from "react-redux";
 import CreateClassForm from "./class/CreateClassForm.jsx";
 import ClassCard from "./class/ClassCard.jsx";
 import {
@@ -9,10 +8,8 @@ import {
 } from "./styles/styled.js";
 import Modal from "../views/ProfilePage/accont/Modal.jsx";
 
-const DetailPage = ({ classList, location }) => {
-  const userData = useSelector((state) => state.user.userData, shallowEqual);
+const DetailPage = ({ classList, location, userData }) => {
   const [ModalOpen, setModalOpen] = useState(false);
-  const [isAuth, setIsAuth] = useState(userData.isAuth);
 
   const onModalPopup = () => {
     setModalOpen(!ModalOpen);
@@ -34,7 +31,7 @@ const DetailPage = ({ classList, location }) => {
 
   return (
     <DetailContainer className='DetailContainer'>
-      {isAuth ? (
+      {userData.isAuth ? (
         <CreateClassButton
           onClick={onModalPopup}
         >{`${location} 생성하기`}</CreateClassButton>
@@ -58,6 +55,7 @@ const DetailPage = ({ classList, location }) => {
               volunteer={post.volunteer}
               userStatus={userInteraction.userStatus}
               isVolunteer={userInteraction.isVolunteer}
+              userData={userData}
             />
           );
         })}

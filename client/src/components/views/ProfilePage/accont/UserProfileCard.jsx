@@ -9,7 +9,6 @@ import Study from "./Study.jsx";
 import SkillSearchBar from "../../../common/SkillSearchBar.jsx";
 import Modal from "./Modal.jsx";
 import { ButtonBox, Button, ClassWrapper } from "../styles/styled.js";
-
 import { addUserTech, addUserLearn } from "../../../../_actions/user_action.js";
 
 import {
@@ -17,20 +16,19 @@ import {
   addLearningUser,
   selectedSkill,
 } from "../../../../_actions/skill_action.js";
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { UserProfileCardStyled, ContentsContainer } from "../styles/styled.js";
 
 import useSkills from "../../../hooks/useSkills.js";
 
-const UserProfileCard = () => {
+const UserProfileCard = ({ userData }) => {
   const dispatch = useDispatch();
 
   const [SkillName, setSkillName] = useState("");
   const [ModalOpen, setModalOpen] = useState(false);
   const [SkillId, setSkillId] = useState("");
 
-  const userData = useSelector((state) => state.user.userData, shallowEqual);
   const skills = useSkills();
 
   const skillSearchResult = skills.find(

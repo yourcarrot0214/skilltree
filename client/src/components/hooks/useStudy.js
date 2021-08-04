@@ -7,7 +7,7 @@ const useStudy = () => {
     return studyState.filter((study) => study.leader === userId);
   };
 
-  studyState.findStudy = function (studyIdList) {
+  studyState.findStudy = function (studyIdList = []) {
     return studyIdList.map((studyId) =>
       studyState.find((study) => study._id === studyId)
     );

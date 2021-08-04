@@ -3,7 +3,7 @@
 > 스킬트리 서비스 Front-end 관련 정보
 > <br>
 
-## dependencies
+## Main Dependencies
 
 - react
 - react-redux

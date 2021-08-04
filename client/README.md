@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# SkillTree Client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> 스킬트리 서비스 Front-end 관련 정보
+> <br>
 
-## Available Scripts
+## dependencies
 
-In the project directory, you can run:
+- react
+- react-redux
+- axios
+- styled-components
 
-### `yarn start`
+## 디렉토리 구조
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- `_actions directory`
+  - dispatch 작업을 위한 action 파일
+  - string type 상수를 저장한 types 파일
+- `_reducers directory`
+  - `user`, `skills`, `project`, `study` 세부 reducer와 통합 state를 위한 `index` 파일
+- `hoc`
+  - auth : client 유저의 auth 상태에 따른 location 접근 권한 부여
+- `components`
+  - `common`
+    - 재사용 가능한 컴포넌트 파일들을 모아둔 디렉토리
+  - `hooks`
+    - custom hooks 파일들을 모아둔 디렉토리
+  - `views`
+    - route에 따른 실제 출력 컴포넌트 파일들을 모아둔 디렉토리
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 화면 구성
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+| directory    | description                                      |
+| ------------ | ------------------------------------------------ |
+| LandingPage  | 서비스 소개 정보 출력                            |
+| SkillsPage   | 스킬 정보 출력                                   |
+| ProfilePage  | 회원 유저 관련 정보 출력 및 수정 기능 출력       |
+| ProjectPage  | 프로젝트 관련 정보 및 기능 출력                  |
+| StudyPage    | 스터디 관련 정보 및 기능 출력                    |
+| RegisterPage | 회원가입 Form 출력                               |
+| LoginPage    | 서비스 로그인 Form 출력                          |
+| AdminPage    | 스킬 정보를 DB에 저장하고, 등록된 DB 목록 출력   |
+| NavBar       | 서비스 route 출력                                |
+| Footer       | 화면 하단 개발자 정보와 gitbub, notion 링크 출력 |

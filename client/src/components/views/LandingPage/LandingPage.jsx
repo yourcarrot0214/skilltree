@@ -10,7 +10,7 @@ import {
   HEADER_CONTENTS,
 } from "./config/sectionInfo.js";
 
-// import Test from "../../../_reducers/Test.jsx";
+import Test from "../../../_reducers/Test.jsx";
 import Header from "./Header.jsx";
 import Banner from "./Banner.jsx";
 
@@ -63,7 +63,7 @@ function LandingPage() {
         image={studyImage}
       />
 
-      {/* <Test /> */}
+      <Test />
     </LandingPageContainer>
   );
 }

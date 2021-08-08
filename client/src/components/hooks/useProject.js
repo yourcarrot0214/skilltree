@@ -1,9 +1,6 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { getProjectList } from "../../_actions/project_action.js";
+import { useSelector, shallowEqual } from "react-redux";
 
 const useProject = () => {
-  const dispatch = useDispatch();
   const projectState = useSelector((state) => state.project, shallowEqual);
 
   projectState.leader = function (userId) {
@@ -30,12 +27,7 @@ const useProject = () => {
     });
   };
 
-  useEffect(() => {
-    getProjectList().then((result) => dispatch(result));
-  }, []);
-
-  const projectInfo = projectState ?? [];
-  return projectInfo;
+  return projectState;
 };
 
 export default useProject;

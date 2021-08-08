@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import {
   SkillSearchBarStyled,
   SkillSearchForm,
@@ -107,6 +108,13 @@ const SkillSearchBar = (props) => {
       )}
     </SkillSearchBarStyled>
   );
+};
+
+SkillSearchBar.propTypes = {
+  chooseOneSelected: PropTypes.bool,
+  setSkillId: PropTypes.func,
+  onSkillSearch: PropTypes.func,
+  onClickFunction: PropTypes.func,
 };
 
 export default SkillSearchBar;

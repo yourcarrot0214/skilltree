@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import TagContainer from "../TagContainer.jsx";
 import { ClassInfoStyled } from "../styles/styled.js";
 
@@ -39,6 +40,17 @@ const ClassInfo = (props) => {
       </div>
     </ClassInfoStyled>
   );
+};
+
+ClassInfo.propTypes = {
+  id: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  skills: PropTypes.array,
+  leaderName: PropTypes.string,
+  personnel: PropTypes.number,
+  members: PropTypes.array,
+  status: PropTypes.bool,
 };
 
 export default ClassInfo;

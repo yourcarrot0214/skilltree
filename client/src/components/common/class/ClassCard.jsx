@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { selectedSkill } from "../../../_actions/skill_action.js";
 import {
@@ -43,7 +44,7 @@ const ClassCard = (props) => {
       return "leader";
     } else if (members.find((member) => member === userId) !== undefined) {
       return "member";
-    } else if (userData.isAuth) {
+    } else if (userData._id && userData.isAuth) {
       return "user";
     } else {
       return "guest";
@@ -51,8 +52,8 @@ const ClassCard = (props) => {
   };
 
   const leaderName = useGetUserName(leader);
-  const [leaderId, setLeaderId] = useState(leader);
-  const [userId, setUserId] = useState(userData._id);
+  const [leaderId] = useState(leader);
+  const [userId] = useState(userData._id);
   const [ModalOpen, setModalOpen] = useState(false);
   const [role, setRole] = useState(roleValidation(userData._id));
   const [componentToggle, setComponentToggle] = useState(false);
@@ -159,6 +160,22 @@ const ClassCard = (props) => {
       </Modal>
     </>
   );
+};
+
+ClassCard.propTypes = {
+  id: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  skills: PropTypes.array,
+  leader: PropTypes.string,
+  personnel: PropTypes.number,
+  members: PropTypes.array,
+  status: PropTypes.bool,
+  location: PropTypes.string,
+  volunteer: PropTypes.array,
+  userStatus: PropTypes.string,
+  inVolunteer: PropTypes.bool,
+  userData: PropTypes.object,
 };
 
 export default ClassCard;

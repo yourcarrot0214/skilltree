@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import PropTypes from "prop-types";
 import { TagStyled } from "./styles/styled.js";
 
 const getId = (id) => id;
@@ -25,6 +26,12 @@ const Tag = ({ skillInfo, onClickFunction, selected }) => {
       </TagStyled>
     </>
   );
+};
+
+Tag.propTypes = {
+  skillInfo: PropTypes.object,
+  onClickFunction: PropTypes.func,
+  seleted: PropTypes.bool,
 };
 
 export default Tag;

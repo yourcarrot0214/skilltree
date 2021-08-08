@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import PropTypes from "prop-types";
 import { TagContainerStyled } from "./styles/styled.js";
 import Tag from "./Tag.jsx";
 
@@ -19,6 +20,12 @@ const TagContainer = (props) => {
       ))}
     </TagContainerStyled>
   );
+};
+
+TagContainer.propTypes = {
+  skills: PropTypes.array,
+  onClickFunction: PropTypes.func,
+  selected: PropTypes.bool,
 };
 
 export default TagContainer;

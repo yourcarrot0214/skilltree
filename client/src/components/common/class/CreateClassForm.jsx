@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { SubmitContainer, SubmitForm } from "../styles/styled.js";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { createProject } from "../../../_actions/project_action.js";
@@ -11,9 +12,9 @@ import useSkills from "../../hooks/useSkills.js";
 const CreateClassForm = (props) => {
   const { location } = props;
   const dispatch = useDispatch();
-  const [Title, setTitle] = useState(props.title || "");
-  const [Description, setDescription] = useState(props.description || "");
-  const [Personnel, setPersonnel] = useState(props.personnel || 0);
+  const [Title, setTitle] = useState("");
+  const [Description, setDescription] = useState("");
+  const [Personnel, setPersonnel] = useState(0);
 
   const userData = useSelector((state) => state.user.userData, shallowEqual);
   const skills = useSkills();
@@ -88,6 +89,12 @@ const CreateClassForm = (props) => {
       </SubmitContainer>
     </>
   );
+};
+
+CreateClassForm.propTypes = {
+  loaction: PropTypes.string,
+  formStatus: PropTypes.string,
+  submitAddFunction: PropTypes.func,
 };
 
 export default CreateClassForm;

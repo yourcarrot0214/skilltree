@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import TagContainer from "../TagContainer.jsx";
 
 const UserInfo = ({ userInfo }) => {
@@ -15,6 +16,10 @@ const UserInfo = ({ userInfo }) => {
       <TagContainer skills={learn} selected />
     </>
   );
+};
+
+UserInfo.propTypes = {
+  userInfo: PropTypes.object,
 };
 
 export default UserInfo;

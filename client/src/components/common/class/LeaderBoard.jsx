@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import UserTag from "./UserTag.jsx";
 import Button from "./Button.jsx";
 import { ButtonContainer, UserListWrapper } from "../styles/styled.js";
@@ -151,6 +152,18 @@ const LeaderBoard = ({
       ))}
     </>
   );
+};
+
+LeaderBoard.propTypes = {
+  classId: PropTypes.string,
+  leaderId: PropTypes.string,
+  onComonentToggle: PropTypes.func,
+  componentToggle: PropTypes.bool,
+  volunteer: PropTypes.array,
+  members: PropTypes.array,
+  location: PropTypes.string,
+  personnel: PropTypes.number,
+  onModalPopup: PropTypes.func,
 };
 
 export default LeaderBoard;

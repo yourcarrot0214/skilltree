@@ -17,7 +17,6 @@ const useGetUserInfo = (userId) => {
           },
           { cancelToken: source.token }
         );
-        console.log(response);
         setUserInfo(response.data.userInfo);
       } catch (err) {
         console.log(err);

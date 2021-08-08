@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { SubmitContainer, SubmitForm } from "../styles/styled.js";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import useSkills from "../../hooks/useSkills.js";
@@ -107,6 +108,16 @@ const UpdateClassForm = (props) => {
       </SubmitContainer>
     </>
   );
+};
+
+UpdateClassForm.propTypes = {
+  location: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  personnel: PropTypes.number,
+  submitAddFunction: PropTypes.func,
+  id: PropTypes.string,
+  status: PropTypes.bool,
 };
 
 export default UpdateClassForm;

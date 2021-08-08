@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import {
   applyProject,
@@ -68,6 +69,13 @@ const UserBoard = (props) => {
       )}
     </>
   );
+};
+
+UserBoard.propTypes = {
+  isVolunteer: PropTypes.bool,
+  classId: PropTypes.string,
+  userId: PropTypes.string,
+  location: PropTypes.string,
 };
 
 export default UserBoard;

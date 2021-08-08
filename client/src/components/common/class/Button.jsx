@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { StyledButton } from "../styles/styled.js";
 
 const Button = ({ onClickFunction, admission, name, userId }) => {
-  const [id, setId] = useState(userId);
+  const [id] = useState(userId);
   const dispatchFunction = () => onClickFunction(id);
   return (
     <>
@@ -14,3 +15,10 @@ const Button = ({ onClickFunction, admission, name, userId }) => {
 };
 
 export default Button;
+
+Button.propTypes = {
+  onClickFunction: PropTypes.func,
+  admission: PropTypes.bool,
+  name: PropTypes.string,
+  userId: PropTypes.string,
+};

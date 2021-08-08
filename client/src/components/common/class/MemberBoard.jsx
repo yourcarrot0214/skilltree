@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { leaveToProject } from "../../../_actions/project_action.js";
 import { leaveToStudy } from "../../../_actions/study_action.js";
@@ -36,6 +37,13 @@ const MemberBoard = ({ classId, userId, location, onModalPopup }) => {
       <button onClick={leaveClass}>탈퇴하기</button>
     </>
   );
+};
+
+MemberBoard.propTypes = {
+  classId: PropTypes.string,
+  userId: PropTypes.string,
+  location: PropTypes.string,
+  onModalPopup: PropTypes.func,
 };
 
 export default MemberBoard;

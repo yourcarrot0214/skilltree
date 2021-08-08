@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import CreateClassForm from "./class/CreateClassForm.jsx";
 import ClassCard from "./class/ClassCard.jsx";
 import {
@@ -73,6 +74,12 @@ const DetailPage = ({ classList, location, userData }) => {
       </Modal>
     </DetailContainer>
   );
+};
+
+DetailPage.propTypes = {
+  location: PropTypes.string,
+  classList: PropTypes.array,
+  userData: PropTypes.object,
 };
 
 export default DetailPage;

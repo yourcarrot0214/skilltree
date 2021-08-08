@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { UserTagContainer } from "../styles/styled.js";
 import Modal from "../../views/ProfilePage/accont/Modal.jsx";
 import useGetUserName from "../../hooks/useGetUserName.js";
@@ -28,6 +29,10 @@ const UserTag = (props) => {
       </Modal>
     </UserTagContainer>
   );
+};
+
+UserTag.propTypes = {
+  userId: PropTypes.string,
 };
 
 export default UserTag;

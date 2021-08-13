@@ -8,7 +8,7 @@ const useUserData = () => {
 
   useEffect(() => {
     auth().then((result) => dispatch(result));
-  }, []);
+  }, [dispatch]);
 
   const userData = userState ?? {
     isAuth: null,

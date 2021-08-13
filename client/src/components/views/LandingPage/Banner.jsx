@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {
   BannerContainer,
   Wrapper,
@@ -23,6 +24,12 @@ const Banner = (props) => {
       </Wrapper>
     </BannerContainer>
   );
+};
+
+Banner.propTypes = {
+  bannerTitle: PropTypes.string,
+  bannerSubTitle1: PropTypes.string,
+  bannerSubTitle2: PropTypes.any,
 };
 
 export default Banner;

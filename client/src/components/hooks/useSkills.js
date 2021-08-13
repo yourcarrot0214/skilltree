@@ -28,7 +28,7 @@ const useSkills = () => {
 
   useEffect(() => {
     getSkillsDB().then((result) => dispatch(result));
-  }, []);
+  }, [dispatch]);
 
   const skills = skillsState ?? [];
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { LearnStyled, ButtonBox, Button } from "../styles/styled.js";
 import Modal from "./Modal.jsx";
 import TagContainer from "../../../common/TagContainer.jsx";
@@ -56,6 +57,10 @@ const Learn = ({ userData }) => {
       </Modal>
     </>
   );
+};
+
+Learn.propTypes = {
+  userData: PropTypes.object,
 };
 
 export default Learn;

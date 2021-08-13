@@ -68,11 +68,11 @@ const ClassCard = (props) => {
     console.log("ClassCard onClickFunction.");
   };
 
-  useEffect(() => {
-    return () => {
-      setRole(roleValidation(userId));
-    };
-  });
+  // useEffect(() => {
+  //   return () => {
+  //     setRole(roleValidation(userId));
+  //   };
+  // });
 
   return (
     <>

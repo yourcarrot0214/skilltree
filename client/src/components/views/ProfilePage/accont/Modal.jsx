@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {
   ModalStyled,
   ModalHeaderButton,
@@ -24,6 +25,12 @@ const Modal = (props) => {
       )}
     </ModalStyled>
   );
+};
+
+Modal.propTypes = {
+  onClickFunction: PropTypes.func,
+  header: PropTypes.any,
+  openModal: PropTypes.bool,
 };
 
 export default Modal;

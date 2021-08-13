@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link, withRouter } from "react-router-dom";
 import {
   SectionBox,
@@ -18,6 +19,12 @@ const Section = (props) => {
       </LinkBox>
     </SectionBox>
   );
+};
+
+Section.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  linkTo: PropTypes.string,
 };
 
 export default withRouter(Section);

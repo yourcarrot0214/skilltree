@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link, withRouter } from "react-router-dom";
 import { LeftMenuContainer, LinkBox } from "./styles/styled.js";
 
@@ -27,6 +28,10 @@ const LeftMenu = ({ displayToggle }) => {
       </LinkBox>
     </LeftMenuContainer>
   );
+};
+
+LeftMenu.propTypes = {
+  displayToggle: PropTypes.func,
 };
 
 export default withRouter(LeftMenu);

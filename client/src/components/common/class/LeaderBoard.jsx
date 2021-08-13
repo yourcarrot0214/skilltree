@@ -35,9 +35,7 @@ const LeaderBoard = ({
   onModalPopup,
 }) => {
   const dispatch = useDispatch();
-  const [acceptTrigger, setAcceptTrigger] = useState(
-    members.length < personnel
-  );
+  const [acceptTrigger] = useState(members.length < personnel);
 
   const deleteClass = () => {
     let check = window.confirm(`${location}를 정말 삭제할까요?`);

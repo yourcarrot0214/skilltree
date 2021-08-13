@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link, withRouter } from "react-router-dom";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { logoutUser } from "../../../_actions/user_action.js";
@@ -76,19 +77,8 @@ const RightMenu = (props) => {
   );
 };
 
-export default withRouter(RightMenu);
+RightMenu.propTypes = {
+  displayToggle: PropTypes.func,
+};
 
-/*
-  인증 권한에 따라 Menu component 출력
-  1. 로그인 하지 않은 유저.
-    - SignUp, LogIn
-      > isAdmin === false && isAuth === false
-      > !isAdmin && !isAuth
-      > 관리자가 아니고 인증도 받지 않은 유저
-  2. 로그인 한 유저
-  - Profile, Logout
-  > isAuth === true
-  3. 로그인 한 유저 중 관리자인 유저
-    - Profile, Logout, Admin Page
-      > isAdmin && isAuth
-*/
+export default withRouter(RightMenu);

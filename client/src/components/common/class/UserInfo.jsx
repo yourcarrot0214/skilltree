@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import TagContainer from "../TagContainer.jsx";
 
 const UserInfo = ({ userInfo }) => {
-  const [userName, setUserName] = useState(userInfo.name);
-  const [tech, setTech] = useState(userInfo.tech);
-  const [learn, setLearn] = useState(userInfo.learn);
+  const [userName] = useState(userInfo.name);
+  const [tech] = useState(userInfo.tech);
+  const [learn] = useState(userInfo.learn);
 
   return (
     <>

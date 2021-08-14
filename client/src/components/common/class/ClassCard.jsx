@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { selectedSkill } from "../../../_actions/skill_action.js";
@@ -19,6 +19,9 @@ import LeaderBoard from "./LeaderBoard.jsx";
 import MemberBoard from "./MemberBoard.jsx";
 import UserBoard from "./UserBoard.jsx";
 import UpdateClassForm from "./UpdateClassForm.jsx";
+
+import withUpdateForm from "../../hoc/withUpdateForm";
+const UpdateWithClassForm = withUpdateForm(UpdateClassForm);
 
 const ClassCard = (props) => {
   const {
@@ -68,12 +71,6 @@ const ClassCard = (props) => {
     console.log("ClassCard onClickFunction.");
   };
 
-  // useEffect(() => {
-  //   return () => {
-  //     setRole(roleValidation(userId));
-  //   };
-  // });
-
   return (
     <>
       <ClassCardThumbNail id={id} onClick={onModalPopup}>
@@ -107,7 +104,7 @@ const ClassCard = (props) => {
         openModal={ModalOpen}
       >
         {componentToggle ? (
-          <UpdateClassForm
+          <UpdateWithClassForm
             location={location}
             title={title}
             description={description}

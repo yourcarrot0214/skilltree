@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import { SubmitContainer, SubmitForm } from "../styles/styled.js";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import useSkills from "../../hooks/useSkills.js";
-import { updateProject } from "../../../_actions/project_action.js";
-import { updateStudy } from "../../../_actions/study_action.js";
 
 import SkillSearchBar from "../SkillSearchBar.jsx";
 
@@ -33,13 +31,7 @@ const UpdateClassForm = (props) => {
       status: Status,
     };
 
-    if (location === "Project") {
-      dispatch(updateProject(requestBody));
-    } else if (location === "Study") {
-      dispatch(updateStudy(requestBody));
-    } else {
-      alert("location props가 존재하지 않습니다.");
-    }
+    dispatch(props.updateDispatch(requestBody));
 
     alert(`${location} 정보가 업데이트 되었습니다.`);
     props.submitAddFunction();
@@ -58,13 +50,10 @@ const UpdateClassForm = (props) => {
   return (
     <>
       <SubmitContainer>
-        <h3>
-          {location === "Project" ? "프로젝트" : "스터디"}에 필요한 스킬을
-          선택해 주세요.
-        </h3>
+        <h3>{location}에 필요한 스킬을 선택해 주세요.</h3>
         <SkillSearchBar selected={true} />
         <SubmitForm onSubmit={onUpdateClass}>
-          <label>{location === "Project" ? "프로젝트" : "스터디"}명</label>
+          <label>{location} 제목</label>
           <input
             type='text'
             name='title'
@@ -72,7 +61,7 @@ const UpdateClassForm = (props) => {
             onChange={onChangeValue}
             required
           />
-          <label>{location === "Project" ? "프로젝트" : "스터디"} 설명</label>
+          <label>{location} 설명</label>
           <textarea
             name='description'
             value={Description}

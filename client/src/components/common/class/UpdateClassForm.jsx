@@ -7,8 +7,8 @@ import useSkills from "../../hooks/useSkills.js";
 import SkillSearchBar from "../SkillSearchBar.jsx";
 
 const UpdateClassForm = (props) => {
-  const { location } = props;
   const dispatch = useDispatch();
+  const { location } = props;
   const [Title, setTitle] = useState(props.title);
   const [Description, setDescription] = useState(props.description);
   const [Personnel, setPersonnel] = useState(props.personnel);

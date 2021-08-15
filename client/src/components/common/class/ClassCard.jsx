@@ -112,6 +112,7 @@ const ClassCard = (props) => {
             submitAddFunction={setComponentToggle}
             id={id}
             status={status}
+            classSkills={skills}
           />
         ) : (
           <ClassInfo

@@ -1,17 +1,19 @@
 import React from "react";
+// import { useDispatch } from "react-redux";
 import { updateProject } from "../../_actions/project_action";
 import { updateStudy } from "../../_actions/study_action";
-
-// updateWithProjectForm;
-// updateWithStudyForm;
+// import { selectedSkill } from "../../_actions/skill_action";
 
 export default function withUpdateForm(WrappedComponent) {
-  function WithForm({ location, ...otherProps }) {
+  function WithForm({ location, classSkills, ...otherProps }) {
+    // const dispatch = useDispatch();
+    // classSkills.forEach((skill) => dispatch(selectedSkill(skill._id)));
     if (location === "Project") {
       return (
         <WrappedComponent
           location='프로젝트'
           updateDispatch={updateProject}
+          classSkills={classSkills}
           {...otherProps}
         />
       );
@@ -20,6 +22,7 @@ export default function withUpdateForm(WrappedComponent) {
         <WrappedComponent
           location='스터디'
           updateDispatch={updateStudy}
+          classSkills={classSkills}
           {...otherProps}
         />
       );
@@ -28,20 +31,3 @@ export default function withUpdateForm(WrappedComponent) {
 
   return WithForm;
 }
-
-/*
-  1. UpdateClassForm 구조 변경
-    - props list
-      - location => delete
-      - title
-      - description
-      - personnel
-      - submitAddFunction => setComponentToggle
-      - id
-      - status
-    - props add
-      - updateClass => updateProject / updateStudy
-        : onUpdateClass에서 사용될 dispatch 함수
-      - formTitle : 프로젝트 / 스터디
-        : h3, label 적용
-*/

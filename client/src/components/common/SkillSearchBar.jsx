@@ -38,6 +38,7 @@ const SkillSearchBar = (props) => {
     event.preventDefault();
     if (skillName === "") return;
     if (skillSearchResult === undefined) return;
+    /* hoc로 이전 */
     if (props.chooseOneSelected) {
       dispatch(chooseOneSelected(skillSearchResult._id));
       props.setSkillId((prev) =>
@@ -46,6 +47,7 @@ const SkillSearchBar = (props) => {
     } else {
       skillDispatch(skillSearchResult._id);
     }
+    /* ---------- */
     setSkillName("");
   };
 

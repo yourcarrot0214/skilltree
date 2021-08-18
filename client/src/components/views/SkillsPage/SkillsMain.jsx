@@ -3,14 +3,12 @@ import { useDispatch } from "react-redux";
 import { chooseOneSelected } from "../../../_actions/skill_action";
 import { SkillsMainContainer } from "./styles/styled.js";
 
-import SkillSearchBar from "../../common/SkillSearchBar.jsx";
 import SkillInfoSection from "./SkillInfoSection.jsx";
 
 import useSkills from "../../hooks/useSkills.js";
 import useProject from "../../hooks/useProject.js";
 import useStudy from "../../hooks/useStudy.js";
 
-// Test
 import TagContainer from "../../common/TagContainer";
 import Tag from "../../common/Tag";
 import SearchBar from "../../common/SearchBar";
@@ -53,17 +51,19 @@ const SkillsMain = () => {
 
   return (
     <SkillsMainContainer>
-      {/* <SkillSearchBar
-        selected={true}
-        onClickFunction={onClickFunction}
-        setSkillId={setSkillId}
-        chooseOneSelected
-      /> */}
       <SearchBar
         onChangeValue={onChangeValue}
         onSkillSearch={onSkillSearch}
         skillName={skillName}
       />
+      {skillSearchResult ? (
+        <Tag
+          skillInfo={skillSearchResult}
+          key={skillSearchResult.key}
+          onClickFunction={onClickFunction}
+          selected={skillSearchResult.selected}
+        />
+      ) : null}
       {/* 검색 결과 출력 */}
       <TagContainer
         selected

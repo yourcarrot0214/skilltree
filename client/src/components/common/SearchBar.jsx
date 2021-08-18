@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import {
   SkillSearchBarStyled,
@@ -9,41 +9,9 @@ import {
 import { useDispatch } from "react-redux";
 import { selectedReset } from "../../_actions/skill_action.js";
 
-// import useSearchResult from "../hooks/useSearchResult.js";
-
 const SkillSearchBar = (props) => {
   const { onSkillSearch, onChangeValue, skillName } = props;
   const dispatch = useDispatch();
-  //   const skillSearchResult = useSearchResult(skillName);
-
-  //   const onChangeValue = (event) => {
-  //     setSkillName(event.currentTarget.value);
-  //   };
-
-  //   const skillDispatch = (id) => dispatch(selectedSkill(id));
-
-  //   const onSkillSearch = (event) => {
-  //     event.preventDefault();
-  //     if (skillName === "") return;
-  //     if (skillSearchResult === undefined) return;
-
-  // if (props.chooseOneSelected) {
-  //   dispatch(chooseOneSelected(skillSearchResult._id));
-  //   props.setSkillId((prev) =>
-  //     skillSearchResult._id === prev ? "" : skillSearchResult._id
-  //   );
-  // } else {
-  //   skillDispatch(skillSearchResult._id);
-  // }
-
-  // setSkillName("");
-  //   };
-
-  //   const onClickFunction = (e) => {
-  //     const skillId = e.target.id;
-  //     skillDispatch(skillId);
-  //     setSkillName("");
-  //   };
 
   useEffect(() => {
     return () => {

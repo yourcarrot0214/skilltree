@@ -5,7 +5,6 @@ import { withRouter } from "react-router-dom";
 import { StudyMainContainer } from "./styles/styled.js";
 import useStudy from "../../hooks/useStudy.js";
 import DetailPage from "../../common/DetailPage.jsx";
-import SkillSearchBar from "../../common/SkillSearchBar.jsx";
 import useSkills from "../../hooks/useSkills.js";
 import useUserData from "../../hooks/useUserData.js";
 

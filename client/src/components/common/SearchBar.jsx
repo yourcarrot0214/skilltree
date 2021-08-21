@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import {
   SkillSearchBarStyled,
   SkillSearchForm,
-  SearchBar,
+  SearchBarInput,
   SearchButton,
 } from "./styles/styled.js";
 import { useDispatch } from "react-redux";
 import { selectedReset } from "../../_actions/skill_action.js";
 
-const SkillSearchBar = (props) => {
+const SearchBar = (props) => {
   const { onSkillSearch, onChangeValue, skillName } = props;
   const dispatch = useDispatch();
 
@@ -20,9 +20,9 @@ const SkillSearchBar = (props) => {
   }, [dispatch]);
 
   return (
-    <SkillSearchBarStyled>
+    <SkillSearchBarStyled className='SearchBar'>
       <SkillSearchForm onSubmit={onSkillSearch}>
-        <SearchBar
+        <SearchBarInput
           type='text'
           name='skill-name'
           value={skillName}
@@ -35,10 +35,10 @@ const SkillSearchBar = (props) => {
   );
 };
 
-SkillSearchBar.propTypes = {
+SearchBar.propTypes = {
   onSkillSearch: PropTypes.func,
   onClickFunction: PropTypes.func,
   onChangeValue: PropTypes.func,
 };
 
-export default SkillSearchBar;
+export default SearchBar;

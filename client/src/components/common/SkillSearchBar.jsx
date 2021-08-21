@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {
   SkillSearchBarStyled,
   SkillSearchForm,
-  SearchBar,
+  SearchBarInput,
   SearchButton,
 } from "./styles/styled.js";
 import TagContainer from "../common/TagContainer.jsx";
@@ -68,7 +68,7 @@ const SkillSearchBar = (props) => {
       <SkillSearchForm
         onSubmit={props.onSkillSearch ? props.onSkillSearch : onSkillSearch}
       >
-        <SearchBar
+        <SearchBarInput
           type='text'
           name='skill-name'
           value={skillName}

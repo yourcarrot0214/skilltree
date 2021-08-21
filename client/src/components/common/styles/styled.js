@@ -60,7 +60,7 @@ const SkillSearchForm = Styled.form`
   }
 `;
 
-const SearchBar = Styled.input`
+const SearchBarInput = Styled.input`
   width: 170px;
   height: 30px;
   border-top: none;
@@ -393,7 +393,7 @@ export {
   TagContainerStyled,
   SkillSearchBarStyled,
   SkillSearchForm,
-  SearchBar,
+  SearchBarInput,
   SearchButton,
   ClassCardContainer,
   ClassCardThumbNail,

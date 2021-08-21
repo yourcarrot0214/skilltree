@@ -48,10 +48,7 @@ export async function updateProject(requestBody) {
 export async function deleteProject(requestBody) {
   const request = await axios
     .post("/api/project/delete", requestBody)
-    .then((response) => {
-      console.log(response.data);
-      return response.data;
-    })
+    .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
     type: PROJECT_DELETE,

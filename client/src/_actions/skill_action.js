@@ -25,6 +25,7 @@ export async function getSkillsDB() {
 }
 
 export function selectedSkill(id) {
+  console.log("selectedSkill action.");
   return {
     type: SKILL_SELECTED,
     id: id,

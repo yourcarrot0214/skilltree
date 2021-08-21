@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import { SubmitContainer, SubmitForm } from "../styles/styled.js";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { createProject } from "../../../_actions/project_action.js";
-import { createStudy } from "../../../_actions/study_action.js";
 import { selectedSkill } from "../../../_actions/skill_action";
 
 import useSkills from "../../hooks/useSkills.js";
@@ -13,8 +12,7 @@ import Tag from "../../common/Tag";
 import SearchBar from "../../common/SearchBar";
 import useSearchResult from "../../hooks/useSearchResult";
 
-const CreateClassForm = (props) => {
-  const { location } = props;
+const CreateProjectForm = (props) => {
   const dispatch = useDispatch();
   const [Title, setTitle] = useState("");
   const [Description, setDescription] = useState("");
@@ -38,16 +36,10 @@ const CreateClassForm = (props) => {
       leader: userData._id,
     };
 
-    if (location === "Project") {
-      dispatch(createProject(requestBody));
-    } else if (location === "Study") {
-      dispatch(createStudy(requestBody));
-    } else {
-      alert("location props가 존재하지 않습니다.");
-    }
+    dispatch(createProject(requestBody));
 
-    alert(`${location} 정보가 업데이트 되었습니다.`);
-    props.submitAddFunction();
+    alert(`신규 프로젝트 정보가 등록되었습니다.`);
+    props.history.push("/project");
   };
 
   const onChangeValue = (event) => {
@@ -77,7 +69,7 @@ const CreateClassForm = (props) => {
   return (
     <>
       <SubmitContainer>
-        <h3>{`${location}`}에 필요한 스킬을 선택해 주세요.</h3>
+        <h3>프로젝트에 필요한 스킬을 선택해 주세요.</h3>
         {/* <SkillSearchBar selected={true} /> */}
         <SearchBar
           onChangeValue={onChangeValue}
@@ -136,10 +128,4 @@ const CreateClassForm = (props) => {
   );
 };
 
-CreateClassForm.propTypes = {
-  loaction: PropTypes.string,
-  formStatus: PropTypes.string,
-  submitAddFunction: PropTypes.func,
-};
-
-export default CreateClassForm;
+export default withRouter(CreateProjectForm);

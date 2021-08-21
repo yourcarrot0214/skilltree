@@ -1,13 +1,10 @@
 import React from "react";
-// import { useDispatch } from "react-redux";
 import { updateProject } from "../../_actions/project_action";
 import { updateStudy } from "../../_actions/study_action";
-// import { selectedSkill } from "../../_actions/skill_action";
 
 export default function withUpdateForm(WrappedComponent) {
+  console.log("withUpdateForm");
   function WithForm({ location, classSkills, ...otherProps }) {
-    // const dispatch = useDispatch();
-    // classSkills.forEach((skill) => dispatch(selectedSkill(skill._id)));
     if (location === "Project") {
       return (
         <WrappedComponent

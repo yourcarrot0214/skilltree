@@ -15,6 +15,9 @@ import AdminPage from "./components/views/AdminPage/AdminPage.jsx";
 import ProfileMain from "./components/views/ProfilePage/ProfileMain.jsx";
 import NavBar from "./components/views/NavBar/NavBar.jsx";
 import Footer from "./components/views/Footer/Footer.jsx";
+import CreateClassForm from "./components/common/class/CreateClassForm";
+import UpdateClassForm from "./components/common/class/UpdateClassForm";
+import CreateProjectForm from "./components/common/class/CreateProjectForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +40,26 @@ function App() {
           <Route exact path='/study' component={Auth(StudyMain, null)} />
           <Route exact path='/profile' component={Auth(ProfileMain, true)} />
           <Route exact path='/admin' component={Auth(AdminPage, true, true)} />
+          <Route
+            exact
+            path='/project/create'
+            component={Auth(CreateProjectForm, true)}
+          />
+          <Route
+            exact
+            path='/study/create'
+            component={Auth(CreateClassForm, true)}
+          />
+          <Route
+            exact
+            path='/project/update'
+            component={Auth(UpdateClassForm, true)}
+          />
+          <Route
+            exact
+            path='/study/update'
+            component={Auth(UpdateClassForm, true)}
+          />
         </Switch>
         <Footer />
       </Router>

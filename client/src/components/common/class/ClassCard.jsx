@@ -61,10 +61,13 @@ const ClassCard = (props) => {
   const [role, setRole] = useState(roleValidation(userData._id));
   const [componentToggle, setComponentToggle] = useState(false);
 
-  const onModalPopup = () => setModalOpen(!ModalOpen);
+  const onModalPopup = () => {
+    console.log("ClasCard onModalPopup");
+    setModalOpen(!ModalOpen);
+  };
   const onComponentToggle = () => {
+    console.log("onComponentToggle");
     setComponentToggle(!componentToggle);
-    skills.map((skill) => dispatch(selectedSkill(skill._id)));
   };
 
   const onClickFunction = () => {
@@ -177,3 +180,9 @@ ClassCard.propTypes = {
 };
 
 export default ClassCard;
+
+/*
+  skills.map((skill) => dispatch(selectedSkill(skill._id)));
+
+            
+*/

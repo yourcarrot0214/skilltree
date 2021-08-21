@@ -15,9 +15,9 @@ import AdminPage from "./components/views/AdminPage/AdminPage.jsx";
 import ProfileMain from "./components/views/ProfilePage/ProfileMain.jsx";
 import NavBar from "./components/views/NavBar/NavBar.jsx";
 import Footer from "./components/views/Footer/Footer.jsx";
-import CreateClassForm from "./components/common/class/CreateClassForm";
 import UpdateClassForm from "./components/common/class/UpdateClassForm";
 import CreateProjectForm from "./components/common/class/CreateProjectForm";
+import CreateStudyForm from "./components/common/class/CreateStudyForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,7 +48,7 @@ function App() {
           <Route
             exact
             path='/study/create'
-            component={Auth(CreateClassForm, true)}
+            component={Auth(CreateStudyForm, true)}
           />
           <Route
             exact

@@ -34,23 +34,12 @@ const DetailPage = ({ classList, location, userData }) => {
 
   const linkPath = location === "Project" ? "/project/create" : "/study/create";
 
-  /*
-    1. route test
-      - react-route-dom Link
-    2. CreateClassForm props 제공방법
-      - hoc로 CreateProjectForm / CreateStudyForm 생성
-    3. UpdateClassForm props 제공방법
-      - route 정보에 classid값을 포함하여 db에서 정보 가져오기.
-      - dispatch, action, reduce 기능 추가.
-  */
-
   return (
     <DetailContainer className='DetailContainer'>
       {userData.isAuth ? (
-        // <CreateClassButton
-        //   onClick={onModalPopup}
-        // >{`${location} 생성하기`}</CreateClassButton>
-        <Link to={linkPath}>{location} 생성하기</Link>
+        <CreateClassButton>
+          <Link to={linkPath}>{location} 생성하기</Link>
+        </CreateClassButton>
       ) : null}
       <ClassCardContainer className='ClassCardContainer'>
         {classList.map((post) => {
@@ -98,11 +87,3 @@ DetailPage.propTypes = {
 };
 
 export default DetailPage;
-
-/*
-  1. CreateClassForm 컴포넌트 분리
-    - 해당 위치 Link로 대체
-    - location에 따라 path 경로 부여.
-      - /project/create , /study/create
-    
-*/

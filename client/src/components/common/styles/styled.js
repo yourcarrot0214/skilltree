@@ -272,6 +272,11 @@ const CreateClassButton = Styled.button`
     background: linear-gradient(145deg, #32a045, #3bbe52);
   }
 
+  a {
+    text-decoration: none;
+    color: white;
+  }
+
   @media screen and (max-width: 450px) {
     margin: 0.5rem auto;
   }

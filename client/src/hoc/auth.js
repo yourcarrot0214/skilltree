@@ -25,7 +25,7 @@ export default function Auth(Component, option, adminRoute = null) {
       });
     }, [dispatch, props.history]);
 
-    return <Component />;
+    return <Component {...props} />;
   }
 
   return AuthenticationCheck;

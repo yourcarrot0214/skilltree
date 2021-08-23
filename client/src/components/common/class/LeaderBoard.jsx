@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import UserTag from "./UserTag.jsx";
 import Button from "./Button.jsx";
@@ -108,9 +109,7 @@ const LeaderBoard = ({
   return (
     <>
       <h3>Leader Board</h3>
-      <button onClick={onComponentToggle}>
-        {componentToggle ? "취소하기" : "수정하기"}
-      </button>
+      <Link to={`/${location.toLowerCase()}/update/${classId}`}>업데이트</Link>
       <button onClick={deleteClass}>{`${location} 삭제하기`}</button>
 
       <h3>지원자 관리</h3>

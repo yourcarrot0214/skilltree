@@ -18,6 +18,7 @@ import Footer from "./components/views/Footer/Footer.jsx";
 import UpdateClassForm from "./components/common/class/UpdateClassForm";
 import CreateProjectForm from "./components/common/class/CreateProjectForm";
 import CreateStudyForm from "./components/common/class/CreateStudyForm";
+import UpdateProjectForm from "./components/common/class/UpdateProjectForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -52,8 +53,8 @@ function App() {
           />
           <Route
             exact
-            path='/project/update'
-            component={Auth(UpdateClassForm, true)}
+            path='/project/update/:id'
+            component={Auth(UpdateProjectForm, true)}
           />
           <Route
             exact

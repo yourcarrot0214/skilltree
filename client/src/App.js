@@ -15,10 +15,10 @@ import AdminPage from "./components/views/AdminPage/AdminPage.jsx";
 import ProfileMain from "./components/views/ProfilePage/ProfileMain.jsx";
 import NavBar from "./components/views/NavBar/NavBar.jsx";
 import Footer from "./components/views/Footer/Footer.jsx";
-import UpdateClassForm from "./components/common/class/UpdateClassForm";
 import CreateProjectForm from "./components/common/class/CreateProjectForm";
 import CreateStudyForm from "./components/common/class/CreateStudyForm";
 import UpdateProjectForm from "./components/common/class/UpdateProjectForm";
+import UpdateStudyForm from "./components/common/class/UpdateStudyForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -58,8 +58,8 @@ function App() {
           />
           <Route
             exact
-            path='/study/update'
-            component={Auth(UpdateClassForm, true)}
+            path='/study/update/:id'
+            component={Auth(UpdateStudyForm, true)}
           />
         </Switch>
         <Footer />

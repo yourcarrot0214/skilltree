@@ -1,9 +1,6 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { getSkillsDB } from "../../_actions/skill_action.js";
+import { useSelector, shallowEqual } from "react-redux";
 
 const useSkills = () => {
-  const dispatch = useDispatch();
   const skillsState = useSelector((state) => state.skills, shallowEqual);
 
   skillsState.selectedSkills = function () {
@@ -25,10 +22,6 @@ const useSkills = () => {
   skillsState.findSkillById = function (skillId) {
     return this.find((skill) => skill._id === skillId);
   };
-
-  useEffect(() => {
-    getSkillsDB().then((result) => dispatch(result));
-  }, [dispatch]);
 
   const skills = skillsState ?? [];
 

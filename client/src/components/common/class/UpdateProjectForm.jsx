@@ -9,16 +9,9 @@ import TagContainer from "../TagContainer";
 import Tag from "../Tag";
 import useSearchResult from "../../hooks/useSearchResult";
 import { selectedSkill, selectedReset } from "../../../_actions/skill_action";
-
-/*
-  1. route 설정 및 테스트
-  2. dispatch setup
-  3. history method setup
-  4. skills 동기화
-*/
+import { updateProject } from "../../../_actions/project_action";
 
 const UpdateProjectForm = (props) => {
-  console.log(props);
   const { match } = props;
   const projectInfo = useSelector(
     (state) => state.project.find((object) => object._id === match.params.id),
@@ -37,12 +30,12 @@ const UpdateProjectForm = (props) => {
   const selectedSkills = skillState.selectedSkills();
   const unSelectedSkills = skillState.unSelectedSkills();
   const skillSearchResult = useSearchResult(skillName);
-  console.log(selectedSkills);
 
   const onUpdateClass = (event) => {
     event.preventDefault();
 
     const requestBody = {
+      id: match.params.id,
       title: Title,
       description: Description,
       skills: selectedSkills,
@@ -51,12 +44,10 @@ const UpdateProjectForm = (props) => {
       status: Status,
     };
 
-    // updateProject dispatch
-    // dispatch(props.updateDispatch(requestBody));
+    dispatch(updateProject(requestBody));
 
     alert(`프로젝트 정보가 업데이트 되었습니다.`);
-    // props.history.push('/project')
-    // props.submitAddFunction();
+    props.history.goBack();
   };
 
   const onChangeValue = (event) => {

@@ -27,8 +27,6 @@ import {
 const LeaderBoard = ({
   classId,
   leaderId,
-  onComponentToggle,
-  componentToggle,
   volunteer,
   members,
   location,
@@ -154,8 +152,6 @@ const LeaderBoard = ({
 LeaderBoard.propTypes = {
   classId: PropTypes.string,
   leaderId: PropTypes.string,
-  onComonentToggle: PropTypes.func,
-  componentToggle: PropTypes.bool,
   volunteer: PropTypes.array,
   members: PropTypes.array,
   location: PropTypes.string,

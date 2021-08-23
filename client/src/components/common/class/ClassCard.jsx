@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
-import { selectedSkill } from "../../../_actions/skill_action.js";
 import {
   ClassCardThumbNail,
   ClassCardHeader,
@@ -18,10 +16,6 @@ import ClassInfo from "./ClassInfo.jsx";
 import LeaderBoard from "./LeaderBoard.jsx";
 import MemberBoard from "./MemberBoard.jsx";
 import UserBoard from "./UserBoard.jsx";
-import UpdateClassForm from "./UpdateClassForm.jsx";
-
-import withUpdateForm from "../../hoc/withUpdateForm";
-const UpdateWithClassForm = withUpdateForm(UpdateClassForm);
 
 const ClassCard = (props) => {
   const {
@@ -40,8 +34,6 @@ const ClassCard = (props) => {
     userData,
   } = props;
 
-  const dispatch = useDispatch();
-
   const roleValidation = (userId) => {
     if (userId === leaderId) {
       return "leader";
@@ -59,15 +51,9 @@ const ClassCard = (props) => {
   const [userId] = useState(userData._id);
   const [ModalOpen, setModalOpen] = useState(false);
   const [role, setRole] = useState(roleValidation(userData._id));
-  const [componentToggle, setComponentToggle] = useState(false);
 
   const onModalPopup = () => {
-    console.log("ClasCard onModalPopup");
     setModalOpen(!ModalOpen);
-  };
-  const onComponentToggle = () => {
-    console.log("onComponentToggle");
-    setComponentToggle(!componentToggle);
   };
 
   const onClickFunction = () => {
@@ -106,35 +92,20 @@ const ClassCard = (props) => {
         header='Class 상세정보'
         openModal={ModalOpen}
       >
-        {componentToggle ? (
-          <UpdateWithClassForm
-            location={location}
-            title={title}
-            description={description}
-            personnel={personnel}
-            submitAddFunction={setComponentToggle}
-            id={id}
-            status={status}
-            classSkills={skills}
-          />
-        ) : (
-          <ClassInfo
-            id={id}
-            title={title}
-            description={description}
-            skills={skills}
-            leaderName={leaderName}
-            personnel={personnel}
-            members={members}
-            status={status}
-          />
-        )}
+        <ClassInfo
+          id={id}
+          title={title}
+          description={description}
+          skills={skills}
+          leaderName={leaderName}
+          personnel={personnel}
+          members={members}
+          status={status}
+        />
         {role === "leader" && (
           <LeaderBoard
             classId={id}
             leaderId={leaderId}
-            onComponentToggle={onComponentToggle}
-            componentToggle={componentToggle}
             volunteer={volunteer}
             members={members}
             location={location}
@@ -180,9 +151,3 @@ ClassCard.propTypes = {
 };
 
 export default ClassCard;
-
-/*
-  skills.map((skill) => dispatch(selectedSkill(skill._id)));
-
-            
-*/

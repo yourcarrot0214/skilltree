@@ -6,8 +6,10 @@ import Tech from "./Tech.jsx";
 import Learn from "./Learn.jsx";
 import Project from "./Project.jsx";
 import Study from "./Study.jsx";
-import SkillSearchBar from "../../../common/SkillSearchBar.jsx";
+import SearchBar from "../../../common/SearchBar";
 import Modal from "./Modal.jsx";
+import TagContainer from "../../../common/TagContainer";
+import Tag from "../../../common/Tag";
 import { ButtonBox, Button, ClassWrapper } from "../styles/styled.js";
 import { addUserTech, addUserLearn } from "../../../../_actions/user_action.js";
 
@@ -90,6 +92,10 @@ const UserProfileCard = ({ userData }) => {
     setModalOpen(!ModalOpen);
   };
 
+  const onChangeValue = (e) => {
+    setSkillName(e.currentTarget.value);
+  };
+
   return (
     <UserProfileCardStyled>
       {userData && (
@@ -104,10 +110,20 @@ const UserProfileCard = ({ userData }) => {
       )}
       <h2>스킬관리</h2>
       <ContentsContainer>
-        <SkillSearchBar
+        <SearchBar
+          onChangeValue={onChangeValue}
           onSkillSearch={onSkillSearch}
-          onClickFunction={onClickFunction}
+          skillName={SkillName}
         />
+        {skillSearchResult ? (
+          <Tag
+            skillInfo={skillSearchResult}
+            key={skillSearchResult.key}
+            onClickFunction={onClickFunction}
+            selected={skillSearchResult.selected}
+          />
+        ) : null}
+        <TagContainer skills={skills} onClickFunction={onClickFunction} />
 
         {userData && (
           <ClassWrapper>

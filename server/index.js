@@ -26,14 +26,14 @@ app.use("/api/study", studyRouter);
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ["'self'", , "https://devcarrot-skilltree.herokuapp.com/"],
+      defaultSrc: ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
       // connectSrc: ["'self'"],
       // frameSrc: ["'self'"],
       // childSrc: ["'self'"],
-      // scriptSrc: ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
-      // styleSrc: ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
+      scriptSrc: ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
+      styleSrc: ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
       // fontSrc: ["'self'"],
-      // imgSrc: ["'self'"],
+      imgSrc: ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
       // baseUri: ["'self'"],
     },
   })

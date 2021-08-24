@@ -1,7 +1,7 @@
 {
   "name": "skilltree",
   "version": "1.0.0",
-  "description": "MERN-Stack 기반 프로젝트, 스터디 커뮤니티",
+  "description": "MERN-Stack 기반 프로젝트, 스터디 커뮤니티 서비스 입니다.",
   "main": "index.js",
   "engine": {
     "node": "14.16.0",

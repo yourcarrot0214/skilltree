@@ -4,7 +4,6 @@ import { auth } from "../_actions/user_action.js";
 
 export default function Auth(Component, option, adminRoute = null) {
   function AuthenticationCheck(props) {
-    console.log(props);
     const dispatch = useDispatch();
 
     useEffect(() => {

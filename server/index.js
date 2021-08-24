@@ -27,13 +27,13 @@ const connect = mongoose
   .connect(CONFIG.mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    // useCreateIndex: true,
-    // useFindAndModify: false,
+    useCreateIndex: true,
+    useFindAndModify: false,
   })
   .then(() => console.log("MongoDB Connected ...."))
   .catch((err) => console.log(err));
 
-if (process.env.NODE_ENV === "projuction") {
+if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));

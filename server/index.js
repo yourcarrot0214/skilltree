@@ -31,7 +31,7 @@ app.use(
       frameSrc: ["'self'"],
       childSrc: ["'self'"],
       scriptSrc: ["'self'"],
-      styleSrc: ["'self'"],
+      styleSrc: ["'self'", "https://fonts.googleapis.com"],
       fontSrc: ["'self'"],
       imgSrc: ["'self'"],
       baseUri: ["'self'"],

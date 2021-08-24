@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const PORT = process.env.PORT || 5000;
 const CONFIG = require("./config/key.js");
+const helmet = require("helmet");
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,6 +22,22 @@ app.use("/api/project", projectRouter);
 
 const studyRouter = require("./routes/studyRouter.js");
 app.use("/api/study", studyRouter);
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      connectSrc: ["'self'"],
+      frameSrc: ["'self'"],
+      childSrc: ["'self'"],
+      scriptSrc: ["'self'"],
+      styleSrc: ["'self'"],
+      fontSrc: ["'self'"],
+      imgSrc: ["'self'"],
+      baseUri: ["'self'"],
+    },
+  })
+);
 
 const mongoose = require("mongoose");
 const connect = mongoose

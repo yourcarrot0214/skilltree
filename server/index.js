@@ -23,21 +23,7 @@ app.use("/api/project", projectRouter);
 const studyRouter = require("./routes/studyRouter.js");
 app.use("/api/study", studyRouter);
 
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["self"],
-      // connectSrc: ["'self'"],
-      // frameSrc: ["'self'"],
-      // childSrc: ["'self'"],
-      scriptSrc: ["self"],
-      // styleSrc: ["self"],
-      // fontSrc: ["'self'"],
-      // imgSrc: ["self"],
-      // baseUri: ["'self'"],
-    },
-  })
-);
+app.use(helmet());
 
 const mongoose = require("mongoose");
 const connect = mongoose

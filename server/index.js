@@ -27,7 +27,7 @@ app.use(
   helmet.contentSecurityPolicy({
     useDefaults: false,
     directives: {
-      "default-src": helmet.contentSecurityPolicy.dangerouslyDisableDefaultSrc,
+      "default-src": ["'self'"],
       "script-src": ["'self'"],
     },
   })

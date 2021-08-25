@@ -27,15 +27,15 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-      defaultSrc: ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
-      scriptSrc: ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
-      styleSrc: [
+      "default-src": ["'self'"],
+      "script-src": ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
+      "style-src": [
         "'self'",
         "'unsafe-inline'",
         "*.googleapis.com",
         "https://devcarrot-skilltree.herokuapp.com/",
       ],
-      fontSrc: [
+      "font-src": [
         "'self'",
         "'unsafe-inline'",
         "*.googleapis.com",

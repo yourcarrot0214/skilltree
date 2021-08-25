@@ -27,9 +27,9 @@ app.use(
   helmet.contentSecurityPolicy({
     useDefaults: false,
     directives: {
-      "default-src": ["'unsafe-inline"],
-      "script-src": ["'self'"],
-      "style-src": ["'self'"],
+      "default-src": helmet.contentSecurityPolicy.dangerouslyDisableDefaultSrc,
+      "script-src": ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
+      "style-src": ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
     },
   })
 );

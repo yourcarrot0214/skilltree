@@ -393,6 +393,32 @@ const StyledButton = Styled.button`
     `}
 `;
 
+const SetupBoard = Styled.div`
+  width: 100%;
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  a {
+    text-decoration: none;
+    color: white;
+    background-color: #37b24d;
+    font-size: 1rem;
+    padding: 0.4rem;
+    margin-right: 1rem;
+    border-radius: 6px;
+  }
+
+  button {
+    color: white;
+    background-color: #f03e3e;
+    border: none;
+    font-size: 1rem;
+    padding: 0.4rem;
+    border-radius: 6px;
+  }
+`;
+
 export {
   TagStyled,
   TagContainerStyled,
@@ -421,4 +447,5 @@ export {
   UserTagContainer,
   StyledButton,
   UserListWrapper,
+  SetupBoard,
 };

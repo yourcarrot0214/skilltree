@@ -49,13 +49,6 @@ app.use(
         "https://fonts.adobe.com/fonts/soleil",
         "https://fonts.gstatic.com;",
       ],
-      "img-src": [
-        "'self'",
-        "https://devcarrot-skilltree.herokuapp.com/",
-        "https://s3.amazonaws.com",
-        "https://twitter.com",
-        "https://pbs.twimg.com",
-      ],
       "frame-ancestors": ["'none'"],
     },
   })

@@ -28,18 +28,12 @@ app.use(
     directives: {
       ...helmet.contentSecurityPolicy.getDefaultDirectives(),
       "default-src": ["'self'"],
-      "script-src": [
-        "'self'",
-        "https://devcarrot-skilltree.herokuapp.com/",
-        "https://static.ads-twitter.com",
-        "https://www.google-analytics.com",
-      ],
+      "script-src": ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
       "style-src": [
         "'self'",
         "'unsafe-inline'",
         "*.googleapis.com",
         "https://devcarrot-skilltree.herokuapp.com/",
-        "https://fonts.googleapis.com",
       ],
       "font-src": [
         "'self'",
@@ -47,9 +41,7 @@ app.use(
         "*.googleapis.com",
         "https://devcarrot-skilltree.herokuapp.com/",
         "https://fonts.adobe.com/fonts/soleil",
-        "https://fonts.gstatic.com;",
       ],
-      "frame-ancestors": ["'none'"],
     },
   })
 );

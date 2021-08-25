@@ -11,6 +11,29 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
+      styleSrc: [
+        "'self'",
+        "'unsafe-inline'",
+        "*.googleapis.com",
+        "https://devcarrot-skilltree.herokuapp.com/",
+      ],
+      fontSrc: [
+        "'self'",
+        "'unsafe-inline'",
+        "*.googleapis.com",
+        "https://devcarrot-skilltree.herokuapp.com/",
+        "https://fonts.adobe.com/fonts/soleil",
+      ],
+    },
+  })
+);
+
 const usersRouter = require("./routes/usersRouter.js");
 app.use("/api/users", usersRouter);
 
@@ -22,34 +45,6 @@ app.use("/api/project", projectRouter);
 
 const studyRouter = require("./routes/studyRouter.js");
 app.use("/api/study", studyRouter);
-
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-      "default-src": [
-        "'self'",
-        "*.googleapis.com",
-        "'unsafe-inline'",
-        "https://devcarrot-skilltree.herokuapp.com/",
-      ],
-      "script-src": ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
-      "style-src": [
-        "'self'",
-        "'unsafe-inline'",
-        "*.googleapis.com",
-        "https://devcarrot-skilltree.herokuapp.com/",
-      ],
-      "font-src": [
-        "'self'",
-        "'unsafe-inline'",
-        "*.googleapis.com",
-        "https://devcarrot-skilltree.herokuapp.com/",
-        "https://fonts.adobe.com/fonts/soleil",
-      ],
-    },
-  })
-);
 
 const mongoose = require("mongoose");
 const connect = mongoose

@@ -287,6 +287,24 @@ const SubmitContainer = Styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+
+  h3 {
+    text-align: center;
+  }
+
+  .goBack {
+    width: 70px;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem 0;
+    margin-left: auto;
+    border: none;
+    background-color: #f03e3e;
+    border-radius: 6px;
+    color: white;
+  }
 `;
 
 const SubmitForm = Styled.form`
@@ -294,6 +312,7 @@ const SubmitForm = Styled.form`
   flex-direction: column;
   padding: 0 1rem;
   justify-content: center;
+  margin-top: 2rem;
   
   label {
     font-size: 1rem;
@@ -307,7 +326,7 @@ const SubmitForm = Styled.form`
     border-right: none;
     border-bottom: 3px solid black;
     background-color: rgba(255, 255, 255, 0);
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 
     :focus {
       outline: none;
@@ -323,7 +342,7 @@ const SubmitForm = Styled.form`
     border-right: none;
     border-bottom: 3px solid black;
     background-color: rgba(255, 255, 255, 0);
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 
     :focus {
       outline: none;

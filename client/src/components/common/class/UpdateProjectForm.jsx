@@ -44,10 +44,14 @@ const UpdateProjectForm = (props) => {
       status: Status,
     };
 
-    dispatch(updateProject(requestBody));
-
-    alert(`프로젝트 정보가 업데이트 되었습니다.`);
-    props.history.goBack();
+    const check = window.confirm("프로젝트 정보를 업데이트 할까요?");
+    if (check) {
+      dispatch(updateProject(requestBody));
+      alert(`프로젝트 정보가 업데이트 되었습니다.`);
+      props.history.goBack();
+    } else {
+      return;
+    }
   };
 
   const onChangeValue = (event) => {
@@ -75,6 +79,13 @@ const UpdateProjectForm = (props) => {
     setSkillName("");
   };
 
+  const onCancle = () => {
+    const check = window.confirm("업데이트 작업을 취소할까요?");
+
+    if (check) props.history.goBack();
+    else return;
+  };
+
   useEffect(() => {
     projectInfo.skills.forEach((skill) => dispatch(selectedSkill(skill._id)));
 
@@ -87,6 +98,9 @@ const UpdateProjectForm = (props) => {
     <>
       <SubmitContainer>
         <h3>프로젝트에 필요한 스킬을 선택해 주세요.</h3>
+        <button className='goBack' onClick={onCancle}>
+          취소
+        </button>
         <SearchBar
           onChangeValue={onChangeValue}
           onSkillSearch={onSkillSearch}

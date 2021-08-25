@@ -11,11 +11,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+const usersRouter = require("./routes/usersRouter.js");
+app.use("/api/users", usersRouter);
+
+const skillsRouter = require("./routes/skillsRouter.js");
+app.use("/api/skills", skillsRouter);
+
+const projectRouter = require("./routes/projectRouter.js");
+app.use("/api/project", projectRouter);
+
+const studyRouter = require("./routes/studyRouter.js");
+app.use("/api/study", studyRouter);
+
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
       ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-      defaultSrc: ["'self'"],
+      defaultSrc: ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
       scriptSrc: ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
       styleSrc: [
         "'self'",
@@ -33,18 +45,6 @@ app.use(
     },
   })
 );
-
-const usersRouter = require("./routes/usersRouter.js");
-app.use("/api/users", usersRouter);
-
-const skillsRouter = require("./routes/skillsRouter.js");
-app.use("/api/skills", skillsRouter);
-
-const projectRouter = require("./routes/projectRouter.js");
-app.use("/api/project", projectRouter);
-
-const studyRouter = require("./routes/studyRouter.js");
-app.use("/api/study", studyRouter);
 
 const mongoose = require("mongoose");
 const connect = mongoose

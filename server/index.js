@@ -27,10 +27,10 @@ app.use(
   helmet.contentSecurityPolicy({
     useDefaults: true,
     directives: {
-      "default-src": helmet.contentSecurityPolicy.dangerouslyDisableDefaultSrc,
+      "default-src": ["'self'"],
       "script-src": ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
       "style-src": null,
-      "font-src": null,
+      "font-src": ["'self'"],
     },
   })
 );

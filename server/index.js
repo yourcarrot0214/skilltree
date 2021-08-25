@@ -25,9 +25,9 @@ app.use("/api/study", studyRouter);
 
 app.use(
   helmet.contentSecurityPolicy({
-    useDefaults: false,
+    useDefaults: true,
     directives: {
-      "default-src": ["'self'"],
+      "default-src": helmet.contentSecurityPolicy.dangerouslyDisableDefaultSrc,
       "script-src": ["'self'"],
     },
   })

@@ -23,7 +23,13 @@ app.use("/api/project", projectRouter);
 const studyRouter = require("./routes/studyRouter.js");
 app.use("/api/study", studyRouter);
 
-app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "default-src": ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
+    },
+  })
+);
 
 const mongoose = require("mongoose");
 const connect = mongoose

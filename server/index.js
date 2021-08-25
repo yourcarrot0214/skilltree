@@ -26,7 +26,8 @@ app.use("/api/study", studyRouter);
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      "default-src": ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
+      "default-src": helmet.contentSecurityPolicy.dangerouslyDisableDefaultSrc,
+      "script-src": ["'self'"],
     },
   })
 );

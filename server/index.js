@@ -51,6 +51,7 @@ app.use(
       ],
       "img-src": [
         "'self'",
+        "https://devcarrot-skilltree.herokuapp.com/",
         "https://s3.amazonaws.com",
         "https://twitter.com",
         "https://pbs.twimg.com",

@@ -27,7 +27,12 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-      "default-src": ["'self'", "*.googleapis.com", "'unsafe-inline'"],
+      "default-src": [
+        "'self'",
+        "*.googleapis.com",
+        "'unsafe-inline'",
+        "https://devcarrot-skilltree.herokuapp.com/",
+      ],
       "script-src": ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
       "style-src": [
         "'self'",
@@ -40,6 +45,7 @@ app.use(
         "'unsafe-inline'",
         "*.googleapis.com",
         "https://devcarrot-skilltree.herokuapp.com/",
+        "https://fonts.adobe.com/fonts/soleil",
       ],
     },
   })

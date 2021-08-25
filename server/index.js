@@ -30,6 +30,7 @@ app.use(
       "default-src": helmet.contentSecurityPolicy.dangerouslyDisableDefaultSrc,
       "script-src": ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
       "style-src": null,
+      "font-src": null,
     },
   })
 );

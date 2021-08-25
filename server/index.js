@@ -25,12 +25,22 @@ app.use("/api/study", studyRouter);
 
 app.use(
   helmet.contentSecurityPolicy({
-    useDefaults: true,
     directives: {
-      "default-src": ["'self'"],
+      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+      "default-src": ["'self'", "*.googleapis.com", "'unsafe-inline'"],
       "script-src": ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
-      "style-src": null,
-      "font-src": ["'self'"],
+      "style-src": [
+        "'self'",
+        "'unsafe-inline'",
+        "*.googleapis.com",
+        "https://devcarrot-skilltree.herokuapp.com/",
+      ],
+      "font-src": [
+        "'self'",
+        "'unsafe-inline'",
+        "*.googleapis.com",
+        "https://devcarrot-skilltree.herokuapp.com/",
+      ],
     },
   })
 );

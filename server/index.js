@@ -12,10 +12,14 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-      "default-src": ["'self'"],
-      "script-src": ["'self'"],
-      "style-src": ["'self'", "'unsafe-inline'"],
-      "font-src": ["'self'"],
+      "default-src": ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
+      "script-src": ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
+      "style-src": [
+        "'self'",
+        "'unsafe-inline'",
+        "https://devcarrot-skilltree.herokuapp.com/",
+      ],
+      "font-src": ["'self'", "https://devcarrot-skilltree.herokuapp.com/"],
     },
   })
 );

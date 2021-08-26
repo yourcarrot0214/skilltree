@@ -12,7 +12,17 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-      "default-src": ["'self'", "'unsafe-inline'", "*.herokuapp.com"],
+      "default-src": [
+        "'self'",
+        "'unsafe-inline'",
+        "*.herokuapp.com",
+        "*.herokuapp.com/skills",
+        "*.herokuapp.com/project",
+        "*.herokuapp.com/study",
+        "*.herokuapp.com/register",
+        "*.herokuapp.com/login",
+        "*.herokuapp.com/admin",
+      ],
       "script-src": ["'self'", "'unsafe-inline'", "*.herokuapp.com"],
       "style-src": ["'self'", "'unsafe-inline'", "*.herokuapp.com"],
       "font-src": ["'self'", "'unsafe-inline'", "*.herokuapp.com"],

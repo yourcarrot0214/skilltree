@@ -10,7 +10,11 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-      "default-src": ["'self'", "'unsafe-inline'"],
+      "default-src": [
+        "'self'",
+        "'unsafe-inline'",
+        "https://devcarrot-skilltree.herokuapp.com/",
+      ],
       "script-src": [
         "'self'",
         "'unsafe-inline'",

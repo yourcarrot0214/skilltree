@@ -6,33 +6,16 @@ const PORT = process.env.PORT || 5000;
 const CONFIG = require("./config/key.js");
 const helmet = require("helmet");
 
+app.disable("x-powered-by");
+
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
       ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-      "default-src": [
-        "'self'",
-        "'unsafe-inline'",
-        "https://devcarrot-skilltree.herokuapp.com/",
-      ],
-      "script-src": [
-        "'self'",
-        "'unsafe-inline'",
-        "https://devcarrot-skilltree.herokuapp.com/",
-      ],
-      "style-src": [
-        "'self'",
-        "'unsafe-inline'",
-        "*.googleapis.com",
-        "https://devcarrot-skilltree.herokuapp.com/",
-      ],
-      "font-src": [
-        "'self'",
-        "'unsafe-inline'",
-        "*.googleapis.com",
-        "https://devcarrot-skilltree.herokuapp.com/",
-        "https://fonts.adobe.com/fonts/soleil",
-      ],
+      "default-src": ["'self'"],
+      "script-src": ["'self'"],
+      "style-src": ["'self'"],
+      "font-src": ["'self'"],
     },
   })
 );

@@ -14,7 +14,7 @@ app.use(
       ...helmet.contentSecurityPolicy.getDefaultDirectives(),
       "default-src": ["'self'"],
       "script-src": ["'self'"],
-      "style-src": ["'self'"],
+      "style-src": ["'self'", "unsafe-inline"],
       "font-src": ["'self'"],
     },
   })

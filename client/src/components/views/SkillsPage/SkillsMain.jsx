@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { chooseOneSelected } from "../../../_actions/skill_action";
 import { SkillsMainContainer } from "./styles/styled.js";
@@ -84,4 +85,4 @@ const SkillsMain = () => {
   );
 };
 
-export default SkillsMain;
+export default withRouter(SkillsMain);

@@ -1,4 +1,5 @@
 const express = require("express");
+const app = express();
 const router = express.Router();
 
 const { Study } = require("../models/Study.js");
@@ -23,6 +24,22 @@ const {
   studyUpdateSuccess,
   studyDeleteSuccess,
 } = require("../function/studyResponse.js");
+
+const helmet = require("helmet");
+
+app.disable("x-powered-by");
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+      "default-src": ["'self'"],
+      "script-src": ["'self'"],
+      "style-src": ["'self'", "'unsafe-inline'"],
+      "font-src": ["'self'"],
+    },
+  })
+);
 
 router.post("/create", leaderFindOne, (req, res) => {
   const study = new Study(req.body);

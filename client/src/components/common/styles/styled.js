@@ -54,6 +54,7 @@ const SkillSearchForm = Styled.form`
   flex-direction: row;
   justify-content: center;
   padding-bottom: 1rem;
+  align-items: flex-end;
 
   @media screen and (max-width: 450px) {
     padding: 1rem;

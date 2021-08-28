@@ -74,6 +74,7 @@ const SearchBarInput = Styled.input`
   :focus {
     outline: none;
   }
+  -webkit-appearance: none;
 `;
 
 const SearchButton = Styled.button`

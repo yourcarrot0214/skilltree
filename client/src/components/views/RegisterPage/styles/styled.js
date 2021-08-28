@@ -89,6 +89,9 @@ const SubmitForm = styled.form`
       outline: none;
       border-bottom: 3px solid #40c057;
     }
+
+    -webkit-appearance: none;
+    border-radius: 0;
   }
 
   button {

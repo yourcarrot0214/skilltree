@@ -75,6 +75,7 @@ const SearchBarInput = Styled.input`
     outline: none;
   }
   -webkit-appearance: none;
+  border-radius: 0;
 `;
 
 const SearchButton = Styled.button`

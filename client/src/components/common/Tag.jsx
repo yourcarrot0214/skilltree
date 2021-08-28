@@ -1,28 +1,16 @@
-import React, { useMemo } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { TagStyled } from "./styles/styled.js";
 
-const getId = (id) => id;
-
-const getTagname = (tagname) => tagname;
-
-const getFunction = (onClickFunction) => onClickFunction;
-
 const Tag = ({ skillInfo, onClickFunction, selected }) => {
-  const { _id, name } = skillInfo;
-  const memorizedId = useMemo(() => getId(_id), [_id]);
-  const memorizedTagname = useMemo(() => getTagname(name), [name]);
-  const memorizedFunction = useMemo(() => getFunction(onClickFunction), [
-    onClickFunction,
-  ]);
   return (
     <>
       <TagStyled
-        id={memorizedId}
-        onClick={memorizedFunction}
+        id={skillInfo._id}
+        onClick={onClickFunction}
         selected={selected}
       >
-        {memorizedTagname}
+        {skillInfo.name}
       </TagStyled>
     </>
   );
@@ -34,4 +22,4 @@ Tag.propTypes = {
   seleted: PropTypes.bool,
 };
 
-export default Tag;
+export default React.memo(Tag);

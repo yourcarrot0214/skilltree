@@ -59,4 +59,4 @@ const UserName = ({ name }) => {
   );
 };
 
-export default UserName;
+export default React.memo(UserName);

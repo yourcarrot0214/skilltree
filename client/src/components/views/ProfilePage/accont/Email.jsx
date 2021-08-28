@@ -21,4 +21,4 @@ Email.propTypes = {
   email: PropTypes.string,
 };
 
-export default Email;
+export default React.memo(Email);

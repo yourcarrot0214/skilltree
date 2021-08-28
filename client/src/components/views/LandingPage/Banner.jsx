@@ -32,4 +32,4 @@ Banner.propTypes = {
   bannerSubTitle2: PropTypes.any,
 };
 
-export default Banner;
+export default React.memo(Banner);

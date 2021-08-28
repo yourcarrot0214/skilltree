@@ -63,4 +63,4 @@ Learn.propTypes = {
   userData: PropTypes.object,
 };
 
-export default Learn;
+export default React.memo(Learn);

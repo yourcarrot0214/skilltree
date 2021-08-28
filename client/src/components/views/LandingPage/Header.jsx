@@ -20,4 +20,4 @@ Header.propTypes = {
   subTitle: PropTypes.string,
 };
 
-export default Header;
+export default React.memo(Header);

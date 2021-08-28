@@ -93,4 +93,4 @@ const Project = ({ userData }) => {
   );
 };
 
-export default Project;
+export default React.memo(Project);

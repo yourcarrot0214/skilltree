@@ -93,4 +93,4 @@ const Study = ({ userData }) => {
   );
 };
 
-export default Study;
+export default React.memo(Study);

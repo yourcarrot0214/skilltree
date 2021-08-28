@@ -53,4 +53,4 @@ const Tech = ({ userData }) => {
   );
 };
 
-export default Tech;
+export default React.memo(Tech);

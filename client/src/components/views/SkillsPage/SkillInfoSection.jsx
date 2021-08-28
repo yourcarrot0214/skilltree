@@ -2,7 +2,7 @@ import React from "react";
 import PrintMessage from "../ProfilePage/accont/PrintMessage.jsx";
 import { HeaderStyled, SkillNameStyled, InfoStyled } from "./styles/styled.js";
 
-const Header = ({ relatedUsers, relatedProject, relatedStudy }) => {
+const SkillInfoSection = ({ relatedUsers, relatedProject, relatedStudy }) => {
   return (
     <HeaderStyled>
       {relatedUsers !== undefined ? (
@@ -20,4 +20,4 @@ const Header = ({ relatedUsers, relatedProject, relatedStudy }) => {
   );
 };
 
-export default Header;
+export default SkillInfoSection;

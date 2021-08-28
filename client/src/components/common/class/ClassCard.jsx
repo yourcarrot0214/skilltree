@@ -150,4 +150,4 @@ ClassCard.propTypes = {
   userData: PropTypes.object,
 };
 
-export default ClassCard;
+export default React.memo(ClassCard);

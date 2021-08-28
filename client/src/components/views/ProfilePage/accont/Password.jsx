@@ -104,4 +104,4 @@ const Password = () => {
   );
 };
 
-export default Password;
+export default React.memo(Password);

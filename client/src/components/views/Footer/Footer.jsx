@@ -16,7 +16,6 @@ function Footer() {
         <FooterInfo>
           <div>developer : Jung ByungHoon</div>
           <div>email : stylenbs@gmail.com</div>
-          <div>phone : 010 - 9556 - 5432</div>
         </FooterInfo>
         <FooterLogo>
           <a

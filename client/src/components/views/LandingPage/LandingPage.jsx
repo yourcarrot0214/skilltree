@@ -18,12 +18,16 @@ import skillImage from "./images/skills-image.png";
 import projectImage from "./images/project-image.jpeg";
 import studyImage from "./images/study-image.png";
 
+import useUserData from "../../hooks/useUserData";
+
 function LandingPage() {
+  const userData = useUserData();
   return (
     <LandingPageContainer>
       <Header
         title={HEADER_CONTENTS.title}
         subTitle={HEADER_CONTENTS.subTitle}
+        userData={userData}
       />
       <Banner
         bannerTitle={BANNER_HEAD.title}

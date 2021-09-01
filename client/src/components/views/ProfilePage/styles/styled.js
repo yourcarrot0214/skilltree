@@ -35,7 +35,6 @@ const ContentsContainer = Styled.div`
 const ButtonBox = Styled.div`
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
 `;
 
 const Button = Styled.button`

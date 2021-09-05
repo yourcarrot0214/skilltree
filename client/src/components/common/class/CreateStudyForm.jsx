@@ -66,11 +66,19 @@ const CreateClassForm = (props) => {
     setSkillName("");
   };
 
+  const onCancle = () => {
+    const check = window.confirm("작업을 취소할까요?");
+    if (check) props.history.goBack();
+    else return;
+  };
+
   return (
     <>
       <SubmitContainer>
         <h3>{`스터디에 필요한 스킬을 선택해 주세요.`}</h3>
-        {/* <SkillSearchBar selected={true} /> */}
+        <button className='goBack' onClick={onCancle}>
+          취소
+        </button>
         <SearchBar
           onChangeValue={onChangeValue}
           onSkillSearch={onSkillSearch}

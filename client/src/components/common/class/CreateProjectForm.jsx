@@ -92,13 +92,11 @@ const CreateProjectForm = (props) => {
             selected={skillSearchResult.selected}
           />
         ) : null}
-        {/* 검색 결과 출력 */}
         <TagContainer
           selected
           skills={selectedSkills}
           onClickFunction={onClickFunction}
         />
-        {/* 스킬 목록 출력 */}
         <TagContainer
           skills={unSelectedSkills}
           onClickFunction={onClickFunction}

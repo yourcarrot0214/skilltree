@@ -14,12 +14,15 @@ import TagContainer from "../../common/TagContainer";
 import Tag from "../../common/Tag";
 import SearchBar from "../../common/SearchBar";
 import useSearchResult from "../../hooks/useSearchResult";
+import useSearchList from "../../hooks/useSearchList";
 
 const SkillsMain = () => {
   const dispatch = useDispatch();
   const [skillId, setSkillId] = useState("");
   const [skillName, setSkillName] = useState("");
   const skillSearchResult = useSearchResult(skillName);
+  const skillSearchList = useSearchList(skillName);
+  // console.log(skillSearchList);
   const skillsState = useSkills();
   const projectState = useProject();
   const studyState = useStudy();
@@ -57,12 +60,12 @@ const SkillsMain = () => {
         onSkillSearch={onSkillSearch}
         skillName={skillName}
       />
-      {skillSearchResult ? (
-        <Tag
-          skillInfo={skillSearchResult}
-          key={skillSearchResult.key}
+      {/* Test */}
+      {skillSearchList.length !== 0 &&
+      skillSearchList.length !== skillsState.length ? (
+        <TagContainer
+          skills={skillSearchList}
           onClickFunction={onClickFunction}
-          selected={skillSearchResult.selected}
         />
       ) : null}
       {/* 검색 결과 출력 */}

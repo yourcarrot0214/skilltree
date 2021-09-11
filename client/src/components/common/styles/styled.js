@@ -441,17 +441,19 @@ const SetupBoard = Styled.div`
   }
 `;
 
-const UserInfoName = Styled.div`
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-`;
+const UserInfoStyled = Styled.div`
+  .user-info-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
 
-const UserInfoMenu = Styled.div`
-  font-size: 1rem;
-  font-weight: bold;
-  margin-top: 1rem;
-  padding-left: 6px;
+  .user-info-menu {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    padding-legt: 6px;
+  }
 `;
 
 export {
@@ -483,6 +485,5 @@ export {
   StyledButton,
   UserListWrapper,
   SetupBoard,
-  UserInfoName,
-  UserInfoMenu,
+  UserInfoStyled,
 };

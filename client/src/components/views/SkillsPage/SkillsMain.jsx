@@ -11,7 +11,6 @@ import useProject from "../../hooks/useProject.js";
 import useStudy from "../../hooks/useStudy.js";
 
 import TagContainer from "../../common/TagContainer";
-import Tag from "../../common/Tag";
 import SearchBar from "../../common/SearchBar";
 import useSearchResult from "../../hooks/useSearchResult";
 import useSearchList from "../../hooks/useSearchList";
@@ -22,7 +21,6 @@ const SkillsMain = () => {
   const [skillName, setSkillName] = useState("");
   const skillSearchResult = useSearchResult(skillName);
   const skillSearchList = useSearchList(skillName);
-  // console.log(skillSearchList);
   const skillsState = useSkills();
   const projectState = useProject();
   const studyState = useStudy();

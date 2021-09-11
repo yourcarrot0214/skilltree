@@ -30,6 +30,8 @@ const InfoStyled = Styled.div`
 
 const SkillsMainContainer = Styled.div`
   flex: 1;
+  max-width: 1024px;
+  margin: 0 auto;
 `;
 
 export { HeaderStyled, SkillNameStyled, InfoStyled, SkillsMainContainer };

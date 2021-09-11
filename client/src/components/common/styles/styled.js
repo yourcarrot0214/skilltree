@@ -2,7 +2,9 @@ import Styled, { css } from "styled-components";
 
 const TagStyled = Styled.button`
   height: 24px;
-  margin: 6px 6px;
+  /* margin: 6px 6px; */
+  margin-top: 6px;
+  margin-left: 6px;
   border: none;
   border-radius: 4px;
   background-color: #343a40;
@@ -19,6 +21,12 @@ const TagContainerStyled = Styled.div`
     overflow: auto;
     max-height: 300px;
     min-height: 36px;
+    padding: 0 1rem;
+    ${(props) =>
+      props.thumbnail &&
+      css`
+        padding: 0;
+      `}
 
     /* scroll bar hidden */
     /* Chrome, Safari, Opera */

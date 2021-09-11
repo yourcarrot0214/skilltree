@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import TagContainer from "../TagContainer.jsx";
+import { UserInfoName, UserInfoMenu } from "../styles/styled";
 
 const UserInfo = ({ userInfo }) => {
   const [userName] = useState(userInfo.name);
@@ -9,10 +10,10 @@ const UserInfo = ({ userInfo }) => {
 
   return (
     <>
-      <div>{`이름 : ${userName}`}</div>
-      <div>Tech</div>
+      <UserInfoName>{userName}</UserInfoName>
+      <UserInfoMenu>보유중인 스킬</UserInfoMenu>
       <TagContainer skills={tech} selected />
-      <div>Learn</div>
+      <UserInfoMenu>학습중인 스킬</UserInfoMenu>
       <TagContainer skills={learn} selected />
     </>
   );

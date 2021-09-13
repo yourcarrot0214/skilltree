@@ -47,6 +47,7 @@ const LinkBox = Styled.div`
   }
   a:hover {
       color: #69db7c;
+      transition: 0.25s;
   }
 
   div {

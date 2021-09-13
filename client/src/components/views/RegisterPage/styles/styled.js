@@ -88,6 +88,7 @@ const SubmitForm = styled.form`
     :focus {
       outline: none;
       border-bottom: 3px solid #40c057;
+      transition: 0.3s;
     }
 
     -webkit-appearance: none;

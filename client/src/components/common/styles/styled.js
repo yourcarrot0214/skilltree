@@ -15,6 +15,12 @@ const TagStyled = Styled.button`
     css`
       background-color: #2f9e44;
     `}
+
+  :hover {
+    cursor: pointer;
+    background-color: #51cf66;
+    transition: .2s;
+  }
 `;
 
 const TagContainerStyled = Styled.div`
@@ -82,6 +88,8 @@ const SearchBarInput = Styled.input`
   }
   :focus {
     outline: none;
+    border-bottom: 3px solid #2f9e44;
+    transition: 0.3s;
   }
   -webkit-appearance: none;
   border-radius: 0;
@@ -96,6 +104,10 @@ const SearchButton = Styled.button`
   border-right: none;
   border-bottom: 3px solid black;
   background-color : rgba(255, 255, 255, 0);
+  :hover {
+    border-bottom: 3px solid #2f9e44;
+    transition: 0.3s;
+  }
 `;
 
 const ClassCardContainer = Styled.div`
@@ -125,8 +137,12 @@ const ClassCardThumbNail = Styled.div`
   background: #dee2e6;
   display: flex;
   flex-direction: row;
+  border: 1px solid #ced4da;
+
   :hover {
-    background: linear-gradient(145deg, #f9fdff, #d2d4d7);
+    background: #e9ecef;
+    cursor: pointer;
+    transition: 0.3s;
   }
 
   @media screen and (max-width: 768px) {

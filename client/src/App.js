@@ -14,7 +14,6 @@ import StudyMain from "./components/views/StudyPage/StudyMain.jsx";
 import AdminPage from "./components/views/AdminPage/AdminPage.jsx";
 import ProfileMain from "./components/views/ProfilePage/ProfileMain.jsx";
 import NavBar from "./components/views/NavBar/NavBar.jsx";
-import Footer from "./components/views/Footer/Footer.jsx";
 import CreateProjectForm from "./components/common/class/CreateProjectForm";
 import CreateStudyForm from "./components/common/class/CreateStudyForm";
 import UpdateProjectForm from "./components/common/class/UpdateProjectForm";
@@ -32,37 +31,46 @@ function App() {
     <>
       <Router>
         <NavBar />
-        <Switch>
-          <Route exact path='/' component={Auth(LandingPage, null)} />
-          <Route exact path='/login' component={Auth(LoginPage, false)} />
-          <Route exact path='/register' component={Auth(RegisterPage, false)} />
-          <Route exact path='/skills' component={Auth(SkillsMain, null)} />
-          <Route exact path='/project' component={Auth(ProjectMain, null)} />
-          <Route exact path='/study' component={Auth(StudyMain, null)} />
-          <Route exact path='/profile' component={Auth(ProfileMain, true)} />
-          <Route exact path='/admin' component={Auth(AdminPage, true, true)} />
-          <Route
-            exact
-            path='/project/create'
-            component={Auth(CreateProjectForm, true)}
-          />
-          <Route
-            exact
-            path='/study/create'
-            component={Auth(CreateStudyForm, true)}
-          />
-          <Route
-            exact
-            path='/project/update/:id'
-            component={Auth(UpdateProjectForm, true)}
-          />
-          <Route
-            exact
-            path='/study/update/:id'
-            component={Auth(UpdateStudyForm, true)}
-          />
-        </Switch>
-        <Footer />
+        <div className='main-section'>
+          <Switch>
+            <Route exact path='/' component={Auth(LandingPage, null)} />
+            <Route exact path='/login' component={Auth(LoginPage, false)} />
+            <Route
+              exact
+              path='/register'
+              component={Auth(RegisterPage, false)}
+            />
+            <Route exact path='/skills' component={Auth(SkillsMain, null)} />
+            <Route exact path='/project' component={Auth(ProjectMain, null)} />
+            <Route exact path='/study' component={Auth(StudyMain, null)} />
+            <Route exact path='/profile' component={Auth(ProfileMain, true)} />
+            <Route
+              exact
+              path='/admin'
+              component={Auth(AdminPage, true, true)}
+            />
+            <Route
+              exact
+              path='/project/create'
+              component={Auth(CreateProjectForm, true)}
+            />
+            <Route
+              exact
+              path='/study/create'
+              component={Auth(CreateStudyForm, true)}
+            />
+            <Route
+              exact
+              path='/project/update/:id'
+              component={Auth(UpdateProjectForm, true)}
+            />
+            <Route
+              exact
+              path='/study/update/:id'
+              component={Auth(UpdateStudyForm, true)}
+            />
+          </Switch>
+        </div>
       </Router>
     </>
   );

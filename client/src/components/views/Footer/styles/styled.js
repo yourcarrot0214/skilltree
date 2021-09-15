@@ -1,8 +1,14 @@
 import styled from "styled-components";
 
 const FooterContainer = styled.footer`
-  background-color: #adb5bd;
   padding: 1rem 0;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 
   @media screen and (max-width: 450px) {
     padding: 0.5rem 0;
@@ -10,7 +16,7 @@ const FooterContainer = styled.footer`
 `;
 
 const FooterWrapper = styled.div`
-  width: 300px;
+  width: 100%;
   border: 1px soild white;
   display: flex;
   flex-direction: column;
@@ -25,29 +31,31 @@ const FooterWrapper = styled.div`
 const FooterInfo = styled.div`
   display: flex;
   flex-direction: column;
+  font-size: 0.9rem;
 
   div {
-    color: #212529;
-    margin-bottom: 0.5rem;
+    color: #f5f5f5;
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.2rem 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: #f5f5f5;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  span {
+    margin-left: 0.5rem;
   }
 
   @media screen and (max-width: 768px) {
     font-size: 0.7rem;
-  }
-`;
-
-const FooterLogo = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  a {
-    text-decoration: none;
-    color: #212529;
-  }
-
-  a:first-child {
-    margin-right: 1rem;
   }
 `;
 
@@ -63,4 +71,4 @@ const LinkBox = styled.div`
   }
 `;
 
-export { FooterContainer, FooterWrapper, FooterInfo, FooterLogo, LinkBox };
+export { FooterContainer, FooterWrapper, FooterInfo, LinkBox };

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import LeftMenu from "./LeftMenu.jsx";
 import RightMenu from "./RightMenu.jsx";
+import Footer from "../Footer/Footer";
 import { NavBarContainer, MenuWrapper, LogoSpace } from "./styles/styled.js";
 import "boxicons";
 
@@ -24,6 +25,7 @@ function NavBar() {
         <LeftMenu displayToggle={displayToggle} />
         <RightMenu displayToggle={displayToggle} />
       </MenuWrapper>
+      <Footer />
     </NavBarContainer>
   );
 }

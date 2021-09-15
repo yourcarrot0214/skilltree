@@ -17,8 +17,9 @@ function NavBar() {
     <NavBarContainer className='NavBarContainer'>
       <LogoSpace onClick={displayToggle}>
         <Link to='/'>
-          <box-icon name='tree' type='solid' color='#73d13d' size='md' />
           <span>Skill Tree</span>
+          <box-icon name='tree' type='solid' color='#135200' size='md' />
+          <box-icon name='tree' type='solid' color='#73d13d' size='sm' />
         </Link>
       </LogoSpace>
       <MenuWrapper className='MenuWrapper' display={display}>

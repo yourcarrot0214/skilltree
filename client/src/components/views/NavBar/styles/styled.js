@@ -112,13 +112,17 @@ const LogoSpace = Styled.div`
     text-decoration: none;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
+    z-index: 0
 
   }
   span {
     font-size: 1.5rem;
     font-weight: bold;
     color: white;
+  }
+  box-icon:last-child {
+    margin-left: -2.3rem;
   }
 `;
 

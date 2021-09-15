@@ -13,7 +13,7 @@ const HeaderContainer = Styled.div`
   padding: 2rem 0;
   width: 100%;
   margin: 0 auto;
-  height: 300px;
+  height: 100vh;
   background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${HeaderImage});
   background-repeat: no-repeat;
   background-size: cover;

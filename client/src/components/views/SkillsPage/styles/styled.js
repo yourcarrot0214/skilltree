@@ -32,6 +32,11 @@ const SkillsMainContainer = Styled.div`
   flex: 1;
   max-width: 1024px;
   margin: 0 auto;
+  padding: 2rem 0;
+
+  h2 {
+    text-align: center;
+  }
 `;
 
 export { HeaderStyled, SkillNameStyled, InfoStyled, SkillsMainContainer };

@@ -1,7 +1,7 @@
 import Styled from "styled-components";
 
 const StudyMainContainer = Styled.div`
-  padding-bottom: 2rem;
+  padding: 2rem 0;
   max-width: 1024px;
   margin: 0 auto;
   flex: 1;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link, withRouter } from "react-router-dom";
 import LeftMenu from "./LeftMenu.jsx";
 import RightMenu from "./RightMenu.jsx";
 import { NavBarContainer, MenuWrapper, LogoSpace } from "./styles/styled.js";
@@ -14,8 +15,10 @@ function NavBar() {
   return (
     <NavBarContainer className='NavBarContainer'>
       <LogoSpace onClick={displayToggle}>
-        <box-icon name='tree' type='solid' color='#73d13d' size='md'></box-icon>
-        <span>Skill Tree</span>
+        <Link to='/'>
+          <box-icon name='tree' type='solid' color='#73d13d' size='md' />
+          <span>Skill Tree</span>
+        </Link>
       </LogoSpace>
       <MenuWrapper className='MenuWrapper' display={display}>
         <LeftMenu displayToggle={displayToggle} />
@@ -25,4 +28,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default withRouter(NavBar);

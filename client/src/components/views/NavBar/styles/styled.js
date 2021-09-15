@@ -24,6 +24,7 @@ const LeftMenuContainer = Styled.div`
 
   @media screen and (max-width: 768px) {
     padding: 0;
+    background-color: #141414;
   }
 `;
 
@@ -36,17 +37,24 @@ const RightMenuContainer = Styled.div`
 
   @media screen and (max-width: 768px) {
     padding: 0;
+    background-color: #141414;
   }
 `;
 
 const LinkBox = Styled.div`
-  height: 100%;
-  text-align: center;
-  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
+  padding-bottom: 0.5rem;
   a {
+    margin-left: 0.3rem;
     text-decoration: none;
     color: #e5dbff;
     font-size: 1.3rem;
+    
   }
   a:hover {
       color: #69db7c;
@@ -54,7 +62,9 @@ const LinkBox = Styled.div`
   }
 
   div {
-      color: black;
+      color: white;
+      font-size: 1.3rem;
+      margin-left: 0.3rem;
   }
 
   div:hover {
@@ -62,20 +72,12 @@ const LinkBox = Styled.div`
   }
 
   @media screen and (max-width: 768px) {
-    margin-left: 0;
+    justify-content: center;
     width: 100%;
+    margin: 0 auto;
     
     a {
       display: block;
-      padding: 0.5rem 0;
-    }
-
-    :first-child {
-      margin-left: 0;
-    }
-
-    div:last-child {
-      margin-right: 0;
       padding: 0.5rem 0;
     }
   }
@@ -106,6 +108,13 @@ const LogoSpace = Styled.div`
   width: 100%;
   height: 50px;
   margin: 0 auto;
+  a {
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+  }
   span {
     font-size: 1.5rem;
     font-weight: bold;

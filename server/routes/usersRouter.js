@@ -47,8 +47,8 @@ router.post("/register", (req, res) => {
 
 router.post("/get/name", (req, res) => {
   User.findOne({ _id: req.body._id }, (err, userInfo) => {
-    if (err) res.json(findOneError(USER_MODEL, err));
-    if (!userInfo) res.json(notFoundError(USER_MODEL, req.body._id));
+    if (err) return res.json(findOneError(USER_MODEL, err));
+    if (!userInfo) return res.json(notFoundError(USER_MODEL, req.body._id));
     return res.status(200).json({ success: true, userName: userInfo.name });
   });
 });

@@ -5,6 +5,11 @@ import { SiNotion } from "react-icons/si";
 import { FaGithubSquare, FaDev } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 
+const logoStyle = {
+  color: "#fa541c",
+  fontSize: "24px",
+};
+
 function Footer() {
   return (
     <FooterContainer>
@@ -12,11 +17,11 @@ function Footer() {
         <FooterInfo>
           <h3>developer Info</h3>
           <div>
-            <FaDev style={{ color: "#bfbfbf", fontSize: "24.8px" }} />
+            <FaDev style={logoStyle} />
             <span>Carrot</span>
           </div>
           <div>
-            <HiOutlineMail style={{ color: "#bfbfbf", fontSize: "24.8px" }} />
+            <HiOutlineMail style={logoStyle} />
             <span>stylenbs@gmail.com</span>
           </div>
           <div>
@@ -25,9 +30,7 @@ function Footer() {
               target='_blank'
               rel='noreferrer'
             >
-              <FaGithubSquare
-                style={{ color: "#bfbfbf", fontSize: "24.8px" }}
-              />
+              <FaGithubSquare style={logoStyle} />
               <span>GitHub</span>
             </a>
           </div>
@@ -37,7 +40,7 @@ function Footer() {
               target='_blank'
               rel='noreferrer'
             >
-              <SiNotion style={{ color: "#bfbfbf", fontSize: "24.8px" }} />
+              <SiNotion style={logoStyle} />
               <span>notion</span>
             </a>
           </div>

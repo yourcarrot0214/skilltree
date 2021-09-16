@@ -52,14 +52,13 @@ const LinkBox = Styled.div`
   flex-direction: row;
   align-items: center;
   width: 100%;
-  padding-top: 0.5rem;
-  padding-left: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem;
   border-radius: 8px;
   :hover {
     background-color: #1f1f1f; 
   }
   a {
+    width: 100%;
     margin-left: 0.5rem;
     text-decoration: none;
     color: #e5dbff;
@@ -75,6 +74,8 @@ const LinkBox = Styled.div`
       color: white;
       font-size: 1rem;
       margin-left: 0.3rem;
+      width: 100%;
+      cursor: pointer;
   }
 
   div:hover {
@@ -97,7 +98,6 @@ const MenuWrapper = Styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding-left: 0.5rem;
   h4 {
     color: #bfbfbf;
     margin: 0;

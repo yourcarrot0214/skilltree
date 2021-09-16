@@ -7,7 +7,7 @@ const ProjectMainContainer = Styled.div`
   flex: 1;
   h2 {
       text-align: center;
-      color: #212529;
+      color: #bfbfbf;
   }
 
   @media screen and (max-width: 500px) {

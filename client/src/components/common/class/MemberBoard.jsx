@@ -8,6 +8,15 @@ import {
   removeStudyMember,
 } from "../../../_actions/user_action.js";
 
+const buttonStyle = {
+  color: "#f0f0f0",
+  backgroundColor: "#f03e3e",
+  border: "none",
+  fontSize: "1rem",
+  padding: "0.4rem",
+  borderRadius: "6px",
+};
+
 const MemberBoard = ({ classId, userId, location, onModalPopup }) => {
   const dispatch = useDispatch();
   const leaveClass = () => {
@@ -33,8 +42,10 @@ const MemberBoard = ({ classId, userId, location, onModalPopup }) => {
   };
   return (
     <>
-      <h3>MemberBoard</h3>
-      <button onClick={leaveClass}>탈퇴하기</button>
+      <h3 style={{ color: "#f0f0f0" }}>MemberBoard</h3>
+      <button style={buttonStyle} onClick={leaveClass}>
+        탈퇴하기
+      </button>
     </>
   );
 };

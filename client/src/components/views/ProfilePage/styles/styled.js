@@ -16,9 +16,11 @@ const UserProfileCardStyled = Styled.div`
   padding-right: 2rem;
   padding-left: 2rem;
   padding-bottom: 2rem;
-  background-color: #dee2e6;
   margin: 0 auto;
-  border-radius: 6px;
+
+  h2 {
+    color: #f5f5f5;
+  }
 
   @media screen and (max-width: 450px) {
     padding: 0.5rem;
@@ -26,7 +28,7 @@ const UserProfileCardStyled = Styled.div`
 `;
 
 const ContentsContainer = Styled.div`
-  background-color: #adb5bd;
+  background-color: #141414;
   border-radius: 6px;
   padding: 6px 6px;
   margin-bottom: 2rem;
@@ -68,11 +70,12 @@ const EmailStyled = Styled.div`
     font-weight: bold;
     font-size: 12px;
     margin-bottom: 4px;
-    color: #343a40;
+    color: #bfbfbf;
   }
   p {
     margin-top: 0;
     margin-bottom: 6px;
+    color: #f5f5f5;
   }
 
   @media screen and (max-width: 450px) {
@@ -89,9 +92,11 @@ const LearnStyled = Styled.div`
     font-weight: bold;
     font-size: 1rem;
     margin-bottom: 4px;
+    color: #8c8c8c;
   }
   p {
     margin-bottom: 0;
+    color: #f0f0f0;
   }
 `;
 
@@ -160,7 +165,7 @@ const ModalSection = Styled.section`
     max-height: 700px;
     margin: 0 auto;
     border-radius: 6px;
-    background-color: #dee2e6;
+    background-color: #141414;
     animation: modal-show .3s;
     overflow: auto;
 `;
@@ -176,7 +181,7 @@ const ModalHeader = Styled.header`
   flex-direction: row;
   justify-content: space-between;
 
-  color: #black;
+  color: #f5f5f5;
 `;
 
 const ModalMain = Styled.main`
@@ -188,7 +193,10 @@ const ModalMain = Styled.main`
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 1rem;
-  color: #black;
+
+  label {
+    color: #f0f0f0;
+  }
 `;
 
 const PasswordStyled = Styled.div`
@@ -201,11 +209,12 @@ const PasswordStyled = Styled.div`
     font-weight: bold;
     font-size: 12px;
     margin-bottom: 4px;
-    color: #343a40;
+    color: #bfbfbf;
   }
   p {
     margin-top: 0;
     margin-bottom: 6px;
+    color: #f5f5f5;
   }
 
   @media screen and (max-width: 450px) {
@@ -222,9 +231,11 @@ const TechStyled = Styled.div`
     font-weight: bold;
     font-size: 1rem;
     margin-bottom: 4px;
+    color: #8c8c8c;
   }
   p {
     margin-bottom: 0;
+    color: #f0f0f0;
   }
 `;
 
@@ -238,11 +249,12 @@ const UserNameStyled = Styled.div`
     font-weight: bold;
     font-size: 12px;
     margin-bottom: 4px;
-    color: #343a40;
+    color: #bfbfbf;
   }
   p {
     margin-top: 0;
     margin-bottom: 6px;
+    color: #f5f5f5;
   }
 
   @media screen and (max-width: 450px) {
@@ -256,11 +268,12 @@ const ClassContainer = Styled.div`
 
 const Menu = Styled.h3`
   padding-left: 1rem;
+  color: #8c8c8c;
 `;
 
 const PrintMessageStyled = Styled.div`
   width: 100%;
-  color: #495057;
+  color: #bfbfbf;
   font-size: 1rem;
   text-align: center;
 `;

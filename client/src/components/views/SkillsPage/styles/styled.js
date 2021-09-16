@@ -24,7 +24,7 @@ const InfoStyled = Styled.div`
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   margin: 0 auto;
-  color: #343a40;
+  color: #bfbfbf;
   text-align: center;
 `;
 
@@ -36,6 +36,7 @@ const SkillsMainContainer = Styled.div`
 
   h2 {
     text-align: center;
+    color: #fafafa;
   }
 `;
 

@@ -10,7 +10,7 @@ const Tag = ({ skillInfo, onClickFunction, selected }) => {
         onClick={onClickFunction}
         selected={selected}
       >
-        {skillInfo.name}
+        {skillInfo.name.toLowerCase()}
       </TagStyled>
     </>
   );

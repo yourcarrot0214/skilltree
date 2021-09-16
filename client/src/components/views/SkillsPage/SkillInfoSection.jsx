@@ -21,29 +21,3 @@ const SkillInfoSection = ({ relatedUsers, relatedProject, relatedStudy }) => {
 };
 
 export default SkillInfoSection;
-
-/*
-  정보 출력 업데이트.
-  1. technitianUsers
-    - 유저 목록 출력
-    - 유저 인포 출력(onClickEvent)
-  2. learningUsers
-    - 유저 목록 출력
-    - 유저 인포 출력(onClickEvent)
-  3. project
-    - 운영중인 프로젝트 목록 출력
-    - 진행중인 프로젝트 목록 출력
-  4. study
-    - 운영중인 스터디 목록 출력
-    - 진행중인 스터디 목록 출력
-
-  <필요한 작업들>
-  1. 프리젠테이셔널 컴포넌트
-    - 유저 정보를 출력하는 컴포넌트
-      : name, tech, learn
-    - 프로젝트 / 스터디 정보를 출력하는 컴포넌트
-      : title, 모집인원, 
-      : ClassCard에서 구조 변경하는 방향으로 설계
-      : 한 줄 텍스트 타입으로
-      : onClick => Modal Popup <ClassInfo />
-*/

@@ -9,6 +9,7 @@ const TagStyled = Styled.button`
   border-radius: 4px;
   background-color: #343a40;
   color: #f8f9fa;
+  font-size: 1rem;
 
   ${(props) =>
     props.selected &&
@@ -81,10 +82,10 @@ const SearchBarInput = Styled.input`
   border-top: none;
   border-left: none;
   border-right: none;
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid #91d5ff;
   background-color : rgba(255, 255, 255, 0);
   ::placeholder {
-    color: #495057;
+    color: #d9d9d9;
   }
   :focus {
     outline: none;
@@ -98,11 +99,12 @@ const SearchBarInput = Styled.input`
 const SearchButton = Styled.button`
   width: 100px;
   height: 35px;
+  color: #91d5ff;
   font-weight: bold;
   border-top: none;
   border-left: none;
   border-right: none;
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid #91d5ff;
   background-color : rgba(255, 255, 255, 0);
   :hover {
     border-bottom: 3px solid #2f9e44;
@@ -134,15 +136,13 @@ const ClassCardThumbNail = Styled.div`
   margin-left: 1rem;
   margin-right: 1rem;
   margin-bottom: 1rem;
-  background: #dee2e6;
+  background: #141414;
   display: flex;
   flex-direction: row;
-  border: 1px solid #ced4da;
+  border: 1px solid #434343;
 
   :hover {
-    background: #e9ecef;
     cursor: pointer;
-    transition: 0.3s;
   }
 
   @media screen and (max-width: 768px) {
@@ -196,7 +196,7 @@ const ClassTableMenu = Styled.div`
   font-weight: bold;
   padding: 1rem 0;
   width: 100px;
-  color: #343a40;
+  color: #fafafa;
 
   @media screen and (max-width: 768px) {
     font-size: 1rem;
@@ -208,7 +208,7 @@ const ClassTableMenu = Styled.div`
 const ClassTableValue = Styled.div`
   text-align: center;
   height: 40px;
-  color: #343a40;
+  color: #fafafa;
 
   @media screen and (max-width: 768px) {
     width: 60px;
@@ -217,7 +217,7 @@ const ClassTableValue = Styled.div`
 `;
 
 const ClassTitle = Styled.div`
-  color: #343a40;
+  color: #fafafa;
   font-size: 1.3rem;
   font-weight: bold;
   margin-left: 6px;
@@ -262,13 +262,17 @@ const ClassInfoStyled = Styled.div`
   span {
     font-weight: bold;
     font-size: 12px;
-    margin-bottom: 4px;
-    color: #343a40;
+    color: #d9d9d9;
+    
   }
   p {
     margin-top: 0;
-    margin-bottom: 6px;
-    color: #212529;
+    margin-bottom: 12px;
+    color: #f0f0f0;
+  }
+
+  div {
+    margin-bottom: 12px;
   }
 `;
 
@@ -409,6 +413,7 @@ const UserTagContainer = Styled.div`
   span {
     font-size: 1rem;
     font-weight: bold;
+    color: #d9d9d9;
   }
 
   span:hover {
@@ -428,9 +433,10 @@ const StyledButton = Styled.button`
   margin-left: 6px;
   border: none;
   border-radius: 4px;
-  background-color: #f03e3e;
+  background-color: #d4380d;
   font-size: 1rem;
   padding: 4px 6px;
+  color: #d9d9d9;
   
   ${(props) =>
     props.admission &&
@@ -470,6 +476,7 @@ const UserInfoStyled = Styled.div`
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
+    color: #f0f0f0;
   }
 
   .user-info-menu {
@@ -477,6 +484,7 @@ const UserInfoStyled = Styled.div`
     font-weight: bold;
     margin-top: 1rem;
     padding-legt: 6px;
+    color: #f0f0f0;
   }
 `;
 

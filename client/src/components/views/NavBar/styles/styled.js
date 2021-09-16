@@ -6,7 +6,7 @@ const NavBarContainer = Styled.div`
   left: 0;
   width: 200px;
   height: 100%;
-  background-color: #141414;
+  background-color: #000000;
   
   @media screen and (max-width: 768px) {
     flex-direction: column;
@@ -52,11 +52,16 @@ const LinkBox = Styled.div`
   flex-direction: row;
   align-items: center;
   width: 100%;
-  padding: 0.5rem;
-  border-radius: 8px;
+  padding: 0.3rem 0;
+  border-radius: 6px;
   :hover {
     background-color: #1f1f1f; 
   }
+
+  svg {
+    margin-left: 1rem;
+  }
+
   a {
     width: 100%;
     margin-left: 0.5rem;
@@ -101,7 +106,8 @@ const MenuWrapper = Styled.div`
   h4 {
     color: #bfbfbf;
     margin: 0;
-    padding-left: 0.5rem;
+    padding-left: 1.5rem;
+    padding-bottom: 0.5rem;
   }
 
   @media screen and (max-width: 768px) {

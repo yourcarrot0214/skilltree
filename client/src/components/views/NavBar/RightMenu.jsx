@@ -6,7 +6,7 @@ import { logoutUser } from "../../../_actions/user_action.js";
 import { RightMenuContainer, LinkBox } from "./styles/styled.js";
 import useUserData from "../../hooks/useUserData.js";
 import { FaAddressCard, FaUserCog } from "react-icons/fa";
-import { FcLock } from "react-icons/fc";
+import { FcLock, FcInvite, FcSettings } from "react-icons/fc";
 import { BiLogInCircle, BiLogOutCircle } from "react-icons/bi";
 
 const RightMenu = (props) => {
@@ -26,7 +26,7 @@ const RightMenu = (props) => {
       return (
         <>
           <LinkBox>
-            <FaAddressCard style={{ color: "#1890ff", fontSize: "24px" }} />
+            <FcInvite style={{ color: "#1890ff", fontSize: "24px" }} />
             <Link to='/register' onClick={props.displayToggle}>
               Sign Up
             </Link>
@@ -44,7 +44,7 @@ const RightMenu = (props) => {
         return (
           <>
             <LinkBox>
-              <FaUserCog style={{ color: "#1890ff", fontSize: "24px" }} />
+              <FcSettings style={{ color: "#1890ff", fontSize: "24px" }} />
               <Link to='/profile' onClick={props.displayToggle}>
                 Profile
               </Link>
@@ -63,7 +63,7 @@ const RightMenu = (props) => {
         return (
           <>
             <LinkBox>
-              <FaUserCog style={{ color: "#1890ff", fontSize: "24px" }} />
+              <FcSettings style={{ color: "#1890ff", fontSize: "24px" }} />
               <Link to='/profile' onClick={props.displayToggle}>
                 Profile
               </Link>

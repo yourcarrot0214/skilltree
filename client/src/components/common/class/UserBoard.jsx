@@ -16,6 +16,24 @@ import {
   removeApplyStudy,
 } from "../../../_actions/user_action.js";
 
+const cancelButton = {
+  color: "#f0f0f0",
+  backgroundColor: "#f03e3e",
+  border: "none",
+  fontSize: "1rem",
+  padding: "0.4rem",
+  borderRadius: "6px",
+};
+
+const applyButton = {
+  color: "#f0f0f0",
+  backgroundColor: "#237804",
+  border: "none",
+  fontSize: "1rem",
+  padding: "0.4rem",
+  borderRadius: "6px",
+};
+
 const UserBoard = (props) => {
   const dispatch = useDispatch();
   const { isVolunteer, classId, userId, location } = props;
@@ -61,11 +79,15 @@ const UserBoard = (props) => {
 
   return (
     <>
-      <h3>User Board</h3>
+      <h3 style={{ color: "#f0f0f0" }}>User Board</h3>
       {volunteer ? (
-        <button onClick={applyToCancel}>참가신청취소</button>
+        <button style={cancelButton} onClick={applyToCancel}>
+          참가신청취소
+        </button>
       ) : (
-        <button onClick={applyToClass}>참가신청하기</button>
+        <button style={applyButton} onClick={applyToClass}>
+          참가신청하기
+        </button>
       )}
     </>
   );

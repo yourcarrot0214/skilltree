@@ -111,7 +111,7 @@ const LeaderBoard = ({
 
   return (
     <>
-      <h3>Leader Board</h3>
+      <h3 style={{ color: "#d9d9d9" }}>Leader Board</h3>
       <SetupBoard>
         <Link to={`/${location.toLowerCase()}/update/${classId}`}>
           업데이트
@@ -119,7 +119,7 @@ const LeaderBoard = ({
         <button onClick={deleteClass}>{`${location} 삭제하기`}</button>
       </SetupBoard>
 
-      <h3>지원자 관리</h3>
+      <h3 style={{ color: "#d9d9d9" }}>지원자 관리</h3>
       {volunteer.length !== 0 ? (
         volunteer.map((user) => (
           <UserListWrapper key={user}>
@@ -144,7 +144,7 @@ const LeaderBoard = ({
         <PrintMessage message='지원자가 없습니다.' />
       )}
 
-      <h3>멤버 관리</h3>
+      <h3 style={{ color: "#d9d9d9" }}>멤버 관리</h3>
       {members.length !== 0 ? (
         members.map((user) => (
           <UserListWrapper key={user}>

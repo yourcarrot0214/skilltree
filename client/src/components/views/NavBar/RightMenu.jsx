@@ -5,7 +5,9 @@ import { useDispatch } from "react-redux";
 import { logoutUser } from "../../../_actions/user_action.js";
 import { RightMenuContainer, LinkBox } from "./styles/styled.js";
 import useUserData from "../../hooks/useUserData.js";
-import "boxicons";
+import { FaAddressCard, FaUserCog } from "react-icons/fa";
+import { FcLock } from "react-icons/fc";
+import { BiLogInCircle, BiLogOutCircle } from "react-icons/bi";
 
 const RightMenu = (props) => {
   const dispatch = useDispatch();
@@ -24,18 +26,13 @@ const RightMenu = (props) => {
       return (
         <>
           <LinkBox>
-            <box-icon
-              type='solid'
-              name='id-card'
-              color='#1890ff'
-              size='sm'
-            ></box-icon>
+            <FaAddressCard style={{ color: "#1890ff", fontSize: "24px" }} />
             <Link to='/register' onClick={props.displayToggle}>
               Sign Up
             </Link>
           </LinkBox>
           <LinkBox>
-            <box-icon name='log-in-circle' color='#1890ff' size='sm'></box-icon>
+            <BiLogInCircle style={{ color: "#1890ff", fontSize: "24px" }} />
             <Link to='/login' onClick={props.displayToggle}>
               Log In
             </Link>
@@ -47,20 +44,17 @@ const RightMenu = (props) => {
         return (
           <>
             <LinkBox>
-              <box-icon
-                type='solid'
-                name='user-rectangle'
-                color='#1890ff'
-                size='sm'
-              ></box-icon>
+              <FaUserCog style={{ color: "#1890ff", fontSize: "24px" }} />
               <Link to='/profile' onClick={props.displayToggle}>
                 Profile
               </Link>
             </LinkBox>
             <LinkBox>
+              <BiLogOutCircle style={{ color: "#d4380d", fontSize: "24px" }} />
               <div onClick={onClickLogoutButton}>Log Out</div>
             </LinkBox>
             <LinkBox>
+              <FcLock style={{ fontSize: "24px" }} />
               <Link to='/admin'>Admin</Link>
             </LinkBox>
           </>
@@ -69,22 +63,13 @@ const RightMenu = (props) => {
         return (
           <>
             <LinkBox>
-              <box-icon
-                type='solid'
-                name='user-rectangle'
-                color='#1890ff'
-                size='sm'
-              ></box-icon>
+              <FaUserCog style={{ color: "#1890ff", fontSize: "24px" }} />
               <Link to='/profile' onClick={props.displayToggle}>
                 Profile
               </Link>
             </LinkBox>
             <LinkBox>
-              <box-icon
-                name='log-out-circle'
-                color='#ff4d4f'
-                size='sm'
-              ></box-icon>
+              <BiLogOutCircle style={{ color: "#d4380d", fontSize: "24px" }} />
               <div onClick={onClickLogoutButton}>Log Out</div>
             </LinkBox>
           </>

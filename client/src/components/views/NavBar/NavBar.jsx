@@ -4,7 +4,7 @@ import LeftMenu from "./LeftMenu.jsx";
 import RightMenu from "./RightMenu.jsx";
 import Footer from "../Footer/Footer";
 import { NavBarContainer, MenuWrapper, LogoSpace } from "./styles/styled.js";
-import "boxicons";
+import { GiTreeBranch } from "react-icons/gi";
 
 function NavBar() {
   const [display, setDisplay] = useState("none");
@@ -18,12 +18,13 @@ function NavBar() {
       <LogoSpace onClick={displayToggle}>
         <Link to='/'>
           <span>Skill Tree</span>
-          <box-icon name='tree' type='solid' color='#135200' size='md' />
-          <box-icon name='tree' type='solid' color='#73d13d' size='sm' />
+          <GiTreeBranch style={{ color: "#95de64", fontSize: "36px" }} />
         </Link>
       </LogoSpace>
       <MenuWrapper className='MenuWrapper' display={display}>
+        <h4>Skill Tree Menu</h4>
         <LeftMenu displayToggle={displayToggle} />
+        <h4>User Board</h4>
         <RightMenu displayToggle={displayToggle} />
       </MenuWrapper>
       <Footer />

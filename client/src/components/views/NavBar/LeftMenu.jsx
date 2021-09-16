@@ -2,25 +2,26 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link, withRouter } from "react-router-dom";
 import { LeftMenuContainer, LinkBox } from "./styles/styled.js";
-import "boxicons";
+import { BiCodeBlock, BiCustomize } from "react-icons/bi";
+import { RiPencilFill } from "react-icons/ri";
 
 const LeftMenu = ({ displayToggle }) => {
   return (
     <LeftMenuContainer>
       <LinkBox>
-        <box-icon name='code-block' type='solid' color='#73d13d' size='sm' />
+        <BiCodeBlock style={{ color: "#73d13d", fontSize: "24px" }} />
         <Link to='/skills' onClick={displayToggle}>
           Skills
         </Link>
       </LinkBox>
       <LinkBox>
-        <box-icon name='customize' type='solid' color='#73d13d' size='sm' />
+        <BiCustomize style={{ color: "#73d13d", fontSize: "24px" }} />
         <Link to='/project' onClick={displayToggle}>
           Project
         </Link>
       </LinkBox>
       <LinkBox>
-        <box-icon name='pencil' type='solid' color='#73d13d' size='sm' />
+        <RiPencilFill style={{ color: "#73d13d", fontSize: "24px" }} />
         <Link to='/study' onClick={displayToggle}>
           Study
         </Link>

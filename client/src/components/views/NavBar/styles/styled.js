@@ -19,8 +19,11 @@ const LeftMenuContainer = Styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 12px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-bottom: 12px;
   font-weight: bold;
+  margin-bottom: 1.5rem;
 
   @media screen and (max-width: 768px) {
     padding: 0;
@@ -32,8 +35,11 @@ const RightMenuContainer = Styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 12px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-bottom: 12px;
   font-weight: bold;
+  margin-bottom: 1.5rem;
 
   @media screen and (max-width: 768px) {
     padding: 0;
@@ -49,11 +55,15 @@ const LinkBox = Styled.div`
   padding-top: 0.5rem;
   padding-left: 0.5rem;
   padding-bottom: 0.5rem;
+  border-radius: 8px;
+  :hover {
+    background-color: #1f1f1f; 
+  }
   a {
-    margin-left: 0.3rem;
+    margin-left: 0.5rem;
     text-decoration: none;
     color: #e5dbff;
-    font-size: 1.3rem;
+    font-size: 1rem;
     
   }
   a:hover {
@@ -63,7 +73,7 @@ const LinkBox = Styled.div`
 
   div {
       color: white;
-      font-size: 1.3rem;
+      font-size: 1rem;
       margin-left: 0.3rem;
   }
 
@@ -87,6 +97,11 @@ const MenuWrapper = Styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  h4 {
+    color: #bfbfbf;
+    margin: 0;
+    padding-left: 0.5rem;
+  }
 
   @media screen and (max-width: 768px) {
     display: ${(props) => props.display};
@@ -107,7 +122,7 @@ const LogoSpace = Styled.div`
   justify-content: center;
   width: 100%;
   height: 50px;
-  margin: 0 auto;
+  margin: 1rem auto;
   a {
     text-decoration: none;
     display: flex;
@@ -119,7 +134,7 @@ const LogoSpace = Styled.div`
   span {
     font-size: 1.5rem;
     font-weight: bold;
-    color: white;
+    color: #faad14;
   }
   box-icon:last-child {
     margin-left: -2.3rem;

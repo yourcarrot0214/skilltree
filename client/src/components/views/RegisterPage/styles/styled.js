@@ -21,7 +21,6 @@ const SubmitWrapper = styled.div`
   align-items: center;
   justify-content: space-around;
   border-radius: 1rem;
-  box-shadow: 20px 20px 60px #bdc0c4, -20px -20px 60px #ffffff;
 
   @media screen and (max-width: 768px) {
     max-width: 700px;

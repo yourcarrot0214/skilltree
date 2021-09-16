@@ -20,7 +20,7 @@ function NavBar() {
         <GiTreeBranch style={{ color: "#95de64", fontSize: "36px" }} />
       </LogoSpace>
       <MenuWrapper className='MenuWrapper' display={display}>
-        <h4>Skill Tree Menu</h4>
+        <h4>Menu Board</h4>
         <LeftMenu displayToggle={displayToggle} />
         <h4>User Board</h4>
         <RightMenu displayToggle={displayToggle} />

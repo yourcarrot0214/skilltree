@@ -2,6 +2,8 @@ import React from "react";
 import { FooterContainer, FooterWrapper, FooterInfo } from "./styles/styled.js";
 
 import { SiNotion } from "react-icons/si";
+import { FaGithubSquare, FaDev } from "react-icons/fa";
+import { HiOutlineMail } from "react-icons/hi";
 
 function Footer() {
   return (
@@ -9,16 +11,11 @@ function Footer() {
       <FooterWrapper>
         <FooterInfo>
           <div>
-            <box-icon
-              type='logo'
-              name='dev-to'
-              color='#f5f5f5'
-              size='sm'
-            ></box-icon>
+            <FaDev style={{ color: "#f5f5f5", fontSize: "24.8px" }} />
             <span>Carrot</span>
           </div>
           <div>
-            <box-icon name='mail-send' color='#f5f5f5' size='sm'></box-icon>
+            <HiOutlineMail style={{ color: "#f5f5f5", fontSize: "24.8px" }} />
             <span>stylenbs@gmail.com</span>
           </div>
           <div>
@@ -27,12 +24,9 @@ function Footer() {
               target='_blank'
               rel='noreferrer'
             >
-              <box-icon
-                type='logo'
-                name='github'
-                size='sm'
-                color='white'
-              ></box-icon>
+              <FaGithubSquare
+                style={{ color: "#f5f5f5", fontSize: "24.8px" }}
+              />
               <span>GitHub</span>
             </a>
           </div>

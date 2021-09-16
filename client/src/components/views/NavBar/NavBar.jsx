@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import LeftMenu from "./LeftMenu.jsx";
 import RightMenu from "./RightMenu.jsx";
 import Footer from "../Footer/Footer";
@@ -16,10 +16,8 @@ function NavBar() {
   return (
     <NavBarContainer className='NavBarContainer'>
       <LogoSpace onClick={displayToggle}>
-        <Link to='/'>
-          <span>Skill Tree</span>
-          <GiTreeBranch style={{ color: "#95de64", fontSize: "36px" }} />
-        </Link>
+        <span>Skill Tree</span>
+        <GiTreeBranch style={{ color: "#95de64", fontSize: "36px" }} />
       </LogoSpace>
       <MenuWrapper className='MenuWrapper' display={display}>
         <h4>Skill Tree Menu</h4>

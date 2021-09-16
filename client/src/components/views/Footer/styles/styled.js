@@ -33,21 +33,28 @@ const FooterInfo = styled.div`
   flex-direction: column;
   font-size: 0.9rem;
 
+  h3 {
+    margin: 0;
+    padding-left: 1rem;
+    padding-bottom: 0.5rem;
+    color: #bfbfbf;
+  }
+
   div {
-    color: #f5f5f5;
     margin-left: 1rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 0.2rem 0;
+    color: #bfbfbf;
   }
 
   a {
     text-decoration: none;
-    color: #f5f5f5;
     display: flex;
     flex-direction: row;
     align-items: center;
+    color: #bfbfbf;
   }
 
   span {

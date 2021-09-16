@@ -10,12 +10,13 @@ function Footer() {
     <FooterContainer>
       <FooterWrapper>
         <FooterInfo>
+          <h3>developer Info</h3>
           <div>
-            <FaDev style={{ color: "#f5f5f5", fontSize: "24.8px" }} />
+            <FaDev style={{ color: "#bfbfbf", fontSize: "24.8px" }} />
             <span>Carrot</span>
           </div>
           <div>
-            <HiOutlineMail style={{ color: "#f5f5f5", fontSize: "24.8px" }} />
+            <HiOutlineMail style={{ color: "#bfbfbf", fontSize: "24.8px" }} />
             <span>stylenbs@gmail.com</span>
           </div>
           <div>
@@ -25,7 +26,7 @@ function Footer() {
               rel='noreferrer'
             >
               <FaGithubSquare
-                style={{ color: "#f5f5f5", fontSize: "24.8px" }}
+                style={{ color: "#bfbfbf", fontSize: "24.8px" }}
               />
               <span>GitHub</span>
             </a>
@@ -36,7 +37,7 @@ function Footer() {
               target='_blank'
               rel='noreferrer'
             >
-              <SiNotion style={{ color: "#f5f5f5", fontSize: "24.8px" }} />
+              <SiNotion style={{ color: "#bfbfbf", fontSize: "24.8px" }} />
               <span>notion</span>
             </a>
           </div>

@@ -4,10 +4,17 @@ import { Link, withRouter } from "react-router-dom";
 import { LeftMenuContainer, LinkBox } from "./styles/styled.js";
 import { BiCodeBlock, BiCustomize } from "react-icons/bi";
 import { RiPencilFill } from "react-icons/ri";
+import { FcHome } from "react-icons/fc";
 
 const LeftMenu = ({ displayToggle }) => {
   return (
     <LeftMenuContainer>
+      <LinkBox>
+        <FcHome style={{ fontSize: "24px" }} />
+        <Link to='/' onClick={displayToggle}>
+          Home
+        </Link>
+      </LinkBox>
       <LinkBox>
         <BiCodeBlock style={{ color: "#73d13d", fontSize: "24px" }} />
         <Link to='/skills' onClick={displayToggle}>

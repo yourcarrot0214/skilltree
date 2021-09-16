@@ -97,6 +97,7 @@ const MenuWrapper = Styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  padding-left: 0.5rem;
   h4 {
     color: #bfbfbf;
     margin: 0;
@@ -111,7 +112,11 @@ const MenuWrapper = Styled.div`
     top: 50px;
     left: 0;
     z-index: 99;
-    background-color: #e9ecef
+    background-color: #141414;
+
+    h4 {
+      display: none;
+    }
   }
 `;
 
@@ -138,6 +143,10 @@ const LogoSpace = Styled.div`
   }
   box-icon:last-child {
     margin-left: -2.3rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    margin: 0 auto;
   }
 `;
 

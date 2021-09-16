@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import ReactHelmet from "./ReactHelmet";
 import { useDispatch } from "react-redux";
 import { getSkillsDB } from "./_actions/skill_action.js";
 import { getProjectList } from "./_actions/project_action.js";
@@ -29,6 +30,7 @@ function App() {
 
   return (
     <>
+      <ReactHelmet />
       <Router>
         <NavBar />
         <div className='main-section'>

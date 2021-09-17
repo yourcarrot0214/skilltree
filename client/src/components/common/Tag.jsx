@@ -8,7 +8,7 @@ const Tag = ({ skillInfo, onClickFunction, selected }) => {
       <TagStyled
         id={skillInfo._id}
         onClick={onClickFunction}
-        selected={selected}
+        selected={skillInfo.selected}
       >
         {skillInfo.name.toLowerCase()}
       </TagStyled>

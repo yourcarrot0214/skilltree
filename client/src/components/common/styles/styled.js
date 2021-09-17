@@ -83,6 +83,7 @@ const SearchBarInput = Styled.input`
   border-left: none;
   border-right: none;
   border-bottom: 3px solid #91d5ff;
+  color: #d9d9d9;
   background-color : rgba(255, 255, 255, 0);
   ::placeholder {
     color: #d9d9d9;

@@ -34,6 +34,7 @@ const SkillsMain = () => {
   const onClickFunction = (e) => {
     dispatch(chooseOneSelected(e.target.id));
     setSkillId((prev) => (e.target.id === prev ? "" : e.target.id));
+    setSkillName("");
   };
 
   const onChangeValue = (event) => {
@@ -59,25 +60,13 @@ const SkillsMain = () => {
         onSkillSearch={onSkillSearch}
         skillName={skillName}
       />
-      {/* Test */}
-      {skillSearchList.length !== 0 &&
-      skillSearchList.length !== skillsState.length ? (
+      {/* default */}
+      {
         <TagContainer
           skills={skillSearchList}
           onClickFunction={onClickFunction}
         />
-      ) : null}
-      {/* 검색 결과 출력 */}
-      <TagContainer
-        selected
-        skills={selectedSkills}
-        onClickFunction={onClickFunction}
-      />
-      {/* 스킬 목록 출력 */}
-      <TagContainer
-        skills={unSelectedSkills}
-        onClickFunction={onClickFunction}
-      />
+      }
       <SkillInfoSection
         relatedUsers={relatedUsers}
         relatedProject={relatedProject}

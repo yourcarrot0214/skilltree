@@ -9,9 +9,9 @@ import useUserData from "../../hooks/useUserData.js";
 import { ProjectMainContainer } from "./styles/styled.js";
 
 import TagContainer from "../../common/TagContainer";
-import Tag from "../../common/Tag";
 import SearchBar from "../../common/SearchBar";
 import useSearchResult from "../../hooks/useSearchResult";
+import useSearchList from "../../hooks/useSearchList";
 
 const ProjectMain = () => {
   const dispatch = useDispatch();
@@ -20,10 +20,10 @@ const ProjectMain = () => {
   const skills = useSkills();
   const projectState = useProject();
   const selectedSkills = skills.selectedSkills();
-  const unSelectedSkills = skills.unSelectedSkills();
   const skillIdList = selectedSkills.map((skill) => skill._id);
   const projectSearchResult = projectState.searchResult(skillIdList);
   const userData = useUserData();
+  const skillSearchList = useSearchList(skillName);
 
   const onSkillSearch = (e) => {
     e.preventDefault();
@@ -51,25 +51,11 @@ const ProjectMain = () => {
         onSkillSearch={onSkillSearch}
         skillName={skillName}
       />
-      {skillSearchResult ? (
-        <Tag
-          skillInfo={skillSearchResult}
-          key={skillSearchResult.key}
-          onClickFunction={onClickFunction}
-          selected={skillSearchResult.selected}
-        />
-      ) : null}
-      {/* 검색 결과 출력 */}
       <TagContainer
-        selected
-        skills={selectedSkills}
+        skills={skillSearchList}
         onClickFunction={onClickFunction}
       />
-      {/* 스킬 목록 출력 */}
-      <TagContainer
-        skills={unSelectedSkills}
-        onClickFunction={onClickFunction}
-      />
+
       <DetailPage
         location='Project'
         classList={projectSearchResult}

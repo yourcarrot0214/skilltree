@@ -28,9 +28,6 @@ const SkillsMain = () => {
   const relatedStudy = studyState.relatedStudy(skillId);
   const relatedUsers = skillsState.findSkillById(skillId);
 
-  const selectedSkills = skillsState.selectedSkills();
-  const unSelectedSkills = skillsState.unSelectedSkills();
-
   const onClickFunction = (e) => {
     dispatch(chooseOneSelected(e.target.id));
     setSkillId((prev) => (e.target.id === prev ? "" : e.target.id));
@@ -60,7 +57,6 @@ const SkillsMain = () => {
         onSkillSearch={onSkillSearch}
         skillName={skillName}
       />
-      {/* default */}
       {
         <TagContainer
           skills={skillSearchList}

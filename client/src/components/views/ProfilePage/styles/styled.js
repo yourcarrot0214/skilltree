@@ -197,6 +197,10 @@ const ModalMain = Styled.main`
   label {
     color: #f0f0f0;
   }
+
+  h3 {
+    color: #f0f0f0;
+  }
 `;
 
 const PasswordStyled = Styled.div`

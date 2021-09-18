@@ -1,13 +1,17 @@
 import Styled from "styled-components";
 
-const HeaderStyled = Styled.div`
+const SectionContainer = Styled.div`
+  /* layout guide */
+  border: 2px solid orangered;
+  border-radius: 6px;
+
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-bottom: 1rem;
-  height: 200px;
+  padding: 1rem;
+  height: 100%;
 `;
 
 const SkillNameStyled = Styled.div`
@@ -29,14 +33,13 @@ const InfoStyled = Styled.div`
 `;
 
 const SkillsMainContainer = Styled.div`
-  flex: 1;
   max-width: 1024px;
   margin: 0 auto;
   padding: 1rem 0;
 
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  align-itmes: flex-start;
+  align-itmes: flex-start; */
 `;
 
-export { HeaderStyled, SkillNameStyled, InfoStyled, SkillsMainContainer };
+export { SectionContainer, SkillNameStyled, InfoStyled, SkillsMainContainer };

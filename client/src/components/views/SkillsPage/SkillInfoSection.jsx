@@ -1,10 +1,14 @@
 import React from "react";
 import PrintMessage from "../ProfilePage/accont/PrintMessage.jsx";
-import { HeaderStyled, SkillNameStyled, InfoStyled } from "./styles/styled.js";
+import {
+  SectionContainer,
+  SkillNameStyled,
+  InfoStyled,
+} from "./styles/styled.js";
 
 const SkillInfoSection = ({ relatedUsers, relatedProject, relatedStudy }) => {
   return (
-    <HeaderStyled>
+    <SectionContainer className='SkillsInfoSection'>
       {relatedUsers !== undefined ? (
         <>
           <SkillNameStyled>{`${relatedUsers.name}`}</SkillNameStyled>
@@ -16,7 +20,7 @@ const SkillInfoSection = ({ relatedUsers, relatedProject, relatedStudy }) => {
       ) : (
         <PrintMessage message='스킬을 선택하세요!' />
       )}
-    </HeaderStyled>
+    </SectionContainer>
   );
 };
 

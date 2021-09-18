@@ -157,6 +157,7 @@ const ModalHeaderButton = Styled.button`
     background-color: #212529;
     border-radius: 5px;
     font-size: 13px;
+    border: none;
 `;
 
 const ModalSection = Styled.section`

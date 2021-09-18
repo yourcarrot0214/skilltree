@@ -6,10 +6,11 @@ const TagStyled = Styled.button`
   margin-top: 6px;
   margin-left: 6px;
   border: none;
-  border-radius: 4px;
-  background-color: #343a40;
+  border-radius: 1px;
+  background-color: #1f1f1f;
   color: #f8f9fa;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  width: 95px;
 
   ${(props) =>
     props.selected &&
@@ -415,6 +416,7 @@ const UserTagContainer = Styled.div`
     font-size: 1rem;
     font-weight: bold;
     color: #d9d9d9;
+    padding-left: 0.3rem;
   }
 
   span:hover {

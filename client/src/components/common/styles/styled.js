@@ -2,7 +2,6 @@ import Styled, { css } from "styled-components";
 
 const TagStyled = Styled.button`
   height: 24px;
-  /* margin: 6px 6px; */
   margin-top: 6px;
   margin-left: 6px;
   border: none;
@@ -10,7 +9,6 @@ const TagStyled = Styled.button`
   background-color: #1f1f1f;
   color: #f8f9fa;
   font-size: 0.9rem;
-  width: 95px;
 
   ${(props) =>
     props.selected &&

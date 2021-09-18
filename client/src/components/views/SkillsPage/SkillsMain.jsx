@@ -51,7 +51,6 @@ const SkillsMain = () => {
 
   return (
     <SkillsMainContainer>
-      <h2>스킬 정보를 확인하세요</h2>
       <SearchBar
         onChangeValue={onChangeValue}
         onSkillSearch={onSkillSearch}

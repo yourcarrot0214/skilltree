@@ -1,7 +1,7 @@
 import React from "react";
 import { FooterContainer, FooterWrapper, FooterInfo } from "./styles/styled.js";
 
-import { SiNotion } from "react-icons/si";
+import { SiNotion, SiGmail } from "react-icons/si";
 import { FaGithubSquare, FaDev } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 
@@ -21,8 +21,8 @@ function Footer() {
             <span>Carrot</span>
           </div>
           <div>
-            <HiOutlineMail style={logoStyle} />
-            <span>stylenbs@gmail.com</span>
+            <SiGmail style={logoStyle} />
+            <span>stylenbs</span>
           </div>
           <div>
             <a

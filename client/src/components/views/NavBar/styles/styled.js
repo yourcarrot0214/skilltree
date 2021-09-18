@@ -4,8 +4,8 @@ const NavBarContainer = Styled.div`
   position: fixed;
   top:0;
   left: 0;
-  width: 17%;
-  min-width: 190px;
+  width: 15%;
+  min-width: 160px;
   height: 100%;
   background-color: #000000;
   

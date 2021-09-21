@@ -323,6 +323,7 @@ const SubmitContainer = Styled.div`
 
   h3 {
     text-align: center;
+    color: #fafafa;
   }
 
   .goBack {
@@ -347,7 +348,7 @@ const SubmitForm = Styled.form`
   
   label {
     font-size: 1rem;
-    color: #495057;
+    color: #fafafa;
   }
 
   input {
@@ -358,11 +359,12 @@ const SubmitForm = Styled.form`
     border-bottom: 3px solid black;
     background-color: rgba(255, 255, 255, 0);
     margin-bottom: 2rem;
+    color: #fafafa;
 
     :focus {
       outline: none;
       border-bottom: 3px solid #40c057;
-      background-color: rgba(255, 255, 255, 0.3);
+      background-color: #141414;
     }
   }
 
@@ -374,11 +376,12 @@ const SubmitForm = Styled.form`
     border-bottom: 3px solid black;
     background-color: rgba(255, 255, 255, 0);
     margin-bottom: 2rem;
+    color: #fafafa;
 
     :focus {
       outline: none;
       border-bottom: 3px solid #40c057;
-      background-color: rgba(255, 255, 255, 0.3);
+      background-color: #141414;
     }
   }
 

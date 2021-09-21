@@ -2,8 +2,8 @@ import Styled from "styled-components";
 
 const SectionContainer = Styled.div`
   /* layout guide */
-  border: 2px solid orangered;
-  border-radius: 6px;
+  /* border: 2px solid orangered; */
+  /* border-radius: 6px; */
 
   margin: 0 auto;
   display: flex;

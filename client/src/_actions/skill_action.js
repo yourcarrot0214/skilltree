@@ -48,7 +48,7 @@ export function selectedReset() {
 
 export async function addTechnitian(requestBody) {
   const request = await axios
-    .post("/api/skills/add/technitianUsers", requestBody)
+    .patch("/api/skills/add/technitianUsers", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -59,7 +59,7 @@ export async function addTechnitian(requestBody) {
 
 export async function addLearningUser(requestBody) {
   const request = await axios
-    .post("/api/skills/add/learningUsers", requestBody)
+    .patch("/api/skills/add/learningUsers", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -70,7 +70,7 @@ export async function addLearningUser(requestBody) {
 
 export async function deleteTechnitian(requestBody) {
   const request = await axios
-    .post("/api/skills/delete/technitianUsers", requestBody)
+    .patch("/api/skills/delete/technitianUsers", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -81,7 +81,7 @@ export async function deleteTechnitian(requestBody) {
 
 export async function deleteLearningUser(requestBody) {
   const request = await axios
-    .post("/api/skills/delete/learningUsers", requestBody)
+    .patch("/api/skills/delete/learningUsers", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {

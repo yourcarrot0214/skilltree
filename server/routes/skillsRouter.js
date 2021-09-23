@@ -49,7 +49,7 @@ router.post("/search", (req, res) => {
   });
 });
 
-router.post("/add/technitianUsers", auth, (req, res) => {
+router.patch("/add/technitianUsers", auth, (req, res) => {
   Skills.findOne({ _id: req.body._id }, (err, skill) => {
     if (err) return res.json(findOneError(SKILLS_MODEL, err));
     if (!skill) return res.json(skillNotFound());
@@ -78,7 +78,7 @@ router.post("/add/technitianUsers", auth, (req, res) => {
   });
 });
 
-router.post("/delete/technitianUsers", auth, (req, res) => {
+router.patch("/delete/technitianUsers", auth, (req, res) => {
   const requestSkillId = req.body.id;
   const requestUserId = req.user._id;
 
@@ -104,7 +104,7 @@ router.post("/delete/technitianUsers", auth, (req, res) => {
   });
 });
 
-router.post("/add/learningUsers", auth, (req, res) => {
+router.patch("/add/learningUsers", auth, (req, res) => {
   Skills.findOne({ _id: req.body._id }, (err, skill) => {
     if (err) return res.json(findOneError(SKILLS_MODEL, err));
     if (!skill) return res.json(skillNotFound());
@@ -133,7 +133,7 @@ router.post("/add/learningUsers", auth, (req, res) => {
   });
 });
 
-router.post("/delete/learningUsers", auth, (req, res) => {
+router.patch("/delete/learningUsers", auth, (req, res) => {
   const requestSkillId = req.body.id;
   const requestUserId = req.user._id;
 

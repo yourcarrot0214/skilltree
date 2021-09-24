@@ -14,7 +14,7 @@ import {
 
 export async function getStudyList() {
   const request = await axios
-    .get("/api/study/get/list")
+    .get("/api/study/list")
     .then((response) => response.data.docs)
     .catch((err) => console.log(err));
   return {
@@ -36,7 +36,7 @@ export async function createStudy(requestBody) {
 
 export async function updateStudy(requestBody) {
   const request = await axios
-    .post("/api/study/update", requestBody)
+    .patch("/api/study/update", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -47,7 +47,7 @@ export async function updateStudy(requestBody) {
 
 export async function deleteStudy(requestBody) {
   const request = await axios
-    .post("/api/study/delete", requestBody)
+    .patch("/api/study/delete", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -58,7 +58,7 @@ export async function deleteStudy(requestBody) {
 
 export async function applyStudy(requestBody) {
   const request = await axios
-    .post("/api/study/apply", requestBody)
+    .patch("/api/study/apply", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -69,7 +69,7 @@ export async function applyStudy(requestBody) {
 
 export async function cancelStudyApply(requestBody) {
   const request = await axios
-    .post("/api/study/apply/cancel", requestBody)
+    .patch("/api/study/apply/cancel", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -80,7 +80,7 @@ export async function cancelStudyApply(requestBody) {
 
 export async function acceptStudyApply(requestBody) {
   const request = await axios
-    .post("/api/study/apply/accept", requestBody)
+    .patch("/api/study/apply/accept", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -91,7 +91,7 @@ export async function acceptStudyApply(requestBody) {
 
 export async function rejectStudyApply(requestBody) {
   const request = await axios
-    .post("/api/study/apply/reject", requestBody)
+    .patch("/api/study/apply/reject", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -102,7 +102,7 @@ export async function rejectStudyApply(requestBody) {
 
 export async function leaveToStudy(requestBody) {
   const request = await axios
-    .post("/api/study/member/leave", requestBody)
+    .patch("/api/study/member/leave", requestBody)
     .then((response) => {
       console.log(response.data);
       return response.data;
@@ -116,7 +116,7 @@ export async function leaveToStudy(requestBody) {
 
 export async function expulsionStudyMember(requestBody) {
   const request = await axios
-    .post("/api/study/member/expulsion", requestBody)
+    .patch("/api/study/member/expulsion", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {

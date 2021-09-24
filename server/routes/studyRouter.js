@@ -49,14 +49,14 @@ router.post("/create", leaderFindOne, (req, res) => {
   });
 });
 
-router.get("/get/list", (req, res) => {
+router.get("/list", (req, res) => {
   Study.find({}, (err, docs) => {
     if (err) return res.json(getStudyListError(err));
     return res.status(200).json(getStudyListSuccess(docs));
   });
 });
 
-router.post("/update", (req, res) => {
+router.patch("/update", (req, res) => {
   Study.findOneAndUpdate(
     { _id: req.body.id },
     {
@@ -75,7 +75,7 @@ router.post("/update", (req, res) => {
   );
 });
 
-router.post("/delete", userFindOne, (req, res) => {
+router.patch("/delete", userFindOne, (req, res) => {
   User.findOneAndUpdate(
     { _id: req.user._id },
     {
@@ -103,7 +103,7 @@ router.post("/delete", userFindOne, (req, res) => {
   });
 });
 
-router.post("/apply", studyFindOne, (req, res) => {
+router.patch("/apply", studyFindOne, (req, res) => {
   Study.findOneAndUpdate(
     { _id: req.body.classId },
     { volunteer: req.study.volunteer.concat(req.body.userId) },
@@ -118,7 +118,7 @@ router.post("/apply", studyFindOne, (req, res) => {
   );
 });
 
-router.post("/apply/cancel", studyFindOne, (req, res) => {
+router.patch("/apply/cancel", studyFindOne, (req, res) => {
   Study.findOneAndUpdate(
     { _id: req.body.classId },
     {
@@ -137,7 +137,7 @@ router.post("/apply/cancel", studyFindOne, (req, res) => {
   );
 });
 
-router.post("/apply/accept", studyFindOne, (req, res) => {
+router.patch("/apply/accept", studyFindOne, (req, res) => {
   Study.findOneAndUpdate(
     { _id: req.body.classId },
     {
@@ -157,7 +157,7 @@ router.post("/apply/accept", studyFindOne, (req, res) => {
   );
 });
 
-router.post("/apply/reject", studyFindOne, (req, res) => {
+router.patch("/apply/reject", studyFindOne, (req, res) => {
   Study.findOneAndUpdate(
     { _id: req.body.classId },
     {
@@ -176,7 +176,7 @@ router.post("/apply/reject", studyFindOne, (req, res) => {
   );
 });
 
-router.post("/member/leave", studyFindOne, (req, res) => {
+router.patch("/member/leave", studyFindOne, (req, res) => {
   Study.findOneAndUpdate(
     { _id: req.body.classId },
     {
@@ -193,7 +193,7 @@ router.post("/member/leave", studyFindOne, (req, res) => {
   );
 });
 
-router.post("/member/expulsion", studyFindOne, (req, res) => {
+router.patch("/member/expulsion", studyFindOne, (req, res) => {
   Study.findOneAndUpdate(
     { _id: req.body.classId },
     {

@@ -20,15 +20,23 @@ const AdminPage = () => {
   const onSkillUpload = (event) => {
     event.preventDefault();
 
+    if (SkillName === "") return;
+
     let requestBody = {
       name: SkillName,
       technitianUsers: [],
       learningUsers: [],
     };
 
-    axios
-      .post("/api/skills/upload", requestBody)
-      .then((response) => console.log(response.data.skillInfo));
+    const check = window.confirm("스킬을 등록하겠습니까?");
+
+    if (check) {
+      axios
+        .post("/api/skills/upload", requestBody)
+        .then((response) => console.log(response.data.skillInfo));
+    } else {
+      alert("스킬 등록을 취소합니다.");
+    }
 
     setSkillName("");
   };

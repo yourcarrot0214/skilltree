@@ -93,7 +93,7 @@ router.get("/logout", auth, (req, res) => {
   });
 });
 
-router.post("/update/name", auth, (req, res) => {
+router.patch("/update/name", auth, (req, res) => {
   User.findOneAndUpdate(
     { _id: req.user._id },
     { name: req.body.newName },
@@ -105,7 +105,7 @@ router.post("/update/name", auth, (req, res) => {
   );
 });
 
-router.post("/add/tech", auth, (req, res) => {
+router.patch("/tech/add", auth, (req, res) => {
   const requestSkills = req.body;
 
   User.findOneAndUpdate(
@@ -120,7 +120,7 @@ router.post("/add/tech", auth, (req, res) => {
   );
 });
 
-router.post("/delete/tech", auth, (req, res) => {
+router.patch("/tech/delete", auth, (req, res) => {
   const requestSkillId = req.body.id;
 
   User.findOneAndUpdate(
@@ -135,7 +135,7 @@ router.post("/delete/tech", auth, (req, res) => {
   );
 });
 
-router.post("/add/learn", auth, (req, res) => {
+router.patch("/learn/add", auth, (req, res) => {
   const requestSkills = req.body;
 
   User.findOneAndUpdate(
@@ -150,7 +150,7 @@ router.post("/add/learn", auth, (req, res) => {
   );
 });
 
-router.post("/delete/learn", auth, (req, res) => {
+router.patch("/learn/delete", auth, (req, res) => {
   const requestSkillId = req.body.id;
 
   User.findOneAndUpdate(
@@ -165,7 +165,7 @@ router.post("/delete/learn", auth, (req, res) => {
   );
 });
 
-router.post("/project/apply/save", userFindOne, (req, res) => {
+router.patch("/project/apply/save", userFindOne, (req, res) => {
   User.findOneAndUpdate(
     { _id: req.body.userId },
     {
@@ -185,7 +185,7 @@ router.post("/project/apply/save", userFindOne, (req, res) => {
   );
 });
 
-router.post("/study/apply/save", userFindOne, (req, res) => {
+router.patch("/study/apply/save", userFindOne, (req, res) => {
   User.findOneAndUpdate(
     { _id: req.body.userId },
     {
@@ -205,7 +205,7 @@ router.post("/study/apply/save", userFindOne, (req, res) => {
   );
 });
 
-router.post("/project/apply/remove", userFindOne, (req, res) => {
+router.patch("/project/apply/remove", userFindOne, (req, res) => {
   User.findOneAndUpdate(
     { _id: req.body.userId },
     {
@@ -227,7 +227,7 @@ router.post("/project/apply/remove", userFindOne, (req, res) => {
   );
 });
 
-router.post("/study/apply/remove", userFindOne, (req, res) => {
+router.patch("/study/apply/remove", userFindOne, (req, res) => {
   User.findOneAndUpdate(
     { _id: req.body.userId },
     {
@@ -249,7 +249,7 @@ router.post("/study/apply/remove", userFindOne, (req, res) => {
   );
 });
 
-router.post("/project/member/save", userFindOne, (req, res) => {
+router.patch("/project/member/save", userFindOne, (req, res) => {
   User.findOneAndUpdate(
     { _id: req.body.userId },
     {
@@ -272,7 +272,7 @@ router.post("/project/member/save", userFindOne, (req, res) => {
   );
 });
 
-router.post("/project/member/remove", userFindOne, (req, res) => {
+router.patch("/project/member/remove", userFindOne, (req, res) => {
   User.findOneAndUpdate(
     { _id: req.body.userId },
     {
@@ -294,7 +294,7 @@ router.post("/project/member/remove", userFindOne, (req, res) => {
   );
 });
 
-router.post("/study/member/save", userFindOne, (req, res) => {
+router.patch("/study/member/save", userFindOne, (req, res) => {
   User.findOneAndUpdate(
     { _id: req.body.userId },
     {
@@ -317,7 +317,7 @@ router.post("/study/member/save", userFindOne, (req, res) => {
   );
 });
 
-router.post("/study/member/remove", userFindOne, (req, res) => {
+router.patch("/study/member/remove", userFindOne, (req, res) => {
   User.findOneAndUpdate(
     { _id: req.body.userId },
     {
@@ -339,7 +339,7 @@ router.post("/study/member/remove", userFindOne, (req, res) => {
   );
 });
 
-router.post("/update/password", auth, (req, res) => {
+router.patch("/password/update", auth, (req, res) => {
   User.findOne({ _id: req.user._id }, (err, user) => {
     if (err) return res.json(findOneError(USER_MODEL, err));
     if (!user) return res.json(userNotFound());

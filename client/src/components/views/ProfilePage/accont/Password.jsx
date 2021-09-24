@@ -41,7 +41,7 @@ const Password = () => {
       newPassword: NewPassword,
     };
 
-    axios.post("/api/users/update/password", requestBody).then((response) => {
+    axios.patch("/api/users/password/update", requestBody).then((response) => {
       if (response.data.passwordUpdate) {
         setCurrentPassword("");
         setNewPassword("");

@@ -14,7 +14,7 @@ import {
 
 export async function getProjectList() {
   const request = await axios
-    .get("/api/project/get/list")
+    .get("/api/project/list")
     .then((response) => response.data.docs)
     .catch((err) => console.log(err));
   return {
@@ -36,7 +36,7 @@ export async function createProject(requestBody) {
 
 export async function updateProject(requestBody) {
   const request = await axios
-    .post("/api/project/update", requestBody)
+    .patch("/api/project/update", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -47,7 +47,7 @@ export async function updateProject(requestBody) {
 
 export async function deleteProject(requestBody) {
   const request = await axios
-    .post("/api/project/delete", requestBody)
+    .patch("/api/project/delete", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -58,7 +58,7 @@ export async function deleteProject(requestBody) {
 
 export async function applyProject(requestBody) {
   const request = await axios
-    .post("/api/project/apply", requestBody)
+    .patch("/api/project/apply", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -69,7 +69,7 @@ export async function applyProject(requestBody) {
 
 export async function cancelProjectApply(requestBody) {
   const request = await axios
-    .post("/api/project/apply/cancel", requestBody)
+    .patch("/api/project/apply/cancel", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -80,7 +80,7 @@ export async function cancelProjectApply(requestBody) {
 
 export async function acceptProjectApply(requestBody) {
   const request = await axios
-    .post("/api/project/apply/accept", requestBody)
+    .patch("/api/project/apply/accept", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -91,7 +91,7 @@ export async function acceptProjectApply(requestBody) {
 
 export async function rejectProjectApply(requestBody) {
   const request = await axios
-    .post("/api/project/apply/reject", requestBody)
+    .patch("/api/project/apply/reject", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -102,7 +102,7 @@ export async function rejectProjectApply(requestBody) {
 
 export async function leaveToProject(requestBody) {
   const request = await axios
-    .post("/api/project/member/leave", requestBody)
+    .patch("/api/project/member/leave", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -113,7 +113,7 @@ export async function leaveToProject(requestBody) {
 
 export async function expulsionProjectMember(requestBody) {
   const request = await axios
-    .post("/api/project/member/expulsion", requestBody)
+    .patch("/api/project/member/expulsion", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {

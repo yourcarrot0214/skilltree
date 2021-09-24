@@ -48,14 +48,14 @@ router.post("/create", leaderFindOne, (req, res) => {
   });
 });
 
-router.get("/get/list", (req, res) => {
+router.get("/list", (req, res) => {
   Project.find({}, (err, docs) => {
     if (err) return res.json(getProjectListError(err));
     return res.status(200).json(getProjectListSuccess(docs));
   });
 });
 
-router.post("/update", (req, res) => {
+router.patch("/update", (req, res) => {
   Project.findOneAndUpdate(
     { _id: req.body.id },
     {
@@ -75,7 +75,7 @@ router.post("/update", (req, res) => {
   );
 });
 
-router.post("/delete", userFindOne, (req, res) => {
+router.patch("/delete", userFindOne, (req, res) => {
   User.findOneAndUpdate(
     { _id: req.user._id },
     {
@@ -103,7 +103,7 @@ router.post("/delete", userFindOne, (req, res) => {
   });
 });
 
-router.post("/apply", projectFindOne, (req, res) => {
+router.patch("/apply", projectFindOne, (req, res) => {
   Project.findOneAndUpdate(
     { _id: req.body.classId },
     { volunteer: req.project.volunteer.concat(req.body.userId) },
@@ -118,7 +118,7 @@ router.post("/apply", projectFindOne, (req, res) => {
   );
 });
 
-router.post("/apply/cancel", projectFindOne, (req, res) => {
+router.patch("/apply/cancel", projectFindOne, (req, res) => {
   Project.findOneAndUpdate(
     { _id: req.body.classId },
     {
@@ -137,7 +137,7 @@ router.post("/apply/cancel", projectFindOne, (req, res) => {
   );
 });
 
-router.post("/apply/accept", projectFindOne, (req, res) => {
+router.patch("/apply/accept", projectFindOne, (req, res) => {
   Project.findOneAndUpdate(
     { _id: req.body.classId },
     {
@@ -157,7 +157,7 @@ router.post("/apply/accept", projectFindOne, (req, res) => {
   );
 });
 
-router.post("/apply/reject", projectFindOne, (req, res) => {
+router.patch("/apply/reject", projectFindOne, (req, res) => {
   Project.findOneAndUpdate(
     { _id: req.body.classId },
     {
@@ -176,7 +176,7 @@ router.post("/apply/reject", projectFindOne, (req, res) => {
   );
 });
 
-router.post("/member/leave", projectFindOne, (req, res) => {
+router.patch("/member/leave", projectFindOne, (req, res) => {
   Project.findOneAndUpdate(
     { _id: req.body.classId },
     {
@@ -195,7 +195,7 @@ router.post("/member/leave", projectFindOne, (req, res) => {
   );
 });
 
-router.post("/member/expulsion", projectFindOne, (req, res) => {
+router.patch("/member/expulsion", projectFindOne, (req, res) => {
   Project.findOneAndUpdate(
     { _id: req.body.classId },
     {

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 
-import SkillsList from "./SkillsList.jsx";
+import TagContainer from "../../common/TagContainer";
+import { AdminContainer } from "./styles/styled";
 
 const AdminPage = () => {
   useEffect(() => {
@@ -41,7 +42,7 @@ const AdminPage = () => {
     setSkillName("");
   };
   return (
-    <>
+    <AdminContainer>
       <h3>Admin Page</h3>
       <div>
         <form onSubmit={onSkillUpload}>
@@ -57,16 +58,9 @@ const AdminPage = () => {
       </div>
       <div>
         <h3>Skill 등록 현황</h3>
-        {SkillList.map((skill) => (
-          <SkillsList
-            key={skill._id}
-            name={skill.name}
-            technitianUsers={skill.technitianUsers.length}
-            learningUsers={skill.learningUsers.length}
-          />
-        ))}
+        <TagContainer skills={SkillList} />
       </div>
-    </>
+    </AdminContainer>
   );
 };
 

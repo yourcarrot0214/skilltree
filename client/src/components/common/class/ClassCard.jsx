@@ -50,7 +50,7 @@ const ClassCard = (props) => {
   const [leaderId] = useState(leader);
   const [userId] = useState(userData._id);
   const [ModalOpen, setModalOpen] = useState(false);
-  const [role, setRole] = useState(roleValidation(userData._id));
+  const [role] = useState(roleValidation(userData._id));
 
   const onModalPopup = () => {
     setModalOpen(!ModalOpen);

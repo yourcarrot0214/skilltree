@@ -3,7 +3,6 @@ import { FooterContainer, FooterWrapper, FooterInfo } from "./styles/styled.js";
 
 import { SiNotion, SiGmail } from "react-icons/si";
 import { FaGithubSquare, FaDev } from "react-icons/fa";
-import { HiOutlineMail } from "react-icons/hi";
 
 const logoStyle = {
   color: "#fa541c",

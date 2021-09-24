@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import axios from "axios";
 
 import TagContainer from "../../common/TagContainer";
+import SkillUploadForm from "./components/SkillUploadForm";
 import { AdminContainer } from "./styles/styled";
 
 const AdminPage = () => {
@@ -44,18 +45,11 @@ const AdminPage = () => {
   return (
     <AdminContainer>
       <h3>Admin Page</h3>
-      <div>
-        <form onSubmit={onSkillUpload}>
-          <label>Skill Name</label>
-          <input
-            type='text'
-            name='skill-name'
-            value={SkillName}
-            onChange={onChangeValue}
-          />
-          <button type='submit'>Skill Upload</button>
-        </form>
-      </div>
+      <SkillUploadForm
+        onSkillUpload={onSkillUpload}
+        onChangeValue={onChangeValue}
+        SkillName={SkillName}
+      />
       <div>
         <h3>Skill 등록 현황</h3>
         <TagContainer skills={SkillList} />

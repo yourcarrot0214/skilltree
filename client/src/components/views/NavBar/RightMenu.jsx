@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { logoutUser } from "../../../_actions/user_action.js";
 import { RightMenuContainer, LinkBox } from "./styles/styled.js";
 import useUserData from "../../hooks/useUserData.js";
-import { FaAddressCard, FaUserCog } from "react-icons/fa";
 import { FcLock, FcInvite, FcSettings } from "react-icons/fc";
 import { BiLogInCircle, BiLogOutCircle } from "react-icons/bi";
 

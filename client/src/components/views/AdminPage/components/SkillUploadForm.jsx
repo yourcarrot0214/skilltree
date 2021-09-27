@@ -14,6 +14,7 @@ export default function SkillUploadForm({
           name='skill-name'
           value={SkillName}
           onChange={onChangeValue}
+          placeholder='스킬명을 입력해주세요.'
         />
         <button type='submit'>Skill Upload</button>
       </FormContainer>
@@ -24,11 +25,13 @@ export default function SkillUploadForm({
 const FormContainer = styled.form`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-left: 1rem;
   padding-bottom: 1rem;
   align-items: flex-end;
 
   input {
+    margin-left: 6px;
     width: 170px;
     height: 30px;
     border-top: none;

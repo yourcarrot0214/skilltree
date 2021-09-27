@@ -44,7 +44,7 @@ const AdminPage = () => {
   };
   return (
     <AdminContainer>
-      <h3>Admin Page</h3>
+      <h3>신규 스킬 등록하기</h3>
       <SkillUploadForm
         onSkillUpload={onSkillUpload}
         onChangeValue={onChangeValue}

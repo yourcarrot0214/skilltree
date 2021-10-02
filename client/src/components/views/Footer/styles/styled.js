@@ -61,6 +61,10 @@ const FooterInfo = styled.div`
     margin-left: 0.5rem;
   }
 
+  span:hover {
+    color: #fa541c;
+  }
+
   @media screen and (max-width: 768px) {
     font-size: 0.7rem;
   }

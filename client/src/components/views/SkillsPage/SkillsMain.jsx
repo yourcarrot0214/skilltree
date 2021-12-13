@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { chooseOneSelected } from "../../../_actions/skill_action";
+import { chooseOneSelected, getSkillsDB } from "../../../_actions/skill_action";
 import { SkillsMainContainer } from "./styles/styled.js";
 
 import SkillInfoSection from "./SkillInfoSection.jsx";
@@ -48,6 +48,10 @@ const SkillsMain = () => {
     );
     setSkillName("");
   };
+
+  useEffect(() => {
+    dispatch(getSkillsDB());
+  }, [dispatch]);
 
   return (
     <SkillsMainContainer>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { selectedSkill } from "../../../_actions/skill_action";
 import { withRouter } from "react-router-dom";
@@ -12,6 +12,7 @@ import TagContainer from "../../common/TagContainer";
 import SearchBar from "../../common/SearchBar";
 import useSearchResult from "../../hooks/useSearchResult";
 import useSearchList from "../../hooks/useSearchList";
+import { getStudyList } from "../../../_actions/study_action";
 
 const StudyMain = () => {
   const dispatch = useDispatch();
@@ -43,6 +44,10 @@ const StudyMain = () => {
     setSkillName(e.currentTarget.value);
   };
 
+  useEffect(() => {
+    dispatch(getStudyList());
+  }, [dispatch]);
+
   return (
     <StudyMainContainer>
       <h2>스킬을 통해 스터디를 생성하거나 참가하세요!</h2>
@@ -56,7 +61,7 @@ const StudyMain = () => {
         onClickFunction={onClickFunction}
       />
       <DetailPage
-        location='Study'
+        location="Study"
         classList={studySearchResult}
         userData={userData}
       />

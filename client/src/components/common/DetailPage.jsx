@@ -35,13 +35,13 @@ const DetailPage = ({ classList, location, userData }) => {
   const linkPath = location === "Project" ? "/project/create" : "/study/create";
 
   return (
-    <DetailContainer className='DetailContainer'>
+    <DetailContainer className="DetailContainer">
       {userData.isAuth ? (
         <CreateClassButton>
           <Link to={linkPath}>{location} 생성하기</Link>
         </CreateClassButton>
       ) : null}
-      <ClassCardContainer className='ClassCardContainer'>
+      <ClassCardContainer className="ClassCardContainer">
         {classList.map((post) => {
           let userInteraction = interaction(post, userData._id);
 
@@ -72,7 +72,7 @@ const DetailPage = ({ classList, location, userData }) => {
       >
         <CreateClassForm
           location={location}
-          formStatus='create'
+          formStatus="create"
           submitAddFunction={onModalPopup}
         />
       </Modal>

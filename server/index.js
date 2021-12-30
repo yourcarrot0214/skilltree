@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 const usersRouter = require("./routes/usersRouter.js");
-app.use("/api/users", usersRouter);
+app.use("/api/user", usersRouter);
 
 const skillsRouter = require("./routes/skillsRouter.js");
 app.use("/api/skills", skillsRouter);

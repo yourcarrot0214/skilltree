@@ -40,21 +40,21 @@ function LoginPage(props) {
           <h2>Welcome to SKILL TREE</h2>
           <label>Email</label>
           <input
-            type='email'
-            name='email'
+            type="email"
+            name="email"
             value={Email}
             onChange={onChangeValue}
             required
           />
           <label>Password</label>
           <input
-            type='password'
-            name='password'
+            type="password"
+            name="password"
             value={Password}
             onChange={onChangeValue}
             required
           />
-          <button type='submit'>LOGIN</button>
+          <button type="submit">LOGIN</button>
         </LoginForm>
       </LoginWrapper>
     </LoginContainer>

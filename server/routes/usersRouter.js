@@ -37,7 +37,7 @@ const {
   findOneAndDeleteError,
 } = require("../function/errorResponse.js");
 
-router.post("/register", (req, res) => {
+router.post("/signup", (req, res) => {
   const user = new User(req.body);
   user.save((err, userInfo) => {
     if (err) return res.json(saveError(USER_MODEL, err));
@@ -93,7 +93,7 @@ router.get("/logout", auth, (req, res) => {
   });
 });
 
-router.patch("/update/name", auth, (req, res) => {
+router.patch("/username", auth, (req, res) => {
   User.findOneAndUpdate(
     { _id: req.user._id },
     { name: req.body.newName },

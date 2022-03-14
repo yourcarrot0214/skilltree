@@ -45,16 +45,16 @@ router.post("/signup", (req, res) => {
   });
 });
 
-router.post("/get/name", (req, res) => {
-  User.findOne({ _id: req.body._id }, (err, userInfo) => {
+router.get("/name/:id", (req, res) => {
+  User.findOne({ _id: req.params.id }, (err, userInfo) => {
     if (err) return res.json(findOneError(USER_MODEL, err));
     if (!userInfo) return res.json(notFoundError(USER_MODEL, req.body._id));
     return res.status(200).json({ success: true, userName: userInfo.name });
   });
 });
 
-router.post("/userInfo", (req, res) => {
-  User.findOne({ _id: req.body._id }, (err, userInfo) => {
+router.get("/info/:id", (req, res) => {
+  User.findOne({ _id: req.params.id }, (err, userInfo) => {
     if (err) return res.json(findOneError(USER_MODEL, err));
     if (!userInfo) return res.json(notFoundError(USER_MODEL, req.body._id));
     return res.status(200).json(userInfoSuccess(userInfo));
@@ -93,7 +93,7 @@ router.get("/logout", auth, (req, res) => {
   });
 });
 
-router.patch("/username", auth, (req, res) => {
+router.patch("/name", auth, (req, res) => {
   User.findOneAndUpdate(
     { _id: req.user._id },
     { name: req.body.newName },
@@ -105,7 +105,7 @@ router.patch("/username", auth, (req, res) => {
   );
 });
 
-router.patch("/tech/add", auth, (req, res) => {
+router.post("/tech", auth, (req, res) => {
   const requestSkills = req.body;
 
   User.findOneAndUpdate(
@@ -120,8 +120,8 @@ router.patch("/tech/add", auth, (req, res) => {
   );
 });
 
-router.patch("/tech/delete", auth, (req, res) => {
-  const requestSkillId = req.body.id;
+router.delete("/tech/:id", auth, (req, res) => {
+  const requestSkillId = req.params.id;
 
   User.findOneAndUpdate(
     { _id: req.user._id },
@@ -135,7 +135,7 @@ router.patch("/tech/delete", auth, (req, res) => {
   );
 });
 
-router.patch("/learn/add", auth, (req, res) => {
+router.post("/learn", auth, (req, res) => {
   const requestSkills = req.body;
 
   User.findOneAndUpdate(
@@ -150,8 +150,8 @@ router.patch("/learn/add", auth, (req, res) => {
   );
 });
 
-router.patch("/learn/delete", auth, (req, res) => {
-  const requestSkillId = req.body.id;
+router.delete("/learn/:id", auth, (req, res) => {
+  const requestSkillId = req.params.id;
 
   User.findOneAndUpdate(
     { _id: req.user._id },

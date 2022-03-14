@@ -10,7 +10,7 @@ import { deleteUserLearn } from "../../../../_actions/user_action.js";
 const Learn = ({ userData }) => {
   const dispatch = useDispatch();
   const [ModalOpen, setModalOpen] = useState(false);
-  const [SkillId, setSkillId] = useState("");
+  const [skillId, setSkillId] = useState("");
 
   const onClickFunction = (e) => {
     setSkillId(e.target.id);
@@ -19,8 +19,8 @@ const Learn = ({ userData }) => {
 
   const onDeleteSkill = (e) => {
     e.preventDefault();
-    dispatch(deleteLearningUser({ id: SkillId }));
-    dispatch(deleteUserLearn({ id: SkillId }));
+    dispatch(deleteLearningUser({ id: skillId }));
+    dispatch(deleteUserLearn(skillId));
     alert("해당 스킬이 Learn 목록에서 삭제되었습니다.");
     setModalOpen(!ModalOpen);
   };
@@ -35,7 +35,7 @@ const Learn = ({ userData }) => {
         <Modal
           openModal={ModalOpen}
           onClickFunction={onClickFunction}
-          header='Learn 스킬을 관리합니다.'
+          header="Learn 스킬을 관리합니다."
         ></Modal>
       </LearnStyled>
       <TagContainer
@@ -45,12 +45,12 @@ const Learn = ({ userData }) => {
       />
       <Modal
         onClickFunction={onClickFunction}
-        header='스킬수정하기'
+        header="스킬수정하기"
         openModal={ModalOpen}
       >
         <h3>다룰 수 있는 스킬에서 삭제할까요?</h3>
         <ButtonBox>
-          <Button type='submit' name='tech' onClick={onDeleteSkill}>
+          <Button type="submit" name="tech" onClick={onDeleteSkill}>
             삭제하기
           </Button>
         </ButtonBox>

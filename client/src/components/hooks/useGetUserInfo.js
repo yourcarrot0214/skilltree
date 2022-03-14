@@ -10,8 +10,8 @@ const useGetUserInfo = (userId) => {
 
     const fetchUser = async (userId) => {
       try {
-        const response = await axios.post(
-          "/api/users/userInfo",
+        const response = await axios.get(
+          `/api/user/info/${userId}`,
           {
             _id: userId,
           },

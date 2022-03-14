@@ -65,7 +65,7 @@ export async function auth() {
 
 export async function updateUserName(newName) {
   const request = await axios
-    .patch("/api/user/username", newName)
+    .patch("/api/user/name", newName)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -76,7 +76,7 @@ export async function updateUserName(newName) {
 
 export async function addUserTech(newTech) {
   const request = await axios
-    .patch("/api/user/tech/add", newTech)
+    .post("/api/user/tech", newTech)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -87,7 +87,7 @@ export async function addUserTech(newTech) {
 
 export async function deleteUserTech(techId) {
   const request = await axios
-    .patch("/api/user/tech/delete", techId)
+    .delete(`/api/user/tech/${techId}`)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -98,7 +98,7 @@ export async function deleteUserTech(techId) {
 
 export async function addUserLearn(newTech) {
   const request = await axios
-    .patch("/api/user/learn/add", newTech)
+    .post("/api/user/learn", newTech)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -109,7 +109,7 @@ export async function addUserLearn(newTech) {
 
 export async function deleteUserLearn(techId) {
   const request = await axios
-    .patch("/api/user/learn/delete", techId)
+    .delete(`/api/user/learn/${techId}`)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {

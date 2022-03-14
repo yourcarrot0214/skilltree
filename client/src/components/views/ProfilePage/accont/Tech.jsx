@@ -19,7 +19,7 @@ const Tech = ({ userData }) => {
   const onDeleteSkill = (e) => {
     e.preventDefault();
     dispatch(deleteTechnitian({ id: SkillId }));
-    dispatch(deleteUserTech({ id: SkillId }));
+    dispatch(deleteUserTech(SkillId));
     alert("해당 스킬이 Tech 목록에서 삭제되었습니다.");
     setModalOpen(!ModalOpen);
   };
@@ -39,12 +39,12 @@ const Tech = ({ userData }) => {
       />
       <Modal
         onClickFunction={onClickFunction}
-        header='스킬수정하기'
+        header="스킬수정하기"
         openModal={ModalOpen}
       >
         <h3>다룰 수 있는 스킬에서 삭제할까요?</h3>
         <ButtonBox>
-          <Button type='submit' name='tech' onClick={onDeleteSkill}>
+          <Button type="submit" name="tech" onClick={onDeleteSkill}>
             삭제하기
           </Button>
         </ButtonBox>

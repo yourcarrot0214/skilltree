@@ -6,7 +6,7 @@ const useGetUserName = (userId) => {
 
   useEffect(() => {
     axios
-      .post("/api/users/get/name", { _id: userId })
+      .get(`/api/user/name/${userId}`)
       .then((response) => setUserName(response.data.userName))
       .catch((err) => console.log(err));
   });

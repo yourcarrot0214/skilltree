@@ -165,13 +165,13 @@ router.delete("/learn/:id", auth, (req, res) => {
   );
 });
 
-router.patch("/project/apply/save", userFindOne, (req, res) => {
+router.post("/project/apply/:id", userFindOne, (req, res) => {
   User.findOneAndUpdate(
-    { _id: req.body.userId },
+    { _id: req.user._id },
     {
       project: {
         ...req.user.project,
-        apply: req.user.project.apply.concat(req.body.classId),
+        apply: req.user.project.apply.concat(req.params.id),
       },
     },
     { new: true },
@@ -185,13 +185,13 @@ router.patch("/project/apply/save", userFindOne, (req, res) => {
   );
 });
 
-router.patch("/study/apply/save", userFindOne, (req, res) => {
+router.post("/study/apply/:id", userFindOne, (req, res) => {
   User.findOneAndUpdate(
-    { _id: req.body.userId },
+    { _id: req.user._id },
     {
       study: {
         ...req.user.study,
-        apply: req.user.study.apply.concat(req.body.classId),
+        apply: req.user.study.apply.concat(req.params.id),
       },
     },
     { new: true },
@@ -205,14 +205,14 @@ router.patch("/study/apply/save", userFindOne, (req, res) => {
   );
 });
 
-router.patch("/project/apply/remove", userFindOne, (req, res) => {
+router.delete("/project/apply/:id", userFindOne, (req, res) => {
   User.findOneAndUpdate(
-    { _id: req.body.userId },
+    { _id: req.user._id },
     {
       project: {
         ...req.user.project,
         apply: req.user.project.apply.filter(
-          (classId) => classId !== req.body.classId
+          (classId) => classId !== req.params.id
         ),
       },
     },
@@ -227,14 +227,14 @@ router.patch("/project/apply/remove", userFindOne, (req, res) => {
   );
 });
 
-router.patch("/study/apply/remove", userFindOne, (req, res) => {
+router.delete("/study/apply/:id", userFindOne, (req, res) => {
   User.findOneAndUpdate(
-    { _id: req.body.userId },
+    { _id: req.user._id },
     {
       study: {
         ...req.user.study,
         apply: req.user.study.apply.filter(
-          (classId) => classId !== req.body.classId
+          (classId) => classId !== req.params.id
         ),
       },
     },

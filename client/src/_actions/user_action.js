@@ -118,9 +118,9 @@ export async function deleteUserLearn(techId) {
   };
 }
 
-export async function saveApplyProject(requestBody) {
+export async function saveApplyProject(classId) {
   const request = await axios
-    .patch("/api/user/project/apply/save", requestBody)
+    .post(`/api/user/project/apply/${classId}`)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -129,9 +129,9 @@ export async function saveApplyProject(requestBody) {
   };
 }
 
-export async function removeApplyProject(requestBody) {
+export async function removeApplyProject(classId) {
   const request = await axios
-    .patch("/api/user/project/apply/remove", requestBody)
+    .delete(`/api/user/project/apply/${classId}`)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -140,9 +140,9 @@ export async function removeApplyProject(requestBody) {
   };
 }
 
-export async function saveApplyStudy(requestBody) {
+export async function saveApplyStudy(classId) {
   const request = await axios
-    .patch("/api/user/study/apply/save", requestBody)
+    .post(`/api/user/study/apply/${classId}`)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -151,9 +151,9 @@ export async function saveApplyStudy(requestBody) {
   };
 }
 
-export async function removeApplyStudy(requestBody) {
+export async function removeApplyStudy(classId) {
   const request = await axios
-    .patch("/api/user/study/apply/remove", requestBody)
+    .delete(`/api/user/study/apply/${classId}`)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {

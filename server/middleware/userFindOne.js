@@ -13,7 +13,7 @@ let leaderFindOne = (req, res, next) => {
 };
 
 let userFindOne = (req, res, next) => {
-  User.findOne({ _id: req.body.userId }, (err, user) => {
+  User.findOne({ token: req.cookies.X_auth }, (err, user) => {
     if (err) return res.json(findOneError(USER_MODEL, err));
     if (!user) return res.json(notFoundError(USER_MODEL, req.body.userId));
 

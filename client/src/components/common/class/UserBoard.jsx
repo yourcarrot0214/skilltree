@@ -47,12 +47,12 @@ const UserBoard = (props) => {
 
     if (location === "Project") {
       dispatch(applyProject(requestBody));
-      dispatch(saveApplyProject(requestBody));
+      dispatch(saveApplyProject(classId));
       setVolunteer(!volunteer);
       alert(`프로젝트 참가 신청이 완료되었습니다.`);
     } else if (location === "Study") {
       dispatch(applyStudy(requestBody));
-      dispatch(saveApplyStudy(requestBody));
+      dispatch(saveApplyStudy(classId));
       setVolunteer(!volunteer);
       alert(`스터디 참가 신청이 완료되었습니다.`);
     }
@@ -66,12 +66,12 @@ const UserBoard = (props) => {
 
     if (location === "Project") {
       dispatch(cancelProjectApply(requestBody));
-      dispatch(removeApplyProject(requestBody));
+      dispatch(removeApplyProject(classId));
       setVolunteer(!volunteer);
       alert(`프로젝트 참가 신청이 취소되었습니다.`);
     } else if (location === "Study") {
       dispatch(cancelStudyApply(requestBody));
-      dispatch(removeApplyStudy(requestBody));
+      dispatch(removeApplyStudy(classId));
       setVolunteer(!volunteer);
       alert(`스터디 참가 신청이 취소되었습니다.`);
     }

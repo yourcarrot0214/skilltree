@@ -3,7 +3,10 @@ const router = express.Router();
 
 const { Project } = require("../models/Project.js");
 const { User } = require("../models/User.js");
-const { projectFindOne } = require("../middleware/projectFindOne.js");
+const {
+  projectFindOne,
+  projectFindById,
+} = require("../middleware/projectFindOne.js");
 const { leaderFindOne, userFindOne } = require("../middleware/userFindOne.js");
 
 const { PROJECT_MODEL, USER_MODEL } = require("../config/types.js");
@@ -24,7 +27,7 @@ const {
   projectDeleteSuccess,
 } = require("../function/projectResponse.js");
 
-router.post("/create", leaderFindOne, (req, res) => {
+router.post("/", leaderFindOne, (req, res) => {
   const project = new Project(req.body);
 
   User.findOneAndUpdate(
@@ -48,16 +51,16 @@ router.post("/create", leaderFindOne, (req, res) => {
   });
 });
 
-router.get("/list", (req, res) => {
+router.get("/", (req, res) => {
   Project.find({}, (err, docs) => {
     if (err) return res.json(getProjectListError(err));
     return res.status(200).json(getProjectListSuccess(docs));
   });
 });
 
-router.patch("/update", (req, res) => {
+router.patch("/:id", (req, res) => {
   Project.findOneAndUpdate(
-    { _id: req.body.id },
+    { _id: req.params.id },
     {
       title: req.body.title,
       description: req.body.description,
@@ -75,14 +78,14 @@ router.patch("/update", (req, res) => {
   );
 });
 
-router.patch("/delete", userFindOne, (req, res) => {
+router.delete("/:id", userFindOne, (req, res) => {
   User.findOneAndUpdate(
     { _id: req.user._id },
     {
       project: {
         ...req.user.project,
         leader: req.user.project.leader.filter(
-          (classId) => String(classId) !== String(req.body.classId)
+          (classId) => String(classId) !== String(req.params.id)
         ),
       },
     },
@@ -90,47 +93,47 @@ router.patch("/delete", userFindOne, (req, res) => {
     (err, updatedUser) => {
       if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
       if (!updatedUser)
-        return res.json(notFoundError(USER_MODEL, req.body.userId));
+        return res.json(notFoundError(USER_MODEL, req.user._id));
     }
   );
 
-  Project.findOneAndDelete({ _id: req.body.classId }, (err, deletedProject) => {
+  Project.findOneAndDelete({ _id: req.params.id }, (err, deletedProject) => {
     if (err) return res.json(findOneAndUpdateError(PROJECT_MODEL, err));
     if (!deletedProject)
-      return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
+      return res.json(notFoundError(PROJECT_MODEL, req.params.id));
 
-    return res.status(200).json(projectDeleteSuccess(req.body.classId));
+    return res.status(200).json(projectDeleteSuccess(req.params.id));
   });
 });
 
-router.patch("/apply", projectFindOne, (req, res) => {
+router.patch("/apply/:id", userFindOne, projectFindById, (req, res) => {
   Project.findOneAndUpdate(
-    { _id: req.body.classId },
-    { volunteer: req.project.volunteer.concat(req.body.userId) },
+    { _id: req.params.id },
+    { volunteer: req.project.volunteer.concat(req.user._id) },
     { new: true },
     (err, updatedProject) => {
       if (err) return res.json(findOneError(PROJECT_MODEL, err));
       if (!updatedProject)
-        return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
+        return res.json(notFoundError(PROJECT_MODEL, req.params.id));
 
       return res.status(200).json(projectUpdateSuccess(updatedProject));
     }
   );
 });
 
-router.patch("/apply/cancel", projectFindOne, (req, res) => {
+router.delete("/apply/:id", userFindOne, projectFindById, (req, res) => {
   Project.findOneAndUpdate(
-    { _id: req.body.classId },
+    { _id: req.params.id },
     {
-      volunteer: req.project.volunteer.filter(
-        (user) => user !== req.body.userId
-      ),
+      volunteer: req.project.volunteer.filter((user) => {
+        user !== req.user._id;
+      }),
     },
     { new: true },
     (err, updatedProject) => {
       if (err) return res.json(findOneAndUpdateError(PROJECT_MODEL, err));
       if (!updatedProject)
-        return res.json(notFoundError(PROJECT_MODEL, req.body.classId));
+        return res.json(notFoundError(PROJECT_MODEL, req.params.id));
 
       return res.status(200).json(projectUpdateSuccess(updatedProject));
     }

@@ -14,7 +14,7 @@ import {
 
 export async function getProjectList() {
   const request = await axios
-    .get("/api/project/list")
+    .get("/api/project")
     .then((response) => response.data.docs)
     .catch((err) => console.log(err));
   return {
@@ -25,7 +25,7 @@ export async function getProjectList() {
 
 export async function createProject(requestBody) {
   const request = await axios
-    .post("/api/project/create", requestBody)
+    .post("/api/project", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -34,9 +34,9 @@ export async function createProject(requestBody) {
   };
 }
 
-export async function updateProject(requestBody) {
+export async function updateProject(projectId, requestBody) {
   const request = await axios
-    .patch("/api/project/update", requestBody)
+    .patch(`/api/project/${projectId}`, requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -45,9 +45,9 @@ export async function updateProject(requestBody) {
   };
 }
 
-export async function deleteProject(requestBody) {
+export async function deleteProject(projectId) {
   const request = await axios
-    .patch("/api/project/delete", requestBody)
+    .delete(`/api/project/${projectId}`)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -56,9 +56,9 @@ export async function deleteProject(requestBody) {
   };
 }
 
-export async function applyProject(requestBody) {
+export async function applyProject(projectId) {
   const request = await axios
-    .patch("/api/project/apply", requestBody)
+    .patch(`/api/project/apply/${projectId}`)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -67,9 +67,9 @@ export async function applyProject(requestBody) {
   };
 }
 
-export async function cancelProjectApply(requestBody) {
+export async function cancelProjectApply(projectId) {
   const request = await axios
-    .patch("/api/project/apply/cancel", requestBody)
+    .delete(`/api/project/apply/${projectId}`)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {

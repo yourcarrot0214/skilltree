@@ -45,7 +45,7 @@ const LeaderBoard = ({
     let check = window.confirm(`${location}를 정말 삭제할까요?`);
 
     if (check && location === "Project") {
-      dispatch(deleteProject({ classId: classId, userId: leaderId }));
+      dispatch(deleteProject(classId));
     } else if (check && location === "Study") {
       dispatch(deleteStudy({ classId: classId, userId: leaderId }));
     } else {
@@ -128,20 +128,20 @@ const LeaderBoard = ({
               <Button
                 onClickFunction={acceptDispatch}
                 admission={true}
-                name='수락'
+                name="수락"
                 userId={user}
               />
               <Button
                 onClickFunction={rejectDispatch}
                 admission={false}
-                name='거절'
+                name="거절"
                 userId={user}
               />
             </ButtonContainer>
           </UserListWrapper>
         ))
       ) : (
-        <PrintMessage message='지원자가 없습니다.' />
+        <PrintMessage message="지원자가 없습니다." />
       )}
 
       <h3 style={{ color: "#d9d9d9" }}>멤버 관리</h3>
@@ -153,14 +153,14 @@ const LeaderBoard = ({
               <Button
                 onClickFunction={memberExpulsion}
                 admission={false}
-                name='추방'
+                name="추방"
                 userId={user}
               />
             </ButtonContainer>
           </UserListWrapper>
         ))
       ) : (
-        <PrintMessage message='멤버가 없습니다.' />
+        <PrintMessage message="멤버가 없습니다." />
       )}
     </>
   );

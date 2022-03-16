@@ -13,4 +13,14 @@ let projectFindOne = (req, res, next) => {
   });
 };
 
-module.exports = { projectFindOne };
+const projectFindById = (req, res, next) => {
+  Project.findById(req.params.id, (err, project) => {
+    if (err) return res.json(findOneError(PROJECT_MODEL, err));
+    if (!project) return res.json(notFoundError(PROJECT_MODEL, req.params.id));
+
+    req.project = project;
+    next();
+  });
+};
+
+module.exports = { projectFindOne, projectFindById };

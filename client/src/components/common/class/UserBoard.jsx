@@ -46,7 +46,7 @@ const UserBoard = (props) => {
     };
 
     if (location === "Project") {
-      dispatch(applyProject(requestBody));
+      dispatch(applyProject(classId));
       dispatch(saveApplyProject(classId));
       setVolunteer(!volunteer);
       alert(`프로젝트 참가 신청이 완료되었습니다.`);
@@ -65,7 +65,7 @@ const UserBoard = (props) => {
     };
 
     if (location === "Project") {
-      dispatch(cancelProjectApply(requestBody));
+      dispatch(cancelProjectApply(classId));
       dispatch(removeApplyProject(classId));
       setVolunteer(!volunteer);
       alert(`프로젝트 참가 신청이 취소되었습니다.`);

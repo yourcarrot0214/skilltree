@@ -41,7 +41,7 @@ const Password = () => {
       newPassword: NewPassword,
     };
 
-    axios.patch("/api/users/password/update", requestBody).then((response) => {
+    axios.put("/api/user/password", requestBody).then((response) => {
       if (response.data.passwordUpdate) {
         setCurrentPassword("");
         setNewPassword("");
@@ -63,17 +63,17 @@ const Password = () => {
         <span>비밀번호 관리</span>
         <p>비밀번호를 변경할 수 있습니다.</p>
       </div>
-      <Button buttonName='수정' onClickFunction={onClickFunction} />
+      <Button buttonName="수정" onClickFunction={onClickFunction} />
       <Modal
         openModal={ModalOpen}
         onClickFunction={onClickFunction}
-        header='비밀번호 변경하기'
+        header="비밀번호 변경하기"
       >
         <Form submit={onUpdatePassword}>
           <label>현재 비밀번호</label>
           <input
-            type='password'
-            name='password'
+            type="password"
+            name="password"
             value={CurrentPassword}
             onChange={onChangeValue}
             autoFocus
@@ -81,21 +81,21 @@ const Password = () => {
           />
           <label>변경할 비밀번호</label>
           <input
-            type='password'
-            name='new-password'
+            type="password"
+            name="new-password"
             value={NewPassword}
             onChange={onChangeValue}
             required
           />
           <label>비밀번호 확인</label>
           <input
-            type='password'
-            name='check-new-password'
+            type="password"
+            name="check-new-password"
             value={CheckNewPassword}
             onChange={onChangeValue}
             required
           />
-          <button type='submit' onClick={onUpdatePassword}>
+          <button type="submit" onClick={onUpdatePassword}>
             변경하기
           </button>
         </Form>

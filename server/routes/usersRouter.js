@@ -249,7 +249,7 @@ router.delete("/study/apply/:id", userFindOne, (req, res) => {
   );
 });
 
-router.patch("/project/member/save", userFindOne, (req, res) => {
+router.patch("/project/member", userFindOne, (req, res) => {
   User.findOneAndUpdate(
     { _id: req.body.userId },
     {
@@ -272,14 +272,14 @@ router.patch("/project/member/save", userFindOne, (req, res) => {
   );
 });
 
-router.patch("/project/member/remove", userFindOne, (req, res) => {
+router.delete("/project/member/:id", userFindOne, (req, res) => {
   User.findOneAndUpdate(
-    { _id: req.body.userId },
+    { _id: req.user._id },
     {
       project: {
         ...req.user.project,
         member: req.user.project.member.filter(
-          (classId) => classId !== req.body.classId
+          (classId) => classId !== req.params.id
         ),
       },
     },
@@ -294,7 +294,7 @@ router.patch("/project/member/remove", userFindOne, (req, res) => {
   );
 });
 
-router.patch("/study/member/save", userFindOne, (req, res) => {
+router.patch("/study/member", userFindOne, (req, res) => {
   User.findOneAndUpdate(
     { _id: req.body.userId },
     {
@@ -317,14 +317,14 @@ router.patch("/study/member/save", userFindOne, (req, res) => {
   );
 });
 
-router.patch("/study/member/remove", userFindOne, (req, res) => {
+router.delete("/study/member/:id", userFindOne, (req, res) => {
   User.findOneAndUpdate(
-    { _id: req.body.userId },
+    { _id: req.user._id },
     {
       study: {
         ...req.user.study,
         member: req.user.study.member.filter(
-          (classId) => classId !== req.body.classId
+          (classId) => classId !== req.params.id
         ),
       },
     },
@@ -339,7 +339,7 @@ router.patch("/study/member/remove", userFindOne, (req, res) => {
   );
 });
 
-router.patch("/password/update", auth, (req, res) => {
+router.put("/password", auth, (req, res) => {
   User.findOne({ _id: req.user._id }, (err, user) => {
     if (err) return res.json(findOneError(USER_MODEL, err));
     if (!user) return res.json(userNotFound());

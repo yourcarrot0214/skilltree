@@ -72,7 +72,7 @@ router.patch("/:id", (req, res) => {
     (err, projectInfo) => {
       if (err) return res.json(findOneAndUpdateError(PROJECT_MODEL, err));
       if (!projectInfo)
-        return res.json(notFoundError(PROJECT_MODEL, req.body.id));
+        return res.json(notFoundError(PROJECT_MODEL, req.params.id));
       return res.status(200).json(projectUpdateSuccess(projectInfo));
     }
   );

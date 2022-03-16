@@ -12,4 +12,14 @@ let studyFindOne = (req, res, next) => {
   });
 };
 
-module.exports = { studyFindOne };
+const studyFindById = (req, res, next) => {
+  Study.findById(req.params.id, (err, study) => {
+    if (err) return res.json(findOneError(STUDY_MODEL, err));
+    if (!study) return res.json(notFoundError(STUDY_MODEL, req.params.id));
+
+    req.study = study;
+    next();
+  });
+};
+
+module.exports = { studyFindOne, studyFindById };

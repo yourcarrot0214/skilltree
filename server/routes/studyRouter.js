@@ -3,7 +3,10 @@ const router = express.Router();
 
 const { Study } = require("../models/Study.js");
 const { User } = require("../models/User.js");
-const { studyFindOne } = require("../middleware/studyFindOne.js");
+const {
+  studyFindOne,
+  studyFindById,
+} = require("../middleware/studyFindOne.js");
 const { leaderFindOne, userFindOne } = require("../middleware/userFindOne.js");
 
 const { STUDY_MODEL, USER_MODEL } = require("../config/types.js");
@@ -24,7 +27,7 @@ const {
   studyDeleteSuccess,
 } = require("../function/studyResponse.js");
 
-router.post("/create", leaderFindOne, (req, res) => {
+router.post("/", leaderFindOne, (req, res) => {
   const study = new Study(req.body);
 
   User.findOneAndUpdate(
@@ -49,16 +52,16 @@ router.post("/create", leaderFindOne, (req, res) => {
   });
 });
 
-router.get("/list", (req, res) => {
+router.get("/", (req, res) => {
   Study.find({}, (err, docs) => {
     if (err) return res.json(getStudyListError(err));
     return res.status(200).json(getStudyListSuccess(docs));
   });
 });
 
-router.patch("/update", (req, res) => {
+router.patch("/:id", (req, res) => {
   Study.findOneAndUpdate(
-    { _id: req.body.id },
+    { _id: req.params.id },
     {
       title: req.body.title,
       description: req.body.description,
@@ -69,20 +72,21 @@ router.patch("/update", (req, res) => {
     { new: true },
     (err, studyInfo) => {
       if (err) return res.json(findOneAndUpdateError(STUDY_MODEL, err));
-      if (!studyInfo) return res.json(notFoundError(STUDY_MODEL, req.body.id));
+      if (!studyInfo)
+        return res.json(notFoundError(STUDY_MODEL, req.params.id));
       return res.status(200).json(studyUpdateSuccess(studyInfo));
     }
   );
 });
 
-router.patch("/delete", userFindOne, (req, res) => {
+router.delete("/:id", userFindOne, (req, res) => {
   User.findOneAndUpdate(
     { _id: req.user._id },
     {
       study: {
         ...req.user.study,
         leader: req.user.study.leader.filter(
-          (classId) => String(classId) !== String(req.body.classId)
+          (classId) => String(classId) !== String(req.params.id)
         ),
       },
     },
@@ -90,47 +94,45 @@ router.patch("/delete", userFindOne, (req, res) => {
     (err, updatedUser) => {
       if (err) return res.json(findOneAndUpdateError(USER_MODEL, err));
       if (!updatedUser)
-        return res.json(notFoundError(USER_MODEL, req.body.userId));
+        return res.json(notFoundError(USER_MODEL, req.user._id));
     }
   );
 
-  Study.findOneAndDelete({ _id: req.body.classId }, (err, deletedStudy) => {
+  Study.findOneAndDelete({ _id: req.params.id }, (err, deletedStudy) => {
     if (err) return res.json(findOneAndDeleteError(STUDY_MODEL, err));
     if (!deletedStudy)
-      return res.json(notFoundError(STUDY_MODEL, req.body.classId));
+      return res.json(notFoundError(STUDY_MODEL, req.params.id));
 
-    return res.status(200).json(studyDeleteSuccess(req.body.classId));
+    return res.status(200).json(studyDeleteSuccess(req.params.id));
   });
 });
 
-router.patch("/apply", studyFindOne, (req, res) => {
+router.patch("/apply/:id", userFindOne, studyFindById, (req, res) => {
   Study.findOneAndUpdate(
-    { _id: req.body.classId },
-    { volunteer: req.study.volunteer.concat(req.body.userId) },
+    { _id: req.params.id },
+    { volunteer: req.study.volunteer.concat(req.user._id) },
     { new: true },
     (err, updatedStudy) => {
       if (err) return res.json(findOneUpdateError(STUDY_MODEL, err));
       if (!updatedStudy)
-        return res.json(notFoundError(STUDY_MODEL, req.body.classId));
+        return res.json(notFoundError(STUDY_MODEL, req.params.id));
 
       return res.status(200).json(studyUpdateSuccess(updatedStudy));
     }
   );
 });
 
-router.patch("/apply/cancel", studyFindOne, (req, res) => {
+router.delete("/apply/:id", userFindOne, studyFindById, (req, res) => {
   Study.findOneAndUpdate(
-    { _id: req.body.classId },
+    { _id: req.params.id },
     {
-      volunteer: req.study.volunteer.filter(
-        (study) => study !== req.body.userId
-      ),
+      volunteer: req.study.volunteer.filter((user) => user !== req.user._id),
     },
     { new: true },
     (err, updatedStudy) => {
       if (err) return res.json(findOneAndUpdateError(STUDY_MODEL, err));
       if (!updatedStudy)
-        return res.json(notFoundError(SKILLS_MODEL, req.body.classId));
+        return res.json(notFoundError(SKILLS_MODEL, req.params.id));
 
       return res.status(200).json(studyUpdateSuccess(updatedStudy));
     }

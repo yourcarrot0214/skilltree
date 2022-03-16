@@ -36,22 +36,17 @@ const applyButton = {
 
 const UserBoard = (props) => {
   const dispatch = useDispatch();
-  const { isVolunteer, classId, userId, location } = props;
+  const { isVolunteer, classId, location } = props;
   const [volunteer, setVolunteer] = useState(isVolunteer);
 
   const applyToClass = () => {
-    const requestBody = {
-      classId: classId,
-      userId: userId,
-    };
-
     if (location === "Project") {
       dispatch(applyProject(classId));
       dispatch(saveApplyProject(classId));
       setVolunteer(!volunteer);
       alert(`프로젝트 참가 신청이 완료되었습니다.`);
     } else if (location === "Study") {
-      dispatch(applyStudy(requestBody));
+      dispatch(applyStudy(classId));
       dispatch(saveApplyStudy(classId));
       setVolunteer(!volunteer);
       alert(`스터디 참가 신청이 완료되었습니다.`);
@@ -59,18 +54,13 @@ const UserBoard = (props) => {
   };
 
   const applyToCancel = () => {
-    const requestBody = {
-      classId: classId,
-      userId: userId,
-    };
-
     if (location === "Project") {
       dispatch(cancelProjectApply(classId));
       dispatch(removeApplyProject(classId));
       setVolunteer(!volunteer);
       alert(`프로젝트 참가 신청이 취소되었습니다.`);
     } else if (location === "Study") {
-      dispatch(cancelStudyApply(requestBody));
+      dispatch(cancelStudyApply(classId));
       dispatch(removeApplyStudy(classId));
       setVolunteer(!volunteer);
       alert(`스터디 참가 신청이 취소되었습니다.`);

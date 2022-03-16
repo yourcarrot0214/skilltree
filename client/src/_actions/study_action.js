@@ -14,7 +14,7 @@ import {
 
 export async function getStudyList() {
   const request = await axios
-    .get("/api/study/list")
+    .get("/api/study")
     .then((response) => response.data.docs)
     .catch((err) => console.log(err));
   return {
@@ -25,7 +25,7 @@ export async function getStudyList() {
 
 export async function createStudy(requestBody) {
   const request = await axios
-    .post("/api/study/create", requestBody)
+    .post("/api/study", requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -34,9 +34,9 @@ export async function createStudy(requestBody) {
   };
 }
 
-export async function updateStudy(requestBody) {
+export async function updateStudy(studyId, requestBody) {
   const request = await axios
-    .patch("/api/study/update", requestBody)
+    .patch(`/api/study/${studyId}`, requestBody)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -45,9 +45,9 @@ export async function updateStudy(requestBody) {
   };
 }
 
-export async function deleteStudy(requestBody) {
+export async function deleteStudy(studyId) {
   const request = await axios
-    .patch("/api/study/delete", requestBody)
+    .delete(`/api/study/${studyId}`)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -56,9 +56,9 @@ export async function deleteStudy(requestBody) {
   };
 }
 
-export async function applyStudy(requestBody) {
+export async function applyStudy(studyId) {
   const request = await axios
-    .patch("/api/study/apply", requestBody)
+    .patch(`/api/study/apply/${studyId}`)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {
@@ -67,9 +67,9 @@ export async function applyStudy(requestBody) {
   };
 }
 
-export async function cancelStudyApply(requestBody) {
+export async function cancelStudyApply(studyId) {
   const request = await axios
-    .patch("/api/study/apply/cancel", requestBody)
+    .delete(`/api/study/apply/${studyId}`)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   return {

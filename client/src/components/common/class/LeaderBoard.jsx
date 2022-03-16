@@ -47,7 +47,7 @@ const LeaderBoard = ({
     if (check && location === "Project") {
       dispatch(deleteProject(classId));
     } else if (check && location === "Study") {
-      dispatch(deleteStudy({ classId: classId, userId: leaderId }));
+      dispatch(deleteStudy(classId));
     } else {
       return;
     }

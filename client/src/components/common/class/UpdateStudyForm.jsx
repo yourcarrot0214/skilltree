@@ -46,7 +46,7 @@ const UpdateStudyForm = (props) => {
 
     const check = window.confirm("스터디 정보를 업데이트 할까요?");
     if (check) {
-      dispatch(updateStudy(requestBody));
+      dispatch(updateStudy(studyInfo._id, requestBody));
       alert(`스터디 정보가 업데이트 되었습니다.`);
       props.history.goBack();
     } else {
@@ -98,7 +98,7 @@ const UpdateStudyForm = (props) => {
     <>
       <SubmitContainer>
         <h3>스터디에 필요한 스킬을 선택해 주세요.</h3>
-        <button className='goBack' onClick={onCancle}>
+        <button className="goBack" onClick={onCancle}>
           취소
         </button>
         <SearchBar
@@ -128,44 +128,44 @@ const UpdateStudyForm = (props) => {
         <SubmitForm onSubmit={onUpdateClass}>
           <label>스터디 제목</label>
           <input
-            type='text'
-            name='title'
+            type="text"
+            name="title"
             value={Title}
             onChange={onChangeValue}
             required
           />
           <label>스터디 설명</label>
           <textarea
-            name='description'
+            name="description"
             value={Description}
             onChange={onChangeValue}
             required
           />
           <label>모집 인원 수</label>
           <input
-            type='number'
-            name='personnel'
+            type="number"
+            name="personnel"
             value={Personnel}
             onChange={onChangeValue}
-            min='2'
-            max='10'
+            min="2"
+            max="10"
             required
           />
           <label>모집중</label>
           <input
-            type='radio'
-            name='status'
+            type="radio"
+            name="status"
             value={false}
             onChange={onChangeValue}
           />
           <label>진행중</label>
           <input
-            type='radio'
-            name='status'
+            type="radio"
+            name="status"
             value={true}
             onChange={onChangeValue}
           />
-          <button type='submit'>업데이트</button>
+          <button type="submit">업데이트</button>
         </SubmitForm>
       </SubmitContainer>
     </>

@@ -126,7 +126,9 @@ router.delete("/apply/:id", userFindOne, studyFindById, (req, res) => {
   Study.findOneAndUpdate(
     { _id: req.params.id },
     {
-      volunteer: req.study.volunteer.filter((user) => user !== req.user._id),
+      volunteer: req.study.volunteer.filter((user) => {
+        user !== req.user._id;
+      }),
     },
     { new: true },
     (err, updatedStudy) => {

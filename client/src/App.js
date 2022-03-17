@@ -20,6 +20,8 @@ import CreateStudyForm from "./components/common/class/CreateStudyForm";
 import UpdateProjectForm from "./components/common/class/UpdateProjectForm";
 import UpdateStudyForm from "./components/common/class/UpdateStudyForm";
 
+import Skills from "./components/views/SkillsPage/Skills";
+
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -33,42 +35,43 @@ function App() {
       <ReactHelmet />
       <Router>
         <NavBar />
-        <div className='main-section'>
+        <div className="main-section">
           <Switch>
-            <Route exact path='/' component={Auth(LandingPage, null)} />
-            <Route exact path='/login' component={Auth(LoginPage, false)} />
+            <Route exact path="/" component={Auth(LandingPage, null)} />
+            <Route exact path="/login" component={Auth(LoginPage, false)} />
             <Route
               exact
-              path='/register'
+              path="/register"
               component={Auth(RegisterPage, false)}
             />
-            <Route exact path='/skills' component={Auth(SkillsMain, null)} />
-            <Route exact path='/project' component={Auth(ProjectMain, null)} />
-            <Route exact path='/study' component={Auth(StudyMain, null)} />
-            <Route exact path='/profile' component={Auth(ProfileMain, true)} />
+            <Route exact path="/skills" component={Auth(SkillsMain, null)} />
+            <Route exact path="/skill" component={Auth(Skills, null)} />
+            <Route exact path="/project" component={Auth(ProjectMain, null)} />
+            <Route exact path="/study" component={Auth(StudyMain, null)} />
+            <Route exact path="/profile" component={Auth(ProfileMain, true)} />
             <Route
               exact
-              path='/admin'
+              path="/admin"
               component={Auth(AdminPage, true, true)}
             />
             <Route
               exact
-              path='/project/create'
+              path="/project/create"
               component={Auth(CreateProjectForm, true)}
             />
             <Route
               exact
-              path='/study/create'
+              path="/study/create"
               component={Auth(CreateStudyForm, true)}
             />
             <Route
               exact
-              path='/project/update/:id'
+              path="/project/update/:id"
               component={Auth(UpdateProjectForm, true)}
             />
             <Route
               exact
-              path='/study/update/:id'
+              path="/study/update/:id"
               component={Auth(UpdateStudyForm, true)}
             />
           </Switch>

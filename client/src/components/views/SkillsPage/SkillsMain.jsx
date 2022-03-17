@@ -76,3 +76,10 @@ const SkillsMain = () => {
 };
 
 export default withRouter(SkillsMain);
+
+/*
+  TODO : refactoring
+    ? 부모 자식 컴포넌트가 props로 너무 얽혀 있는 문제.
+    ? reRendering을 방지하기 위한 memo가 적용되지 않음.
+    ? data를 redux로 관리하고 props 전달을 분리하여 컴포넌트 리렌더링 방지.
+*/

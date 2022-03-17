@@ -1,17 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { TagStyled } from "./styles/styled.js";
+
+import { Button } from "@mui/material";
 
 const Tag = ({ skillInfo, onClickFunction, selected }) => {
   return (
     <>
-      <TagStyled
+      <Button
         id={skillInfo._id}
+        variant={selected ? "contained" : "outlined"}
+        color={selected ? "success" : "info"}
+        size="small"
         onClick={onClickFunction}
         selected={skillInfo.selected || selected}
+        sx={{ margin: "0.2rem 0.2rem" }}
       >
         {skillInfo.name.toLowerCase()}
-      </TagStyled>
+      </Button>
     </>
   );
 };

@@ -20,16 +20,16 @@ const SearchBar = (props) => {
   }, [dispatch]);
 
   return (
-    <SkillSearchBarStyled className='SearchBar'>
+    <SkillSearchBarStyled className="SearchBar">
       <SkillSearchForm onSubmit={onSkillSearch}>
         <SearchBarInput
-          type='text'
-          name='skill-name'
+          type="text"
+          name="skill-name"
           value={skillName}
           onChange={onChangeValue}
-          placeholder='찾는 스킬이 있나요?'
+          placeholder="찾는 스킬이 있나요?"
         />
-        <SearchButton type='submit'>Skill Search</SearchButton>
+        <SearchButton type="submit">Skill Search</SearchButton>
       </SkillSearchForm>
     </SkillSearchBarStyled>
   );

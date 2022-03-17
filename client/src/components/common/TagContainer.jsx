@@ -12,7 +12,7 @@ const TagContainer = (props) => {
           skillInfo={skill}
           key={skill._id}
           onClickFunction={onClickFunction}
-          selected={selected}
+          selected={skill.selected || selected}
         />
       ))}
     </TagContainerStyled>

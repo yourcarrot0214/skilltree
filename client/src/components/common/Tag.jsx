@@ -13,7 +13,7 @@ const Tag = ({ skillInfo, onClickFunction, selected }) => {
         size="small"
         onClick={onClickFunction}
         selected={skillInfo.selected || selected}
-        sx={{ margin: "0.2rem 0.2rem" }}
+        sx={{ margin: "0.2rem 0.2rem", position: "unset" }}
       >
         {skillInfo.name.toLowerCase()}
       </Button>

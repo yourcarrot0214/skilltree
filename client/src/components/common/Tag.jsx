@@ -5,19 +5,17 @@ import { Button } from "@mui/material";
 
 const Tag = ({ skillInfo, onClickFunction, selected }) => {
   return (
-    <>
-      <Button
-        id={skillInfo._id}
-        variant={selected ? "contained" : "outlined"}
-        color={selected ? "success" : "info"}
-        size="small"
-        onClick={onClickFunction}
-        selected={skillInfo.selected || selected}
-        sx={{ margin: "0.2rem 0.2rem", position: "unset" }}
-      >
-        {skillInfo.name.toLowerCase()}
-      </Button>
-    </>
+    <Button
+      id={skillInfo._id}
+      variant={selected ? "contained" : "outlined"}
+      color={selected ? "success" : "info"}
+      size="small"
+      onClick={onClickFunction}
+      selected={skillInfo.selected || selected}
+      sx={{ margin: "0.2rem 0.2rem" }}
+    >
+      {skillInfo.name.toLowerCase()}
+    </Button>
   );
 };
 
